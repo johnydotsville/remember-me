@@ -1,0 +1,22 @@
+.code-block-container {
+  position: relative;
+  display: block;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  isolation: isolate;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #fafafa;
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.copy-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
