@@ -7,6 +7,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# Файл со сгенерированными задачами
+src/data/
+
 # Директории зависимостей
 node_modules/
 dist/

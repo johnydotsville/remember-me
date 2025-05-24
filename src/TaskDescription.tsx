@@ -6,8 +6,6 @@ import { visit } from 'unist-util-visit';
 import ClipboardIcon from '@mui/icons-material/FileCopy';
 import { Box, Button } from '@mui/material';
 
-import styles from './TaskDescription.module.css';
-
 
 const syntaxHighlightPlugin = () => tree => {
   visit(tree, 'code', node => {
@@ -52,7 +50,7 @@ export const TaskDescription = ({ description }) => {
                   aria-label="Копировать"
                   size="small"
                   color='warning'
-                  sx={{ position: 'absolute', top: '1rem', right: '0.25rem'}}
+                  sx={{ position: 'absolute', top: '1rem', right: '0.25rem' }}
                 >
                   <ClipboardIcon />
                 </Button>

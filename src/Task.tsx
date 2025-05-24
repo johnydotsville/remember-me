@@ -3,10 +3,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
-import { TaskDescription } from './TaskDescription/TaskDescription';
+import { TaskDescription } from './TaskDescription';
 import { TaskSourceCode } from './TaskSourceCode';
 
 
@@ -33,6 +31,7 @@ export const Task = ({ task }) => {
         </AccordionSummary>
         <AccordionDetails>
           <TaskDescription description={task.description} />
+          { task.template && <SourceCodeSpoiler sourceCode={task.template} spoilerText='Шаблон' /> }
           { task.solution && <SourceCodeSpoiler sourceCode={task.solution} spoilerText='Решение' /> }
         </AccordionDetails>
       </Accordion>
