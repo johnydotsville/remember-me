@@ -1,9 +1,9 @@
-import { TaskList } from "./TaskList"
+import { MainPage } from "./MainPage"
 
 
 function App() {
   return (
-    <TaskList />
+    <MainPage />
   )
 }
 
