@@ -1,7 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { marked } from 'marked';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -9,13 +8,6 @@ const PROJECT_ROOT = path.join(__dirname, '..'); // Корень проекта
 const PATHS = {
   tasks: path.join(PROJECT_ROOT, 'tasks'),
   output: path.join(PROJECT_ROOT, 'src/data/tasks.ts')
-};
-
-const formatJson = (obj, indent = 2) => {
-  return JSON.stringify(obj, null, indent)
-    .split('\n')
-    .map(line => '    ' + line) // Добавляем 4 пробела к каждой строке
-    .join('\n');
 };
 
 
@@ -41,30 +33,9 @@ async function findTaskDirs(rootDir) {
 
 
 async function makeTask(taskdir) {
-  let description = "";
-  try {
-    const descriptionMd = await fs.readFile(path.join(taskdir, 'description.md'), 'utf8');
-    // const descriptionHtml = marked.parse(descriptionMd);
-    // description = JSON.stringify(descriptionHtml);
-    description = descriptionMd;
-  } catch (error) {
-    console.error("Ошибка формирования описания задачи: " + error.message);
-  }
-
-  let template = "";
-  try {
-    template = await fs.readFile(path.join(taskdir, 'template.ts'), 'utf-8');
-  } catch (error) {
-    console.error("Ошибка формирования шаблона задачи: " + error.message);
-  }
-
-  let solution = "";
-  try {
-    solution = await fs.readFile(path.join(taskdir, 'solution.ts'), 'utf-8');
-    solution = solution.replace(/\$\{/g, '\\${');
-  } catch (error) {
-    console.error("Ошибка формирования шаблона задачи: " + error.message);
-  }
+  const description = await mdToString(path.join(taskdir, 'description.md'));
+  const template = await sourceCodeToString(path.join(taskdir, 'template.ts'));
+  const solution = await sourceCodeToString(path.join(taskdir, 'solution.ts'));
 
   return {
     id: path.relative(PATHS.tasks, taskdir).replace(/[\\/]/g, '-'),
@@ -72,6 +43,28 @@ async function makeTask(taskdir) {
     template,
     solution
   }
+}
+
+
+async function mdToString(mdPath) {
+  try {
+    const description = await fs.readFile(mdPath, 'utf8');
+    return description;
+  } catch (error) {
+    console.error(`Ошибка парсинга markdown из файла '${mdPath}': ` + error.message);
+  }
+  return '';
+}
+
+
+async function sourceCodeToString(scPath) {
+  try {
+    const tstext = await fs.readFile(scPath, 'utf-8');
+    return tstext.replace(/\$\{/g, '\\${');
+  } catch (error) {
+    console.error(`Ошибка парсинга source code из файла '${scPath}': ` + error.message);
+  }
+  return '';
 }
 
 
