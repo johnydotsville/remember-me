@@ -2,7 +2,7 @@ import { Stack, Typography, Drawer, Button, Box, List, ListItem, ListItemText, L
 import { useState } from "react"
 
 
-export const SideMenu = ({ items }) => {
+export const SideMenu = ({ items, selectItem }) => {
   const [open, setOpen] = useState(false);
 
   const toggleMenu = () => setOpen(!open);  
@@ -14,7 +14,7 @@ export const SideMenu = ({ items }) => {
         <List sx={{ padding: '1.25rem' }}>
           { items.map(item => (
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => selectItem(item)}>
                 <ListItemText>{item}</ListItemText>
               </ListItemButton>
           </ListItem>

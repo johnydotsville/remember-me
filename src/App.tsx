@@ -1,9 +1,9 @@
-import { MainPage } from "./components/MainPage"
+import { TasksPage } from "./components/TasksPage"
 
 
 function App() {
   return (
-    <MainPage />
+    <TasksPage />
   )
 }
 
