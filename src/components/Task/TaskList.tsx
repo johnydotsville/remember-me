@@ -1,5 +1,5 @@
-import { tasks } from "./data/tasks";
-import { Task } from "./Task";
+import { tasks } from "@data/tasks";
+import { Task } from "@components/Task/Task";
 import { Stack } from "@mui/material";
 
 

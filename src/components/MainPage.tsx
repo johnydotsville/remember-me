@@ -1,8 +1,8 @@
 import { Stack } from "@mui/material"
-import { TaskList } from "./TaskList"
+import { TaskList } from "./Task/TaskList"
 import { SideMenu } from "./SideMenu"
-import { rootcat } from './data/tasks';
-import { flatcats } from "./utils/flatcats";
+import { rootcat } from '@data/tasks';
+import { flatcats } from "@utils/flatcats";
 import { useMemo } from "react";
 
 

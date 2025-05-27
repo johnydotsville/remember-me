@@ -1,4 +1,4 @@
-import type { Category } from '../data/tasks';
+import type { Category } from '@/data/tasks';
 
 
 export function flatcats(cat: Category) {
