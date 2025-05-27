@@ -106,14 +106,14 @@ ${cat.categories.map(c => catTreeToString(c, indentLevel + 1)).join(',\n')}
 ${sqin}]`
     : '[]';
 
-  return `${curlyin}{\n${fieldsin}name: '${cat.name}',\n${fieldsin}categories: ${formattedCategories}\n${curlyin}}`
+  return `${curlyin}{\n${fieldsin}name: '${cat.name}',\n${fieldsin}subcategories: ${formattedCategories}\n${curlyin}}`
 }
 
 
 async function writeTasks(tasks, rootcat) {
   let tsContent = `// Auto-generated file (${new Date().toISOString()})
 
-interface Task {
+export interface Task {
   id: string;
   description: string;
   template: string;
@@ -121,14 +121,13 @@ interface Task {
   categories: string[];
 }
 
-interface Category {
+export interface Category {
   name: string,
-  categories: Category[]
+  subcategories: Category[]
 }
 
 export const rootcat: Category = 
 ${catTreeToString(rootcat)}
-
 
 export const tasks: Task[] = [
 ${tasks.map(task => `  {
