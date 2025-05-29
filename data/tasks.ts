@@ -1,4 +1,4 @@
-// Auto-generated file (2025-05-27T16:58:46.569Z)
+// Auto-generated file (2025-05-29T13:26:31.412Z)
 
 export interface Task {
   id: string;
@@ -23,7 +23,12 @@ export const rootcat: Category =
     },
     {
       name: 'javascript',
-      subcategories: []
+      subcategories: [
+        {
+          name: 'http',
+          subcategories: []
+        }
+      ]
     },
     {
       name: 'strings',
@@ -44,7 +49,7 @@ export const rootcat: Category =
 export const tasks: Task[] = [
   {
     id: "arrays-task-array-create-from-1",
-    description: "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов со объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.",
+    description: "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов с объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.\r\n* Нельзя использовать return.",
     template: ``,
     solution: `const foo = Array.from({ length: 10 }, (cur, ind) => \`Элемент \${ind+1}\`);
 
@@ -53,6 +58,43 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
   value: \`Элемент \${ind + 1}\`
 }));`,
     categories: ['arrays']
+  },
+  {
+    id: "javascript-http-task-fetch-with-query-string",
+    description: "### Вводные\r\n\r\nЭндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
+    template: ``,
+    solution: `async function fetchData(page, limit) {
+  const endpoint = 'https://jsonplaceholder.typicode.com/posts';
+
+  const url = new URL(endpoint);
+  url.searchParams.append('_page', String(page));
+  url.searchParams.append('_limit', String(limit));
+
+  const response = await fetch(url);
+  const data = await response.json();
+  data.forEach(p =>console.log(p.title));
+}
+
+fetchData(5, 3);
+
+
+// Вариант 2
+async function fetchData(page, limit) {
+  const params = new URLSearchParams();
+  params.append('_page', String(page));
+  params.append('_limit', String(limit));
+
+  const endpoint = 'https://jsonplaceholder.typicode.com/posts';
+  const url = new URL(endpoint);
+  url.search = params.toString();
+
+  const response = await fetch(url);
+  const data = await response.json();
+  data.forEach(p =>console.log(p.title));
+}
+
+fetchData(5, 3);`,
+    categories: ['javascript', 'http']
   },
   {
     id: "typescript-utility-types-task-partial-1",

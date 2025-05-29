@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.join(__dirname, '..');
 const PATHS = {
   tasks: path.join(PROJECT_ROOT, 'tasks'),
-  output: path.join(PROJECT_ROOT, 'src/data/tasks.ts')
+  output: path.join(PROJECT_ROOT, 'data/tasks.ts')
 };
 
 
@@ -74,7 +74,9 @@ async function mdToString(mdPath) {
     const description = await fs.readFile(mdPath, 'utf8');
     return description;
   } catch (error) {
-    console.error(`Ошибка парсинга markdown из файла '${mdPath}': ` + error.message);
+    if (error.code !== 'ENOENT') {
+      console.warn(`⚠️ Не удалось спарсить markdown из файла '${mdPath}': ` + error.message);
+    }
   }
   return '';
 }
@@ -85,7 +87,9 @@ async function sourceCodeToString(scPath) {
     const tstext = await fs.readFile(scPath, 'utf-8');
     return tstext.replace(/\$\{/g, '\\${');
   } catch (error) {
-    console.error(`Ошибка парсинга source code из файла '${scPath}': ` + error.message);
+    if (error.code !== 'ENOENT') {
+      console.warn(`⚠️ Не удалось спарсить source code из файла '${scPath}': ` + error.message);
+    }
   }
   return '';
 }
