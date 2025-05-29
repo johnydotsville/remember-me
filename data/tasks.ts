@@ -1,6 +1,6 @@
-// Auto-generated file (2025-05-29T13:26:31.412Z)
+// Auto-generated file (2025-05-29T17:56:35.046Z)
 
-export interface Task {
+export interface ITask {
   id: string;
   description: string;
   template: string;
@@ -8,12 +8,12 @@ export interface Task {
   categories: string[];
 }
 
-export interface Category {
+export interface ICategory {
   name: string,
-  subcategories: Category[]
+  subcategories: ICategory[]
 }
 
-export const rootcat: Category = 
+export const rootcat: ICategory = 
 {
   name: 'root',
   subcategories: [
@@ -29,6 +29,10 @@ export const rootcat: Category =
           subcategories: []
         }
       ]
+    },
+    {
+      name: 'refactoring',
+      subcategories: []
     },
     {
       name: 'strings',
@@ -95,6 +99,60 @@ async function fetchData(page, limit) {
 
 fetchData(5, 3);`,
     categories: ['javascript', 'http']
+  },
+  {
+    id: "refactoring-task-fetch-to-ent",
+    description: "### Вводные\r\n\r\nОтрефакторить указанную функцию, чтобы она больше походила на промышленное решение. Ограничений нет, рефакторить на сколько хватит фантазии. Приведенное решение - просто ориентир, а не идеал.",
+    template: `async function fetchData(page, limit) {
+  const params = new URLSearchParams();
+  params.append('_page', page.toString());
+  params.append('_limit', limit.toString());
+
+  const endpoint = 'https://jsonplaceholder.typicode.com/posts';
+  const url = new URL(endpoint);
+  url.search = params.toString();
+
+  const response = await fetch(url);
+  const data = await response.json();
+  data.forEach(p =>console.log(p.title));
+}
+
+fetchData(5, 3);`,
+    solution: `async function fetchData(baseUrl, page, limit) {
+  try {
+    const url = new URL(baseUrl);
+    url.searchParams.append('_page', String(page));
+    url.searchParams.append('_limit', String(limit));
+
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(\`Ошибка выбора данных. HTTP-status: \${response.status}\`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+}
+
+async function show() {
+  const endpoint = 'https://jsonplaceholder.typicode.com/posts';
+  const data = await fetchData(endpoint, 5, 10);
+
+  if (!data || !Array.isArray(data)) {
+    throw new Error(\`Ожидался массив, а получено \${typeof data}\`)
+  }
+
+  data.forEach(p => {
+    if (p?.title) {
+      console.log(p.title)
+    }
+  });
+}
+
+show();`,
+    categories: ['refactoring']
   },
   {
     id: "typescript-utility-types-task-partial-1",

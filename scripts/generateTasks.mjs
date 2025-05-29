@@ -117,7 +117,7 @@ ${sqin}]`
 async function writeTasks(tasks, rootcat) {
   let tsContent = `// Auto-generated file (${new Date().toISOString()})
 
-export interface Task {
+export interface ITask {
   id: string;
   description: string;
   template: string;
@@ -125,12 +125,12 @@ export interface Task {
   categories: string[];
 }
 
-export interface Category {
+export interface ICategory {
   name: string,
-  subcategories: Category[]
+  subcategories: ICategory[]
 }
 
-export const rootcat: Category = 
+export const rootcat: ICategory = 
 ${catTreeToString(rootcat)}
 
 export const tasks: Task[] = [
