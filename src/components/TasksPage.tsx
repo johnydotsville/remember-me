@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material"
+import { Stack, Box } from "@mui/material"
 import { TaskList } from "./Task/TaskList"
 import { SideMenu } from "./SideMenu"
 import { rootcat } from '@data/tasks';
@@ -36,7 +36,7 @@ export const TasksPage = () => {
 
   return (
     <Stack direction='row'>
-      <SideMenu 
+      <SideMenu
         items={cats} 
         selectItem={(cat) => {
           setCategory(cat);
@@ -48,7 +48,7 @@ export const TasksPage = () => {
           resetRandomTask();
         }}
       />
-      <TaskList tasks={displayTasks} />
+      <Box sx={{ flex: 1}}><TaskList tasks={displayTasks} /></Box>
     </Stack>
   )
 }

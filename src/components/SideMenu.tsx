@@ -1,4 +1,4 @@
-import { Drawer, Button, Box, List, ListItem, ListItemText, ListItemButton } from "@mui/material"
+import { Drawer, Button, List, ListItem, ListItemText, ListItemButton, Stack } from "@mui/material"
 import { useState } from "react"
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
@@ -15,7 +15,7 @@ export const SideMenu = ({ items, selectItem, getRandomTask, resetAllFilters }) 
   }
 
   return (
-    <Box>
+    <Stack direction='column'>
       <Button onClick={toggleMenu}>
         <AppsOutlinedIcon sx={{ fontSize: '2.5rem'}}></AppsOutlinedIcon>
       </Button>
@@ -36,6 +36,6 @@ export const SideMenu = ({ items, selectItem, getRandomTask, resetAllFilters }) 
           ))}
         </List>
       </Drawer>
-    </Box>
+    </Stack>
   )
 }
