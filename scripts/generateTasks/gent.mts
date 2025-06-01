@@ -14,40 +14,6 @@ const PATHS = {
 
 // TODO: после реализации меты зачилиться, сделать рефакторинг, разбить на более мелкие фрагменты и написать тесты.
 // TODO: подумать, а можно ли в директорию складывать одновременно и подкатегории, и задачи?
-async function findTaskDirs(rootDir: string) {
-  const directoriesWithTask: string[] = [];
-  const rootCategory: Category = {
-    name: 'root',
-    subcategories: []
-  };
-
-  async function scan(directory: string, category: Category) {
-    const items = await fs.readdir(directory);
-    for (const item of items) {
-      const fullpath = path.join(directory, item);
-      const stat = await fs.stat(fullpath);
-      if (stat.isDirectory()) {
-        if (item.startsWith('task-')) {
-          directoriesWithTask.push(fullpath);
-        } else {
-          const childCategory: Category = {
-            name: item,
-            subcategories: []
-          };
-          category.subcategories.push(childCategory);
-          await scan(fullpath, childCategory);
-        }
-      }
-    }
-  }
-  
-  await scan(rootDir, rootCategory);
-  return {
-    taskDirs: directoriesWithTask,
-    categories: rootCategory
-  };
-}
-
 interface FsDirectory {
   name: string;
   path: string;
@@ -88,6 +54,14 @@ async function buildDirectoriesTree(rootDir: string): Promise<FsDirectory> {
   
   await scan(rootCategory);
   return rootCategory;
+}
+
+
+function flattenDirectoriesTree(root: FsDirectory): FsDirectory[] {
+  const directories: FsDirectory[] = [];
+  directories.push(root);
+  root.subdirectories.forEach(sub => directories.push(...flattenDirectoriesTree(sub)));
+  return directories;
 }
 
 
@@ -149,7 +123,7 @@ function catTreeToString(cat: FsDirectory, indentLevel = 0, indentSpace = 2) {
   const fieldsin = indent(fields);
   const sqin = indent(sq);
   
-  const formattedCategories = cat.subdirectories.length > 0
+  const formattedCategories = (cat.subdirectories.filter(sub => !sub.isTask)).length > 0
     ? `[
 ${cat.subdirectories.filter(sub => !sub.isTask).map(c => catTreeToString(c, indentLevel + 1)).join(',\n')}
 ${sqin}]`
@@ -183,27 +157,12 @@ export default tasks;
 }
 
 
-function flatDirectoriesTree(root: FsDirectory): FsDirectory[] {
-  const directories: FsDirectory[] = [];
-  directories.push(root);
-  root.subdirectories.forEach(sub => directories.push(...flatDirectoriesTree(sub)));
-  return directories;
-}
-
-
 async function genTasks() {
-  // const { taskDirs, categories } = await findTaskDirs(PATHS.tasks);
-  // const tasks = await Promise.all(taskDirs.map(td => makeTask(td)));
-  // await writeTasks(tasks, categories);
-
-  // const { categories } = await findTaskDirs(PATHS.tasks);
-  // console.log(categories)
-  const tree = await buildDirectoriesTree(PATHS.tasks);
-  const flatDirectories = flatDirectoriesTree(tree);
-  const taskDirs = flatDirectories.filter(dir => dir.isTask).map(dir => dir.path);
-  // console.log(taskDirs)
+  const directoriesTree = await buildDirectoriesTree(PATHS.tasks);
+  const flatDirectoriesTree = flattenDirectoriesTree(directoriesTree);
+  const taskDirs = flatDirectoriesTree.filter(dir => dir.isTask).map(dir => dir.path);
   const tasks = await Promise.all(taskDirs.map(td => makeTask(td)));
-  await writeTasks(tasks, tree);
+  await writeTasks(tasks, directoriesTree);
 }
 
 genTasks();
