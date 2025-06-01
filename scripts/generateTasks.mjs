@@ -116,21 +116,9 @@ ${sqin}]`
 
 async function writeTasks(tasks, rootcat) {
   let tsContent = `// Auto-generated file (${new Date().toISOString()})
+import type { Task, Category } from "@/src/types/model";
 
-export interface ITask {
-  id: string;
-  description: string;
-  template: string;
-  solution: string;
-  categories: string[];
-}
-
-export interface ICategory {
-  name: string,
-  subcategories: ICategory[]
-}
-
-export const rootcat: ICategory = 
+export const rootcat: Category = 
 ${catTreeToString(rootcat)}
 
 export const tasks: Task[] = [

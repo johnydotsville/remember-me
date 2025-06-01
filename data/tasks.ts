@@ -1,19 +1,7 @@
-// Auto-generated file (2025-06-01T06:55:32.636Z)
+// Auto-generated file (2025-06-01T08:41:25.991Z)
+import type { Task, Category } from "@/src/types/model";
 
-export interface ITask {
-  id: string;
-  description: string;
-  template: string;
-  solution: string;
-  categories: string[];
-}
-
-export interface ICategory {
-  name: string,
-  subcategories: ICategory[]
-}
-
-export const rootcat: ICategory = 
+export const rootcat: Category = 
 {
   name: 'root',
   subcategories: [
@@ -199,7 +187,7 @@ function debounce(func, delayMs) {
   },
   {
     id: "real-tasks-task-flat-categories",
-    description: "Есть объект типа 'Категория':\r\n\r\n```\r\ntype Category = {\r\n  name: string,\r\n  subcategories: Category[]\r\n}\r\n```\r\n\r\nУ категории есть имя и массив вложенных в нее категорий (\"подкатегории\").\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает плоский массив с именами категорий.\r\n\r\nНапример для такой структуры:\r\n\r\n```javascript\r\n{\r\n  name: 'javascript',\r\n  subcategories: [\r\n    {\r\n      name: 'strings',\r\n      subcategories: []\r\n    },\r\n    {\r\n      name: 'objects',\r\n      subcategories: [\r\n        {\r\n          name: 'arrays',\r\n          subcategories: []\r\n        }\r\n      ]\r\n    },\r\n  ]\r\n}\r\n```\r\n\r\nДолжно получиться:\r\n\r\n```javascript\r\n['javascript', 'strings', 'objects', 'arrays']\r\n```\r\n\r\n",
+    description: "Есть объект типа 'Категория':\r\n\r\n```typescript\r\ntype Category = {\r\n  name: string,\r\n  subcategories: Category[]\r\n}\r\n```\r\n\r\nУ категории есть имя и массив вложенных в нее категорий (\"подкатегории\").\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает плоский массив с именами всех категорий и вложенных в них подкатегорий.\r\n\r\nНапример для такой структуры:\r\n\r\n```javascript\r\n{\r\n  name: 'javascript',\r\n  subcategories: [\r\n    {\r\n      name: 'strings',\r\n      subcategories: []\r\n    },\r\n    {\r\n      name: 'objects',\r\n      subcategories: [\r\n        {\r\n          name: 'arrays',\r\n          subcategories: []\r\n        }\r\n      ]\r\n    },\r\n  ]\r\n}\r\n```\r\n\r\nДолжно получиться:\r\n\r\n```javascript\r\n['javascript', 'strings', 'objects', 'arrays']\r\n```\r\n\r\n",
     template: `const rootcat = 
 {
   name: 'root',

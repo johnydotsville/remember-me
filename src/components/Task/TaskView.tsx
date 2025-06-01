@@ -22,7 +22,7 @@ const SourceCodeSpoiler = ({ sourceCode, spoilerText }) => {
 }
 
 
-export const Task = ({ task }) => {
+export const TaskView = ({ task }) => {
   return (
     <div>
       <Accordion>
