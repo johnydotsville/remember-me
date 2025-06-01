@@ -48,39 +48,38 @@ async function findTaskDirs(rootDir: string) {
   };
 }
 
-// interface FsCategory extends Category {
-interface FsCategory {
+interface FsDirectory {
   name: string;
-  directory: string;
+  path: string;
   isTask: boolean;
-  subcategories: FsCategory[];
+  subdirectories: FsDirectory[];
 }
 
-async function buildDirectoriesTree(rootDir: string): Promise<FsCategory> {
-  const rootCategory: FsCategory = {
+async function buildDirectoriesTree(rootDir: string): Promise<FsDirectory> {
+  const rootCategory: FsDirectory = {
     name: 'root',
-    directory: rootDir,
+    path: rootDir,
     isTask: false,
-    subcategories: []
+    subdirectories: []
   };
 
-  async function scan(category: FsCategory) {
-    const directories = await fs.readdir(category.directory);
+  async function scan(category: FsDirectory) {
+    const directories = await fs.readdir(category.path);
     for (const directory of directories) {
-      const fullpath = path.join(directory, category.directory);
+      const fullpath = path.join(category.path, directory);
       const stat = await fs.stat(fullpath);
       if (stat.isDirectory()) {
-        const childCategory: FsCategory = {
+        const childCategory: FsDirectory = {
           name: directory,
-          directory: fullpath,
+          path: fullpath,
           isTask: false,
-          subcategories: []
+          subdirectories: []
         };
+        category.subdirectories.push(childCategory);
         if (directory.startsWith('task-')) {
           childCategory.isTask = true;
         } else {
           childCategory.isTask = false; 
-          category.subcategories.push(childCategory);
           await scan(childCategory);
         }
       }
@@ -141,7 +140,7 @@ async function sourceCodeToString(scPath) {
 }
 
 
-function catTreeToString(cat: Category, indentLevel = 0, indentSpace = 2) {
+function catTreeToString(cat: FsDirectory, indentLevel = 0, indentSpace = 2) {
   const indent = (num: number) => ' '.repeat(num);
   const curly = indentLevel * indentSpace * 2;
   const fields = curly + indentSpace;
@@ -150,9 +149,9 @@ function catTreeToString(cat: Category, indentLevel = 0, indentSpace = 2) {
   const fieldsin = indent(fields);
   const sqin = indent(sq);
   
-  const formattedCategories = cat.subcategories.length > 0
+  const formattedCategories = cat.subdirectories.length > 0
     ? `[
-${cat.subcategories.map(c => catTreeToString(c, indentLevel + 1)).join(',\n')}
+${cat.subdirectories.filter(sub => !sub.isTask).map(c => catTreeToString(c, indentLevel + 1)).join(',\n')}
 ${sqin}]`
     : '[]';
 
@@ -160,7 +159,7 @@ ${sqin}]`
 }
 
 
-async function writeTasks(tasks, rootcat) {
+async function writeTasks(tasks: Task[], rootcat: FsDirectory) {
   let tsContent = `// Auto-generated file (${new Date().toISOString()})
 import type { Task, Category } from "@/src/types/model";
 
@@ -184,10 +183,27 @@ export default tasks;
 }
 
 
+function flatDirectoriesTree(root: FsDirectory): FsDirectory[] {
+  const directories: FsDirectory[] = [];
+  directories.push(root);
+  root.subdirectories.forEach(sub => directories.push(...flatDirectoriesTree(sub)));
+  return directories;
+}
+
+
 async function genTasks() {
-  const { taskDirs, categories } = await findTaskDirs(PATHS.tasks);
+  // const { taskDirs, categories } = await findTaskDirs(PATHS.tasks);
+  // const tasks = await Promise.all(taskDirs.map(td => makeTask(td)));
+  // await writeTasks(tasks, categories);
+
+  // const { categories } = await findTaskDirs(PATHS.tasks);
+  // console.log(categories)
+  const tree = await buildDirectoriesTree(PATHS.tasks);
+  const flatDirectories = flatDirectoriesTree(tree);
+  const taskDirs = flatDirectories.filter(dir => dir.isTask).map(dir => dir.path);
+  // console.log(taskDirs)
   const tasks = await Promise.all(taskDirs.map(td => makeTask(td)));
-  await writeTasks(tasks, categories);
+  await writeTasks(tasks, tree);
 }
 
 genTasks();

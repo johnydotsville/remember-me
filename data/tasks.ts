@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-01T09:42:10.265Z)
+// Auto-generated file (2025-06-01T12:24:11.655Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -7,28 +7,38 @@ export const rootcat: Category =
   subcategories: [
     {
       name: 'arrays',
-      subcategories: []
+      subcategories: [
+
+      ]
     },
     {
       name: 'javascript',
       subcategories: [
         {
           name: 'http',
-          subcategories: []
+          subcategories: [
+
+          ]
         }
       ]
     },
     {
       name: 'objects',
-      subcategories: []
+      subcategories: [
+
+      ]
     },
     {
       name: 'real-tasks',
-      subcategories: []
+      subcategories: [
+
+      ]
     },
     {
       name: 'refactoring',
-      subcategories: []
+      subcategories: [
+
+      ]
     },
     {
       name: 'strings',
@@ -39,7 +49,9 @@ export const rootcat: Category =
       subcategories: [
         {
           name: 'utility-types',
-          subcategories: []
+          subcategories: [
+
+          ]
         }
       ]
     }
