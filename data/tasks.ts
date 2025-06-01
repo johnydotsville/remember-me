@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-01T08:41:25.991Z)
+// Auto-generated file (2025-06-01T08:57:00.013Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 

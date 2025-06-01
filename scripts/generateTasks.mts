@@ -1,6 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import type { Task, Category } from '@src/types/model';
+
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -12,7 +14,7 @@ const PATHS = {
 
 
 async function findTaskDirs(rootDir) {
-  const taskDirs = [];
+  const taskDirs: string[] = [];
   const rootcat = {
     name: 'root',
     categories: []
@@ -46,7 +48,7 @@ async function findTaskDirs(rootDir) {
 }
 
 
-async function makeTask(taskdir) {
+async function makeTask(taskdir): Promise<Task> {
   const description = await mdToString(path.join(taskdir, 'description.md'));
   const template = await sourceCodeToString(path.join(taskdir, 'template.ts'));
   const solution = await sourceCodeToString(path.join(taskdir, 'solution.ts'));
@@ -74,7 +76,7 @@ async function mdToString(mdPath) {
     const description = await fs.readFile(mdPath, 'utf8');
     return description;
   } catch (error) {
-    if (error.code !== 'ENOENT') {
+    if (error instanceof Error && 'code' in error && error.code !== 'ENOENT') {
       console.warn(`⚠️ Не удалось спарсить markdown из файла '${mdPath}': ` + error.message);
     }
   }
@@ -87,7 +89,7 @@ async function sourceCodeToString(scPath) {
     const tstext = await fs.readFile(scPath, 'utf-8');
     return tstext.replace(/\$\{/g, '\\${');
   } catch (error) {
-    if (error.code !== 'ENOENT') {
+    if (error instanceof Error && 'code' in error && error.code !== 'ENOENT') {
       console.warn(`⚠️ Не удалось спарсить source code из файла '${scPath}': ` + error.message);
     }
   }
