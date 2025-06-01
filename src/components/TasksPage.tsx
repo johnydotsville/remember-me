@@ -36,12 +36,18 @@ export const TasksPage = () => {
 
   return (
     <Stack direction='row'>
-      <SideMenu items={cats} 
+      <SideMenu 
+        items={cats} 
         selectItem={(cat) => {
           setCategory(cat);
           resetRandomTask();
         }}
-        getRandomTask={getRandomTask} />
+        getRandomTask={getRandomTask}
+        resetAllFilters={() => {
+          setCategory('root');
+          resetRandomTask();
+        }}
+      />
       <TaskList tasks={displayTasks} />
     </Stack>
   )

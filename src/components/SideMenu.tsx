@@ -1,10 +1,11 @@
-import { Stack, Typography, Drawer, Button, Box, List, ListItem, ListItemText, ListItemButton } from "@mui/material"
+import { Drawer, Button, Box, List, ListItem, ListItemText, ListItemButton } from "@mui/material"
 import { useState } from "react"
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
 
 
-export const SideMenu = ({ items, selectItem, getRandomTask }) => {
+export const SideMenu = ({ items, selectItem, getRandomTask, resetAllFilters }) => {
   const [open, setOpen] = useState(false);
 
   const toggleMenu = () => setOpen(!open);
@@ -20,6 +21,9 @@ export const SideMenu = ({ items, selectItem, getRandomTask }) => {
       </Button>
       <Button onClick={getRandomTask}>
         <HelpOutlineOutlinedIcon sx={{ fontSize: '2.5rem'}}></HelpOutlineOutlinedIcon>
+      </Button>
+      <Button onClick={resetAllFilters}>
+        <BlockOutlinedIcon sx={{ fontSize: '2.5rem'}}></BlockOutlinedIcon>
       </Button>
       <Drawer anchor='left' open={open} onClose={toggleMenu}>
         <List sx={{ padding: '1.25rem' }}>
