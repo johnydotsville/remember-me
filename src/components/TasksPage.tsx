@@ -5,14 +5,14 @@ import { rootcat } from '@data/tasks';
 import { flatcats } from "@utils/flatcats";
 import { useCallback, useMemo, useState } from "react";
 import { tasks as sourceTasks } from "@data/tasks";
-import type { ITask } from '@data/tasks';
+import type { Task } from '@src/types/model';
 
 
 export const TasksPage = () => {
   const cats = useMemo(() => flatcats(rootcat).sort(), []);
   const [tasks] = useState(sourceTasks);
   const [category, setCategory] = useState('root');
-  const [randomTask, setRandomTask] = useState<ITask | null>(null);
+  const [randomTask, setRandomTask] = useState<Task | null>(null);
 
   const displayTasks = useMemo(() => {
     if (randomTask){

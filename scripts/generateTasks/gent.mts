@@ -6,53 +6,97 @@ import type { Task, Category } from '@src/types/model';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const PROJECT_ROOT = path.join(__dirname, '..');
+const PROJECT_ROOT = path.join(__dirname, '../..');
 const PATHS = {
   tasks: path.join(PROJECT_ROOT, 'tasks'),
   output: path.join(PROJECT_ROOT, 'data/tasks.ts')
 };
 
-
-async function findTaskDirs(rootDir) {
-  const taskDirs: string[] = [];
-  const rootcat = {
+// TODO: после реализации меты зачилиться, сделать рефакторинг, разбить на более мелкие фрагменты и написать тесты.
+// TODO: подумать, а можно ли в директорию складывать одновременно и подкатегории, и задачи?
+async function findTaskDirs(rootDir: string) {
+  const directoriesWithTask: string[] = [];
+  const rootCategory: Category = {
     name: 'root',
-    categories: []
+    subcategories: []
   };
 
-  async function scan(dir, cat) {
-    const items = await fs.readdir(dir);
+  async function scan(directory: string, category: Category) {
+    const items = await fs.readdir(directory);
     for (const item of items) {
-      const fullpath = path.join(dir, item);
+      const fullpath = path.join(directory, item);
       const stat = await fs.stat(fullpath);
       if (stat.isDirectory()) {
         if (item.startsWith('task-')) {
-          taskDirs.push(fullpath);
+          directoriesWithTask.push(fullpath);
         } else {
-          const chilcat = {
+          const childCategory: Category = {
             name: item,
-            categories: []
+            subcategories: []
           };
-          cat.categories.push(chilcat);
-          await scan(fullpath, chilcat);
+          category.subcategories.push(childCategory);
+          await scan(fullpath, childCategory);
         }
       }
     }
   }
   
-  await scan(rootDir, rootcat);
+  await scan(rootDir, rootCategory);
   return {
-    taskDirs,
-    categories: rootcat
+    taskDirs: directoriesWithTask,
+    categories: rootCategory
   };
 }
 
+// interface FsCategory extends Category {
+interface FsCategory {
+  name: string;
+  directory: string;
+  isTask: boolean;
+  subcategories: FsCategory[];
+}
 
-async function makeTask(taskdir): Promise<Task> {
+async function buildDirectoriesTree(rootDir: string): Promise<FsCategory> {
+  const rootCategory: FsCategory = {
+    name: 'root',
+    directory: rootDir,
+    isTask: false,
+    subcategories: []
+  };
+
+  async function scan(category: FsCategory) {
+    const directories = await fs.readdir(category.directory);
+    for (const directory of directories) {
+      const fullpath = path.join(directory, category.directory);
+      const stat = await fs.stat(fullpath);
+      if (stat.isDirectory()) {
+        const childCategory: FsCategory = {
+          name: directory,
+          directory: fullpath,
+          isTask: false,
+          subcategories: []
+        };
+        if (directory.startsWith('task-')) {
+          childCategory.isTask = true;
+        } else {
+          childCategory.isTask = false; 
+          category.subcategories.push(childCategory);
+          await scan(childCategory);
+        }
+      }
+    }
+  }
+  
+  await scan(rootCategory);
+  return rootCategory;
+}
+
+
+async function makeTask(taskdir: string): Promise<Task> {
   const description = await mdToString(path.join(taskdir, 'description.md'));
   const template = await sourceCodeToString(path.join(taskdir, 'template.ts'));
   const solution = await sourceCodeToString(path.join(taskdir, 'solution.ts'));
-  const categories = extractCategories(taskdir);
+  const categories = getCategoriesFromTaskDir(taskdir);
 
   return {
     id: path.relative(PATHS.tasks, taskdir).replace(/[\\/]/g, '-'),
@@ -64,8 +108,8 @@ async function makeTask(taskdir): Promise<Task> {
 }
 
 
-function extractCategories(dir) {
-  const base = path.dirname(path.relative(PATHS.tasks, dir));
+function getCategoriesFromTaskDir(taskDir: string) {
+  const base = path.dirname(path.relative(PATHS.tasks, taskDir));
   const normalized = path.normalize(base);
   return normalized.split(path.sep);
 }
@@ -97,8 +141,8 @@ async function sourceCodeToString(scPath) {
 }
 
 
-function catTreeToString(cat, indentLevel = 0, indentSpace = 2) {
-  const indent = (num) => ' '.repeat(num);
+function catTreeToString(cat: Category, indentLevel = 0, indentSpace = 2) {
+  const indent = (num: number) => ' '.repeat(num);
   const curly = indentLevel * indentSpace * 2;
   const fields = curly + indentSpace;
   const sq = curly + indentSpace;
@@ -106,9 +150,9 @@ function catTreeToString(cat, indentLevel = 0, indentSpace = 2) {
   const fieldsin = indent(fields);
   const sqin = indent(sq);
   
-  const formattedCategories = cat.categories.length > 0
+  const formattedCategories = cat.subcategories.length > 0
     ? `[
-${cat.categories.map(c => catTreeToString(c, indentLevel + 1)).join(',\n')}
+${cat.subcategories.map(c => catTreeToString(c, indentLevel + 1)).join(',\n')}
 ${sqin}]`
     : '[]';
 
