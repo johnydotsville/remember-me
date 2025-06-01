@@ -8,6 +8,10 @@ export const SideMenu = ({ items, selectItem, getRandomTask }) => {
   const [open, setOpen] = useState(false);
 
   const toggleMenu = () => setOpen(!open);
+  const handleMenuItemClick = (item) => {
+    selectItem(item);
+    setOpen(!open);
+  }
 
   return (
     <Box>
@@ -21,7 +25,7 @@ export const SideMenu = ({ items, selectItem, getRandomTask }) => {
         <List sx={{ padding: '1.25rem' }}>
           { items.map(item => (
             <ListItem disablePadding>
-              <ListItemButton onClick={() => selectItem(item)}>
+              <ListItemButton onClick={() => handleMenuItemClick(item)}>
                 <ListItemText>{item}</ListItemText>
               </ListItemButton>
           </ListItem>
