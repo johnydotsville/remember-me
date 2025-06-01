@@ -1,4 +1,4 @@
-// Auto-generated file (2025-05-29T17:56:35.046Z)
+// Auto-generated file (2025-06-01T06:55:32.636Z)
 
 export interface ITask {
   id: string;
@@ -31,6 +31,14 @@ export const rootcat: ICategory =
       ]
     },
     {
+      name: 'objects',
+      subcategories: []
+    },
+    {
+      name: 'real-tasks',
+      subcategories: []
+    },
+    {
       name: 'refactoring',
       subcategories: []
     },
@@ -61,6 +69,22 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
   id: ind,
   value: \`Элемент \${ind + 1}\`
 }));`,
+    categories: ['arrays']
+  },
+  {
+    id: "arrays-task-arrays-merge-1",
+    description: "### Вводные\r\n\r\nЕсть два массива:\r\n\r\n* Активные пользователи, которые пользовались приложением в течение месяца:\r\n\r\n```javascript\r\nconst activeUsers = [\r\n  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },\r\n  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }\r\n];\r\n```\r\n\r\n* Новые пользователи, которые зарегистрировались на этой неделе:\r\n\r\n```javascript\r\nconst newUsers = [\r\n  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },\r\n  { id: 4, name: 'Dave', signupDate: '2023-10-26' }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Объединить обе категории пользователей в новый массив так, чтобы новые были в начале.",
+    template: `const activeUsers = [
+  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },
+  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }
+];
+
+const newUsers = [
+  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },
+  { id: 4, name: 'Dave', signupDate: '2023-10-26' }
+];`,
+    solution: `const allUsers = [...newUsers, ...activeUsers];
+console.log(allUsers);`,
     categories: ['arrays']
   },
   {
@@ -99,6 +123,193 @@ async function fetchData(page, limit) {
 
 fetchData(5, 3);`,
     categories: ['javascript', 'http']
+  },
+  {
+    id: "objects-task-dyn-add-field",
+    description: "Дана функция:\r\n\r\n```javascript\r\nfunction createUser(login, firstname, lastname, role = 'user') {\r\n  if (!login) throw new Error('login является обязательным.');\r\n  return {\r\n    login,\r\n    role,\r\n  }\r\n}\r\n\r\nconst huck = createUser('hfinn', 'Huck', 'Finn');\r\nconsole.log(huck);\r\n```\r\n\r\nЗадача:\r\n\r\n* Доработать функцию так, чтобы поля firstname и lastname добавлялись в объект динамически - только если они переданы и не являются пустыми строками.\r\n* Поле lastname должно попасть в объект под названием surname.",
+    template: ``,
+    solution: `function createUser(login, firstname, lastname, role = 'user') {
+  if (!login) throw new Error('login является обязательным.');
+  return {
+    login,
+    role,
+    ...(firstname && firstname.length > 0 && { firstname }),
+    ...(lastname && lastname.length > 0 && { surname: lastname }),
+  }
+}
+
+const huck = createUser('hfinn', 'Huck', 'Finn');
+console.log(huck);`,
+    categories: ['objects']
+  },
+  {
+    id: "objects-task-merge-objects-1",
+    description: "Есть два объекта конфигурации:\r\n\r\n```javascript\r\nconst defaultConfig = {\r\n  cacheTime: 30_000,\r\n  staleTime: 0\r\n}\r\n\r\nconst myConfig = {\r\n  timeout: 1000,\r\n  refetchOnFail: false\r\n}\r\n```\r\n\r\n Задачи:\r\n\r\n* Объединить два конфига в новый.\r\n* Заменить параметр `refetchOnFail` на true.\r\n\r\nДоп. условия:\r\n\r\n* Сначала сделать это за две операции, потом за одну.",
+    template: ``,
+    solution: `// За две
+const config = {
+  ...defaultConfig,
+  ...myConfig
+}
+
+const rewritten = {
+  ...config,
+  refetchOnFail: true
+}
+
+// За одну
+const config = {
+  ...defaultConfig,
+  ...myConfig,
+  refetchOnFail: true
+}`,
+    categories: ['objects']
+  },
+  {
+    id: "real-tasks-task-debounce-user-input",
+    description: "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n```\r\nhttps://playcode.io/javascript\r\n```\r\n\r\n",
+    template: `// html
+<input id="userSearch" />
+
+
+// javascript
+const userInput = document.querySelector('#userSearch');
+
+userInput.addEventListener('input', () => goSearch(userInput.value));
+
+function goSearch(value) {
+  console.log(\`Запрос поиска на сервер: \${value}\`)
+}`,
+    solution: `const userInput = document.querySelector('#userSearch');
+
+userInput.addEventListener('input', debounce((event) => goSearch(event.target.value), 1500));
+
+function goSearch(value) {
+  console.log(\`Запрос поиска на сервер: \${value}\`)
+}
+
+function debounce(func, delayMs) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delayMs);
+  }
+}`,
+    categories: ['real-tasks']
+  },
+  {
+    id: "real-tasks-task-flat-categories",
+    description: "Есть объект типа 'Категория':\r\n\r\n```\r\ntype Category = {\r\n  name: string,\r\n  subcategories: Category[]\r\n}\r\n```\r\n\r\nУ категории есть имя и массив вложенных в нее категорий (\"подкатегории\").\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает плоский массив с именами категорий.\r\n\r\nНапример для такой структуры:\r\n\r\n```javascript\r\n{\r\n  name: 'javascript',\r\n  subcategories: [\r\n    {\r\n      name: 'strings',\r\n      subcategories: []\r\n    },\r\n    {\r\n      name: 'objects',\r\n      subcategories: [\r\n        {\r\n          name: 'arrays',\r\n          subcategories: []\r\n        }\r\n      ]\r\n    },\r\n  ]\r\n}\r\n```\r\n\r\nДолжно получиться:\r\n\r\n```javascript\r\n['javascript', 'strings', 'objects', 'arrays']\r\n```\r\n\r\n",
+    template: `const rootcat = 
+{
+  name: 'root',
+  subcategories: [
+    {
+      name: 'javascript',
+      subcategories: [
+        {
+          name: 'http',
+          subcategories: []
+        },
+        {
+          name: 'objects',
+          subcategories: []
+        },
+        {
+          name: 'strings',
+          subcategories: []
+        },
+        {
+          name: 'arrays',
+          subcategories: []
+        }
+      ]
+    },
+    {
+      name: 'real-tasks',
+      subcategories: []
+    },
+    {
+      name: 'refactoring',
+      subcategories: []
+    },
+    
+    {
+      name: 'typescript',
+      subcategories: [
+        {
+          name: 'utility-types',
+          subcategories: []
+        }
+      ]
+    }
+  ]
+}
+
+
+// Реализуйте функцию flatCategories
+
+const categories = flatCategories(rootcat);
+categories.forEach(category => console.log(category));`,
+    solution: `function flatCategories(category) {
+  const names = [];
+  names.push(category.name);
+
+  category.subcategories.forEach(sub => names.push(...(flatCategories(sub))));
+
+  return names;
+}`,
+    categories: ['real-tasks']
+  },
+  {
+    id: "real-tasks-task-merge-user-info",
+    description: "### Вводные\r\n\r\nДаны два массива:\r\n\r\n* Основные пользователи в базе данных:\r\n\r\n```javascript\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n```\r\n\r\n* И дополнительные данные из соцсетей:\r\n\r\n```javascript\r\nconst socialUsers = [\r\n  { id: 1, hobby: \"chess\", email: \"alice123@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\" }\r\n];\r\n```\r\n\r\nВ дополнительных данных может быть как новый пользователь, так и дополнительная информация об уже существующих пользователях.\r\n\r\n### Задача\r\n\r\n* Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.\r\n\r\n### Дополнительные условия\r\n\r\n* Постараться сделать без мутирования исходных массивов и объектов.",
+    template: `// Основные пользователи (из БД)
+const dbUsers = [
+  { id: 1, name: "Alice", email: "alice@example.com" },
+  { id: 2, name: "Bob", role: "admin" },
+  { id: 3, name: "Charlie" }
+];
+
+// Дополнительные данные (из соцсетей)
+const socialUsers = [
+  { id: 1, hobby: "chess", email: "alice123@social.com" },
+  { id: 4, name: "Dave", role: "user" }
+];
+
+
+function mergeUsers(databaseUsers, socialUsers) {
+  // Ваш код здесь
+}
+
+const merged = mergeUsers(dbUsers, socialUsers);
+console.log(merged);`,
+    solution: `// Основные пользователи (из БД)
+const dbUsers = [
+  { id: 1, name: "Alice", email: "alice@example.com" },
+  { id: 2, name: "Bob", role: "admin" },
+  { id: 3, name: "Charlie" }
+];
+
+// Дополнительные данные (из соцсетей)
+const socialUsers = [
+  { id: 1, hobby: "chess", email: "alice123@social.com" },
+  { id: 4, name: "Dave", role: "user" }
+];
+
+
+function mergeUsers(databaseUsers, socialUsers) {
+  return socialUsers.reduce((mergedUsers, socialUser) => {
+    const existingUserIndex = databaseUsers.findIndex(dbUser => dbUser.id === socialUser.id);
+    return existingUserIndex === -1
+      ? [...mergedUsers, socialUser]
+      : mergedUsers.map((u, ind) => ind === existingUserIndex ? { ...u, ...socialUser } : u)
+  }, databaseUsers);
+}
+
+const merged = mergeUsers(dbUsers, socialUsers);
+console.log(merged);`,
+    categories: ['real-tasks']
   },
   {
     id: "refactoring-task-fetch-to-ent",

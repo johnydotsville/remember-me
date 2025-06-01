@@ -1,9 +1,14 @@
 import { TasksPage } from "./components/TasksPage"
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { BaseDarkTheme } from '@/themes/baseDark';
 
 
 function App() {
   return (
-    <TasksPage />
+    <ThemeProvider theme={BaseDarkTheme}>
+      <CssBaseline />
+      <TasksPage />
+    </ThemeProvider>
   )
 }
 
