@@ -14,28 +14,28 @@ const PATHS = {
 
 // TODO: после реализации меты зачилиться, сделать рефакторинг, разбить на более мелкие фрагменты и написать тесты.
 // TODO: подумать, а можно ли в директорию складывать одновременно и подкатегории, и задачи?
-interface FsDirectory {
+interface Folder {
   name: string;
   path: string;
   isTask: boolean;
-  subdirectories: FsDirectory[];
+  subdirectories: Folder[];
 }
 
-async function buildDirectoriesTree(rootDir: string): Promise<FsDirectory> {
-  const rootCategory: FsDirectory = {
+async function buildFoldersTree(rootDir: string): Promise<Folder> {
+  const rootCategory: Folder = {
     name: 'root',
     path: rootDir,
     isTask: false,
     subdirectories: []
   };
 
-  async function scan(category: FsDirectory) {
+  async function scan(category: Folder) {
     const directories = await fs.readdir(category.path);
     for (const directory of directories) {
       const fullpath = path.join(category.path, directory);
       const stat = await fs.stat(fullpath);
       if (stat.isDirectory()) {
-        const childCategory: FsDirectory = {
+        const childCategory: Folder = {
           name: directory,
           path: fullpath,
           isTask: false,
@@ -57,26 +57,29 @@ async function buildDirectoriesTree(rootDir: string): Promise<FsDirectory> {
 }
 
 
-function flattenDirectoriesTree(root: FsDirectory): FsDirectory[] {
-  const directories: FsDirectory[] = [];
+function flattenFoldersTree(root: Folder): Folder[] {
+  const directories: Folder[] = [];
   directories.push(root);
-  root.subdirectories.forEach(sub => directories.push(...flattenDirectoriesTree(sub)));
+  root.subdirectories.forEach(sub => directories.push(...flattenFoldersTree(sub)));
   return directories;
 }
 
 
-async function makeTask(taskdir: string): Promise<Task> {
-  const description = await mdToString(path.join(taskdir, 'description.md'));
-  const template = await sourceCodeToString(path.join(taskdir, 'template.ts'));
-  const solution = await sourceCodeToString(path.join(taskdir, 'solution.ts'));
-  const categories = getCategoriesFromTaskDir(taskdir);
-
+async function makeTask(folder: Folder): Promise<Task> {
+  const description = await mdToString(path.join(folder.path, 'description.md'));
+  const template = await sourceCodeToString(path.join(folder.path, 'template.ts'));
+  const solution = await sourceCodeToString(path.join(folder.path, 'solution.ts'));
+  const categories = getCategoriesFromTaskDir(folder.path);
+  const meta = await getMeta(path.join(folder.path, 'meta.json'));
+  
   return {
-    id: path.relative(PATHS.tasks, taskdir).replace(/[\\/]/g, '-'),
+    id: path.relative(PATHS.tasks, folder.path).replace(/[\\/]/g, '-'),
+    title: meta.title,
     description,
     template,
     solution,
-    categories
+    categories,
+    tags: meta.tags
   }
 }
 
@@ -85,6 +88,20 @@ function getCategoriesFromTaskDir(taskDir: string) {
   const base = path.dirname(path.relative(PATHS.tasks, taskDir));
   const normalized = path.normalize(base);
   return normalized.split(path.sep);
+}
+
+
+async function getMeta(metaPath) {
+  try {
+    const metaRaw = await fs.readFile(metaPath, 'utf8');
+    return JSON.parse(metaRaw);
+  } catch {
+    console.warn(`⚠️ Осутствует meta-файл у задачи ${metaPath}.`);
+    return {
+      title: '',
+      tags: []
+    }
+  }
 }
 
 
@@ -114,7 +131,7 @@ async function sourceCodeToString(scPath) {
 }
 
 
-function catTreeToString(cat: FsDirectory, indentLevel = 0, indentSpace = 2) {
+function catTreeToString(cat: Folder, indentLevel = 0, indentSpace = 2) {
   const indent = (num: number) => ' '.repeat(num);
   const curly = indentLevel * indentSpace * 2;
   const fields = curly + indentSpace;
@@ -133,7 +150,7 @@ ${sqin}]`
 }
 
 
-async function writeTasks(tasks: Task[], rootcat: FsDirectory) {
+async function writeTasks(tasks: Task[], rootcat: Folder) {
   let tsContent = `// Auto-generated file (${new Date().toISOString()})
 import type { Task, Category } from "@/src/types/model";
 
@@ -143,10 +160,12 @@ ${catTreeToString(rootcat)}
 export const tasks: Task[] = [
 ${tasks.map(task => `  {
     id: ${JSON.stringify(task.id)},
+    title: ${JSON.stringify(task.title)},
     description: ${JSON.stringify(task.description)},
     template: \`${task.template.replace(/`/g, '\\`')}\`,
     solution: \`${task.solution.replace(/`/g, '\\`')}\`,
-    categories: [${task.categories.map(c => `'${c}'`).join(', ')}]
+    categories: [${task.categories.map(c => `'${c}'`).join(', ')}],
+    tags: [${task.tags.map(c => `'${c}'`).join(', ')}]
   }`).join(',\n')}
 ];
 
@@ -158,13 +177,13 @@ export default tasks;
 
 
 async function genTasks() {
-  const directoriesTree = await buildDirectoriesTree(PATHS.tasks);
-  const flatDirectoriesTree = flattenDirectoriesTree(directoriesTree);
+  const foldersTree = await buildFoldersTree(PATHS.tasks);
+  const flatFoldersTree = flattenFoldersTree(foldersTree);
 
-  const taskDirs = flatDirectoriesTree.filter(dir => dir.isTask).map(dir => dir.path);
-  const tasks = await Promise.all(taskDirs.map(td => makeTask(td)));
+  const taskFolders = flatFoldersTree.filter(dir => dir.isTask);
+  const tasks = await Promise.all(taskFolders.map(folder => makeTask(folder)));
   
-  await writeTasks(tasks, directoriesTree);
+  await writeTasks(tasks, foldersTree);
 }
 
 genTasks();

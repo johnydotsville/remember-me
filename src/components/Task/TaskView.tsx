@@ -6,6 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { TaskDescription } from './TaskDescription';
 import { TaskSourceCode } from './TaskSourceCode';
+import type { Task } from '@/src/types/model';
 
 
 const SourceCodeSpoiler = ({ sourceCode, spoilerText }) => {
@@ -22,12 +23,12 @@ const SourceCodeSpoiler = ({ sourceCode, spoilerText }) => {
 }
 
 
-export const TaskView = ({ task }) => {
+export const TaskView = ({ task }: { task: Task}) => {
   return (
     <div>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>{task.id}</Typography>
+          <Typography>{task.title || task.id}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TaskDescription description={task.description} />
