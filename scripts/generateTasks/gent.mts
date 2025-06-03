@@ -160,8 +160,10 @@ export default tasks;
 async function genTasks() {
   const directoriesTree = await buildDirectoriesTree(PATHS.tasks);
   const flatDirectoriesTree = flattenDirectoriesTree(directoriesTree);
+
   const taskDirs = flatDirectoriesTree.filter(dir => dir.isTask).map(dir => dir.path);
   const tasks = await Promise.all(taskDirs.map(td => makeTask(td)));
+  
   await writeTasks(tasks, directoriesTree);
 }
 

@@ -1,0 +1,23 @@
+# Javascript
+
+- [ ] Массивы
+  - [ ] Методы
+    - [x] findIndex, findLastIndex
+    - [x] every, some
+    - [x] from
+    - [x] find - вписать в конспект что возвращает undefined или первый подходящий.
+    - [ ] includes
+    - [ ] map
+    - [ ] filter
+    - [ ] reduce
+    - [ ] forEach
+    - [ ] of
+    - [ ] isArray
+    - [ ] join
+    - [ ] slice
+    - [ ] splice
+    - [ ] fill
+    - [ ] flat
+    - [ ] flatMap
+    - [ ] sort
+    - [ ] reverse

@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-01T12:56:54.737Z)
+// Auto-generated file (2025-06-03T12:31:31.838Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -48,7 +48,7 @@ export const rootcat: Category =
 
 export const tasks: Task[] = [
   {
-    id: "arrays-task-array-create-from-1",
+    id: "arrays-task-arrays-create-from-1",
     description: "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов с объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.\r\n* Нельзя использовать return.",
     template: ``,
     solution: `const foo = Array.from({ length: 10 }, (cur, ind) => \`Элемент \${ind+1}\`);
@@ -57,6 +57,45 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
   id: ind,
   value: \`Элемент \${ind + 1}\`
 }));`,
+    categories: ['arrays']
+  },
+  {
+    id: "arrays-task-arrays-every-some-methods",
+    description: "### Вводные\r\n\r\n* Дан массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором все недели были теплые (t > 0).\r\n* Найти первый месяц, в котором была хотя бы одна теплая неделя.\r\n* Вывести название найденного месяца.\r\n* Если таких месяцев не было, сообщить об этом.",
+    template: ``,
+    solution: `// Месяц, в котором все недели теплые
+const fullyWarm = stat.find(s => s.avgWeeksTemp.every(temp => temp > 0));
+console.log(fullyWarm.month ?? 'Не было ни одного полностью теплого месяца.');
+
+// Месяц, в котором хотя бы одна неделя теплая
+const partiallyWarm = stat.find(s => s.avgWeeksTemp.some(temp => temp > 0));
+console.log(partiallyWarm.month ?? 'Не было ни одного хотя бы частичного теплого месяца.');`,
+    categories: ['arrays']
+  },
+  {
+    id: "arrays-task-arrays-find-index-method",
+    description: "### Вводные\r\n\r\n* Дан массив дней недели и массив средних температур в эти дни соответственно:\r\n\r\n```javascript\r\nconst daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];\r\nconst temperatures1 = [2, 1, -5, 3, 0, -1, 2];\r\nconst temperatures2 = [2, 1, 5, 3, 0, 1, 2];\r\n```\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает массив дней и температур и выводит в консоль отчет:\r\n  * Первый холодный день на неделе. Вывести название дня и какая была температура.\r\n  * Если холодных дней не было, тоже сообщить об этом.\r\n* Поправить функцию, чтобы было то же самое, но только для последнего холодного дня недели.",
+    template: ``,
+    solution: `// Первый холодный
+function weekTemperatureReport(weekDays, temps) {
+  const firstColdInd = temps.findIndex(t => t < 0);
+  if (firstColdInd !== -1) {
+    console.log(\`Первый холодный день на этой неделе: \${weekDays[firstColdInd]}. Температура была: \${temps[firstColdInd]}C\`);
+  } else {
+    console.log('На этой неделе холодных дней не было.');
+  }
+}
+
+
+// Последний холодный
+function weekTemperatureReport(weekDays, temps) {
+  const firstColdInd = temps.findLastIndex(t => t < 0);
+  if (firstColdInd !== -1) {
+    console.log(\`Первый холодный день на этой неделе: \${weekDays[firstColdInd]}. Температура была: \${temps[firstColdInd]}C\`);
+  } else {
+    console.log('На этой неделе холодных дней не было.');
+  }
+}`,
     categories: ['arrays']
   },
   {
@@ -154,7 +193,7 @@ const config = {
     categories: ['objects']
   },
   {
-    id: "real-tasks-task-debounce-user-input",
+    id: "real-tasks-task-classic-simple-debounce-user-input",
     description: "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n```\r\nhttps://playcode.io/javascript\r\n```\r\n\r\n",
     template: `// html
 <input id="userSearch" />
