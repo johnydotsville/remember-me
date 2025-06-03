@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import type { Task, Category } from '@src/types/model';
+import { createHash } from 'crypto';
 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -73,7 +74,8 @@ async function makeTask(folder: Folder): Promise<Task> {
   const meta = await getMeta(path.join(folder.path, 'meta.json'));
   
   return {
-    id: path.relative(PATHS.tasks, folder.path).replace(/[\\/]/g, '-'),
+    // id: path.relative(PATHS.tasks, folder.path).replace(/[\\/]/g, '-'),
+    id: idFromPath(folder.path),
     title: meta.title,
     description,
     template,
@@ -173,6 +175,11 @@ export default tasks;
 `;
 
   await fs.writeFile(PATHS.output, tsContent);
+}
+
+
+function idFromPath(path) {
+  return createHash('sha256').update(path).digest('hex').slice(0, 16);
 }
 
 

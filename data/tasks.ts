@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-03T13:33:34.465Z)
+// Auto-generated file (2025-06-03T13:55:47.339Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -48,7 +48,7 @@ export const rootcat: Category =
 
 export const tasks: Task[] = [
   {
-    id: "arrays-task-arrays-create-from-1",
+    id: "f5c414e80e7a29ca",
     title: "Создание массива",
     description: "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов с объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.\r\n* Нельзя использовать return.",
     template: ``,
@@ -62,7 +62,7 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
     tags: ['массивы', 'array', 'легко', 'синтаксис']
   },
   {
-    id: "arrays-task-arrays-every-some-methods",
+    id: "5fe5e598d245060f",
     title: "",
     description: "### Вводные\r\n\r\n* Дан массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором все недели были теплые (t > 0).\r\n* Найти первый месяц, в котором была хотя бы одна теплая неделя.\r\n* Вывести название найденного месяца.\r\n* Если таких месяцев не было, сообщить об этом.",
     template: ``,
@@ -77,7 +77,7 @@ console.log(partiallyWarm?.month ?? 'Не было ни одного хотя б
     tags: []
   },
   {
-    id: "arrays-task-arrays-find-index-method",
+    id: "b240f68f222d5799",
     title: "",
     description: "### Вводные\r\n\r\n* Дан массив дней недели и массив средних температур в эти дни соответственно:\r\n\r\n```javascript\r\nconst daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];\r\nconst temperatures1 = [2, 1, -5, 3, 0, -1, 2];\r\nconst temperatures2 = [2, 1, 5, 3, 0, 1, 2];\r\n```\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает массив дней и температур и выводит в консоль отчет:\r\n  * Первый холодный день на неделе. Вывести название дня и какая была температура.\r\n  * Если холодных дней не было, тоже сообщить об этом.\r\n* Поправить функцию, чтобы было то же самое, но только для последнего холодного дня недели.",
     template: ``,
@@ -105,7 +105,7 @@ function weekTemperatureReport(weekDays, temps) {
     tags: []
   },
   {
-    id: "arrays-task-arrays-merge-1",
+    id: "e90dbe808439efb4",
     title: "",
     description: "### Вводные\r\n\r\nЕсть два массива:\r\n\r\n* Активные пользователи, которые пользовались приложением в течение месяца:\r\n\r\n```javascript\r\nconst activeUsers = [\r\n  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },\r\n  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }\r\n];\r\n```\r\n\r\n* Новые пользователи, которые зарегистрировались на этой неделе:\r\n\r\n```javascript\r\nconst newUsers = [\r\n  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },\r\n  { id: 4, name: 'Dave', signupDate: '2023-10-26' }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Объединить обе категории пользователей в новый массив так, чтобы новые были в начале.",
     template: `const activeUsers = [
@@ -123,7 +123,7 @@ console.log(allUsers);`,
     tags: []
   },
   {
-    id: "javascript-http-task-fetch-with-query-string",
+    id: "b7ce4a1a9a82cf6e",
     title: "",
     description: "### Вводные\r\n\r\nЭндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
     template: ``,
@@ -162,7 +162,7 @@ fetchData(5, 3);`,
     tags: []
   },
   {
-    id: "objects-task-dyn-add-field",
+    id: "d913f8145b51249f",
     title: "",
     description: "Дана функция:\r\n\r\n```javascript\r\nfunction createUser(login, firstname, lastname, role = 'user') {\r\n  if (!login) throw new Error('login является обязательным.');\r\n  return {\r\n    login,\r\n    role,\r\n  }\r\n}\r\n\r\nconst huck = createUser('hfinn', 'Huck', 'Finn');\r\nconsole.log(huck);\r\n```\r\n\r\nЗадача:\r\n\r\n* Доработать функцию так, чтобы поля firstname и lastname добавлялись в объект динамически - только если они переданы и не являются пустыми строками.\r\n* Поле lastname должно попасть в объект под названием surname.",
     template: ``,
@@ -182,7 +182,7 @@ console.log(huck);`,
     tags: []
   },
   {
-    id: "objects-task-merge-objects-1",
+    id: "36637079d6213b2f",
     title: "",
     description: "Есть два объекта конфигурации:\r\n\r\n```javascript\r\nconst defaultConfig = {\r\n  cacheTime: 30_000,\r\n  staleTime: 0\r\n}\r\n\r\nconst myConfig = {\r\n  timeout: 1000,\r\n  refetchOnFail: false\r\n}\r\n```\r\n\r\n Задачи:\r\n\r\n* Объединить два конфига в новый.\r\n* Заменить параметр `refetchOnFail` на true.\r\n\r\nДоп. условия:\r\n\r\n* Сначала сделать это за две операции, потом за одну.",
     template: ``,
@@ -207,7 +207,7 @@ const config = {
     tags: []
   },
   {
-    id: "real-tasks-task-classic-simple-debounce-user-input",
+    id: "47dc1357ae09209a",
     title: "",
     description: "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n```\r\nhttps://playcode.io/javascript\r\n```\r\n\r\n",
     template: `// html
@@ -241,7 +241,7 @@ function debounce(func, delayMs) {
     tags: []
   },
   {
-    id: "real-tasks-task-flat-categories",
+    id: "8c5114116f200b9f",
     title: "",
     description: "Есть объект типа 'Категория':\r\n\r\n```typescript\r\ntype Category = {\r\n  name: string,\r\n  subcategories: Category[]\r\n}\r\n```\r\n\r\nУ категории есть имя и массив вложенных в нее категорий (\"подкатегории\").\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает плоский массив с именами всех категорий и вложенных в них подкатегорий.\r\n\r\nНапример для такой структуры:\r\n\r\n```javascript\r\n{\r\n  name: 'javascript',\r\n  subcategories: [\r\n    {\r\n      name: 'strings',\r\n      subcategories: []\r\n    },\r\n    {\r\n      name: 'objects',\r\n      subcategories: [\r\n        {\r\n          name: 'arrays',\r\n          subcategories: []\r\n        }\r\n      ]\r\n    },\r\n  ]\r\n}\r\n```\r\n\r\nДолжно получиться:\r\n\r\n```javascript\r\n['javascript', 'strings', 'objects', 'arrays']\r\n```\r\n\r\n",
     template: `const rootcat = 
@@ -307,7 +307,7 @@ categories.forEach(category => console.log(category));`,
     tags: []
   },
   {
-    id: "real-tasks-task-merge-user-info",
+    id: "d279c4b5be657b71",
     title: "",
     description: "### Вводные\r\n\r\nДаны два массива:\r\n\r\n* Основные пользователи в базе данных:\r\n\r\n```javascript\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n```\r\n\r\n* И дополнительные данные из соцсетей:\r\n\r\n```javascript\r\nconst socialUsers = [\r\n  { id: 1, hobby: \"chess\", email: \"alice123@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\" }\r\n];\r\n```\r\n\r\nВ дополнительных данных может быть как новый пользователь, так и дополнительная информация об уже существующих пользователях.\r\n\r\n### Задача\r\n\r\n* Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.\r\n\r\n### Дополнительные условия\r\n\r\n* Постараться сделать без мутирования исходных массивов и объектов.",
     template: `// Основные пользователи (из БД)
@@ -359,7 +359,7 @@ console.log(merged);`,
     tags: []
   },
   {
-    id: "refactoring-task-fetch-to-ent",
+    id: "62bb7163a6460b30",
     title: "",
     description: "### Вводные\r\n\r\nОтрефакторить указанную функцию, чтобы она больше походила на промышленное решение. Ограничений нет, рефакторить на сколько хватит фантазии. Приведенное решение - просто ориентир, а не идеал.",
     template: `async function fetchData(page, limit) {
@@ -415,7 +415,7 @@ show();`,
     tags: []
   },
   {
-    id: "typescript-utility-types-task-partial-1",
+    id: "a30c8fd86874b15f",
     title: "",
     description: "### Сделайте чтобы было четко, u know?\r\n\r\nЭффектный рецепт плова:\r\n\r\n* Берем сперва укропу;\r\n* Потом кошачью жопу.\r\n* Двадцать пять картошек;\r\n* Семнадцать мандавошек;\r\n* Ведро воды и хуй туды;\r\n* Охапку дров - и плов готов!\r\n\r\nПочти по рецепту пахома. Подавать со сладким хлебом.\r\n\r\n\r\n\r\n## Wjta\r\n\r\nda fuck\r\n\r\n\r\n\r\n### you kono\r\n\r\nknow waht the heck\r\n\r\n```typescript\r\nconsole.log('hello, world!');\r\n\r\ninterface Cat {\r\n  meow();\r\n  scratch();\r\n}\r\n```\r\n\r\n",
     template: `type UserProfile = {
@@ -478,7 +478,7 @@ console.log(upedAlice);`,
     tags: []
   },
   {
-    id: "typescript-utility-types-task-pick-2",
+    id: "3259fca9146620fd",
     title: "",
     description: "# Сывow?\r\n\r\nЭщкере, мазафака, дёрти щет!\r\n\r\n\r\n\r\n## Wjta\r\n\r\nda fuck\r\n\r\n\r\n\r\n### you kono\r\n\r\nknow waht the heck\r\n\r\n```typescript\r\nconsole.log('hello, world!');\r\n\r\ninterface Cat {\r\n  meow();\r\n  scratch();\r\n}\r\n```\r\n\r\n",
     template: `type UserProfile = {
