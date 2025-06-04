@@ -1,6 +1,6 @@
 // Первый холодный
-function weekTemperatureReport(weekDays, temps) {
-  const firstColdInd = temps.findIndex(t => t < 0);
+function weekTemperatureReport(weekDays, temps, thres) {
+  const firstColdInd = temps.findIndex(t => t < thres);
   if (firstColdInd !== -1) {
     console.log(`Первый холодный день на этой неделе: ${weekDays[firstColdInd]}. Температура была: ${temps[firstColdInd]}C`);
   } else {
@@ -10,8 +10,8 @@ function weekTemperatureReport(weekDays, temps) {
 
 
 // Последний холодный
-function weekTemperatureReport(weekDays, temps) {
-  const firstColdInd = temps.findLastIndex(t => t < 0);
+function weekTemperatureReport(weekDays, temps, thres) {
+  const firstColdInd = temps.findLastIndex(t => t < thres);
   if (firstColdInd !== -1) {
     console.log(`Первый холодный день на этой неделе: ${weekDays[firstColdInd]}. Температура была: ${temps[firstColdInd]}C`);
   } else {

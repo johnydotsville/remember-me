@@ -28,7 +28,7 @@ export const TaskView = ({ task }: { task: Task}) => {
     <div>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>{task.title || task.id}</Typography>
+          <Typography>{task.title || task.name}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TaskDescription description={task.description} />

@@ -21,3 +21,5 @@
     - [ ] flatMap
     - [ ] sort
     - [ ] reverse
+- [ ] Math
+- [ ] Даты
