@@ -17,11 +17,11 @@ const PATHS = {
 // TODO: подумать, а можно ли в директорию складывать одновременно и подкатегории, и задачи?
 type Folder = {
   name: string;
-  parent,
+  parent: Folder | null,
   path: string;
   isTask: boolean;
   subfolders: Folder[];
-  meta?: Meta[];  // Мета каждой папки - это массив мет. В [0] - собственная мета, а дальше - меты родителей.
+  meta?: (Meta | null)[];  // Мета каждой папки - это массив мет. В [0] - собственная мета, а дальше - меты родителей.
 }
 
 
@@ -63,12 +63,24 @@ async function buildFoldersTree(rootDir: string): Promise<Folder> {
 }
 
 
-async function fillFoldersMeta(folder: Folder, parentMetas: Meta[] = []): Promise<void> {
+async function fillFoldersMeta(folder: Folder, parentMetas: (Meta | null)[] = []): Promise<void> {
   const meta = await getMeta(path.join(folder.path, 'meta.json'));
-  const myMeta: Meta[] = [meta, ...parentMetas];
+  const myMeta: (Meta | null)[] = [meta, ...parentMetas];
   folder.meta = myMeta;
   if (!folder.isTask) {
     folder.subfolders.forEach(subfolder => fillFoldersMeta(subfolder, myMeta));
+  }
+}
+
+
+async function getMeta(metaPath: string): Promise<Meta | null> {
+  try {
+    const metaRaw = await fs.readFile(metaPath, 'utf8');
+    const json = JSON.parse(metaRaw);
+    return json;
+  } catch {
+    console.warn(`⚠️ Не найден meta-файл для задачи ${metaPath}.`);
+    return null;
   }
 }
 
@@ -86,11 +98,15 @@ async function makeTask(folder: Folder): Promise<Task> {
   const template = await sourceCodeToString(path.join(folder.path, 'template.ts'));
   const solution = await sourceCodeToString(path.join(folder.path, 'solution.ts'));
   const categories = getCategoriesFromTaskDir(folder.path);
-  const title = folder.meta?.[0].title ?? '';
+  const title = folder.meta?.[0]?.title ?? '';
   const tagsAsSet = folder.meta?.reduce((tagsSet, meta) => {
-    meta.tags?.forEach(tag => tagsSet.add(tag));
+    meta?.tags?.forEach(tag => tagsSet.add(tag));
     return tagsSet;
   }, new Set<string>());
+
+  console.log(folder.path);
+  console.log(folder.meta);
+  console.log('======================================');
   
   return {
     id: idFromPath(folder.path),
@@ -109,20 +125,6 @@ function getCategoriesFromTaskDir(taskDir: string) {
   const base = path.dirname(path.relative(PATHS.tasks, taskDir));
   const normalized = path.normalize(base);
   return normalized.split(path.sep);
-}
-
-
-async function getMeta(metaPath: string): Promise<Meta> {
-  try {
-    const metaRaw = await fs.readFile(metaPath, 'utf8');
-    return JSON.parse(metaRaw);
-  } catch {
-    console.warn(`⚠️ Не найден meta-файл для задачи ${metaPath}.`);
-    return {
-      title: '',
-      tags: []
-    }
-  }
 }
 
 
@@ -167,7 +169,7 @@ ${cat.subfolders.filter(sub => !sub.isTask).map(c => catTreeToString(c, indentLe
 ${sqin}]`
     : '[]';
 
-  return `${curlyin}{\n${fieldsin}name: '${cat.name}',\n${fieldsin}title: '${cat.meta?.[0].title}',\n${fieldsin}subcategories: ${formattedCategories}\n${curlyin}}`
+  return `${curlyin}{\n${fieldsin}name: '${cat.name}',\n${fieldsin}title: '${cat.meta?.[0]?.title ?? ""}',\n${fieldsin}subcategories: ${formattedCategories}\n${curlyin}}`
 }
 
 

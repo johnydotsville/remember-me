@@ -24,6 +24,11 @@ const SourceCodeSpoiler = ({ sourceCode, spoilerText }) => {
 
 
 export const TaskView = ({ task }: { task: Task}) => {
+  // if (task.title === "Формирование query string для url")
+  if (task.name === "task-fetch-with-query-string") {
+    console.log("ПОПАЛСЯ!228");
+    console.log(task.title);
+}
   return (
     <div>
       <Accordion>

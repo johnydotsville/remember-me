@@ -6,9 +6,9 @@
     - [x] every, some
     - [x] from
     - [x] find - вписать в конспект что возвращает undefined или первый подходящий.
-    - [ ] includes
-    - [ ] map
-    - [ ] filter
+    - [x] includes
+    - [x] map
+    - [x] filter
     - [ ] reduce
     - [ ] forEach
     - [ ] of

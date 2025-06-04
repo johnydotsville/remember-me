@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-04T12:55:17.766Z)
+// Auto-generated file (2025-06-04T14:43:59.103Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -13,14 +13,8 @@ export const rootcat: Category =
     },
     {
       name: 'javascript',
-      title: '',
-      subcategories: [
-        {
-          name: 'http',
-          title: '',
-          subcategories: []
-        }
-      ]
+      title: 'Javascript',
+      subcategories: []
     },
     {
       name: 'objects',
@@ -29,7 +23,7 @@ export const rootcat: Category =
     },
     {
       name: 'real-tasks',
-      title: '',
+      title: 'Комбинированные задачи',
       subcategories: []
     },
     {
@@ -44,11 +38,11 @@ export const rootcat: Category =
     },
     {
       name: 'typescript',
-      title: '',
+      title: 'Typescript',
       subcategories: [
         {
           name: 'utility-types',
-          title: '',
+          title: 'Utility-типы',
           subcategories: []
         }
       ]
@@ -75,7 +69,7 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
   {
     id: "5fe5e598d245060f",
     name: "task-arrays-every-some-methods",
-    title: "",
+    title: "Температуры по месяцам.",
     description: "### Вводные\r\n\r\n* Дан массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором все недели были теплые (t > 0).\r\n* Найти первый месяц, в котором была хотя бы одна теплая неделя.\r\n* Вывести название найденного месяца.\r\n* Если таких месяцев не было, сообщить об этом.",
     template: ``,
     solution: `// Месяц, в котором все недели теплые
@@ -154,7 +148,7 @@ console.log(isLangSupported('foobar'));`,
   {
     id: "e90dbe808439efb4",
     name: "task-arrays-merge-1",
-    title: "",
+    title: "Пользователи программы.",
     description: "### Вводные\r\n\r\nЕсть два массива:\r\n\r\n* Активные пользователи, которые пользовались приложением в течение месяца:\r\n\r\n```javascript\r\nconst activeUsers = [\r\n  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },\r\n  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }\r\n];\r\n```\r\n\r\n* Новые пользователи, которые зарегистрировались на этой неделе:\r\n\r\n```javascript\r\nconst newUsers = [\r\n  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },\r\n  { id: 4, name: 'Dave', signupDate: '2023-10-26' }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Объединить обе категории пользователей в новый массив так, чтобы новые были в начале.",
     template: `const activeUsers = [
   { id: 1, name: 'Alice', lastLogin: '2023-10-15' },
@@ -168,12 +162,12 @@ const newUsers = [
     solution: `const allUsers = [...newUsers, ...activeUsers];
 console.log(allUsers);`,
     categories: ['arrays'],
-    tags: ['массивы', 'array']
+    tags: ['spread', '...', 'массивы', 'array']
   },
   {
-    id: "b7ce4a1a9a82cf6e",
+    id: "db10f3876dadf9b3",
     name: "task-fetch-with-query-string",
-    title: "",
+    title: "Формирование query string для url",
     description: "### Вводные\r\n\r\nЭндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
     template: ``,
     solution: `async function fetchData(page, limit) {
@@ -207,8 +201,8 @@ async function fetchData(page, limit) {
 }
 
 fetchData(5, 3);`,
-    categories: ['javascript', 'http'],
-    tags: []
+    categories: ['javascript'],
+    tags: ['url', 'urlsearchparams']
   },
   {
     id: "d913f8145b51249f",
@@ -372,7 +366,7 @@ categories.forEach(category => console.log(category));`,
   {
     id: "d279c4b5be657b71",
     name: "task-merge-user-info",
-    title: "",
+    title: "Объединение пользователей из БД и из соцсетей.",
     description: "### Вводные\r\n\r\nДаны два массива:\r\n\r\n* Основные пользователи в базе данных:\r\n\r\n```javascript\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n```\r\n\r\n* И дополнительные данные из соцсетей:\r\n\r\n```javascript\r\nconst socialUsers = [\r\n  { id: 1, hobby: \"chess\", email: \"alice123@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\" }\r\n];\r\n```\r\n\r\nВ дополнительных данных может быть как новый пользователь, так и дополнительная информация об уже существующих пользователях.\r\n\r\n### Задача\r\n\r\n* Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.\r\n\r\n### Дополнительные условия\r\n\r\n* Постараться сделать без мутирования исходных массивов и объектов.",
     template: `// Основные пользователи (из БД)
 const dbUsers = [
@@ -425,7 +419,7 @@ console.log(merged);`,
   {
     id: "62bb7163a6460b30",
     name: "task-fetch-to-ent",
-    title: "",
+    title: "Свободный рефакторинг",
     description: "### Вводные\r\n\r\nОтрефакторить указанную функцию, чтобы она больше походила на промышленное решение. Ограничений нет, рефакторить на сколько хватит фантазии. Приведенное решение - просто ориентир, а не идеал.",
     template: `async function fetchData(page, limit) {
   const params = new URLSearchParams();
@@ -482,7 +476,7 @@ show();`,
   {
     id: "a30c8fd86874b15f",
     name: "task-partial-1",
-    title: "",
+    title: "Утилитарный тип Partial",
     description: "### Сделайте чтобы было четко, u know?\r\n\r\nЭффектный рецепт плова:\r\n\r\n* Берем сперва укропу;\r\n* Потом кошачью жопу.\r\n* Двадцать пять картошек;\r\n* Семнадцать мандавошек;\r\n* Ведро воды и хуй туды;\r\n* Охапку дров - и плов готов!\r\n\r\nПочти по рецепту пахома. Подавать со сладким хлебом.\r\n\r\n\r\n\r\n## Wjta\r\n\r\nda fuck\r\n\r\n\r\n\r\n### you kono\r\n\r\nknow waht the heck\r\n\r\n```typescript\r\nconsole.log('hello, world!');\r\n\r\ninterface Cat {\r\n  meow();\r\n  scratch();\r\n}\r\n```\r\n\r\n",
     template: `type UserProfile = {
   id: string;
@@ -541,7 +535,7 @@ const upedAlice = updateProfile(alice, {
 
 console.log(upedAlice);`,
     categories: ['typescript', 'utility-types'],
-    tags: []
+    tags: ['partial']
   },
   {
     id: "3259fca9146620fd",
