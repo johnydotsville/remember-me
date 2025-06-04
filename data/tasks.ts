@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-04T12:28:46.900Z)
+// Auto-generated file (2025-06-04T12:55:17.766Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -70,7 +70,7 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
   value: \`Элемент \${ind + 1}\`
 }));`,
     categories: ['arrays'],
-    tags: []
+    tags: ['массивы', 'array', 'легко', 'синтаксис']
   },
   {
     id: "5fe5e598d245060f",
@@ -86,7 +86,7 @@ console.log(fullyWarm?.month ?? 'Не было ни одного полност�
 const partiallyWarm = stat.find(s => s.avgWeeksTemp.some(temp => temp > 0));
 console.log(partiallyWarm?.month ?? 'Не было ни одного хотя бы частичного теплого месяца.');`,
     categories: ['arrays'],
-    tags: []
+    tags: ['массивы', 'array']
   },
   {
     id: "11fb4bd0b1121b76",
@@ -103,7 +103,7 @@ console.log(partiallyWarm?.month ?? 'Не было ни одного хотя б
 const idsDeactivate = getUserAccountsToDeactivate(userAccounts);
 console.log(idsDeactivate);`,
     categories: ['arrays'],
-    tags: []
+    tags: ['map', 'filter', 'легко', 'массивы', 'array']
   },
   {
     id: "b240f68f222d5799",
@@ -132,7 +132,7 @@ function weekTemperatureReport(weekDays, temps, thres) {
   }
 }`,
     categories: ['arrays'],
-    tags: []
+    tags: ['массивы', 'array']
   },
   {
     id: "27daa17fd930b723",
@@ -149,7 +149,7 @@ function isLangSupported(langCode) {
 console.log(isLangSupported('ru'));
 console.log(isLangSupported('foobar'));`,
     categories: ['arrays'],
-    tags: []
+    tags: ['includes', 'синтаксис', 'легко', 'массивы', 'array']
   },
   {
     id: "e90dbe808439efb4",
@@ -168,7 +168,7 @@ const newUsers = [
     solution: `const allUsers = [...newUsers, ...activeUsers];
 console.log(allUsers);`,
     categories: ['arrays'],
-    tags: []
+    tags: ['массивы', 'array']
   },
   {
     id: "b7ce4a1a9a82cf6e",

@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import type { Task, Category } from '@src/types/model';
+import type { Task, Meta } from '@src/types/model';
 import { createHash } from 'crypto';
 
 
@@ -17,17 +17,11 @@ const PATHS = {
 // TODO: подумать, а можно ли в директорию складывать одновременно и подкатегории, и задачи?
 type Folder = {
   name: string;
-  parent,  // TODO: Может и не понадобиться, если копить мету по мере движения вниз и сливать когда встречаешь задачу
+  parent,
   path: string;
   isTask: boolean;
   subfolders: Folder[];
-  meta?: FolderMeta[];
-}
-
-
-type FolderMeta = {
-  title: string;
-  tags: string[];
+  meta?: Meta[];  // Мета каждой папки - это массив мет. В [0] - собственная мета, а дальше - меты родителей.
 }
 
 
@@ -69,15 +63,10 @@ async function buildFoldersTree(rootDir: string): Promise<Folder> {
 }
 
 
-// В [0] получается всегда своя мета
-// TODO: в тэгах задачи должны быть все собственные теги и теги родительских категорий, без повторов.
-async function fillFoldersMeta(folder: Folder, parentMetas: FolderMeta[] = []): Promise<void> {
+async function fillFoldersMeta(folder: Folder, parentMetas: Meta[] = []): Promise<void> {
   const meta = await getMeta(path.join(folder.path, 'meta.json'));
-  const myMeta: FolderMeta[] = [meta, ...parentMetas];
+  const myMeta: Meta[] = [meta, ...parentMetas];
   folder.meta = myMeta;
-  // if (folder.meta) {
-  //   myMeta.push(folder.meta, ...parentMetas);
-  // }
   if (!folder.isTask) {
     folder.subfolders.forEach(subfolder => fillFoldersMeta(subfolder, myMeta));
   }
@@ -97,9 +86,11 @@ async function makeTask(folder: Folder): Promise<Task> {
   const template = await sourceCodeToString(path.join(folder.path, 'template.ts'));
   const solution = await sourceCodeToString(path.join(folder.path, 'solution.ts'));
   const categories = getCategoriesFromTaskDir(folder.path);
-  // const meta = await getMeta(path.join(folder.path, 'meta.json'));
   const title = folder.meta?.[0].title ?? '';
-  const tags = [];
+  const tagsAsSet = folder.meta?.reduce((tagsSet, meta) => {
+    meta.tags?.forEach(tag => tagsSet.add(tag));
+    return tagsSet;
+  }, new Set<string>());
   
   return {
     id: idFromPath(folder.path),
@@ -109,7 +100,7 @@ async function makeTask(folder: Folder): Promise<Task> {
     template,
     solution,
     categories,
-    tags
+    tags: tagsAsSet ? [...tagsAsSet] : []
   }
 }
 
@@ -121,7 +112,7 @@ function getCategoriesFromTaskDir(taskDir: string) {
 }
 
 
-async function getMeta(metaPath: string): Promise<FolderMeta> {
+async function getMeta(metaPath: string): Promise<Meta> {
   try {
     const metaRaw = await fs.readFile(metaPath, 'utf8');
     return JSON.parse(metaRaw);
@@ -135,7 +126,7 @@ async function getMeta(metaPath: string): Promise<FolderMeta> {
 }
 
 
-async function mdToString(mdPath) {
+async function mdToString(mdPath: string) {
   try {
     const description = await fs.readFile(mdPath, 'utf8');
     return description;
@@ -148,7 +139,7 @@ async function mdToString(mdPath) {
 }
 
 
-async function sourceCodeToString(scPath) {
+async function sourceCodeToString(scPath: string) {
   try {
     const tstext = await fs.readFile(scPath, 'utf-8');
     return tstext.replace(/\$\{/g, '\\${');
@@ -207,7 +198,7 @@ export default tasks;
 }
 
 
-function idFromPath(path) {
+function idFromPath(path: string) {
   return createHash('sha256').update(path).digest('hex').slice(0, 16);
 }
 
