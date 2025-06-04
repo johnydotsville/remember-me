@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-04T12:03:53.718Z)
+// Auto-generated file (2025-06-04T12:28:46.900Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -34,7 +34,7 @@ export const rootcat: Category =
     },
     {
       name: 'refactoring',
-      title: '',
+      title: 'Рефакторинг',
       subcategories: []
     },
     {

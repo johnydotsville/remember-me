@@ -5,23 +5,23 @@ import { rootcat } from '@data/tasks';
 import { flatcats } from "@utils/flatcats";
 import { useCallback, useMemo, useState } from "react";
 import { tasks as sourceTasks } from "@data/tasks";
-import type { Task } from '@src/types/model';
+import type { Category, Task } from '@src/types/model';
 
 
 export const TasksPage = () => {
   const cats = useMemo(() => flatcats(rootcat).sort(), []);
   const [tasks] = useState(sourceTasks);
-  const [category, setCategory] = useState('root');
+  const [category, setCategory] = useState<Category>(rootcat);
   const [randomTask, setRandomTask] = useState<Task | null>(null);
 
   const displayTasks = useMemo(() => {
     if (randomTask){
       return [randomTask];
     }
-    if (category === 'root') {
+    if (category.name === 'root') {
       return tasks;
     }
-    return tasks.filter(t => t.categories.includes(category));
+    return tasks.filter(task => task.categories.includes(category.name));
   }, [category, randomTask]);
 
   const getRandomTask = useCallback(() => {
@@ -38,13 +38,13 @@ export const TasksPage = () => {
     <Stack direction='row'>
       <SideMenu
         items={cats} 
-        selectItem={(cat) => {
-          setCategory(cat);
+        selectItem={(category: Category) => {
+          setCategory(category);
           resetRandomTask();
         }}
         getRandomTask={getRandomTask}
         resetAllFilters={() => {
-          setCategory('root');
+          setCategory(rootcat);
           resetRandomTask();
         }}
       />

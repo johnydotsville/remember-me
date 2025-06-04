@@ -30,7 +30,7 @@ export const SideMenu = ({ items, selectItem, getRandomTask, resetAllFilters }) 
           { items.map(item => (
             <ListItem disablePadding>
               <ListItemButton onClick={() => handleMenuItemClick(item)}>
-                <ListItemText>{item}</ListItemText>
+                <ListItemText>{item.title !== '' ? item.title : item.name}</ListItemText>
               </ListItemButton>
           </ListItem>
           ))}

@@ -100,7 +100,6 @@ async function makeTask(folder: Folder): Promise<Task> {
   // const meta = await getMeta(path.join(folder.path, 'meta.json'));
   const title = folder.meta?.[0].title ?? '';
   const tags = [];
-  console.log(title);
   
   return {
     id: idFromPath(folder.path),
@@ -127,8 +126,7 @@ async function getMeta(metaPath: string): Promise<FolderMeta> {
     const metaRaw = await fs.readFile(metaPath, 'utf8');
     return JSON.parse(metaRaw);
   } catch {
-    // console.warn(`⚠️ Не найден meta-файл для задачи ${metaPath}.`);
-    // return null;
+    console.warn(`⚠️ Не найден meta-файл для задачи ${metaPath}.`);
     return {
       title: '',
       tags: []

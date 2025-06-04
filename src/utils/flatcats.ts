@@ -1,12 +1,11 @@
-import type { Category } from '@/data/tasks';
+import type { Category } from '@src/types/model/Category';
 
 
-export function flatcats(cat: Category) {
-  const catnames: string[] = [];
-  if (cat.title != '') catnames.push(cat.title)
-  else catnames.push(cat.name);
+export function flatcats(category: Category): Category[] {
+  const categories: Category[] = [];
+  categories.push(category);
 
-  cat.subcategories.forEach(s => catnames.push(...flatcats(s)));
+  category.subcategories.forEach(subcat => categories.push(...flatcats(subcat)));
 
-  return catnames;
+  return categories;
 }
