@@ -1,5 +1,12 @@
+
+
 # Javascript
 
+- [ ] Операторы ||, && и ??
+- [ ] Map
+  - [x] Методы get, set, has, size, forEach.
+- [ ] Set
+- [ ] Object, keys, values
 - [ ] Массивы
   - [ ] Методы
     - [x] findIndex, findLastIndex

@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-04T14:43:59.103Z)
+// Auto-generated file (2025-06-05T14:40:02.099Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -14,7 +14,13 @@ export const rootcat: Category =
     {
       name: 'javascript',
       title: 'Javascript',
-      subcategories: []
+      subcategories: [
+        {
+          name: 'map',
+          title: 'Map',
+          subcategories: []
+        }
+      ]
     },
     {
       name: 'objects',
@@ -163,6 +169,82 @@ const newUsers = [
 console.log(allUsers);`,
     categories: ['arrays'],
     tags: ['spread', '...', 'массивы', 'array']
+  },
+  {
+    id: "5a04d9100cf98f75",
+    name: "task-count-visitors",
+    title: "Подсчет количества авторизаций",
+    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через forEach и через for of.\r\n  * Формат вывода \"пользователь: N раз\"",
+    template: `const visitors = [
+  { username: "alice", time: "2023-05-10 09:15:23" },
+  { username: "bob", time: "2023-05-10 10:02:45" },
+  { username: "mike", time: "2023-05-10 11:34:01" },
+  { username: "alice", time: "2023-05-10 13:22:19" },
+  { username: "dave", time: "2023-05-10 14:08:33" },
+  { username: "alice", time: "2023-05-11 08:45:11" },
+  { username: "bob", time: "2023-05-11 09:01:07" },
+  { username: "lisa", time: "2023-05-11 10:30:45" },
+  { username: "mike", time: "2023-05-11 12:15:02" },
+  { username: "dave", time: "2023-05-11 13:05:58" },
+  { username: "alice", time: "2023-05-12 09:45:21" },
+  { username: "bob", time: "2023-05-12 10:22:10" },
+  { username: "lisa", time: "2023-05-12 11:11:11" },
+  { username: "mike", time: "2023-05-12 14:30:00" },
+  { username: "eva", time: "2023-05-12 15:00:44" },
+  { username: "eva", time: "2023-05-13 08:30:15" },
+  { username: "lisa", time: "2023-05-13 09:45:33" },
+  { username: "alice", time: "2023-05-13 10:20:05" },
+  { username: "bob", time: "2023-05-13 11:10:10" },
+  { username: "dave", time: "2023-05-13 12:00:00" }
+];
+
+const stat = // Посчитайте статистику
+
+function forEachShow(stat) {
+  console.log('forEach статистика авторизаций:');
+  // Выведите статистику
+}
+
+function forOfShow(stat) {
+  console.log('for of статистика авторизаций:');
+  // Выведите статистику
+}
+
+forEachShow(stat);
+forOfShow(stat);`,
+    solution: `// Решение 1
+const stat = visitors.reduce((visitStat, login) => {
+  const { username } = login;
+  if (visitStat.has(username)) {
+    visitStat.set(username, visitStat.get(username) + 1);
+  } else {
+    visitStat.set(username, 1);
+  }
+  return visitStat;
+}, new Map());
+
+// Решение 2
+const stat2 = visitors.reduce(
+  (visitStat, login) => visitStat.set(login.username, visitStat.get(login.username) || 1),
+  new Map()
+);
+
+function forEachShow(stat) {
+  console.log('forEach статистика авторизаций:');
+  stat.forEach((value, key) => console.log(\`\${key}: \${value} раз.\`));
+}
+
+function forOfShow(stat) {
+  console.log('forOf статистика авторизаций:');
+  for (const [key, value] of stat) {
+    console.log(\`\${key}: \${value} раз.\`);
+  }
+}
+
+forEachShow(stat);
+forOfShow(stat);`,
+    categories: ['javascript', 'map'],
+    tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of']
   },
   {
     id: "db10f3876dadf9b3",
