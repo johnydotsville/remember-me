@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material"
+import { Stack, Typography } from "@mui/material"
 import DataArrayIcon from '@mui/icons-material/DataArray';
 
 export const TopMenu = () => {
