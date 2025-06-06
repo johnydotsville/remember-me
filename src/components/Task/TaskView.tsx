@@ -6,13 +6,36 @@ import { Spoiler } from '@components/Spoiler';
 
 
 export const TaskView = ({ task }: { task: Task}) => {
+  const [activeSpoiler, setActiveSpoiler] = useState('description');
+
   return (
     <Spoiler
       title={task.title || task.name}
       content={<>
-         { task.description && <Spoiler key={"description"} content={<TaskDescription description={task.description} />} title="Условие задачи" /> }
-         { task.template && <Spoiler key={"template"} content={<SourceCodeBox sourceCode={task.template} />} title="Шаблон" /> }
-         { task.solution && <Spoiler key={"solution"} content={<SourceCodeBox sourceCode={task.solution} />} title="Решение" /> }
+         { task.description && 
+            <Spoiler key={"description"} 
+              open={activeSpoiler === 'description'}
+              onOpen={() => setActiveSpoiler('description')}
+              content={<TaskDescription description={task.description} />}
+              title="Условие задачи"
+            />
+          }
+         { task.template && 
+            <Spoiler key={"template"} 
+              open={activeSpoiler === 'template'}
+              onOpen={() => setActiveSpoiler('template')}
+              content={<SourceCodeBox sourceCode={task.template} />} 
+              title="Шаблон" 
+            /> 
+          }
+         { task.solution && 
+            <Spoiler key={"solution"}
+              open={activeSpoiler === 'solution'}
+              onOpen={() => setActiveSpoiler('solution')}
+              content={<SourceCodeBox sourceCode={task.solution} />} 
+              title="Решение" 
+            /> 
+          }
       </>}
     />
   );
