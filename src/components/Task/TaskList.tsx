@@ -9,5 +9,5 @@ export const TaskList = ({ tasks }) => {
     content: <TaskView task={task} />
   }));
 
-  return <SpoilerGroup items={taskList} spacing="1.5rem" />
+  return <SpoilerGroup items={taskList} spacing="0.5rem" />
 }
