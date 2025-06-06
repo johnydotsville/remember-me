@@ -5,12 +5,9 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
-export const Spoiler = ({ content, title, id, activeSpoiler, onOpen }) => {
+export const Spoiler = ({ content, title }) => {
   return (
-    <Accordion 
-      expanded={id === activeSpoiler}
-      onChange={() => { if (onOpen) onOpen(id) }}
-    >
+    <Accordion>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>{ title }</Typography>
       </AccordionSummary>
