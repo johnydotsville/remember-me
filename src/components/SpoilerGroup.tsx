@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Stack } from "@mui/material";
 
-export const SpoilerGroup = ({ items, spacing = "0.25rem" }) => {
-  const [activeSpoiler, setActiveSpoiler] = useState('none');
+export const SpoilerGroup = ({ items, defaultActive = 'none', spacing = "0.25rem" }) => {
+  const [activeSpoiler, setActiveSpoiler] = useState(defaultActive);
 
   const spoilerClick = (id) => {
     if (id === activeSpoiler)

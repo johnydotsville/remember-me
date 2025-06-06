@@ -23,5 +23,5 @@ export const TaskView = ({ task }: { task: Task}) => {
     },
   ].filter(Boolean);
 
-  return <SpoilerGroup items={taskContent} />
+  return <SpoilerGroup items={taskContent} defaultActive='description' />
 }
