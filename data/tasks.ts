@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-05T14:40:02.099Z)
+// Auto-generated file (2025-06-09T13:43:36.227Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -18,6 +18,11 @@ export const rootcat: Category =
         {
           name: 'map',
           title: 'Map',
+          subcategories: []
+        },
+        {
+          name: 'set',
+          title: 'Set',
           subcategories: []
         }
       ]
@@ -60,6 +65,7 @@ export const tasks: Task[] = [
   {
     id: "f5c414e80e7a29ca",
     name: "task-arrays-create-from-1",
+    path: "tasks\\arrays\\task-arrays-create-from-1",
     title: "Создание массива",
     description: "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов с объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.\r\n* Нельзя использовать return.",
     template: ``,
@@ -75,8 +81,9 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
   {
     id: "5fe5e598d245060f",
     name: "task-arrays-every-some-methods",
+    path: "tasks\\arrays\\task-arrays-every-some-methods",
     title: "Температуры по месяцам.",
-    description: "### Вводные\r\n\r\n* Дан массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором все недели были теплые (t > 0).\r\n* Найти первый месяц, в котором была хотя бы одна теплая неделя.\r\n* Вывести название найденного месяца.\r\n* Если таких месяцев не было, сообщить об этом.",
+    description: "### Вводные\r\n\r\n* Дан массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором не было холодных недель (t > 0).\r\n* Найти первый месяц, в котором была как минимум одна теплая неделя.\r\n* Вывести название найденного месяца, а если таких месяцев не было, так и написать.",
     template: ``,
     solution: `// Месяц, в котором все недели теплые
 const fullyWarm = stat.find(s => s.avgWeeksTemp.every(temp => temp > 0));
@@ -91,8 +98,9 @@ console.log(partiallyWarm?.month ?? 'Не было ни одного хотя б
   {
     id: "11fb4bd0b1121b76",
     name: "task-arrays-filter-method",
+    path: "tasks\\arrays\\task-arrays-filter-method",
     title: "Деактивация пользователей",
-    description: "Есть массив учетных записей пользователей:\r\n\r\n```javascript\r\nconst userAccounts = [\r\n  { id: 1, username: 'ivan.petrov', isActive: true, lastVisitDaysAgo: 5 },\r\n  { id: 2, username: 'mariya.sidorova', isActive: false, lastVisitDaysAgo: 120 },\r\n  { id: 3, username: 'alex.ivanov', isActive: true, lastVisitDaysAgo: 2 },\r\n  { id: 4, username: 'elena.kuznetsova', isActive: true, lastVisitDaysAgo: 7 },\r\n  { id: 5, username: 'dmitriy.smirnov', isActive: false, lastVisitDaysAgo: 90 },\r\n  { id: 6, username: 'olga.vasnetsova', isActive: true, lastVisitDaysAgo: 1 },\r\n  { id: 7, username: 'sergey.lebedev', isActive: false, lastVisitDaysAgo: 60 },\r\n  { id: 8, username: 'anna.zhukova', isActive: true, lastVisitDaysAgo: 20 },  // <-- deactivate\r\n  { id: 9, username: 'pavel.novikov', isActive: false, lastVisitDaysAgo: 150 },\r\n  { id: 10, username: 'natalya.morozova', isActive: true, lastVisitDaysAgo: 3 },\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает массив идентификаторов пользователей, чьи учетные записи подлежат деактивации.\r\n* Критерий деактивации - последнее посещение сайта больше N дней назад. По умолчанию - 14.",
+    description: "Есть массив учетных записей пользователей:\r\n\r\n```javascript\r\nconst userAccounts = [\r\n  { id: 1, username: 'ivan.petrov', isActive: true, lastVisitDaysAgo: 5 },\r\n  { id: 2, username: 'mariya.sidorova', isActive: false, lastVisitDaysAgo: 120 },\r\n  { id: 3, username: 'alex.ivanov', isActive: true, lastVisitDaysAgo: 2 },\r\n  { id: 4, username: 'elena.kuznetsova', isActive: true, lastVisitDaysAgo: 7 },\r\n  { id: 5, username: 'dmitriy.smirnov', isActive: false, lastVisitDaysAgo: 90 },\r\n  { id: 6, username: 'olga.vasnetsova', isActive: true, lastVisitDaysAgo: 1 },\r\n  { id: 7, username: 'sergey.lebedev', isActive: false, lastVisitDaysAgo: 60 },\r\n  { id: 8, username: 'anna.zhukova', isActive: true, lastVisitDaysAgo: 20 },  // <-- deactivate\r\n  { id: 9, username: 'pavel.novikov', isActive: false, lastVisitDaysAgo: 150 },\r\n  { id: 10, username: 'natalya.morozova', isActive: true, lastVisitDaysAgo: 3 },\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает массив идентификаторов пользователей, чьи учетные записи подлежат деактивации.\r\n* Критерий деактивации - последнее посещение сайта больше N дней назад. По умолчанию - 14.\r\n  * Некоторые пользователи уже деактивированы (у них isActive = false), их идентификаторы нас не интересуют.",
     template: ``,
     solution: `function getUserAccountsToDeactivate(accounts, daysThreshold = 14) {
   return accounts
@@ -108,6 +116,7 @@ console.log(idsDeactivate);`,
   {
     id: "b240f68f222d5799",
     name: "task-arrays-find-index-method",
+    path: "tasks\\arrays\\task-arrays-find-index-method",
     title: "",
     description: "### Вводные\r\n\r\n* Дан массив дней недели и массив средних температур в эти дни соответственно:\r\n\r\n```javascript\r\nconst daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];\r\nconst temperatures1 = [2, 1, -5, 3, 0, -1, 2];\r\nconst temperatures2 = [2, 1, 5, 3, 0, 1, 2];\r\n```\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая выводит в консоль отчет:\r\n  * Первый холодный день на неделе. Вывести название дня и какая была температура.\r\n  * Если холодных дней не было, тоже сообщить об этом.\r\n* Функция принимает массив дней, массив температур и порог температуры, который считается холодным (параметр опциональный, по умолчанию дб 0).\r\n* Поправить функцию, чтобы было то же самое, но только для последнего холодного дня недели.",
     template: ``,
@@ -137,8 +146,9 @@ function weekTemperatureReport(weekDays, temps, thres) {
   {
     id: "27daa17fd930b723",
     name: "task-arrays-includes-method",
+    path: "tasks\\arrays\\task-arrays-includes-method",
     title: "Поддерживаемые языки",
-    description: "Сайт поддерживает несколько языков. Эти языки находятся в массиве:\r\n\r\n```javascript\r\nconst supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите утилитарную функцию, которая принимает код языка и возвращает true | false в зависимости от того, поддерживается язык или нет.",
+    description: "TODO: сделать дополнительное условие, когда языки являются объектами.\r\n\r\nСайт поддерживает несколько языков. Эти языки находятся в массиве:\r\n\r\n```javascript\r\nconst supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите утилитарную функцию, которая принимает код языка и возвращает true | false в зависимости от того, поддерживается язык или нет.",
     template: ``,
     solution: `const supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];
 
@@ -154,6 +164,7 @@ console.log(isLangSupported('foobar'));`,
   {
     id: "e90dbe808439efb4",
     name: "task-arrays-merge-1",
+    path: "tasks\\arrays\\task-arrays-merge-1",
     title: "Пользователи программы.",
     description: "### Вводные\r\n\r\nЕсть два массива:\r\n\r\n* Активные пользователи, которые пользовались приложением в течение месяца:\r\n\r\n```javascript\r\nconst activeUsers = [\r\n  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },\r\n  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }\r\n];\r\n```\r\n\r\n* Новые пользователи, которые зарегистрировались на этой неделе:\r\n\r\n```javascript\r\nconst newUsers = [\r\n  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },\r\n  { id: 4, name: 'Dave', signupDate: '2023-10-26' }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Объединить обе категории пользователей в новый массив так, чтобы новые были в начале.",
     template: `const activeUsers = [
@@ -173,8 +184,9 @@ console.log(allUsers);`,
   {
     id: "5a04d9100cf98f75",
     name: "task-count-visitors",
+    path: "tasks\\javascript\\map\\task-count-visitors",
     title: "Подсчет количества авторизаций",
-    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через forEach и через for of.\r\n  * Формат вывода \"пользователь: N раз\"",
+    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через forEach и через for of.\r\n  * Формат вывода \"пользователь: N раз\"\r\n* В самом конце вывести, сколько всего пользователей авторизовались.",
     template: `const visitors = [
   { username: "alice", time: "2023-05-10 09:15:23" },
   { username: "bob", time: "2023-05-10 10:02:45" },
@@ -211,7 +223,8 @@ function forOfShow(stat) {
 }
 
 forEachShow(stat);
-forOfShow(stat);`,
+forOfShow(stat);
+console.log('Всего авторизовались разных пользователей: ' + // число);`,
     solution: `// Решение 1
 const stat = visitors.reduce((visitStat, login) => {
   const { username } = login;
@@ -224,7 +237,7 @@ const stat = visitors.reduce((visitStat, login) => {
 }, new Map());
 
 // Решение 2
-const stat2 = visitors.reduce(
+const stat = visitors.reduce(
   (visitStat, login) => visitStat.set(login.username, visitStat.get(login.username) || 1),
   new Map()
 );
@@ -242,13 +255,33 @@ function forOfShow(stat) {
 }
 
 forEachShow(stat);
-forOfShow(stat);`,
+forOfShow(stat);
+console.log(\`Всего авторизовались \${stat.size} разных пользователей.\`);`,
     categories: ['javascript', 'map'],
     tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of']
   },
   {
+    id: "e924fc6b53e8b7ff",
+    name: "task-promocodes",
+    path: "tasks\\javascript\\set\\task-promocodes",
+    title: "",
+    description: "Вы получили от коллег-менеджеров промокоды, подготовленные ими для клиентов. Вам нужно добавить к ним свой промокод 'CHRISTMAS2000' и передать список промокодов главному менеджеру. Но вы обнаружили, что ваши коллеги использовали одинаковые промокоды, что является ошибкой. \r\n\r\nПоскольку вы планируете перейти в разработчики, то решаете применить свои навыки программирования, чтобы исправить ошибки коллег и самому не допустить такую же ошибку.\r\n\r\nФормат исходных данных:\r\n\r\n```javascript\r\nconst dave = [\r\n  { code: 'SUMMER25', manager: 'Dave' },\r\n  { code: 'WELCOME10', manager: 'Dave' },\r\n  { code: 'FRIEND15', manager: 'Dave' }\r\n];\r\n\r\nconst mary = [\r\n  { code: 'WELCOME10', manager: 'Mary' },  // Дубликат кода!\r\n  { code: 'NEWYEAR30', manager: 'Mary' }\r\n];\r\n\r\nconst ann = [\r\n  { code: 'FRIEND15', manager: 'Ann' },   // Дубликат кода!\r\n  { code: 'HOLIDAY50', manager: 'Ann' }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Объедините результаты работы ваших коллег, так, чтобы не было дублей промокодов.\r\n* Добавьте свой промокод в общий список, чтобы не повторить ошибку коллег.\r\n* Узнайте, сколько промокодов у вас получилось в итоге и выведите их в консоль.\r\n  * P.S. В последний момент вам позвонил коллега и попросил удалить промокод NEWYEAR30, если вы конечно еще не отправили их.\r\n* Главный менеджер привык получать письмо с промокодами в виде строки \"Промокоды на завтра (всего N): тут-промокоды-через-запятую\".\r\n\r\n",
+    template: ``,
+    solution: `const promos = new Set([...dave, ...mary, ...ann].map(promo => promo.code));
+const myCode = 'CHRISTMAS2000';
+if (!promos.has(myCode))
+  promos.add(myCode);
+
+promos.delete('NEWYEAR30');
+promos.forEach(promo => console.log(promo));
+console.log(\`Промокоды на завтра (всего \${promos.size}): \${[...promos].join(', ')}\`);`,
+    categories: ['javascript', 'set'],
+    tags: []
+  },
+  {
     id: "db10f3876dadf9b3",
     name: "task-fetch-with-query-string",
+    path: "tasks\\javascript\\task-fetch-with-query-string",
     title: "Формирование query string для url",
     description: "### Вводные\r\n\r\nЭндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
     template: ``,
@@ -289,6 +322,7 @@ fetchData(5, 3);`,
   {
     id: "d913f8145b51249f",
     name: "task-dyn-add-field",
+    path: "tasks\\objects\\task-dyn-add-field",
     title: "",
     description: "Дана функция:\r\n\r\n```javascript\r\nfunction createUser(login, firstname, lastname, role = 'user') {\r\n  if (!login) throw new Error('login является обязательным.');\r\n  return {\r\n    login,\r\n    role,\r\n  }\r\n}\r\n\r\nconst huck = createUser('hfinn', 'Huck', 'Finn');\r\nconsole.log(huck);\r\n```\r\n\r\nЗадача:\r\n\r\n* Доработать функцию так, чтобы поля firstname и lastname добавлялись в объект динамически - только если они переданы и не являются пустыми строками.\r\n* Поле lastname должно попасть в объект под названием surname.",
     template: ``,
@@ -310,6 +344,7 @@ console.log(huck);`,
   {
     id: "36637079d6213b2f",
     name: "task-merge-objects-1",
+    path: "tasks\\objects\\task-merge-objects-1",
     title: "",
     description: "Есть два объекта конфигурации:\r\n\r\n```javascript\r\nconst defaultConfig = {\r\n  cacheTime: 30_000,\r\n  staleTime: 0\r\n}\r\n\r\nconst myConfig = {\r\n  timeout: 1000,\r\n  refetchOnFail: false\r\n}\r\n```\r\n\r\n Задачи:\r\n\r\n* Объединить два конфига в новый.\r\n* Заменить параметр `refetchOnFail` на true.\r\n\r\nДоп. условия:\r\n\r\n* Сначала сделать это за две операции, потом за одну.",
     template: ``,
@@ -336,6 +371,7 @@ const config = {
   {
     id: "47dc1357ae09209a",
     name: "task-classic-simple-debounce-user-input",
+    path: "tasks\\real-tasks\\task-classic-simple-debounce-user-input",
     title: "",
     description: "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n```\r\nhttps://playcode.io/javascript\r\n```\r\n\r\n",
     template: `// html
@@ -371,6 +407,7 @@ function debounce(func, delayMs) {
   {
     id: "e605a49167ed6568",
     name: "task-dotaters-thanks",
+    path: "tasks\\real-tasks\\task-dotaters-thanks",
     title: "",
     description: "TODO: оформить в виде задачи нормально.\r\n\r\nЗадача: напишите функцию, которая принимает массив донатеров и  возвращает благодарственное сообщение \"Дорогие {имена пользователей}! В  общей сложности вы задонатили {сумма}. Это очень помогает мне развивать  канал. Спасибо вам большое!\". Имена пользователей должны быть разделены  запятой, а последние два имени - буквой \"и\". Сумма должна быть суммой  пожертвований от всех пользователей.\r\n\r\n```javascript\r\nconst donors = [\r\n  { username: 'kuzzya', donated: 100 },\r\n  { username: 'alex.ivanov', donated: 50 },\r\n  { username: 'elena.k', donated: 200 },\r\n  { username: 'pavel_n', donated: 75 }\r\n];\r\n```\r\n\r\n```javascript\r\nfunction generateThankYouMessage(donors) {\r\n  // 1. Собираем имена донатеров\r\n  const names = donors.map(donor => donor.username);\r\n  \r\n  // 2. Форматируем список имен\r\n  let namesList;\r\n  if (names.length === 1) {\r\n    namesList = names[0];\r\n  } else {\r\n    const firstPart = names.slice(0, -2).join(', ');\r\n    const lastTwo = names.slice(-2).join(' и ');\r\n    namesList = [firstPart, lastTwo].filter(Boolean).join(', ');\r\n  }\r\n  \r\n  // 3. Считаем общую сумму донатов\r\n  const totalAmount = donors.reduce((sum, donor) => sum + donor.donated, 0);\r\n  \r\n  // 4. Формируем сообщение\r\n  return `Дорогие ${namesList}! В общей сложности вы задонатили ${totalAmount}. Это очень помогает мне развивать канал. Спасибо вам большое!`;\r\n}\r\n\r\n// Проверка\r\nconsole.log(generateThankYouMessage(donors));\r\n```\r\n\r\n",
     template: ``,
@@ -381,6 +418,7 @@ function debounce(func, delayMs) {
   {
     id: "8c5114116f200b9f",
     name: "task-flat-categories",
+    path: "tasks\\real-tasks\\task-flat-categories",
     title: "",
     description: "Есть объект типа 'Категория':\r\n\r\n```typescript\r\ntype Category = {\r\n  name: string,\r\n  subcategories: Category[]\r\n}\r\n```\r\n\r\nУ категории есть имя и массив вложенных в нее категорий (\"подкатегории\").\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает плоский массив с именами всех категорий и вложенных в них подкатегорий.\r\n\r\nНапример для такой структуры:\r\n\r\n```javascript\r\n{\r\n  name: 'javascript',\r\n  subcategories: [\r\n    {\r\n      name: 'strings',\r\n      subcategories: []\r\n    },\r\n    {\r\n      name: 'objects',\r\n      subcategories: [\r\n        {\r\n          name: 'arrays',\r\n          subcategories: []\r\n        }\r\n      ]\r\n    },\r\n  ]\r\n}\r\n```\r\n\r\nДолжно получиться:\r\n\r\n```javascript\r\n['javascript', 'strings', 'objects', 'arrays']\r\n```\r\n\r\n",
     template: `const rootcat = 
@@ -448,6 +486,7 @@ categories.forEach(category => console.log(category));`,
   {
     id: "d279c4b5be657b71",
     name: "task-merge-user-info",
+    path: "tasks\\real-tasks\\task-merge-user-info",
     title: "Объединение пользователей из БД и из соцсетей.",
     description: "### Вводные\r\n\r\nДаны два массива:\r\n\r\n* Основные пользователи в базе данных:\r\n\r\n```javascript\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n```\r\n\r\n* И дополнительные данные из соцсетей:\r\n\r\n```javascript\r\nconst socialUsers = [\r\n  { id: 1, hobby: \"chess\", email: \"alice123@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\" }\r\n];\r\n```\r\n\r\nВ дополнительных данных может быть как новый пользователь, так и дополнительная информация об уже существующих пользователях.\r\n\r\n### Задача\r\n\r\n* Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.\r\n\r\n### Дополнительные условия\r\n\r\n* Постараться сделать без мутирования исходных массивов и объектов.",
     template: `// Основные пользователи (из БД)
@@ -499,8 +538,20 @@ console.log(merged);`,
     tags: []
   },
   {
+    id: "77128850a0c305a2",
+    name: "task-subscribers",
+    path: "tasks\\real-tasks\\task-subscribers",
+    title: "",
+    description: "TODO: сделать через set и замыкания задачу подписки и отписки.\r\n\r\nЧерновик кода:\r\n\r\n```javascript\r\nfunction createSubscriptionService() {\r\n  const subscribers = new Set();\r\n  const ids = new Set();\r\n\r\n  return {\r\n    subscribe(user) {\r\n      if (ids.has(user.id)) return false;\r\n      subscribers.add(user);\r\n      ids.add(user.id);\r\n      return true;\r\n    },\r\n    getSubscribers() {\r\n      // Возвращаем новый Set (копию)\r\n      return new Set(subscribers);\r\n    }\r\n  };\r\n}\r\n```\r\n\r\n",
+    template: ``,
+    solution: ``,
+    categories: ['real-tasks'],
+    tags: []
+  },
+  {
     id: "62bb7163a6460b30",
     name: "task-fetch-to-ent",
+    path: "tasks\\refactoring\\task-fetch-to-ent",
     title: "Свободный рефакторинг",
     description: "### Вводные\r\n\r\nОтрефакторить указанную функцию, чтобы она больше походила на промышленное решение. Ограничений нет, рефакторить на сколько хватит фантазии. Приведенное решение - просто ориентир, а не идеал.",
     template: `async function fetchData(page, limit) {
@@ -558,6 +609,7 @@ show();`,
   {
     id: "a30c8fd86874b15f",
     name: "task-partial-1",
+    path: "tasks\\typescript\\utility-types\\task-partial-1",
     title: "Утилитарный тип Partial",
     description: "### Сделайте чтобы было четко, u know?\r\n\r\nЭффектный рецепт плова:\r\n\r\n* Берем сперва укропу;\r\n* Потом кошачью жопу.\r\n* Двадцать пять картошек;\r\n* Семнадцать мандавошек;\r\n* Ведро воды и хуй туды;\r\n* Охапку дров - и плов готов!\r\n\r\nПочти по рецепту пахома. Подавать со сладким хлебом.\r\n\r\n\r\n\r\n## Wjta\r\n\r\nda fuck\r\n\r\n\r\n\r\n### you kono\r\n\r\nknow waht the heck\r\n\r\n```typescript\r\nconsole.log('hello, world!');\r\n\r\ninterface Cat {\r\n  meow();\r\n  scratch();\r\n}\r\n```\r\n\r\n",
     template: `type UserProfile = {
@@ -622,6 +674,7 @@ console.log(upedAlice);`,
   {
     id: "3259fca9146620fd",
     name: "task-pick-2",
+    path: "tasks\\typescript\\utility-types\\task-pick-2",
     title: "",
     description: "# Сывow?\r\n\r\nЭщкере, мазафака, дёрти щет!\r\n\r\n\r\n\r\n## Wjta\r\n\r\nda fuck\r\n\r\n\r\n\r\n### you kono\r\n\r\nknow waht the heck\r\n\r\n```typescript\r\nconsole.log('hello, world!');\r\n\r\ninterface Cat {\r\n  meow();\r\n  scratch();\r\n}\r\n```\r\n\r\n",
     template: `type UserProfile = {

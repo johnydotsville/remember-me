@@ -9,5 +9,7 @@ export const TaskList = ({ tasks }) => {
     content: <TaskView task={task} />
   }));
 
+  tasks.forEach(task => console.log(task.path));
+
   return <SpoilerGroup items={taskList} spacing="0.5rem" />
 }

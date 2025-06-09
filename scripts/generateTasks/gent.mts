@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import path from 'path';
+import path, { basename } from 'path';
 import { fileURLToPath } from 'url';
 import type { Task, Meta } from '@src/types/model';
 import { createHash } from 'crypto';
@@ -18,7 +18,8 @@ const PATHS = {
 type Folder = {
   name: string;
   parent: Folder | null,
-  path: string;
+  fullpath: string;
+  shortpath: string;
   isTask: boolean;
   subfolders: Folder[];
   meta?: (Meta | null)[];  // Мета каждой папки - это массив мет. В [0] - собственная мета, а дальше - меты родителей.
@@ -26,24 +27,28 @@ type Folder = {
 
 
 async function buildFoldersTree(rootDir: string): Promise<Folder> {
+  const tasksBase = path.basename(rootDir);
+
   const rootCategory: Folder = {
     name: 'root',
     parent: null,
-    path: rootDir,
+    fullpath: rootDir,
+    shortpath: tasksBase,
     isTask: false,
     subfolders: []
   };
 
   async function scan(folder: Folder) {
-    const folders = await fs.readdir(folder.path);
+    const folders = await fs.readdir(folder.fullpath);
     for (const curFolder of folders) {
-      const fullpath = path.join(folder.path, curFolder);
+      const fullpath = path.join(folder.fullpath, curFolder);
       const stat = await fs.stat(fullpath);
       if (stat.isDirectory()) {
         const childFolder: Folder = {
           name: curFolder,
           parent: folder,
-          path: fullpath,
+          fullpath,
+          shortpath: path.join(folder.shortpath, curFolder),
           isTask: false,
           subfolders: []
         };
@@ -64,7 +69,7 @@ async function buildFoldersTree(rootDir: string): Promise<Folder> {
 
 
 async function fillFoldersMeta(folder: Folder, parentMetas: (Meta | null)[] = []): Promise<void> {
-  const meta = await getMeta(path.join(folder.path, 'meta.json'));
+  const meta = await getMeta(path.join(folder.fullpath, 'meta.json'));
   const myMeta: (Meta | null)[] = [meta, ...parentMetas];
   folder.meta = myMeta;
   if (!folder.isTask) {
@@ -94,23 +99,25 @@ function flattenFoldersTree(root: Folder): Folder[] {
 
 
 async function makeTask(folder: Folder): Promise<Task> {
-  const description = await mdToString(path.join(folder.path, 'description.md'));
-  const template = await sourceCodeToString(path.join(folder.path, 'template.ts'));
-  const solution = await sourceCodeToString(path.join(folder.path, 'solution.ts'));
-  const categories = getCategoriesFromTaskDir(folder.path);
+  const description = await mdToString(path.join(folder.fullpath, 'description.md'));
+  const template = await sourceCodeToString(path.join(folder.fullpath, 'template.ts'));
+  const solution = await sourceCodeToString(path.join(folder.fullpath, 'solution.ts'));
+  const categories = getCategoriesFromTaskDir(folder.fullpath);
   const title = folder.meta?.[0]?.title ?? '';
   const tagsAsSet = folder.meta?.reduce((tagsSet, meta) => {
     meta?.tags?.forEach(tag => tagsSet.add(tag));
     return tagsSet;
   }, new Set<string>());
 
-  console.log(folder.path);
-  console.log(folder.meta);
-  console.log('======================================');
+  console.log(folder.shortpath)
+  // console.log(folder.path);
+  // console.log(folder.meta);
+  // console.log('------------------------------------');
   
   return {
-    id: idFromPath(folder.path),
+    id: idFromPath(folder.fullpath),
     name: folder.name,
+    path: folder.shortpath,
     title,
     description,
     template,
@@ -184,6 +191,7 @@ export const tasks: Task[] = [
 ${tasks.map(task => `  {
     id: ${JSON.stringify(task.id)},
     name: ${JSON.stringify(task.name)},
+    path: ${JSON.stringify(task.path)},
     title: ${JSON.stringify(task.title)},
     description: ${JSON.stringify(task.description)},
     template: \`${task.template.replace(/`/g, '\\`')}\`,
