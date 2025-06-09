@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import path, { basename } from 'path';
+import path from 'path';
 import { fileURLToPath } from 'url';
 import type { Task, Meta } from '@src/types/model';
 import { createHash } from 'crypto';
