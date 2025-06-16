@@ -1,28 +1,51 @@
-// Auto-generated file (2025-06-09T13:43:36.227Z)
+// Auto-generated file (2025-06-16T12:58:14.109Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
 {
   name: 'root',
   title: '',
+  hidden: false,
   subcategories: [
     {
       name: 'arrays',
       title: 'Массивы',
+      hidden: false,
       subcategories: []
     },
     {
       name: 'javascript',
       title: 'Javascript',
+      hidden: false,
       subcategories: [
+        {
+          name: 'exceptions',
+          title: 'Exceptions',
+          hidden: false,
+          subcategories: []
+        },
+        {
+          name: 'http',
+          title: 'Http',
+          hidden: false,
+          subcategories: []
+        },
         {
           name: 'map',
           title: 'Map',
+          hidden: false,
           subcategories: []
         },
         {
           name: 'set',
           title: 'Set',
+          hidden: false,
+          subcategories: []
+        },
+        {
+          name: 'syntax',
+          title: 'Синтаксис',
+          hidden: true,
           subcategories: []
         }
       ]
@@ -30,30 +53,36 @@ export const rootcat: Category =
     {
       name: 'objects',
       title: '',
+      hidden: false,
       subcategories: []
     },
     {
       name: 'real-tasks',
       title: 'Комбинированные задачи',
+      hidden: false,
       subcategories: []
     },
     {
       name: 'refactoring',
       title: 'Рефакторинг',
+      hidden: false,
       subcategories: []
     },
     {
       name: 'strings',
       title: '',
+      hidden: false,
       subcategories: []
     },
     {
       name: 'typescript',
       title: 'Typescript',
+      hidden: false,
       subcategories: [
         {
           name: 'utility-types',
           title: 'Utility-типы',
+          hidden: false,
           subcategories: []
         }
       ]
@@ -182,106 +211,41 @@ console.log(allUsers);`,
     tags: ['spread', '...', 'массивы', 'array']
   },
   {
-    id: "5a04d9100cf98f75",
-    name: "task-count-visitors",
-    path: "tasks\\javascript\\map\\task-count-visitors",
-    title: "Подсчет количества авторизаций",
-    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через forEach и через for of.\r\n  * Формат вывода \"пользователь: N раз\"\r\n* В самом конце вывести, сколько всего пользователей авторизовались.",
-    template: `const visitors = [
-  { username: "alice", time: "2023-05-10 09:15:23" },
-  { username: "bob", time: "2023-05-10 10:02:45" },
-  { username: "mike", time: "2023-05-10 11:34:01" },
-  { username: "alice", time: "2023-05-10 13:22:19" },
-  { username: "dave", time: "2023-05-10 14:08:33" },
-  { username: "alice", time: "2023-05-11 08:45:11" },
-  { username: "bob", time: "2023-05-11 09:01:07" },
-  { username: "lisa", time: "2023-05-11 10:30:45" },
-  { username: "mike", time: "2023-05-11 12:15:02" },
-  { username: "dave", time: "2023-05-11 13:05:58" },
-  { username: "alice", time: "2023-05-12 09:45:21" },
-  { username: "bob", time: "2023-05-12 10:22:10" },
-  { username: "lisa", time: "2023-05-12 11:11:11" },
-  { username: "mike", time: "2023-05-12 14:30:00" },
-  { username: "eva", time: "2023-05-12 15:00:44" },
-  { username: "eva", time: "2023-05-13 08:30:15" },
-  { username: "lisa", time: "2023-05-13 09:45:33" },
-  { username: "alice", time: "2023-05-13 10:20:05" },
-  { username: "bob", time: "2023-05-13 11:10:10" },
-  { username: "dave", time: "2023-05-13 12:00:00" }
-];
-
-const stat = // Посчитайте статистику
-
-function forEachShow(stat) {
-  console.log('forEach статистика авторизаций:');
-  // Выведите статистику
-}
-
-function forOfShow(stat) {
-  console.log('for of статистика авторизаций:');
-  // Выведите статистику
-}
-
-forEachShow(stat);
-forOfShow(stat);
-console.log('Всего авторизовались разных пользователей: ' + // число);`,
-    solution: `// Решение 1
-const stat = visitors.reduce((visitStat, login) => {
-  const { username } = login;
-  if (visitStat.has(username)) {
-    visitStat.set(username, visitStat.get(username) + 1);
-  } else {
-    visitStat.set(username, 1);
-  }
-  return visitStat;
-}, new Map());
-
-// Решение 2
-const stat = visitors.reduce(
-  (visitStat, login) => visitStat.set(login.username, visitStat.get(login.username) || 1),
-  new Map()
-);
-
-function forEachShow(stat) {
-  console.log('forEach статистика авторизаций:');
-  stat.forEach((value, key) => console.log(\`\${key}: \${value} раз.\`));
-}
-
-function forOfShow(stat) {
-  console.log('forOf статистика авторизаций:');
-  for (const [key, value] of stat) {
-    console.log(\`\${key}: \${value} раз.\`);
-  }
-}
-
-forEachShow(stat);
-forOfShow(stat);
-console.log(\`Всего авторизовались \${stat.size} разных пользователей.\`);`,
-    categories: ['javascript', 'map'],
-    tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of']
-  },
-  {
-    id: "e924fc6b53e8b7ff",
-    name: "task-promocodes",
-    path: "tasks\\javascript\\set\\task-promocodes",
-    title: "",
-    description: "Вы получили от коллег-менеджеров промокоды, подготовленные ими для клиентов. Вам нужно добавить к ним свой промокод 'CHRISTMAS2000' и передать список промокодов главному менеджеру. Но вы обнаружили, что ваши коллеги использовали одинаковые промокоды, что является ошибкой. \r\n\r\nПоскольку вы планируете перейти в разработчики, то решаете применить свои навыки программирования, чтобы исправить ошибки коллег и самому не допустить такую же ошибку.\r\n\r\nФормат исходных данных:\r\n\r\n```javascript\r\nconst dave = [\r\n  { code: 'SUMMER25', manager: 'Dave' },\r\n  { code: 'WELCOME10', manager: 'Dave' },\r\n  { code: 'FRIEND15', manager: 'Dave' }\r\n];\r\n\r\nconst mary = [\r\n  { code: 'WELCOME10', manager: 'Mary' },  // Дубликат кода!\r\n  { code: 'NEWYEAR30', manager: 'Mary' }\r\n];\r\n\r\nconst ann = [\r\n  { code: 'FRIEND15', manager: 'Ann' },   // Дубликат кода!\r\n  { code: 'HOLIDAY50', manager: 'Ann' }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Объедините результаты работы ваших коллег, так, чтобы не было дублей промокодов.\r\n* Добавьте свой промокод в общий список, чтобы не повторить ошибку коллег.\r\n* Узнайте, сколько промокодов у вас получилось в итоге и выведите их в консоль.\r\n  * P.S. В последний момент вам позвонил коллега и попросил удалить промокод NEWYEAR30, если вы конечно еще не отправили их.\r\n* Главный менеджер привык получать письмо с промокодами в виде строки \"Промокоды на завтра (всего N): тут-промокоды-через-запятую\".\r\n\r\n",
+    id: "d02b43377ef95f59",
+    name: "task-make-your-own-exception",
+    path: "tasks\\javascript\\exceptions\\task-make-your-own-exception",
+    title: "Обработка деления на ноль",
+    description: "У вас есть функция деления одного числа на другое:\r\n\r\n```javascript\r\nfunction divide(a, b) {\r\n  return a / b;\r\n}\r\n\r\nconst result = divide(10, 5);\r\nconsole.log(result);\r\n```\r\n\r\nСейчас она не предусматривает обработку деления на ноль.\r\n\r\nЗадача:\r\n\r\n* Создайте собственное исключение DivisionByZeroError.\r\n  * Текст ошибки по умолчанию поставьте \"Деление на ноль запрещено\".\r\n* Доработайте функцию divide, чтобы она выбрасывала это исключение.\r\n* Добавьте обработку исключения в месте вызова функции.\r\n  * Убедитесь, что пойманное исключение - именно DivisionByZeroError, и только тогда выведите сообщение исключения в консоль.",
     template: ``,
-    solution: `const promos = new Set([...dave, ...mary, ...ann].map(promo => promo.code));
-const myCode = 'CHRISTMAS2000';
-if (!promos.has(myCode))
-  promos.add(myCode);
+    solution: `class DivisionByZeroError extends Error {
+  constructor(message = 'Деление на ноль запрещено.') {
+    super(message);
+    this.name = 'DivisionByZeroError';
+  }
+}
 
-promos.delete('NEWYEAR30');
-promos.forEach(promo => console.log(promo));
-console.log(\`Промокоды на завтра (всего \${promos.size}): \${[...promos].join(', ')}\`);`,
-    categories: ['javascript', 'set'],
-    tags: []
+function divide(a, b) {
+  if (b === 0) {
+    throw new DivisionByZeroError();
+  }
+  return a / b;
+}
+
+try {
+  const result = divide(10, 0);
+  console.log(result);
+} catch (error) {
+  if (error instanceof DivisionByZeroError) {
+    console.log(error.message);
+  }
+}`,
+    categories: ['javascript', 'exceptions'],
+    tags: ['синтаксис', 'легко', 'exceptions', 'исключения', 'javascript']
   },
   {
-    id: "db10f3876dadf9b3",
+    id: "b7ce4a1a9a82cf6e",
     name: "task-fetch-with-query-string",
-    path: "tasks\\javascript\\task-fetch-with-query-string",
+    path: "tasks\\javascript\\http\\task-fetch-with-query-string",
     title: "Формирование query string для url",
     description: "### Вводные\r\n\r\nЭндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
     template: ``,
@@ -316,8 +280,162 @@ async function fetchData(page, limit) {
 }
 
 fetchData(5, 3);`,
-    categories: ['javascript'],
-    tags: ['url', 'urlsearchparams']
+    categories: ['javascript', 'http'],
+    tags: ['url', 'urlsearchparams', 'http', 'javascript']
+  },
+  {
+    id: "5a04d9100cf98f75",
+    name: "task-count-visitors",
+    path: "tasks\\javascript\\map\\task-count-visitors",
+    title: "Подсчет количества авторизаций",
+    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через forEach и через for of.\r\n  * Формат вывода \"пользователь: N раз\"\r\n* В самом конце вывести, сколько всего пользователей авторизовались.",
+    template: `const visitors = [
+  { username: "alice", time: "2023-05-10 09:15:23" },
+  { username: "bob", time: "2023-05-10 10:02:45" },
+  { username: "mike", time: "2023-05-10 11:34:01" },
+  { username: "alice", time: "2023-05-10 13:22:19" },
+  { username: "dave", time: "2023-05-10 14:08:33" },
+  { username: "alice", time: "2023-05-11 08:45:11" },
+  { username: "bob", time: "2023-05-11 09:01:07" },
+  { username: "lisa", time: "2023-05-11 10:30:45" },
+  { username: "mike", time: "2023-05-11 12:15:02" },
+  { username: "dave", time: "2023-05-11 13:05:58" },
+  { username: "alice", time: "2023-05-12 09:45:21" },
+  { username: "bob", time: "2023-05-12 10:22:10" },
+  { username: "lisa", time: "2023-05-12 11:11:11" },
+  { username: "mike", time: "2023-05-12 14:30:00" },
+  { username: "eva", time: "2023-05-12 15:00:44" },
+  { username: "eva", time: "2023-05-13 08:30:15" },
+  { username: "lisa", time: "2023-05-13 09:45:33" },
+  { username: "alice", time: "2023-05-13 10:20:05" },
+  { username: "bob", time: "2023-05-13 11:10:10" },
+  { username: "dave", time: "2023-05-13 12:00:00" }
+];
+
+function forEachShow(stat) {
+  console.log('forEach статистика авторизаций:');
+  // Выведите статистику
+}
+
+function forOfShow(stat) {
+  console.log('for of статистика авторизаций:');
+  // Выведите статистику
+}
+
+forEachShow(stat);
+forOfShow(stat);
+console.log('Всего авторизовались разных пользователей: ' + // число);`,
+    solution: `// Решение 1
+const stat = visitors.reduce((visitStat, login) => {
+  const { username } = login;
+  if (visitStat.has(username)) {
+    visitStat.set(username, visitStat.get(username) + 1);
+  } else {
+    visitStat.set(username, 1);
+  }
+  return visitStat;
+}, new Map());
+
+// Решение 2
+const stat = visitors.reduce(
+  (visitStat, login) => visitStat.set(login.username, visitStat.has(login.username) ? visitStat.get(login.username) + 1 : 1),
+  new Map()
+);
+
+function forEachShow(stat) {
+  console.log('forEach статистика авторизаций:');
+  stat.forEach((value, key) => console.log(\`\${key}: \${value} раз.\`));
+}
+
+function forOfShow(stat) {
+  console.log('forOf статистика авторизаций:');
+  for (const [key, value] of stat) {
+    console.log(\`\${key}: \${value} раз.\`);
+  }
+}
+
+forEachShow(stat);
+forOfShow(stat);
+console.log(\`Всего авторизовались \${stat.size} разных пользователей.\`);`,
+    categories: ['javascript', 'map'],
+    tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of', 'javascript']
+  },
+  {
+    id: "e924fc6b53e8b7ff",
+    name: "task-promocodes",
+    path: "tasks\\javascript\\set\\task-promocodes",
+    title: "Промокоды для главного менеджера",
+    description: "Вы получили от коллег-менеджеров промокоды, подготовленные ими для клиентов. Вам нужно добавить к ним свой промокод 'CHRISTMAS2000' и передать список промокодов главному менеджеру. Но вы обнаружили, что ваши коллеги использовали одинаковые промокоды, что является ошибкой. \r\n\r\nПоскольку вы планируете перейти в разработчики, то решаете применить свои навыки программирования, чтобы исправить ошибки коллег и самому не допустить такую же ошибку.\r\n\r\nФормат исходных данных:\r\n\r\n```javascript\r\nconst dave = [\r\n  { code: 'SUMMER25', manager: 'Dave' },\r\n  { code: 'WELCOME10', manager: 'Dave' },\r\n  { code: 'FRIEND15', manager: 'Dave' }\r\n];\r\n\r\nconst mary = [\r\n  { code: 'WELCOME10', manager: 'Mary' },  // Дубликат кода!\r\n  { code: 'NEWYEAR30', manager: 'Mary' }\r\n];\r\n\r\nconst ann = [\r\n  { code: 'FRIEND15', manager: 'Ann' },   // Дубликат кода!\r\n  { code: 'HOLIDAY50', manager: 'Ann' }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Объедините результаты работы ваших коллег, так, чтобы не было дублей промокодов.\r\n* Добавьте свой промокод в общий список, чтобы не повторить ошибку коллег.\r\n* Узнайте, сколько промокодов у вас получилось в итоге и выведите их в консоль.\r\n  * P.S. В последний момент вам позвонил коллега и попросил удалить промокод NEWYEAR30, если вы конечно еще не отправили их.\r\n* Главный менеджер привык получать письмо с промокодами в виде строки \"Промокоды на завтра (всего N): тут-промокоды-через-запятую\".\r\n\r\n",
+    template: ``,
+    solution: `const promos = new Set([...dave, ...mary, ...ann].map(promo => promo.code));
+const myCode = 'CHRISTMAS2000';
+if (!promos.has(myCode))
+  promos.add(myCode);
+
+promos.delete('NEWYEAR30');
+promos.forEach(promo => console.log(promo));
+console.log(\`Промокоды на завтра (всего \${promos.size}): \${[...promos].join(', ')}\`);`,
+    categories: ['javascript', 'set'],
+    tags: ['синтаксис', 'легко', 'set', 'javascript']
+  },
+  {
+    id: "d0148c93faa1b0eb",
+    name: "task-professor-substitute",
+    path: "tasks\\javascript\\syntax\\task-professor-substitute",
+    title: "Опциональная цепочка",
+    description: "В университете есть несколько профессоров:\r\n\r\n```javascript\r\nconst johnSmith = {\r\n  name: \"John Smith\",\r\n  colleagues: [\r\n    { name: \"Robert Johnson\" },\r\n    { name: \"Emily Davis\" }\r\n  ]\r\n};\r\n\r\nconst sarahConnor = {\r\n  name: \"Sarah Connor\",\r\n  colleagues: [] // Нет заместителя\r\n};\r\n\r\nconst michaelBrown = {\r\n  name: \"Michael Brown\",\r\n  // Нет коллег вообще\r\n};\r\n```\r\n\r\nУ них есть список коллег, которые ведут тот же самый предмет. Причем первый коллега в списке считается заместителем профессора. Если какой-то предмет ведет только один профессор, то коллег у него нет.\r\n\r\nЗадача:\r\n\r\n* Верните телефон заместителя каждого профессора.\r\n  * Если заместителя нет, верните надпись \"У имя-профессора нет заместителя\".",
+    template: `const johnSmith = {
+  name: 'John Smith',
+  colleagues: [
+    { name: 'Robert Johnson', phone: '(212) 555-0187' },
+    { name: 'Emily Davis', phone: '(310) 555-0142' }
+  ]
+};
+
+const sarahConnor = {
+  name: 'Sarah Connor',
+  colleagues: [] // Нет заместителя
+};
+
+const michaelBrown = {
+  name: 'Michael Brown',
+  // Нет коллег вообще
+};
+
+function getSubstitute(professor) {
+  // Верните телефон заместителя
+}
+
+console.log(getSubstitute(johnSmith));
+console.log(getSubstitute(sarahConnor));
+console.log(getSubstitute(michaelBrown));`,
+    solution: `const johnSmith = {
+  name: 'John Smith',
+  colleagues: [
+    { name: 'Robert Johnson', phone: '(212) 555-0187' },
+    { name: 'Emily Davis', phone: '(310) 555-0142' }
+  ]
+};
+
+const sarahConnor = {
+  name: 'Sarah Connor',
+  colleagues: [] // Нет заместителя
+};
+
+const michaelBrown = {
+  name: 'Michael Brown',
+  // Нет коллег вообще
+};
+
+function getSubstitute(professor) {
+  return professor.colleagues?.[0]?.phone || \`У профессора \${professor.name} нет заместителя.\`;
+}
+
+console.log(getSubstitute(johnSmith));
+console.log(getSubstitute(sarahConnor));
+console.log(getSubstitute(michaelBrown));`,
+    categories: ['javascript', 'syntax'],
+    tags: ['?.', '||', 'Опциональная цепочка', 'синтаксис', 'javascript']
   },
   {
     id: "d913f8145b51249f",
@@ -346,7 +464,7 @@ console.log(huck);`,
     name: "task-merge-objects-1",
     path: "tasks\\objects\\task-merge-objects-1",
     title: "",
-    description: "Есть два объекта конфигурации:\r\n\r\n```javascript\r\nconst defaultConfig = {\r\n  cacheTime: 30_000,\r\n  staleTime: 0\r\n}\r\n\r\nconst myConfig = {\r\n  timeout: 1000,\r\n  refetchOnFail: false\r\n}\r\n```\r\n\r\n Задачи:\r\n\r\n* Объединить два конфига в новый.\r\n* Заменить параметр `refetchOnFail` на true.\r\n\r\nДоп. условия:\r\n\r\n* Сначала сделать это за две операции, потом за одну.",
+    description: "Есть два объекта конфигурации:\r\n\r\n```javascript\r\nconst defaultConfig = {\r\n  cacheTime: 30_000,\r\n  staleTime: 0\r\n}\r\n\r\nconst myConfig = {\r\n  timeout: 1000,\r\n  refetchOnFail: false\r\n}\r\n```\r\n\r\n Задачи:\r\n\r\n* Объединить два конфига в новый.\r\n* Заменить параметр `refetchOnFail` на true.\r\n\r\nДоп. условия:\r\n\r\n* Сначала сделать это за две операции (1 - объединить, 2 - заменить), потом за одну (объединить + заменить).\r\n* Сделать в иммутабельном стиле.",
     template: ``,
     solution: `// За две
 const config = {
@@ -388,17 +506,18 @@ function goSearch(value) {
 }`,
     solution: `const userInput = document.querySelector('#userSearch');
 
-userInput.addEventListener('input', debounce((event) => goSearch(event.target.value), 1500));
+const debouncedSearch = debounce(goSearch, 1500);
+userInput.addEventListener('input', (event) => debouncedSearch(event.target.value));
 
 function goSearch(value) {
   console.log(\`Запрос поиска на сервер: \${value}\`)
 }
 
-function debounce(func, delayMs) {
+function debounce(fn, delayMs) {
   let timeoutId;
   return function(...args) {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => func.apply(this, args), delayMs);
+    timeoutId = setTimeout(() => fn.apply(this, args), delayMs);
   }
 }`,
     categories: ['real-tasks'],
@@ -522,7 +641,7 @@ const socialUsers = [
   { id: 4, name: "Dave", role: "user" }
 ];
 
-
+// Решение 1: полностью функциональное, 0 мутаций.
 function mergeUsers(databaseUsers, socialUsers) {
   return socialUsers.reduce((mergedUsers, socialUser) => {
     const existingUserIndex = databaseUsers.findIndex(dbUser => dbUser.id === socialUser.id);
@@ -530,6 +649,19 @@ function mergeUsers(databaseUsers, socialUsers) {
       ? [...mergedUsers, socialUser]
       : mergedUsers.map((u, ind) => ind === existingUserIndex ? { ...u, ...socialUser } : u)
   }, databaseUsers);
+}
+
+// Решение 2: с локальными мутациями, не влияющими на исходные данные. Лучше производительность.
+function mergeUsers(databaseUsers, socialUsers) {
+  return socialUsers.reduce((mergedUsers, socialUser) => {
+    let ind = mergedUsers.findIndex(u => u.id === socialUser.id);
+    if (ind !== -1){
+      mergedUsers[ind] = { ...mergedUsers[ind], ...socialUser }
+    } else {
+      mergedUsers.push(socialUser);
+    }
+    return mergedUsers;
+  }, [...databaseUsers]);
 }
 
 const merged = mergeUsers(dbUsers, socialUsers);
@@ -675,7 +807,7 @@ console.log(upedAlice);`,
     id: "3259fca9146620fd",
     name: "task-pick-2",
     path: "tasks\\typescript\\utility-types\\task-pick-2",
-    title: "",
+    title: "Утилитарный тип Pick",
     description: "# Сывow?\r\n\r\nЭщкере, мазафака, дёрти щет!\r\n\r\n\r\n\r\n## Wjta\r\n\r\nda fuck\r\n\r\n\r\n\r\n### you kono\r\n\r\nknow waht the heck\r\n\r\n```typescript\r\nconsole.log('hello, world!');\r\n\r\ninterface Cat {\r\n  meow();\r\n  scratch();\r\n}\r\n```\r\n\r\n",
     template: `type UserProfile = {
   id: string;
@@ -707,7 +839,7 @@ const upedAlice = updateProfile(alice, {
 console.log(upedAlice);`,
     solution: ``,
     categories: ['typescript', 'utility-types'],
-    tags: []
+    tags: ['pick']
   }
 ];
 

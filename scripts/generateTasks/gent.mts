@@ -178,7 +178,7 @@ ${cat.subfolders.filter(sub => !sub.isTask).map(c => catTreeToString(c, indentLe
 ${sqin}]`
     : '[]';
 
-  return `${curlyin}{\n${fieldsin}name: '${cat.name}',\n${fieldsin}title: '${cat.meta?.[0]?.title ?? ""}',\n${fieldsin}subcategories: ${formattedCategories}\n${curlyin}}`
+  return `${curlyin}{\n${fieldsin}name: '${cat.name}',\n${fieldsin}title: '${cat.meta?.[0]?.title ?? ""}',\n${fieldsin}hidden: ${cat.meta?.[0]?.hidden ?? false},\n${fieldsin}subcategories: ${formattedCategories}\n${curlyin}}`
 }
 
 

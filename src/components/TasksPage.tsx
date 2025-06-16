@@ -9,7 +9,7 @@ import type { Category, Task } from '@src/types/model';
 
 
 export const TasksPage = () => {
-  const cats = useMemo(() => flatcats(rootcat).sort(), []);
+  const cats = useMemo(() => flatcats(rootcat).filter(cat => !cat.hidden).sort(), []);
   const [tasks] = useState(sourceTasks);
   const [category, setCategory] = useState<Category>(rootcat);
   const [randomTask, setRandomTask] = useState<Task | null>(null);
