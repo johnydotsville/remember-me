@@ -73,7 +73,9 @@ async function fillFoldersMeta(folder: Folder, parentMetas: (Meta | null)[] = []
   const myMeta: (Meta | null)[] = [meta, ...parentMetas];
   folder.meta = myMeta;
   if (!folder.isTask) {
-    folder.subfolders.forEach(subfolder => fillFoldersMeta(subfolder, myMeta));
+    for (const subfolder of folder.subfolders) {
+      await fillFoldersMeta(subfolder, myMeta);
+    }
   }
 }
 

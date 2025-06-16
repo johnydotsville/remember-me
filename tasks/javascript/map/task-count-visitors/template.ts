@@ -21,8 +21,6 @@ const visitors = [
   { username: "dave", time: "2023-05-13 12:00:00" }
 ];
 
-const stat = // Посчитайте статистику
-
 function forEachShow(stat) {
   console.log('forEach статистика авторизаций:');
   // Выведите статистику

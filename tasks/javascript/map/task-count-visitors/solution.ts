@@ -11,7 +11,7 @@ const stat = visitors.reduce((visitStat, login) => {
 
 // Решение 2
 const stat = visitors.reduce(
-  (visitStat, login) => visitStat.set(login.username, visitStat.get(login.username) || 1),
+  (visitStat, login) => visitStat.set(login.username, visitStat.has(login.username) ? visitStat.get(login.username) + 1 : 1),
   new Map()
 );
 

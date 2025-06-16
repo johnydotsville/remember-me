@@ -7,6 +7,8 @@
   - [x] Методы get, set, has, size, forEach.
 - [ ] Set
 - [ ] Object, keys, values
+- [ ] Исключения.
+  - [x] Создание собственного класса исключения.
 - [ ] Массивы
   - [ ] Методы
     - [x] findIndex, findLastIndex
