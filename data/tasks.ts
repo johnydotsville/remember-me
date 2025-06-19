@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-16T12:58:14.109Z)
+// Auto-generated file (2025-06-19T17:12:34.571Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -33,6 +33,18 @@ export const rootcat: Category =
         {
           name: 'map',
           title: 'Map',
+          hidden: false,
+          subcategories: []
+        },
+        {
+          name: 'math',
+          title: 'Math',
+          hidden: false,
+          subcategories: []
+        },
+        {
+          name: 'other',
+          title: 'Прочее',
           hidden: false,
           subcategories: []
         },
@@ -177,18 +189,24 @@ function weekTemperatureReport(weekDays, temps, thres) {
     name: "task-arrays-includes-method",
     path: "tasks\\arrays\\task-arrays-includes-method",
     title: "Поддерживаемые языки",
-    description: "TODO: сделать дополнительное условие, когда языки являются объектами.\r\n\r\nСайт поддерживает несколько языков. Эти языки находятся в массиве:\r\n\r\n```javascript\r\nconst supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите утилитарную функцию, которая принимает код языка и возвращает true | false в зависимости от того, поддерживается язык или нет.",
+    description: "Сайт поддерживает несколько языков. Эти языки находятся в массиве:\r\n\r\n```javascript\r\nconst supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите утилитарную функцию, которая принимает код языка и возвращает true | false в зависимости от того, поддерживается язык или нет.\r\n\r\nДополнительно:\r\n\r\n* Сделайте то же самое (верните true | false), если языки хранятся в виде объектов:\r\n\r\n```typescript\r\nconst supportedLanguages = [\r\n  { code: 'en' }, \r\n  { code: 'ru' },\r\n  { code: 'de' },\r\n  { code: 'fr' },\r\n  { code: 'es' },\r\n  { code: 'zh' },\r\n  { code: 'ja' }\r\n];\r\n```\r\n\r\n",
     template: ``,
     solution: `const supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];
 
+// Решение для обычного массива
 function isLangSupported(langCode) {
   return supportedLanguages.includes(langCode);
+}
+
+// Решение для объектов
+function isLangSupported(langCode) {
+  return supportedLanguages.some(lang => lang.code === langCode);
 }
 
 console.log(isLangSupported('ru'));
 console.log(isLangSupported('foobar'));`,
     categories: ['arrays'],
-    tags: ['includes', 'синтаксис', 'легко', 'массивы', 'array']
+    tags: ['includes', 'some', 'синтаксис', 'легко', 'массивы', 'array']
   },
   {
     id: "e90dbe808439efb4",
@@ -359,6 +377,177 @@ forOfShow(stat);
 console.log(\`Всего авторизовались \${stat.size} разных пользователей.\`);`,
     categories: ['javascript', 'map'],
     tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of', 'javascript']
+  },
+  {
+    id: "9abc8d5ee8b78820",
+    name: "task-customer-check-payment",
+    path: "tasks\\javascript\\math\\task-customer-check-payment",
+    title: "Math",
+    description: "У вас есть массив с продуктами, приобретенными покупателем в магазине:\r\n\r\n```javascript\r\nconst cart = [\r\n  { name: \"Молоко 1л\", price: 89.90, quantity: 2 },       // 2 упаковки\r\n  { name: \"Хлеб ржаной\", price: 45.30, quantity: 1 },     // 1 буханка\r\n  { name: \"Яйца (1уп)\", price: 129.99, quantity: 1 },     // 1 упаковка\r\n  { name: \"Яблоки (1кг)\", price: 85.15, quantity: 1.5 },  // 1.5 кг (весовой товар)\r\n  { name: \"Сыр (100г)\", price: 69.50, quantity: 3 }       // 3 упаковки\r\n];\r\n// 688р.\r\n```\r\n\r\nВ магазине действует правило округления цены в пользу покупателя. Т.е. если цена товара 75.99, то покупатель платит 75 руб. Округление происходит для каждого товара после умножения на количество приобретенных единиц товара.\r\n\r\nЗадача:\r\n\r\n* Посчитайте стоимость покупки с учетом действующего в магазине правила.",
+    template: ``,
+    solution: `function totalPrice(cart) {
+  return cart.reduce((total, product) => total += Math.trunc(product.price * product.quantity), 0);
+}
+
+console.log(\`К оплате: \${totalPrice(cart)} руб.\`);`,
+    categories: ['javascript', 'math'],
+    tags: ['trunc', 'math', 'javascript']
+  },
+  {
+    id: "199cba6650eb00f6",
+    name: "task-data-pages",
+    path: "tasks\\javascript\\math\\task-data-pages",
+    title: "Количество страниц в пагинаторе",
+    description: "У вас есть общее количество постов в блоге и настройка, сколько постов должно быть на одной странице:\r\n\r\n```typescript\r\nconst totalPosts = 12;\r\nconst postsPerPage = 5;\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько страниц должно быть в пагинаторе.",
+    template: ``,
+    solution: `const pages = Math.ceil(totalPosts / postsPerPage);
+console.log(pages);`,
+    categories: ['javascript', 'math'],
+    tags: ['ceil', 'math', 'javascript']
+  },
+  {
+    id: "2bdd7da4fa8aba52",
+    name: "task-generate-random-numbers",
+    path: "tasks\\javascript\\math\\task-generate-random-numbers",
+    title: "Генератор случайных чисел",
+    description: "Задача:\r\n\r\n* Сгенерируйте случайное число от 0 до 100 (включительно).\r\n* Сгенерируйте случайное число от 30 до 100 (включительно).",
+    template: ``,
+    solution: `// [0 - 100]
+const num = Math.floor(Math.random() * 101);
+
+// [30 - 100]
+const num = Math.floor(Math.random() * 71) + 30;`,
+    categories: ['javascript', 'math'],
+    tags: ['random', 'floor', 'math', 'javascript']
+  },
+  {
+    id: "0a5d35f166b3391e",
+    name: "task-get-exchange-stat",
+    path: "tasks\\javascript\\math\\task-get-exchange-stat",
+    title: "Статистика курса валют.",
+    description: "У вас есть массив, содержащий курс доллара к рублю за последние 7 дней:\r\n\r\n```typescript\r\nconst exchangeRates = [75.3, 76.1, 74.9, 77.5, 76.8, 75.7, 78.2];\r\n```\r\n\r\nЗадача:\r\n\r\n* Найти минимальный и максимальный курс за эту неделю.",
+    template: ``,
+    solution: `const exchangeRates = [75.3, 76.1, 74.9, 77.5, 76.8, 75.7, 78.2];
+
+const minRate = Math.min(...exchangeRates);
+const maxRate = Math.max(...exchangeRates);
+
+console.log(\`Минимальный курс: \${minRate}\`);
+console.log(\`Максимальный курс: \${maxRate}\`);`,
+    categories: ['javascript', 'math'],
+    tags: ['min', 'max', 'math', 'javascript']
+  },
+  {
+    id: "101fea1c0ac3ecdd",
+    name: "task-movie-avg-rating",
+    path: "tasks\\javascript\\math\\task-movie-avg-rating",
+    title: "",
+    description: "У вас есть массив с оценками зрителей для фильма. Вы скачали плагин, который рисует звездочки и хотите с его помощью наглядно отобразить рейтинг фильма. Плагин принимает целое число.\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию для функции calculateAverageRating, которая рассчитывает средний рейтинг фильма по стандартным математическим правилам. Итоговый рейтинг - целое число.\r\n* Автор плагина доработал его и теперь плагин может отображать не только целые звезды, но и частично заполненные.\r\n  * Перепишите функцию, чтобы она возвращала рейтинг с точностью до 2х знаков после запятой.",
+    template: `const audienceRatings = [8, 7, 9, 6, 8, 10, 7];
+
+const rating = calculateAverageRating(audienceRatings)
+console.log(\`Рейтинг фильма: \${rating}\`);
+
+
+function calculateAverageRating(ratings) {
+  // Рассчитайте рейтинг
+}`,
+    solution: `const audienceRatings = [8, 7, 9, 6, 8, 10, 7];
+
+const rating = calculateAverageRating(audienceRatings)
+console.log(\`Рейтинг фильма: \${rating}\`);
+
+// Решение 1
+function calculateAverageRating(ratings) {
+  return Math.round(ratings.reduce((sum, rate) => sum + rate, 0) / ratings.length);
+}
+
+// Решение 2
+function calculateAverageRating(ratings) {
+  const deci = ratings.reduce((sum, rate) => sum + rate, 0) / ratings.length;
+  return Math.round(deci * 100) / 100;
+}`,
+    categories: ['javascript', 'math'],
+    tags: ['math', 'javascript']
+  },
+  {
+    id: "fc14891cf61349dc",
+    name: "task-client-orders",
+    path: "tasks\\javascript\\other\\task-client-orders",
+    title: "Заказы клиентов на складах",
+    description: "У вас есть мапа с заказами клиентов. Ключ - это id заказа. Значение - объект с именем и почтой клиента:\r\n\r\n```javascript\r\nconst orders = new Map([\r\n  [\"AA-XK5GT\", { name: 'John Doe', email: 'john.doe@example.com' }],\r\n  [\"BB-YHF8N\", { name: 'Jane Smith', email: 'jane.smith@example.com' }],\r\n  [\"AA-UQZ9W\", { name: 'Michael Johnson', email: 'michael.johnson@example.com' }],\r\n  [\"AA-PKV2R\", { name: 'Emma Williams', email: 'emma.williams@example.com' }],\r\n  [\"BB-JTM6P\", { name: 'David Brown', email: 'david.brown@example.com' }],\r\n  [\"AA-LNH3D\", { name: 'Sarah Davis', email: 'sarah.davis@example.com' }],\r\n  [\"AA-CWX7F\", { name: 'William Miller', email: 'william.miller@example.com' }],\r\n  [\"BB-RTS4B\", { name: 'Olivia Taylor', email: 'olivia.taylor@example.com' }],\r\n  [\"CC-VGH1E\", { name: 'James Anderson', email: 'james.anderson@example.com' }],\r\n  [\"AA-NMZ9Q\", { name: 'Ava Wilson', email: 'ava.wilson@example.com' }],\r\n  [\"BB-XD5JP\", { name: 'John Doe', email: 'john.doe@example.com' }], // Повторный заказ от John Doe (склад BB)\r\n  [\"CC-UYT2W\", { name: 'David Brown', email: 'david.brown@example.com' }]  // Повторный заказ от David Brown (склад CC)\r\n]);\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию для функции, которая возвращает массив с id заказов, сделанных указанным клиентом.\r\n* Напишите реализацию для функции, которая возвращает число заказов, сделанных указанным клиентом.\r\n* Напишите реализацию функции, которая возвращает число заказов, находящихся на указанном складе.",
+    template: `const orders = new Map([
+  ["AA-XK5GT", { name: 'John Doe', email: 'john.doe@example.com' }],
+  ["BB-YHF8N", { name: 'Jane Smith', email: 'jane.smith@example.com' }],
+  ["AA-UQZ9W", { name: 'Michael Johnson', email: 'michael.johnson@example.com' }],
+  ["AA-PKV2R", { name: 'Emma Williams', email: 'emma.williams@example.com' }],
+  ["BB-JTM6P", { name: 'David Brown', email: 'david.brown@example.com' }],
+  ["AA-LNH3D", { name: 'Sarah Davis', email: 'sarah.davis@example.com' }],
+  ["AA-CWX7F", { name: 'William Miller', email: 'william.miller@example.com' }],
+  ["BB-RTS4B", { name: 'Olivia Taylor', email: 'olivia.taylor@example.com' }],
+  ["CC-VGH1E", { name: 'James Anderson', email: 'james.anderson@example.com' }],
+  ["AA-NMZ9Q", { name: 'Ava Wilson', email: 'ava.wilson@example.com' }],
+  ["BB-XD5JP", { name: 'John Doe', email: 'john.doe@example.com' }], // Повторный заказ от John Doe (склад BB)
+  ["CC-UYT2W", { name: 'David Brown', email: 'david.brown@example.com' }]  // Повторный заказ от David Brown (склад CC)
+]);
+
+// Выдать все заказы клиента
+function getAllClientOrders(email, orders) {
+  // Реализация
+}
+
+// Сколько заказов сделал указанный клиент
+function getClientOrdersCount(email, orders) {
+  // Реализация
+}
+
+// Сколько заказов лежат на указанном складе
+function getOrdersCountAsWarehouse(warehouseCode, orders) {
+  // Реализация
+}
+
+const clientOrders = getAllClientOrders('david.brown@example.com', orders);
+clientOrders.forEach(order => console.log(order));
+
+const clientOrdersCount = getClientOrdersCount('john.doe@example.com', orders);
+console.log(clientOrdersCount);
+
+const ordersCountAtWarehouse = getOrdersCountAsWarehouse('AA', orders);
+console.log(ordersCountAtWarehouse);`,
+    solution: `// Выдать все заказы клиента
+function getAllClientOrders(email, orders) {
+  const orderIds = [];
+  for (const [orderId, client] of orders.entries()) {
+    if (client.email === email) {
+      orderIds.push(orderId);
+    }
+  }
+  return orderIds;
+}
+
+// Сколько заказов сделал указанный клиент
+function getClientOrdersCount(email, orders) {
+  let count = 0;
+  for (const order of orders.values()) {
+    if (order.email === email) {
+      count++;
+    }
+  }
+  return count;
+}
+
+// Сколько заказов лежат на указанном складе
+function getOrdersCountAsWarehouse(warehouseCode, orders) {
+  let count = 0;
+  for (const orderId of orders.keys()) {
+    if (orderId.startsWith(warehouseCode)) {
+      count++;
+    }
+  }
+  return count;
+}`,
+    categories: ['javascript', 'other'],
+    tags: ['Map', 'keys', 'values', 'entries', 'javascript']
   },
   {
     id: "e924fc6b53e8b7ff",
