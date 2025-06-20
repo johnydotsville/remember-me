@@ -20,13 +20,13 @@ function forEachShow(stat) {
   stat.forEach((value, key) => console.log(`${key}: ${value} раз.`));
 }
 
-function forOfShow(stat) {
-  console.log('forOf статистика авторизаций:');
+function forShow(stat) {
+  console.log('for статистика авторизаций:');
   for (const [key, value] of stat) {
     console.log(`${key}: ${value} раз.`);
   }
 }
 
 forEachShow(stat);
-forOfShow(stat);
+forShow(stat);
 console.log(`Всего авторизовались ${stat.size} разных пользователей.`);

@@ -26,11 +26,11 @@ function forEachShow(stat) {
   // Выведите статистику
 }
 
-function forOfShow(stat) {
-  console.log('for of статистика авторизаций:');
+function forShow(stat) {
+  console.log('for статистика авторизаций:');
   // Выведите статистику
 }
 
 forEachShow(stat);
-forOfShow(stat);
+forShow(stat);
 console.log('Всего авторизовались разных пользователей: ' + // число);

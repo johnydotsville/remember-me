@@ -2,20 +2,20 @@
 
 ```javascript
 const johnSmith = {
-  name: "John Smith",
+  name: 'John Smith',
   colleagues: [
-    { name: "Robert Johnson" },
-    { name: "Emily Davis" }
+    { name: 'Robert Johnson', phone: '(212) 555-0187' },
+    { name: 'Emily Davis', phone: '(310) 555-0142' }
   ]
 };
 
 const sarahConnor = {
-  name: "Sarah Connor",
+  name: 'Sarah Connor',
   colleagues: [] // Нет заместителя
 };
 
 const michaelBrown = {
-  name: "Michael Brown",
+  name: 'Michael Brown',
   // Нет коллег вообще
 };
 ```
