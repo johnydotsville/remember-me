@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-19T17:12:34.571Z)
+// Auto-generated file (2025-06-23T13:59:08.129Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -18,6 +18,12 @@ export const rootcat: Category =
       title: 'Javascript',
       hidden: false,
       subcategories: [
+        {
+          name: 'destruction',
+          title: 'Деструктуризация',
+          hidden: false,
+          subcategories: []
+        },
         {
           name: 'exceptions',
           title: 'Exceptions',
@@ -91,6 +97,12 @@ export const rootcat: Category =
       title: 'Typescript',
       hidden: false,
       subcategories: [
+        {
+          name: 'type-interface',
+          title: 'type и interface',
+          hidden: false,
+          subcategories: []
+        },
         {
           name: 'utility-types',
           title: 'Utility-типы',
@@ -229,6 +241,84 @@ console.log(allUsers);`,
     tags: ['spread', '...', 'массивы', 'array']
   },
   {
+    id: "b9bd1b052198a96c",
+    name: "task-greet-user-refactoring",
+    path: "tasks\\javascript\\destruction\\task-greet-user-refactoring",
+    title: "Рефакторинг функции приветствия",
+    description: "Вам на почту пришло задание от тимлида. В письме он просит вас отрефакторить вот эту функцию:\r\n\r\n```javascript\r\nfunction greetUser(userCorporateProfile) {\r\n  return `Hello, ${userCorporateProfile.firstname} ${userCorporateProfile.lastname}!`;\r\n}\r\n```\r\n\r\nЕму не нравятся эти избыточные обращения через точку, надо как-то сократить, не меняя само название параметра.\r\n\r\nЗадание:\r\n\r\n* Пожелания от тимлида: \"вынеси эти поля в отдельные переменные с такими же названиями\".\r\n* UPD. После первого рефакторинга тимлиду теперь кажется, что имена переменных душные. \"Пусть будет просто name и surname\" - написал он.\r\n* UPD. \"Они там с ума сошли. Теперь пользователь может быть без имени и фамилии. Сделай на этот случай какие-нибудь заглушки вместо значений. Например, 'dear' и 'user'\".\r\n* UPD. \"Они поменяли формат данных. Теперь объект пользователя выглядит вот так (плюс учти, что personality вообще могут не передать, надо чтобы программа не падала при этом):\"\r\n\r\n```javascript\r\nconst user = {\r\n  personality: {\r\n    firstname: 'Dave',\r\n    lastname: 'Hoff',\r\n  },\r\n  department: 'development'\r\n}\r\n```\r\n\r\n* UPD. \"Я ушиб палец и пока он заживает, мне трудно печатать. Я уже объявил переменные, которые я могу набирать одной рукой, а ты положи в них данные\":\r\n\r\n```javascript\r\nfunction greetUser(userCorporateProfile) {\r\n  let fn, ln;\r\n  // Положи firstname и lastname в мои переменные\r\n  return `Hello, ${fn} ${ln}!`;\r\n}\r\n```\r\n\r\n* UPD. \"Они напихали в объект еще всякой ерунды. Пока она нам не нужна, но кто знает, что будет дальше? Так что собери все неиспользуемые поля в отдельный объект и пусть там валяются.\"\r\n\r\n```javascript\r\nconst user = {\r\n  personality: {\r\n    firstname: 'Dave',\r\n    lastname: 'Hoff',\r\n  },\r\n  department: 'development',\r\n  zodiac: 'Aquarius',\r\n  allergy: ['fish', 'milk'],\r\n  likeThisMusic: ['jazz', 'classic']\r\n}\r\n```\r\n\r\n* UPD. \"Я вижу ты неплох в деструктуризации. Напиши мне функцию printCustomFieldValue(user, prop), в которую я смогу передать объект юзера и поле. Функция должна печатать в консоль значение этого поля. Значение извлеки через деструктуризацию, раз уж она тебе так нравится\".",
+    template: `function greetUser(userCorporateProfile) {
+  return \`Hello, \${userCorporateProfile.firstname} \${userCorporateProfile.lastname}!\`;
+}
+
+const user = {
+  firstname: 'Dave',
+  lastname: 'Hoff',
+  department: 'development'
+}
+
+console.log(greetUser(user));`,
+    solution: `// Пожелание 1: поля в переменные с такими же названиями
+function greetUser(userCorporateProfile) {
+  const { firstname, lastname } = userCorporateProfile;
+  return \`Hello, \${firstname} \${lastname}!\`;
+}
+
+// Пожелание 2: поля в переменные с другими именами
+function greetUser(userCorporateProfile) {
+  const { firstname: name, lastname: surname } = userCorporateProfile;
+  return \`Hello, \${name} \${surname}!\`;
+}
+
+// Пожелание 3: когда имя и фамилия не заданы
+function greetUser(userCorporateProfile) {
+  const { firstname: name = 'dear', lastname: surname = 'user' } = userCorporateProfile;
+  return \`Hello, \${name} \${surname}!\`;
+}
+
+// Пожелание 4: изменили структуру исходного объекта, теперь поля вложены
+function greetUser(userCorporateProfile) {
+  const { 
+    personality: {
+      firstname: name = 'dear', 
+      lastname: surname = 'user' 
+    } = {}
+  } = userCorporateProfile;
+  return \`Hello, \${name} \${surname}!\`;
+}
+
+// Пожелание 5: деструктурировать в заранее объявленные переменные
+function greetUser(userCorporateProfile) {
+  let fn, ln;
+  ({ 
+    personality: {
+      firstname: fn = 'dear', 
+      lastname: ln = 'user' 
+    } = {}
+  } = userCorporateProfile);
+  return \`Hello, \${fn} \${ln}!\`;
+}
+
+// Пожелание 6: собрать все не нужные пока что поля в отдельный объект
+function greetUser(userCorporateProfile) {
+  const { 
+    personality: {
+      firstname: fn = 'dear', 
+      lastname: ln = 'user' 
+    } = {},
+    ...noNeed
+  } = userCorporateProfile;
+  return \`Hello, \${fn} \${ln}!\`;
+}
+
+// Пожелание 7: функция распечатки указанного свойства
+function printCustomFieldValue(user, prop) {
+  const { [prop]: result } = user;
+  console.log(result);
+}`,
+    categories: ['javascript', 'destruction'],
+    tags: ['деструктуризация объектов', 'деструктуризация', 'деструктурирующее присваивание', 'javascript']
+  },
+  {
     id: "d02b43377ef95f59",
     name: "task-make-your-own-exception",
     path: "tasks\\javascript\\exceptions\\task-make-your-own-exception",
@@ -306,7 +396,7 @@ fetchData(5, 3);`,
     name: "task-count-visitors",
     path: "tasks\\javascript\\map\\task-count-visitors",
     title: "Подсчет количества авторизаций",
-    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через forEach и через for of.\r\n  * Формат вывода \"пользователь: N раз\"\r\n* В самом конце вывести, сколько всего пользователей авторизовались.",
+    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через метод forEach и через цикл for.\r\n  * Формат вывода \"пользователь: N раз\"\r\n* В самом конце вывести, сколько всего уникальных пользователей авторизовались.",
     template: `const visitors = [
   { username: "alice", time: "2023-05-10 09:15:23" },
   { username: "bob", time: "2023-05-10 10:02:45" },
@@ -335,13 +425,13 @@ function forEachShow(stat) {
   // Выведите статистику
 }
 
-function forOfShow(stat) {
-  console.log('for of статистика авторизаций:');
+function forShow(stat) {
+  console.log('for статистика авторизаций:');
   // Выведите статистику
 }
 
 forEachShow(stat);
-forOfShow(stat);
+forShow(stat);
 console.log('Всего авторизовались разных пользователей: ' + // число);`,
     solution: `// Решение 1
 const stat = visitors.reduce((visitStat, login) => {
@@ -365,15 +455,15 @@ function forEachShow(stat) {
   stat.forEach((value, key) => console.log(\`\${key}: \${value} раз.\`));
 }
 
-function forOfShow(stat) {
-  console.log('forOf статистика авторизаций:');
+function forShow(stat) {
+  console.log('for статистика авторизаций:');
   for (const [key, value] of stat) {
     console.log(\`\${key}: \${value} раз.\`);
   }
 }
 
 forEachShow(stat);
-forOfShow(stat);
+forShow(stat);
 console.log(\`Всего авторизовались \${stat.size} разных пользователей.\`);`,
     categories: ['javascript', 'map'],
     tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of', 'javascript']
@@ -571,8 +661,8 @@ console.log(\`Промокоды на завтра (всего \${promos.size}):
     id: "d0148c93faa1b0eb",
     name: "task-professor-substitute",
     path: "tasks\\javascript\\syntax\\task-professor-substitute",
-    title: "Опциональная цепочка",
-    description: "В университете есть несколько профессоров:\r\n\r\n```javascript\r\nconst johnSmith = {\r\n  name: \"John Smith\",\r\n  colleagues: [\r\n    { name: \"Robert Johnson\" },\r\n    { name: \"Emily Davis\" }\r\n  ]\r\n};\r\n\r\nconst sarahConnor = {\r\n  name: \"Sarah Connor\",\r\n  colleagues: [] // Нет заместителя\r\n};\r\n\r\nconst michaelBrown = {\r\n  name: \"Michael Brown\",\r\n  // Нет коллег вообще\r\n};\r\n```\r\n\r\nУ них есть список коллег, которые ведут тот же самый предмет. Причем первый коллега в списке считается заместителем профессора. Если какой-то предмет ведет только один профессор, то коллег у него нет.\r\n\r\nЗадача:\r\n\r\n* Верните телефон заместителя каждого профессора.\r\n  * Если заместителя нет, верните надпись \"У имя-профессора нет заместителя\".",
+    title: "Заместитель профессора",
+    description: "В университете есть несколько профессоров:\r\n\r\n```javascript\r\nconst johnSmith = {\r\n  name: 'John Smith',\r\n  colleagues: [\r\n    { name: 'Robert Johnson', phone: '(212) 555-0187' },\r\n    { name: 'Emily Davis', phone: '(310) 555-0142' }\r\n  ]\r\n};\r\n\r\nconst sarahConnor = {\r\n  name: 'Sarah Connor',\r\n  colleagues: [] // Нет заместителя\r\n};\r\n\r\nconst michaelBrown = {\r\n  name: 'Michael Brown',\r\n  // Нет коллег вообще\r\n};\r\n```\r\n\r\nУ них есть список коллег, которые ведут тот же самый предмет. Причем первый коллега в списке считается заместителем профессора. Если какой-то предмет ведет только один профессор, то коллег у него нет.\r\n\r\nЗадача:\r\n\r\n* Верните телефон заместителя каждого профессора.\r\n  * Если заместителя нет, верните надпись \"У имя-профессора нет заместителя\".",
     template: `const johnSmith = {
   name: 'John Smith',
   colleagues: [
@@ -926,6 +1016,40 @@ async function show() {
 show();`,
     categories: ['refactoring'],
     tags: []
+  },
+  {
+    id: "162cc178a8152617",
+    name: "task-user-profile-base",
+    path: "tasks\\typescript\\type-interface\\task-user-profile-base",
+    title: "Тип для профиля пользователя",
+    description: "### Брифинг\r\n\r\nВ системе есть пользователи, для которых используются такие данные:\r\n\r\n* Имя пользователя (username) - обязательно. Строка.\r\n* Почта (email) - обязательно. Строка.\r\n* Роль (role) - обязательно. Строка.\r\n  * Может принимать любое из этих значений: \"user\", \"admin\", \"guest\".\r\n* Имя (firstname) - опционально. Строка.\r\n* Фамилия (lastname) - опционально. Строка.\r\n* Год рождения (year) - опционально. Число, например 1998, без месяца и дня.\r\n\r\n### Задача\r\n\r\n* Составьте тип UserProfile, исходя из перечисленных требований.\r\n  * Роль оформите отдельным типом UserRole.\r\n  * Имя, фамилию и год рождения тоже выделите в отдельный тип PersonalInfo.\r\n* Создайте переменную, типизируйте ее и положите объект.",
+    template: ``,
+    solution: `type UserRole = 'admin' | 'user' | 'guest';
+
+type PersonalInfo = {
+  firstname?: string;
+  lastname?: string;
+  year?: number;
+}
+
+interface UserProfile {
+  username: string;
+  email: string;
+  role: UserRole;
+  personal?: PersonalInfo
+}
+
+const user: UserProfile = {
+  username: 'huck',
+  email: 'huckf@gmail.com',
+  role: 'user',
+  personal: {
+    'firstname': 'Huck',
+    'lastname': 'Finn'
+  }
+}`,
+    categories: ['typescript', 'type-interface'],
+    tags: ['опциональные поля', 'обязательные поля', 'union', 'type', 'interface']
   },
   {
     id: "a30c8fd86874b15f",
