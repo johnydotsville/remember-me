@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-23T13:59:08.129Z)
+// Auto-generated file (2025-06-24T13:46:30.899Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -61,6 +61,12 @@ export const rootcat: Category =
           subcategories: []
         },
         {
+          name: 'strings',
+          title: 'Строки',
+          hidden: false,
+          subcategories: []
+        },
+        {
           name: 'syntax',
           title: 'Синтаксис',
           hidden: true,
@@ -83,12 +89,6 @@ export const rootcat: Category =
     {
       name: 'refactoring',
       title: 'Рефакторинг',
-      hidden: false,
-      subcategories: []
-    },
-    {
-      name: 'strings',
-      title: '',
       hidden: false,
       subcategories: []
     },
@@ -658,6 +658,83 @@ console.log(\`Промокоды на завтра (всего \${promos.size}):
     tags: ['синтаксис', 'легко', 'set', 'javascript']
   },
   {
+    id: "f0a020f337529e1a",
+    name: "task-rifleman-creed-cleansing",
+    path: "tasks\\javascript\\strings\\task-rifleman-creed-cleansing",
+    title: "Кредо стрелка",
+    description: "Дан текст:\r\n\r\n```\r\n'   This is my rifle, this is my gun. This is for fighting, this is for fun.   '\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать количество:\r\n  * Предложений.\r\n  * Символов.\r\n* Напечатать первое слово.\r\n* Пробелы в начале и конце строки игнорировать.",
+    template: ``,
+    solution: `const text = '   This is my rifle, this is my gun. This is for fighting, this is for fun.   ';
+
+const cleaned = text.trim();
+const sentenses = cleaned.split('. ').length;
+const chars = cleaned.split('').length;
+const firstWord = cleaned.split(' ')[0];
+
+console.log(\`В тексте \${sentenses} предложений и \${chars} символов. Первое слово: \${firstWord}\`);`,
+    categories: ['javascript', 'strings'],
+    tags: ['split', 'trim', 'trimStart', 'trimEnd', 'строки', 'string', 'методы строк', 'javascript']
+  },
+  {
+    id: "5117fdc3dd782d7f",
+    name: "task-day-codes",
+    path: "tasks\\javascript\\syntax\\task-day-codes",
+    title: "Название дней недели по кодам",
+    description: "Задача:\r\n\r\n* Напишите функцию getFullDayName, которая получает код дня недели и возвращает полное название дня.\r\n* Доступные коды - Пн, Вт, Ср, Чт, Пт, Сб, Вс.\r\n* Если передан несуществующий код, функция выбрасывает исключение.\r\n\r\nПожелания:\r\n\r\n* Сделайте два решения:\r\n  * Через switch.\r\n  * Через объект-маппер.",
+    template: ``,
+    solution: `// Решение через switch
+function getFullDayName(shortCode) {
+  let dayName;
+  switch (shortCode) {
+    case 'Пн':
+      dayName = 'Понедельник';
+      break;
+    case 'Вт':
+      dayName = 'Вторник';
+      break;
+    case 'Ср':
+      dayName = 'Среда';
+      break;
+    case 'Чт':
+      dayName = 'Четверг';
+      break;
+    case 'Пт':
+      dayName = 'Пятница';
+      break;
+    case 'Сб':
+      dayName = 'Суббота';
+      break;
+    case 'Вс':
+      dayName = 'Воскресенье';
+      break;
+    default:
+      throw new Error(\`Передан несуществующий код дня: \${shortCode}\`);
+  }
+  return dayName;
+}
+
+// Решение через объект-маппер
+function getFullDayName(shortCode) {
+  const mapper = {
+    'Пн': 'Понедельник',
+    'Вт': 'Вторник',
+    'Ср': 'Среда',
+    'Чт': 'Четверг',
+    'Пт': 'Пятница',
+    'Сб': 'Суббота',
+    'Вс': 'Воскресенье'
+  };
+  if (shortCode in mapper) {
+    return mapper[shortCode];
+  }
+  throw new Error(\`Передан несуществующий код дня: \${shortCode}\`);
+}
+
+console.log(getFullDayName('Пт'));`,
+    categories: ['javascript', 'syntax'],
+    tags: ['switch', 'синтаксис', 'javascript']
+  },
+  {
     id: "d0148c93faa1b0eb",
     name: "task-professor-substitute",
     path: "tasks\\javascript\\syntax\\task-professor-substitute",
@@ -1016,6 +1093,38 @@ async function show() {
 show();`,
     categories: ['refactoring'],
     tags: []
+  },
+  {
+    id: "67f2d21eb8498639",
+    name: "task-safely-get-prop-value",
+    path: "tasks\\typescript\\task-safely-get-prop-value",
+    title: "Функция безопасного получения свойства",
+    description: "У вас есть интерфейс:\r\n\r\n```typescript\r\ninterface User {\r\n  firstname: string;\r\n  lastname: string;\r\n  age?: number;\r\n}\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию getPropValue(obj, prop), которая принимает объект и имя свойства, и возвращает значение этого свойства.\r\n* Типизируйте функцию, чтобы нельзя было передать ей свойство, которого нет в переданном объекта.\r\n  * Надо типизировать оба аргумента и результат самой функции.",
+    template: `interface User {
+  firstname: string;
+  lastname: string;
+  age?: number;
+}
+
+const alice: User = {
+  firstname: 'Alice',
+  lastname: 'Brooks'
+}
+
+const bob: User = {
+  firstname: 'Bob',
+  lastname: 'Sagget',
+  age: 50
+}
+
+console.log(getPropValue(bob, 'age'));
+console.log(getPropValue(alice, 'age'));
+console.log(getPropValue(alice, 'sex'));  // <-- Недопустимо`,
+    solution: `function getPropValue<T, K extends keyof T>(obj: T, prop: K): T[K] {
+  return obj[prop];
+}`,
+    categories: ['typescript'],
+    tags: ['keyof', 'generics', 'дженерики']
   },
   {
     id: "162cc178a8152617",

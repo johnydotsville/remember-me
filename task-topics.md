@@ -9,7 +9,7 @@
 - [ ] rest и spread
   - [ ] rest
   - [ ] spread
-- [ ] switch
+- [x] switch
 - [ ] Деструктуризация
   - [x] Объектов
     - [x] В переменные, которые совпадают с названиями полей.
@@ -28,7 +28,7 @@
 - [x] Set
 - [ ] Очередь
 - [ ] Стек
-- [ ] entries, keys, values
+- [x] entries, keys, values
   - [x] Для Map. Для остальных не особо надо.
 - [ ] apply, call, bind
 - [ ] API промисов
@@ -65,13 +65,14 @@
     - [ ] sort
     - [ ] reverse
 - [ ] Строки
-  - [ ] split
+  - [x] split
   - [ ] join
   - [ ] String
   - [ ] reverse
   - [ ] sort
   - [ ] includes
   - [ ] indexOf
+  - [x] trim, trimStart, trimEnd
   - [ ] regexp
 - [x] Math
   - [x] ceil, floor
@@ -80,3 +81,10 @@
   - [x] round
   - [x] trunc
 - [ ] Даты
+
+# Typescript
+
+- [x] type, interface
+- [x] keyof
+- [ ] utility-types
+  - [ ] Partial, Require
