@@ -7,8 +7,9 @@ const dbUsers = [
 
 // Дополнительные данные (из соцсетей)
 const socialUsers = [
-  { id: 1, hobby: "chess", email: "alice123@social.com" },
-  { id: 4, name: "Dave", role: "user" }
+  { id: 4, name: "Dave", role: "user" },
+  { id: 1, hobby: "chess", email: "mynameisalice@social.com" },
+  { id: 4, name: "Dave", role: "user", email: "davidblame@social.com" }
 ];
 
 

@@ -16,8 +16,9 @@ const dbUsers = [
 
 ```javascript
 const socialUsers = [
-  { id: 1, hobby: "chess", email: "alice123@social.com" },
-  { id: 4, name: "Dave", role: "user" }
+  { id: 4, name: "Dave", role: "user" },
+  { id: 1, hobby: "chess", email: "mynameisalice@social.com" },
+  { id: 4, name: "Dave", role: "user", email: "davidblame@social.com" }
 ];
 ```
 
@@ -26,6 +27,8 @@ const socialUsers = [
 ### Задача
 
 * Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.
+* Пользователей сравнивать по id.
+* В данных из соцсетей пользователи могут повторяться, т.к. соцсетей у пользователя может быть несколько.
 
 ### Дополнительные условия
 
