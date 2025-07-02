@@ -1,4 +1,4 @@
-// Auto-generated file (2025-06-24T13:46:30.899Z)
+// Auto-generated file (2025-07-02T09:53:57.599Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -116,9 +116,81 @@ export const rootcat: Category =
 
 export const tasks: Task[] = [
   {
-    id: "f5c414e80e7a29ca",
-    name: "task-arrays-create-from-1",
-    path: "tasks\\arrays\\task-arrays-create-from-1",
+    id: "b72c1cedfba6ed64",
+    name: "task-app-users_arrays_spread",
+    path: "tasks\\arrays\\task-app-users_arrays_spread",
+    title: "Пользователи программы.",
+    description: "### Вводные\r\n\r\nЕсть два массива:\r\n\r\n* Активные пользователи, которые пользовались приложением в течение месяца:\r\n\r\n```javascript\r\nconst activeUsers = [\r\n  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },\r\n  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }\r\n];\r\n```\r\n\r\n* Новые пользователи, которые зарегистрировались на этой неделе:\r\n\r\n```javascript\r\nconst newUsers = [\r\n  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },\r\n  { id: 4, name: 'Dave', signupDate: '2023-10-26' }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Объединить обе категории пользователей в новый массив так, чтобы новые были в начале.",
+    template: `const activeUsers = [
+  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },
+  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }
+];
+
+const newUsers = [
+  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },
+  { id: 4, name: 'Dave', signupDate: '2023-10-26' }
+];`,
+    solution: `const allUsers = [...newUsers, ...activeUsers];
+console.log(allUsers);`,
+    categories: ['arrays'],
+    tags: ['spread', '...', 'массивы', 'array']
+  },
+  {
+    id: "8a9b8d3392471290",
+    name: "task-cold-days_arrays_findIndex_findLastIndex_indexOf_lastIndexOf",
+    path: "tasks\\arrays\\task-cold-days_arrays_findIndex_findLastIndex_indexOf_lastIndexOf",
+    title: "Холодные дни на неделе",
+    description: "### Вводные\r\n\r\n* Дан массив дней недели и массив средних температур в эти дни соответственно:\r\n\r\n```javascript\r\nconst daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];\r\nconst temperatures1 = [2, 1, -5, 3, 0, -1, 2];\r\nconst temperatures2 = [2, 1, 5, 3, 0, 1, 2];\r\n```\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая выводит в консоль отчет:\r\n  * Первый холодный день на неделе. Вывести название дня и какая была температура.\r\n  * Если холодных дней не было, тоже сообщить об этом.\r\n  * Функция принимает массив дней, массив температур и порог температуры, который считается холодным (параметр опциональный, по умолчанию дб 0).\r\n* Сделать такую же функцию, но только для последнего холодного дня недели.\r\n  * Сделать такую же функцию, которая ищет первый день с конкретной температурой, по умолчанию 0.\r\n    * И последний день с конкретной температурой.",
+    template: ``,
+    solution: `// Первый холодный
+function weekTemperatureReport(days, temps, thres) {
+  const firstColdInd = temps.findIndex(t => t < thres);
+  if (firstColdInd !== -1) {
+    console.log(\`Первый холодный день на этой неделе: \${days[firstColdInd]}. Температура была: \${temps[firstColdInd]}C\`);
+  } else {
+    console.log('На этой неделе холодных дней не было.');
+  }
+}
+
+
+// Последний холодный
+function weekTemperatureReport(days, temps, thres) {
+  const firstColdInd = temps.findLastIndex(t => t < thres);
+  if (firstColdInd !== -1) {
+    console.log(\`Последний холодный день на этой неделе: \${days[firstColdInd]}. Температура была: \${temps[firstColdInd]}C\`);
+  } else {
+    console.log('На этой неделе холодных дней не было.');
+  }
+}
+
+
+// Первый день с конкретной температурой
+function weekTemperatureReport(days, temps, temp = 0) {
+  const tempInd = temps.indexOf(temp);
+  if (tempInd !== -1) {
+    console.log(\`Первый день с температурой \${temp}: \${days[tempInd]}\`);
+  } else {
+    console.log(\`На этой неделе не было дней с температурой \${temp}C.\`);
+  }
+}
+
+
+// Последний день с конкретной температурой
+function weekTemperatureReport(days, temps, temp = 0) {
+  const tempInd = temps.lastIndexOf(temp);
+  if (tempInd !== -1) {
+    console.log(\`Последний день с температурой \${temp}: \${days[tempInd]}\`);
+  } else {
+    console.log(\`На этой неделе не было дней с температурой \${temp}C.\`);
+  }
+}`,
+    categories: ['arrays'],
+    tags: ['findIndex', 'findLastIndex', 'indexOf', 'lastIndexOf', 'массивы', 'array']
+  },
+  {
+    id: "3d5e0a711c944e66",
+    name: "task-create-via-static-from_arrays_from",
+    path: "tasks\\arrays\\task-create-via-static-from_arrays_from",
     title: "Создание массива",
     description: "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов с объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.\r\n* Нельзя использовать return.",
     template: ``,
@@ -132,9 +204,47 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
     tags: ['массивы', 'array', 'легко', 'синтаксис']
   },
   {
-    id: "5fe5e598d245060f",
-    name: "task-arrays-every-some-methods",
-    path: "tasks\\arrays\\task-arrays-every-some-methods",
+    id: "d8d3d77e755d2d3d",
+    name: "task-deactivate-users_arrays_filter",
+    path: "tasks\\arrays\\task-deactivate-users_arrays_filter",
+    title: "Деактивация пользователей",
+    description: "Есть массив учетных записей пользователей:\r\n\r\n```javascript\r\nconst userAccounts = [\r\n  { id: 1, username: 'ivan.petrov', isActive: true, lastVisitDaysAgo: 5 },\r\n  { id: 2, username: 'mariya.sidorova', isActive: false, lastVisitDaysAgo: 120 },\r\n  { id: 3, username: 'alex.ivanov', isActive: true, lastVisitDaysAgo: 2 },\r\n  { id: 4, username: 'elena.kuznetsova', isActive: true, lastVisitDaysAgo: 7 },\r\n  { id: 5, username: 'dmitriy.smirnov', isActive: false, lastVisitDaysAgo: 90 },\r\n  { id: 6, username: 'olga.vasnetsova', isActive: true, lastVisitDaysAgo: 1 },\r\n  { id: 7, username: 'sergey.lebedev', isActive: false, lastVisitDaysAgo: 60 },\r\n  { id: 8, username: 'anna.zhukova', isActive: true, lastVisitDaysAgo: 20 },  // <-- deactivate\r\n  { id: 9, username: 'pavel.novikov', isActive: false, lastVisitDaysAgo: 150 },\r\n  { id: 10, username: 'natalya.morozova', isActive: true, lastVisitDaysAgo: 3 },\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает массив идентификаторов пользователей, чьи учетные записи подлежат деактивации.\r\n* Критерий деактивации - последнее посещение сайта больше N дней назад. По умолчанию - 14.\r\n  * Некоторые пользователи уже деактивированы (у них isActive = false), их идентификаторы нас не интересуют.",
+    template: ``,
+    solution: `function shouldBeDeactivated(accounts, daysThreshold = 14) {
+  return accounts
+    .filter(account => account.isActive && account.lastVisitDaysAgo > daysThreshold)
+    .map(account => account.id);
+}
+
+const deactivateIds = shouldBeDeactivated(userAccounts);
+console.log(deactivateIds);`,
+    categories: ['arrays'],
+    tags: ['map', 'filter', 'легко', 'массивы', 'array']
+  },
+  {
+    id: "6102486f7d9faa42",
+    name: "task-edge-effect-arrays_slice_join",
+    path: "tasks\\arrays\\task-edge-effect-arrays_slice_join",
+    title: "Проверка психологического 'эффекта края'",
+    description: "В психологии есть так называемый \"эффект края\", согласно которому человек лучше запоминает начало и конец текста. Профессор поручил вам написать функцию, которая выбрасывает из предложения первое и последнее слово, чтобы проверить этот психологический эффект.\r\n\r\n### Задача\r\n\r\n* Выбросить из предложения первое и последнее слово, заменив их на три вопросительных знака ???.\r\n* Предложения коротки, слова строго разделены пробелом.\r\n* В предложениях гарантировано не меньше пяти слов.",
+    template: `const phrase = 'Кошка спит на тёплом диване';
+
+function edgeEffect(phrase) {
+  // Ваше решение
+}
+
+console.log(edgeEffect(phrase));`,
+    solution: `function edgeEffect(phrase) {
+  const edged = phrase.split(' ').slice(1, -1);
+  return ['???', ...edged, '???'].join(' ');
+}`,
+    categories: ['arrays'],
+    tags: ['slice', 'join', 'массивы', 'array']
+  },
+  {
+    id: "0d8e3bc4c6e4ff5b",
+    name: "task-month-temperatures_arrays_every_some",
+    path: "tasks\\arrays\\task-month-temperatures_arrays_every_some",
     title: "Температуры по месяцам.",
     description: "### Вводные\r\n\r\n* Дан массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором не было холодных недель (t > 0).\r\n* Найти первый месяц, в котором была как минимум одна теплая неделя.\r\n* Вывести название найденного месяца, а если таких месяцев не было, так и написать.",
     template: ``,
@@ -149,57 +259,44 @@ console.log(partiallyWarm?.month ?? 'Не было ни одного хотя б
     tags: ['массивы', 'array']
   },
   {
-    id: "11fb4bd0b1121b76",
-    name: "task-arrays-filter-method",
-    path: "tasks\\arrays\\task-arrays-filter-method",
-    title: "Деактивация пользователей",
-    description: "Есть массив учетных записей пользователей:\r\n\r\n```javascript\r\nconst userAccounts = [\r\n  { id: 1, username: 'ivan.petrov', isActive: true, lastVisitDaysAgo: 5 },\r\n  { id: 2, username: 'mariya.sidorova', isActive: false, lastVisitDaysAgo: 120 },\r\n  { id: 3, username: 'alex.ivanov', isActive: true, lastVisitDaysAgo: 2 },\r\n  { id: 4, username: 'elena.kuznetsova', isActive: true, lastVisitDaysAgo: 7 },\r\n  { id: 5, username: 'dmitriy.smirnov', isActive: false, lastVisitDaysAgo: 90 },\r\n  { id: 6, username: 'olga.vasnetsova', isActive: true, lastVisitDaysAgo: 1 },\r\n  { id: 7, username: 'sergey.lebedev', isActive: false, lastVisitDaysAgo: 60 },\r\n  { id: 8, username: 'anna.zhukova', isActive: true, lastVisitDaysAgo: 20 },  // <-- deactivate\r\n  { id: 9, username: 'pavel.novikov', isActive: false, lastVisitDaysAgo: 150 },\r\n  { id: 10, username: 'natalya.morozova', isActive: true, lastVisitDaysAgo: 3 },\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает массив идентификаторов пользователей, чьи учетные записи подлежат деактивации.\r\n* Критерий деактивации - последнее посещение сайта больше N дней назад. По умолчанию - 14.\r\n  * Некоторые пользователи уже деактивированы (у них isActive = false), их идентификаторы нас не интересуют.",
-    template: ``,
-    solution: `function getUserAccountsToDeactivate(accounts, daysThreshold = 14) {
-  return accounts
-    .filter(account => account.isActive && account.lastVisitDaysAgo > daysThreshold)
-    .map(account => account.id);
-}
+    id: "f73e3cb7d9af31af",
+    name: "task-reset-orders-status_arrays_fill",
+    path: "tasks\\arrays\\task-reset-orders-status_arrays_fill",
+    title: "Сброс забагованных статусов заказов",
+    description: "У вас есть массив со статусами заказов:\r\n\r\n```javascript\r\nconst orderStatuses = [\r\n  \"delivered\",   // 0\r\n  \"shipped\",     // 1\r\n  \"processing\",  // 2 (сбойный)\r\n  \"processing\",  // 3 (сбойный)\r\n  \"processing\",  // 4 (сбойный)\r\n  \"processing\",  // 5 (сбойный)\r\n  \"processing\",  // 6 (сбойный)\r\n  \"delivered\",   // 7\r\n  \"shipped\",     // 8\r\n  \"pending\"      // 9\r\n];\r\n```\r\n\r\nПо ошибке заказы со 2 до 6 ячейки получили статус 'processing', хотя должны быть 'pending'.\r\n\r\n### Задача\r\n\r\n* Измените сбойные статусы заказов на 'pending'.\r\n  * Изменения проводите прямо в исходном массиве.",
+    template: `const orderStatuses = [
+  "delivered",   // 0
+  "shipped",     // 1
+  "processing",  // 2 (сбойный)
+  "processing",  // 3 (сбойный)
+  "processing",  // 4 (сбойный)
+  "processing",  // 5 (сбойный)
+  "processing",  // 6 (сбойный)
+  "delivered",   // 7
+  "shipped",     // 8
+  "pending"      // 9
+];
 
-const idsDeactivate = getUserAccountsToDeactivate(userAccounts);
-console.log(idsDeactivate);`,
-    categories: ['arrays'],
-    tags: ['map', 'filter', 'легко', 'массивы', 'array']
-  },
-  {
-    id: "b240f68f222d5799",
-    name: "task-arrays-find-index-method",
-    path: "tasks\\arrays\\task-arrays-find-index-method",
-    title: "",
-    description: "### Вводные\r\n\r\n* Дан массив дней недели и массив средних температур в эти дни соответственно:\r\n\r\n```javascript\r\nconst daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];\r\nconst temperatures1 = [2, 1, -5, 3, 0, -1, 2];\r\nconst temperatures2 = [2, 1, 5, 3, 0, 1, 2];\r\n```\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая выводит в консоль отчет:\r\n  * Первый холодный день на неделе. Вывести название дня и какая была температура.\r\n  * Если холодных дней не было, тоже сообщить об этом.\r\n* Функция принимает массив дней, массив температур и порог температуры, который считается холодным (параметр опциональный, по умолчанию дб 0).\r\n* Поправить функцию, чтобы было то же самое, но только для последнего холодного дня недели.",
-    template: ``,
-    solution: `// Первый холодный
-function weekTemperatureReport(weekDays, temps, thres) {
-  const firstColdInd = temps.findIndex(t => t < thres);
-  if (firstColdInd !== -1) {
-    console.log(\`Первый холодный день на этой неделе: \${weekDays[firstColdInd]}. Температура была: \${temps[firstColdInd]}C\`);
-  } else {
-    console.log('На этой неделе холодных дней не было.');
+function printStatuses(statuses, from, to) {
+  console.log(\`Статусы заказов в ячейках с \${from} по \${to}:\`);
+  for (let i = from; i <= to; i++) {
+    console.log(\`Ячейка [\${i}]: \${statuses[i]}\`);
   }
 }
 
+printStatuses(orderStatuses, 2, 6);
 
-// Последний холодный
-function weekTemperatureReport(weekDays, temps, thres) {
-  const firstColdInd = temps.findLastIndex(t => t < thres);
-  if (firstColdInd !== -1) {
-    console.log(\`Первый холодный день на этой неделе: \${weekDays[firstColdInd]}. Температура была: \${temps[firstColdInd]}C\`);
-  } else {
-    console.log('На этой неделе холодных дней не было.');
-  }
-}`,
+// Измените статусы
+
+printStatuses(orderStatuses, 2, 6);`,
+    solution: `orderStatuses.fill('pending', 2, 7);`,
     categories: ['arrays'],
-    tags: ['массивы', 'array']
+    tags: ['fill', 'массивы', 'array']
   },
   {
-    id: "27daa17fd930b723",
-    name: "task-arrays-includes-method",
-    path: "tasks\\arrays\\task-arrays-includes-method",
+    id: "ae4ee0ed9cd5b39b",
+    name: "task-supported-languages_arrays_includes",
+    path: "tasks\\arrays\\task-supported-languages_arrays_includes",
     title: "Поддерживаемые языки",
     description: "Сайт поддерживает несколько языков. Эти языки находятся в массиве:\r\n\r\n```javascript\r\nconst supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите утилитарную функцию, которая принимает код языка и возвращает true | false в зависимости от того, поддерживается язык или нет.\r\n\r\nДополнительно:\r\n\r\n* Сделайте то же самое (верните true | false), если языки хранятся в виде объектов:\r\n\r\n```typescript\r\nconst supportedLanguages = [\r\n  { code: 'en' }, \r\n  { code: 'ru' },\r\n  { code: 'de' },\r\n  { code: 'fr' },\r\n  { code: 'es' },\r\n  { code: 'zh' },\r\n  { code: 'ja' }\r\n];\r\n```\r\n\r\n",
     template: ``,
@@ -221,24 +318,22 @@ console.log(isLangSupported('foobar'));`,
     tags: ['includes', 'some', 'синтаксис', 'легко', 'массивы', 'array']
   },
   {
-    id: "e90dbe808439efb4",
-    name: "task-arrays-merge-1",
-    path: "tasks\\arrays\\task-arrays-merge-1",
-    title: "Пользователи программы.",
-    description: "### Вводные\r\n\r\nЕсть два массива:\r\n\r\n* Активные пользователи, которые пользовались приложением в течение месяца:\r\n\r\n```javascript\r\nconst activeUsers = [\r\n  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },\r\n  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }\r\n];\r\n```\r\n\r\n* Новые пользователи, которые зарегистрировались на этой неделе:\r\n\r\n```javascript\r\nconst newUsers = [\r\n  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },\r\n  { id: 4, name: 'Dave', signupDate: '2023-10-26' }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Объединить обе категории пользователей в новый массив так, чтобы новые были в начале.",
-    template: `const activeUsers = [
-  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },
-  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }
-];
+    id: "94b6a5fc5aa16ec7",
+    name: "task-weekly-food-list_arrays_flat_flatMap",
+    path: "tasks\\arrays\\task-weekly-food-list_arrays_flat_flatMap",
+    title: "Список продуктов на неделю",
+    description: "Ваша жена составила список продуктов на неделю в мобильном приложении, а после обновления оно сломалось. Остался только файл с данными вот в таком виде:\r\n\r\n```javascript\r\nconst weeklyPurchases = [\r\n  // Понедельник\r\n  [\r\n    [\"Молоко\", \"Кефир\"],          // Напитки\r\n    [\"Яблоки\", \"Бананы\"],         // Фрукты\r\n    [\"Рис\", \"Гречка\"]             // Крупы\r\n  ],\r\n  // Вторник\r\n  [\r\n    [\"Кофе\", \"Чай\"],              // Напитки\r\n    [\"Груши\", \"Апельсины\"],       // Фрукты\r\n    [\"Соль\", \"Перец\"]             // Приправы\r\n  ],\r\n  // Среда\r\n  [\r\n    [\"Сок\"],                      // Напитки\r\n    [\"Мандарины\"],                // Фрукты\r\n    [\"Овсянка\"]                   // Крупы\r\n  ],\r\n  // Четверг\r\n  [\r\n    [\"Минеральная вода\"],         // Напитки\r\n    [\"Виноград\"],                 // Фрукты\r\n    [\"Горох\", \"Фасоль\"]           // Бобовые\r\n  ],\r\n  // Пятница\r\n  [\r\n    [\"Молоко\"],                   // Напитки\r\n    [\"Ананас\"],                   // Фрукты\r\n    [\"Гречка\", \"Пшено\"]           // Крупы\r\n  ],\r\n  // Суббота\r\n  [\r\n    [\"Компот\"],                   // Напитки\r\n    [\"Персики\"],                  // Фрукты\r\n    [\"Мука\", \"Сахар\"]             // Бакалея\r\n  ],\r\n  // Воскресенье\r\n  [\r\n    [\"Квас\"],                     // Напитки\r\n    [\"Арбуз\"],                    // Фрукты\r\n    [\"Макароны\"]                  // Бакалея\r\n  ]\r\n];\r\n\r\n\r\nconst daysMapper = {\r\n  0: 'Понедельник',\r\n  1: 'Вторник',\r\n  2: 'Среда',\r\n  3: 'Четверг',\r\n  4: 'Пятница',\r\n  5: 'Суббота',\r\n  6: 'Воскресенье'\r\n};\r\n```\r\n\r\nПокупки на каждый день - это массив, где продукты также сгруппированы в массивы по категориям. Судя по всему, позиция в массиве имеет значение - вы заметили, что например напитки всегда в 0 элементе. Одному разработчику известно, зачем он так сделал, но жена попросила вас сделать следующее:\r\n\r\n### Задача\r\n\r\n* Сделай так, чтобы продукты на каждый день были вот в таком виде: \"Понедельник: Молоко, Кефир, Яблоки, Бананы, Рис, Гречка\", чтобы я могла видеть, что запланировала купить в какой день.\r\n\r\n* Сделай список всех покупок за неделю просто единым списком \"Яблоки, Груши\". И чтобы дублей не было.\r\n\r\n* А, и еще отдельно сделай список купленных напитков за всю неделю.",
+    template: ``,
+    solution: `const byDays = weeklyPurchases.map((purchase, i) => \`\${daysMapper[i]}: \` + purchase.flat().join(', '));
+byDays.forEach(d => console.log(d));
 
-const newUsers = [
-  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },
-  { id: 4, name: 'Dave', signupDate: '2023-10-26' }
-];`,
-    solution: `const allUsers = [...newUsers, ...activeUsers];
-console.log(allUsers);`,
+const weekTotal = [...new Set(weeklyPurchases.flat(Infinity))].join(', ');
+console.log(weekTotal);
+
+const beverages = weeklyPurchases.flatMap(purchase => purchase[0]).join(', ');
+console.log(\`Напитки: \${beverages}\`);`,
     categories: ['arrays'],
-    tags: ['spread', '...', 'массивы', 'array']
+    tags: ['flat', 'flatMap', 'массивы', 'array']
   },
   {
     id: "b9bd1b052198a96c",
@@ -355,7 +450,7 @@ try {
     name: "task-fetch-with-query-string",
     path: "tasks\\javascript\\http\\task-fetch-with-query-string",
     title: "Формирование query string для url",
-    description: "### Вводные\r\n\r\nЭндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
+    description: "Эндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
     template: ``,
     solution: `async function fetchData(page, limit) {
   const endpoint = 'https://jsonplaceholder.typicode.com/posts';
@@ -963,7 +1058,7 @@ categories.forEach(category => console.log(category));`,
     name: "task-merge-user-info",
     path: "tasks\\real-tasks\\task-merge-user-info",
     title: "Объединение пользователей из БД и из соцсетей.",
-    description: "### Вводные\r\n\r\nДаны два массива:\r\n\r\n* Основные пользователи в базе данных:\r\n\r\n```javascript\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n```\r\n\r\n* И дополнительные данные из соцсетей:\r\n\r\n```javascript\r\nconst socialUsers = [\r\n  { id: 1, hobby: \"chess\", email: \"alice123@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\" }\r\n];\r\n```\r\n\r\nВ дополнительных данных может быть как новый пользователь, так и дополнительная информация об уже существующих пользователях.\r\n\r\n### Задача\r\n\r\n* Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.\r\n\r\n### Дополнительные условия\r\n\r\n* Постараться сделать без мутирования исходных массивов и объектов.",
+    description: "### Вводные\r\n\r\nДаны два массива:\r\n\r\n* Основные пользователи в базе данных:\r\n\r\n```javascript\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n```\r\n\r\n* И дополнительные данные из соцсетей:\r\n\r\n```javascript\r\nconst socialUsers = [\r\n  { id: 4, name: \"Dave\", role: \"user\" },\r\n  { id: 1, hobby: \"chess\", email: \"mynameisalice@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\", email: \"davidblame@social.com\" }\r\n];\r\n```\r\n\r\nВ дополнительных данных может быть как новый пользователь, так и дополнительная информация об уже существующих пользователях.\r\n\r\n### Задача\r\n\r\n* Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.\r\n* Пользователей сравнивать по id.\r\n* В данных из соцсетей пользователи могут повторяться, т.к. соцсетей у пользователя может быть несколько.\r\n\r\n### Дополнительные условия\r\n\r\n* Постараться сделать без мутирования исходных массивов и объектов.",
     template: `// Основные пользователи (из БД)
 const dbUsers = [
   { id: 1, name: "Alice", email: "alice@example.com" },
@@ -973,8 +1068,9 @@ const dbUsers = [
 
 // Дополнительные данные (из соцсетей)
 const socialUsers = [
-  { id: 1, hobby: "chess", email: "alice123@social.com" },
-  { id: 4, name: "Dave", role: "user" }
+  { id: 4, name: "Dave", role: "user" },
+  { id: 1, hobby: "chess", email: "mynameisalice@social.com" },
+  { id: 4, name: "Dave", role: "user", email: "davidblame@social.com" }
 ];
 
 
@@ -984,27 +1080,14 @@ function mergeUsers(databaseUsers, socialUsers) {
 
 const merged = mergeUsers(dbUsers, socialUsers);
 console.log(merged);`,
-    solution: `// Основные пользователи (из БД)
-const dbUsers = [
-  { id: 1, name: "Alice", email: "alice@example.com" },
-  { id: 2, name: "Bob", role: "admin" },
-  { id: 3, name: "Charlie" }
-];
-
-// Дополнительные данные (из соцсетей)
-const socialUsers = [
-  { id: 1, hobby: "chess", email: "alice123@social.com" },
-  { id: 4, name: "Dave", role: "user" }
-];
-
-// Решение 1: полностью функциональное, 0 мутаций.
+    solution: `// Решение 1: полностью функциональное, 0 мутаций.
 function mergeUsers(databaseUsers, socialUsers) {
-  return socialUsers.reduce((mergedUsers, socialUser) => {
-    const existingUserIndex = databaseUsers.findIndex(dbUser => dbUser.id === socialUser.id);
-    return existingUserIndex === -1
-      ? [...mergedUsers, socialUser]
-      : mergedUsers.map((u, ind) => ind === existingUserIndex ? { ...u, ...socialUser } : u)
-  }, databaseUsers);
+  return socialUsers.reduce(
+    (result, user) => result.find(r => r.id === user.id)
+      ? result.map(r => r.id !== user.id ? r : { ...r, ...user})
+      : [...result, user], 
+    databaseUsers
+  );
 }
 
 // Решение 2: с локальными мутациями, не влияющими на исходные данные. Лучше производительность.
@@ -1018,10 +1101,7 @@ function mergeUsers(databaseUsers, socialUsers) {
     }
     return mergedUsers;
   }, [...databaseUsers]);
-}
-
-const merged = mergeUsers(dbUsers, socialUsers);
-console.log(merged);`,
+}`,
     categories: ['real-tasks'],
     tags: []
   },
