@@ -1,5 +1,3 @@
-### Вводные
-
 Эндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:
 
 ```javascript

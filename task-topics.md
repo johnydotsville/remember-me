@@ -1,5 +1,3 @@
-
-
 # Javascript
 
 - [ ] Операторы ||, && и ??, ||=, &&=, XOR
@@ -38,6 +36,7 @@
 - [ ] Объекты
   - [ ] hasOwnProperty?
   - [ ] hasOwn?
+  - [ ] Создание нового объекта?
 - [ ] Исключения.
   - [x] Создание собственного класса исключения, базовое.
   - [ ] Создание собственного класса исключения с дополнительными данными.
@@ -49,9 +48,11 @@
 - [ ] Массивы
   - [ ] Методы
     - [x] findIndex, findLastIndex
+    - [x] indexOf, lastIndexOf
     - [x] every, some
     - [x] from
-    - [x] find - вписать в конспект что возвращает undefined или первый подходящий.
+    - [x] ??? find - вписать в конспект что возвращает undefined или первый подходящий.
+      - [ ] findLast
     - [x] includes
     - [x] map
     - [x] filter
@@ -62,9 +63,9 @@
     - [ ] join
     - [ ] slice
     - [ ] splice
-    - [ ] fill !!!!!!!!!!!!!!!!!!
-    - [ ] flat
-    - [ ] flatMap
+    - [x] fill
+    - [x] flat
+    - [x] flatMap
     - [ ] sort
     - [ ] reverse
 - [ ] Строки
@@ -91,3 +92,7 @@
 - [x] keyof
 - [ ] utility-types
   - [ ] Partial, Require
+
+# Браузер API
+
+- [ ] localStorage, sessionStorage
