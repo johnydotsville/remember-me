@@ -3,50 +3,48 @@ import { TaskList } from "./Task/TaskList"
 import { SideMenu } from "./SideMenu"
 import { rootcat } from '@data/tasks';
 import { flatcats } from "@utils/flatcats";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState, useEffect } from "react";
 import { tasks as sourceTasks } from "@data/tasks";
 import type { Category, Task } from '@src/types/model';
 
 
 export const TasksPage = () => {
-  const cats = useMemo(() => flatcats(rootcat).filter(cat => !cat.hidden).sort(), []);
-  const [tasks] = useState(sourceTasks);
-  const [category, setCategory] = useState<Category>(rootcat);
+  const cats = useMemo(() => flatcats(rootcat).filter(cat => !cat.hidden).sort(), [rootcat]);
   const [randomTask, setRandomTask] = useState<Task | null>(null);
+  const [category, setCategory] = useState<Category>(rootcat);
 
-  const displayTasks = useMemo(() => {
-    if (randomTask){
-      return [randomTask];
-    }
-    if (category.name === 'root') {
-      return tasks;
-    }
-    return tasks.filter(task => task.categories.includes(category.name));
-  }, [category, randomTask]);
+  useEffect(() => {
+    if (randomTask) setRandomTask(null);
+  }, [category]);
+
+  const filteredTasks = useMemo(() => {
+      return category.name === 'root' 
+        ? sourceTasks 
+        : sourceTasks.filter(task => task.categories.includes(category.name));
+    }, 
+    [category]
+  );
 
   const getRandomTask = useCallback(() => {
-    if (displayTasks.length < 1) return;
-    const ind = Math.floor(Math.random() * displayTasks.length);
-    setRandomTask(displayTasks[ind]);
-  }, [displayTasks])
+    if (filteredTasks.length === 0) return;
+    const idx = Math.floor(Math.random() * filteredTasks.length);
+    setRandomTask(filteredTasks[idx]);
+  }, [filteredTasks]);
 
-  const resetRandomTask = useCallback(() => {
+  const resetFilters = useCallback(() => {
     setRandomTask(null);
+    setCategory(rootcat);
   }, []);
+
+  const displayTasks = randomTask ? [randomTask] : filteredTasks;
 
   return (
     <Stack direction='row'>
       <SideMenu
         items={cats} 
-        selectItem={(category: Category) => {
-          setCategory(category);
-          resetRandomTask();
-        }}
+        selectItem={setCategory}
         getRandomTask={getRandomTask}
-        resetAllFilters={() => {
-          setCategory(rootcat);
-          resetRandomTask();
-        }}
+        resetAllFilters={resetFilters}
       />
       <Box sx={{ flex: 1 }}><TaskList tasks={displayTasks} /></Box>
     </Stack>
