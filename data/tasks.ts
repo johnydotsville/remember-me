@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-02T14:07:11.543Z)
+// Auto-generated file (2025-07-05T09:22:41.249Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -98,7 +98,7 @@ export const rootcat: Category =
       hidden: false,
       subcategories: [
         {
-          name: 'operators',
+          name: 'operators-and-constructions',
           title: '',
           hidden: false,
           subcategories: []
@@ -331,7 +331,7 @@ console.log(fullyWarm?.month ?? 'Не было ни одного полност�
 const partiallyWarm = stat.find(s => s.avgWeeksTemp.some(temp => temp > 0));
 console.log(partiallyWarm?.month ?? 'Не было ни одного хотя бы частичного теплого месяца.');`,
     categories: ['arrays'],
-    tags: ['find', 'some', 'every', 'массивы', 'array']
+    tags: ['find', 'some', 'every', '?.', '??', 'массивы', 'array']
   },
   {
     id: "f73e3cb7d9af31af",
@@ -766,14 +766,18 @@ function getOrdersCountAsWarehouse(warehouseCode, orders) {
   // Реализация
 }
 
-const clientOrders = getAllClientOrders('david.brown@example.com', orders);
+let email = 'david.brown@example.com';
+const clientOrders = getAllClientOrders(email, orders);
+console.log(\`Все заказы клиента \${email}:\`);
 clientOrders.forEach(order => console.log(order));
 
-const clientOrdersCount = getClientOrdersCount('john.doe@example.com', orders);
-console.log(clientOrdersCount);
+email = 'john.doe@example.com';
+const clientOrdersCount = getClientOrdersCount(email, orders);
+console.log(\`Клиент \${email} сделал \${clientOrdersCount} заказов.\`);
 
-const ordersCountAtWarehouse = getOrdersCountAsWarehouse('AA', orders);
-console.log(ordersCountAtWarehouse);`,
+const warehouseCode = 'AA';
+const ordersCountAtWarehouse = getOrdersCountAsWarehouse(warehouseCode, orders);
+console.log(\`На складе \${warehouseCode} лежит \${ordersCountAtWarehouse} заказов.\`);`,
     solution: `// Выдать все заказы клиента
 function getAllClientOrders(email, orders) {
   const orderIds = [];
@@ -832,7 +836,7 @@ console.log(\`Промокоды на завтра (всего \${promos.size}):
     name: "task-rifleman-creed-cleansing",
     path: "tasks\\javascript\\strings\\task-rifleman-creed-cleansing",
     title: "Кредо стрелка",
-    description: "Дан текст:\r\n\r\n```\r\n'   This is my rifle, this is my gun. This is for fighting, this is for fun.   '\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать количество:\r\n  * Предложений.\r\n  * Символов.\r\n* Напечатать первое слово.\r\n* Пробелы в начале и конце строки игнорировать.",
+    description: "Дан текст:\r\n\r\n```javascript\r\n'   This is my rifle, this is my gun. This is for fighting, this is for fun.   '\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать количество:\r\n  * Предложений.\r\n    * Предложения разделяются точкой.\r\n  * Символов.\r\n* Напечатать первое слово.\r\n* Пробелы в начале и конце строки игнорировать.",
     template: ``,
     solution: `const text = '   This is my rifle, this is my gun. This is for fighting, this is for fun.   ';
 
@@ -1250,9 +1254,40 @@ show();`,
     tags: []
   },
   {
-    id: "317ed93b297b7af0",
+    id: "7e947eb44113c93d",
+    name: "task-autotype-config_typeof",
+    path: "tasks\\typescript\\operators-and-constructions\\task-autotype-config_typeof",
+    title: "Автоматическое выведение типа для объекта с конфигом",
+    description: "У вас есть объект конфигурации:\r\n\r\n```typescript\r\nconst defaultHttpConfig = {\r\n  baseURL: \"https://api.example.com/v1\",\r\n  timeout: 5000,\r\n  maxRetries: 3,\r\n  enableLogging: false,\r\n}\r\n```\r\n\r\nи функция, которая принимает этот объект и создает Http-клиент с настройками из этого конфига:\r\n\r\n```typescript\r\nfunction createHttpClient(userConfig)\r\n```\r\n\r\n### Задача\r\n\r\n* Типизируйте параметр userConfig так, чтобы:\r\n  * Нельзя было передавать конфиг с полями, которых нет в дефолтном конфиге.\r\n  * Можно было передавать конфиг, в котором только нужные поля, которые мы хотим переопределить.\r\n  * Можно было бы вообще не передавать конфиг, чтобы клиент просто создавался с дефолтными значениями.",
+    template: `const defaultHttpConfig = {
+  baseURL: "https://api.example.com/v1",
+  timeout: 5000,
+  maxRetries: 3,
+  enableLogging: false,
+};
+
+function createHttpClient(userConfig) {
+  const finalConfig = { ...defaultHttpConfig, ...userConfig };
+  console.log("Создан клиент с конфигом:", finalConfig);
+}
+
+createHttpClient(); // Использует дефолтный конфиг
+createHttpClient({ 
+  timeout: 2000 
+}); // Меняем только timeout
+createHttpClient({ timeout: "1000" });  // Ошибка! timeout дб числом`,
+    solution: `type HttpConfig = typeof defaultHttpConfig;
+
+function createHttpClient(userConfig: Partial<HttpConfig> = {}) {
+  // Код функции
+}`,
+    categories: ['typescript', 'operators-and-constructions'],
+    tags: ['typeof', 'Partial']
+  },
+  {
+    id: "be594ea43cc67f24",
     name: "task-safely-get-prop-value_keyof",
-    path: "tasks\\typescript\\operators\\task-safely-get-prop-value_keyof",
+    path: "tasks\\typescript\\operators-and-constructions\\task-safely-get-prop-value_keyof",
     title: "Функция безопасного получения свойства",
     description: "У вас есть интерфейс:\r\n\r\n```typescript\r\ninterface User {\r\n  firstname: string;\r\n  lastname: string;\r\n  age?: number;\r\n}\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию getPropValue(obj, prop), которая принимает объект и имя свойства, и возвращает значение этого свойства.\r\n* Типизируйте функцию, чтобы нельзя было передать ей свойство, которого нет в переданном объекта.\r\n  * Надо типизировать оба аргумента и результат самой функции.",
     template: `interface User {
@@ -1272,13 +1307,17 @@ const bob: User = {
   age: 50
 }
 
+function getPropValue(obj, prop) {
+  // Ваша реализация
+}
+
 console.log(getPropValue(bob, 'age'));
 console.log(getPropValue(alice, 'age'));
 console.log(getPropValue(alice, 'sex'));  // <-- Недопустимо`,
     solution: `function getPropValue<T, K extends keyof T>(obj: T, prop: K): T[K] {
   return obj[prop];
 }`,
-    categories: ['typescript', 'operators'],
+    categories: ['typescript', 'operators-and-constructions'],
     tags: ['keyof', 'generics', 'дженерики']
   },
   {
