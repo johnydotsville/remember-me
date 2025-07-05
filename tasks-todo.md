@@ -31,8 +31,6 @@ const user: UserProfile = {
 }
 ```
 
-
-
 ### **Альтернативные подходы (если нужны дополнительные ограничения)**
 
 #### 1. **Обязать заполнять `personal` полностью, если он есть**
@@ -104,3 +102,35 @@ type UserProfile = {
 - **Анонимные пользователи**: Например, в комментариях на сайте.
 - **Постепенное заполнение профиля**: Пользователь может добавить данные позже.
 - **Минималистичные формы**: Например, только email для регистрации.
+
+
+
+# Если поля нет
+
+```typescript
+interface User {
+  firstname: string;
+  lastname: string;
+  age?: number;
+}
+
+const alice: User = {
+  firstname: 'Alice',
+  lastname: 'Brooks'
+}
+
+const bob: User = {
+  firstname: 'Bob',
+  lastname: 'Sagget',
+  age: 50
+}
+
+function getPropValue<T, K extends keyof T>(obj: T, prop: K): T[K] {
+  return obj[prop];
+}
+
+console.log(getPropValue(bob, 'age'));
+console.log(getPropValue(alice, 'age'));
+```
+
+Вот тут поле age опциональное и для alice выводится undefined. А можно ли сделать, чтобы если поля в объекте нет, нельзя было обращаться так

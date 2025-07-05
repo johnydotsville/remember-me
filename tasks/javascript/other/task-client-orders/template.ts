@@ -28,11 +28,15 @@ function getOrdersCountAsWarehouse(warehouseCode, orders) {
   // Реализация
 }
 
-const clientOrders = getAllClientOrders('david.brown@example.com', orders);
+let email = 'david.brown@example.com';
+const clientOrders = getAllClientOrders(email, orders);
+console.log(`Все заказы клиента ${email}:`);
 clientOrders.forEach(order => console.log(order));
 
-const clientOrdersCount = getClientOrdersCount('john.doe@example.com', orders);
-console.log(clientOrdersCount);
+email = 'john.doe@example.com';
+const clientOrdersCount = getClientOrdersCount(email, orders);
+console.log(`Клиент ${email} сделал ${clientOrdersCount} заказов.`);
 
-const ordersCountAtWarehouse = getOrdersCountAsWarehouse('AA', orders);
-console.log(ordersCountAtWarehouse);
+const warehouseCode = 'AA';
+const ordersCountAtWarehouse = getOrdersCountAsWarehouse(warehouseCode, orders);
+console.log(`На складе ${warehouseCode} лежит ${ordersCountAtWarehouse} заказов.`);

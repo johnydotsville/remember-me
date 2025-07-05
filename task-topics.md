@@ -51,9 +51,7 @@
     - [x] indexOf, lastIndexOf
     - [x] every, some
     - [x] from
-    - [ ] ??? find - вписать в конспект что возвращает undefined или первый подходящий.
-      - [ ] findLast
-      - [ ] Возможно отдельных прямо задач на find в категории массивов нет, но есть в других категориях. Мб потом доделать отдельные, для категории массивов.
+    - [x] find, findLast
     - [x] includes
     - [x] map
     - [x] filter
@@ -61,14 +59,15 @@
     - [ ] forEach
     - [ ] of
     - [ ] isArray
-    - [ ] join
-    - [ ] slice
+    - [x] join
+    - [x] slice
     - [ ] splice
     - [x] fill
     - [x] flat
     - [x] flatMap
     - [ ] sort
     - [ ] reverse
+    - [ ] at
 - [ ] Строки
   - [x] split
   - [ ] join
@@ -97,3 +96,6 @@
 # Браузер API
 
 - [ ] localStorage, sessionStorage
+- [ ] AbortController
+- [x] setTimeout, clearTimeout
+- [ ] setInterval

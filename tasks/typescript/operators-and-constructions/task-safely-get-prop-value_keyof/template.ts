@@ -15,6 +15,10 @@ const bob: User = {
   age: 50
 }
 
+function getPropValue(obj, prop) {
+  // Ваша реализация
+}
+
 console.log(getPropValue(bob, 'age'));
 console.log(getPropValue(alice, 'age'));
 console.log(getPropValue(alice, 'sex'));  // <-- Недопустимо
