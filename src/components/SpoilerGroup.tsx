@@ -25,7 +25,7 @@ export const SpoilerGroup = ({ items, defaultActive = 'none', spacing = "0.25rem
           onChange={() => spoilerClick(item.id)}
         >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography>{ item.title }</Typography>
+            <Typography sx={{ flex: 1}}>{ item.title }</Typography>
           </AccordionSummary>
           <AccordionDetails>
             { item.content }
