@@ -62,6 +62,11 @@ export const TasksPage = () => {
     setCategory(rootcat);
   }, []);
 
+  const resetDoneTasks = useCallback(() => {
+    localStorage.removeItem('doneTasks');
+    window.dispatchEvent(new Event('localStorageUpdate'));
+  }, []);
+
   const displayTasks = randomTask ? [randomTask] : filteredTasks;
 
   return (
@@ -71,6 +76,7 @@ export const TasksPage = () => {
         selectItem={setCategory}
         getRandomTask={getRandomTask}
         resetAllFilters={resetFilters}
+        resetDoneTasks={resetDoneTasks}
       />
       <Box sx={{ flex: 1 }}><TaskList tasks={displayTasks} doneTasks={doneTasks} /></Box>
     </Stack>
