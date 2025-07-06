@@ -1,9 +1,10 @@
 import { TaskView } from "@/src/components/Task/TaskView";
 import { SpoilerGroup } from "../SpoilerGroup";
-import { Tooltip } from "@mui/material";
+import { Stack, Tooltip } from "@mui/material";
+import CheckIcon from '@mui/icons-material/Check';
 
 
-export const TaskList = ({ tasks }) => {
+export const TaskList = ({ tasks, doneTasks }) => {
   const taskList = tasks.map(task => ({
     id: task.id,
     title:
@@ -14,7 +15,10 @@ export const TaskList = ({ tasks }) => {
         </>} 
         enterDelay={2000}
       >
-        <span>{task.title || task.name}</span>
+        <Stack direction='row' justifyContent='space-between'>
+          <span>{task.title || task.name}</span>
+          {doneTasks.includes(task.id) && <CheckIcon sx={{ color: 'green' }} />}
+        </Stack>
       </Tooltip>,
     content: <TaskView task={task} />
   }));
