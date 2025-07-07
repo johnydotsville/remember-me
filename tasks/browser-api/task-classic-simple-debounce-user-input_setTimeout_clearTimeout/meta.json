@@ -1,0 +1,4 @@
+{
+  "title": "Дебаунс простой",
+  "tags": ["debounce", "setTimeout", "clearTimeout"]
+}

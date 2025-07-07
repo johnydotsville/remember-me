@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-06T07:56:12.440Z)
+// Auto-generated file (2025-07-07T18:34:11.771Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -14,6 +14,19 @@ export const rootcat: Category =
       subcategories: []
     },
     {
+      name: 'browser-api',
+      title: '',
+      hidden: false,
+      subcategories: [
+        {
+          name: 'http',
+          title: 'Http',
+          hidden: false,
+          subcategories: []
+        }
+      ]
+    },
+    {
       name: 'javascript',
       title: 'Javascript',
       hidden: false,
@@ -27,12 +40,6 @@ export const rootcat: Category =
         {
           name: 'exceptions',
           title: 'Exceptions',
-          hidden: false,
-          subcategories: []
-        },
-        {
-          name: 'http',
-          title: 'Http',
           hidden: false,
           subcategories: []
         },
@@ -76,7 +83,7 @@ export const rootcat: Category =
     },
     {
       name: 'objects',
-      title: '',
+      title: 'Объекты',
       hidden: false,
       subcategories: []
     },
@@ -125,7 +132,7 @@ export const tasks: Task[] = [
     id: "b72c1cedfba6ed64",
     name: "task-app-users_arrays_spread",
     path: "tasks\\arrays\\task-app-users_arrays_spread",
-    title: "Пользователи программы.",
+    title: "Пользователи программы",
     description: "### Вводные\r\n\r\nЕсть два массива:\r\n\r\n* Активные пользователи, которые пользовались приложением в течение месяца:\r\n\r\n```javascript\r\nconst activeUsers = [\r\n  { id: 1, name: 'Alice', lastLogin: '2023-10-15' },\r\n  { id: 2, name: 'Bob', lastLogin: '2023-10-20' }\r\n];\r\n```\r\n\r\n* Новые пользователи, которые зарегистрировались на этой неделе:\r\n\r\n```javascript\r\nconst newUsers = [\r\n  { id: 3, name: 'Charlie', signupDate: '2023-10-25' },\r\n  { id: 4, name: 'Dave', signupDate: '2023-10-26' }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Объединить обе категории пользователей в новый массив так, чтобы новые были в начале.",
     template: `const activeUsers = [
   { id: 1, name: 'Alice', lastLogin: '2023-10-15' },
@@ -320,7 +327,7 @@ function getLucker(players, threshold = 10_000) {
     id: "0d8e3bc4c6e4ff5b",
     name: "task-month-temperatures_arrays_every_some",
     path: "tasks\\arrays\\task-month-temperatures_arrays_every_some",
-    title: "Температуры по месяцам.",
+    title: "Температуры по месяцам",
     description: "### Вводные\r\n\r\n* Дан массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором не было холодных недель (t > 0).\r\n* Найти первый месяц, в котором была как минимум одна теплая неделя.\r\n* Вывести название найденного месяца, а если таких месяцев не было, так и написать.",
     template: ``,
     solution: `// Месяц, в котором все недели теплые
@@ -409,6 +416,127 @@ const beverages = weeklyPurchases.flatMap(purchase => purchase[0]).join(', ');
 console.log(\`Напитки: \${beverages}\`);`,
     categories: ['arrays'],
     tags: ['flat', 'flatMap', 'массивы', 'array']
+  },
+  {
+    id: "769467c9abc72b09",
+    name: "task-fetch-basics_fetch_json_ok_status",
+    path: "tasks\\browser-api\\http\\task-fetch-basics_fetch_json_ok_status",
+    title: "Запрос данных и обработка результата",
+    description: "У вас есть массив url:\r\n\r\n```javascript\r\nconst urls = [\r\n  'https://jsonplaceholder.typicode.com/posts',\r\n  'https://jsonplaceholder.typicode.com/postz',\r\n  'https://jsonplaceholder.typikode.com/'\r\n];\r\n```\r\n\r\nПервый - корректный, возвращает массив ответов такого вида:\r\n\r\n```javascript\r\n{\r\n  id: 1,\r\n  title: '...',\r\n  body: '...',\r\n  userId: 1\r\n}\r\n```\r\n\r\nвторой содержит ссылку на ресурс, которого нет на сервере, а третий это не существующий сервер.\r\n\r\n### Задача\r\n\r\n- Напишите реализацию функции и предусмотрите такие случаи:\r\n  \r\n  - Если сервер вернул ответ, попробуйте преобразовать его в json.\r\n    \r\n    - Если удалось, выведите заголовок первого поста в консоль.\r\n    \r\n    - Если не удалось, выведите сообщение 'Ошибка парсинга JSON.'\r\n  \r\n  - Если невозможно выполнить запрос, выведите сообщение 'Ошибка сети.'\r\n  \r\n  - Если запрос технически выполнился, но сервер не вернул данные, выведите общее сообщение 'Не удалось выполнить запрос.', а для случая 404 ошибки выведите дополнительно 'Ресурс не найден.'",
+    template: `const urls = [
+  'https://jsonplaceholder.typicode.com/posts',
+  'https://jsonplaceholder.typicode.com/postz',  // 404
+  'https://jsonplaceholder.typikode.com/'        // Исключение от fetch
+];
+
+async function processUrls(url) {
+  // Ваше решение
+}
+
+urls.forEach(url => processUrls(url));`,
+    solution: `async function processUrls(url) {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      console.log('Не удалось выполнить запрос.');
+      if (response.status === 404) {
+        console.log('Ресурс не найден.');
+      }
+      return;
+    }
+    
+    const result = await response.json();
+    console.log(result[0].title);
+  } catch (error) {
+    if (error instanceof TypeError) {
+      console.log('Ошибка сети.');
+    }
+    if (error instanceof SyntaxError) {
+      console.log('Ошибка парсинга JSON.');
+    }
+  }
+}`,
+    categories: ['browser-api', 'http'],
+    tags: ['fetch', 'fetch-status', 'fetch-ok', 'TypeError', 'SyntaxError', 'http']
+  },
+  {
+    id: "31659cd47a27115a",
+    name: "task-fetch-with-query-string_URL_URLSearchParams",
+    path: "tasks\\browser-api\\http\\task-fetch-with-query-string_URL_URLSearchParams",
+    title: "Формирование query string для url",
+    description: "Эндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
+    template: ``,
+    solution: `async function fetchData(page, limit) {
+  const endpoint = 'https://jsonplaceholder.typicode.com/posts';
+
+  const url = new URL(endpoint);
+  url.searchParams.append('_page', String(page));
+  url.searchParams.append('_limit', String(limit));
+
+  const response = await fetch(url);
+  const data = await response.json();
+  data.forEach(p =>console.log(p.title));
+}
+
+fetchData(5, 3);
+
+
+// Вариант 2
+async function fetchData(page, limit) {
+  const params = new URLSearchParams();
+  params.append('_page', String(page));
+  params.append('_limit', String(limit));
+
+  const endpoint = 'https://jsonplaceholder.typicode.com/posts';
+  const url = new URL(endpoint);
+  url.search = params.toString();
+
+  const response = await fetch(url);
+  const data = await response.json();
+  data.forEach(p =>console.log(p.title));
+}
+
+fetchData(5, 3);`,
+    categories: ['browser-api', 'http'],
+    tags: ['url', 'urlsearchparams', 'http']
+  },
+  {
+    id: "3577f570e1da433a",
+    name: "task-classic-simple-debounce-user-input_setTimeout_clearTimeout",
+    path: "tasks\\browser-api\\task-classic-simple-debounce-user-input_setTimeout_clearTimeout",
+    title: "Дебаунс простой",
+    description: "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n```\r\nhttps://playcode.io/javascript\r\n```\r\n\r\n",
+    template: `// html
+<input id="userSearch" />
+
+
+// javascript
+const userInput = document.querySelector('#userSearch');
+
+userInput.addEventListener('input', () => goSearch(userInput.value));
+
+function goSearch(value) {
+  console.log(\`Запрос поиска на сервер: \${value}\`)
+}`,
+    solution: `const userInput = document.querySelector('#userSearch');
+
+const debouncedSearch = debounce(goSearch, 1500);
+userInput.addEventListener('input', (event) => debouncedSearch(event.target.value));
+
+function goSearch(value) {
+  console.log(\`Запрос поиска на сервер: \${value}\`)
+}
+
+function debounce(fn, delayMs) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn.apply(this, args), delayMs);
+  }
+}`,
+    categories: ['browser-api'],
+    tags: ['debounce', 'setTimeout', 'clearTimeout']
   },
   {
     id: "b9bd1b052198a96c",
@@ -521,47 +649,6 @@ try {
     tags: ['синтаксис', 'легко', 'exceptions', 'исключения', 'javascript']
   },
   {
-    id: "b7ce4a1a9a82cf6e",
-    name: "task-fetch-with-query-string",
-    path: "tasks\\javascript\\http\\task-fetch-with-query-string",
-    title: "Формирование query string для url",
-    description: "Эндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
-    template: ``,
-    solution: `async function fetchData(page, limit) {
-  const endpoint = 'https://jsonplaceholder.typicode.com/posts';
-
-  const url = new URL(endpoint);
-  url.searchParams.append('_page', String(page));
-  url.searchParams.append('_limit', String(limit));
-
-  const response = await fetch(url);
-  const data = await response.json();
-  data.forEach(p =>console.log(p.title));
-}
-
-fetchData(5, 3);
-
-
-// Вариант 2
-async function fetchData(page, limit) {
-  const params = new URLSearchParams();
-  params.append('_page', String(page));
-  params.append('_limit', String(limit));
-
-  const endpoint = 'https://jsonplaceholder.typicode.com/posts';
-  const url = new URL(endpoint);
-  url.search = params.toString();
-
-  const response = await fetch(url);
-  const data = await response.json();
-  data.forEach(p =>console.log(p.title));
-}
-
-fetchData(5, 3);`,
-    categories: ['javascript', 'http'],
-    tags: ['url', 'urlsearchparams', 'http', 'javascript']
-  },
-  {
     id: "5a04d9100cf98f75",
     name: "task-count-visitors",
     path: "tasks\\javascript\\map\\task-count-visitors",
@@ -639,11 +726,11 @@ console.log(\`Всего авторизовались \${stat.size} разных
     tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of', 'javascript']
   },
   {
-    id: "9abc8d5ee8b78820",
-    name: "task-customer-check-payment",
-    path: "tasks\\javascript\\math\\task-customer-check-payment",
-    title: "Math",
-    description: "У вас есть массив с продуктами, приобретенными покупателем в магазине:\r\n\r\n```javascript\r\nconst cart = [\r\n  { name: \"Молоко 1л\", price: 89.90, quantity: 2 },       // 2 упаковки\r\n  { name: \"Хлеб ржаной\", price: 45.30, quantity: 1 },     // 1 буханка\r\n  { name: \"Яйца (1уп)\", price: 129.99, quantity: 1 },     // 1 упаковка\r\n  { name: \"Яблоки (1кг)\", price: 85.15, quantity: 1.5 },  // 1.5 кг (весовой товар)\r\n  { name: \"Сыр (100г)\", price: 69.50, quantity: 3 }       // 3 упаковки\r\n];\r\n// 688р.\r\n```\r\n\r\nВ магазине действует правило округления цены в пользу покупателя. Т.е. если цена товара 75.99, то покупатель платит 75 руб. Округление происходит для каждого товара после умножения на количество приобретенных единиц товара.\r\n\r\nЗадача:\r\n\r\n* Посчитайте стоимость покупки с учетом действующего в магазине правила.",
+    id: "4443f047cf7ff9d2",
+    name: "task-customer-check-payment_trunc",
+    path: "tasks\\javascript\\math\\task-customer-check-payment_trunc",
+    title: "Стоимость покупки в пользу покупателя",
+    description: "У вас есть массив с продуктами, приобретенными покупателем в магазине:\r\n\r\n```javascript\r\nconst cart = [\r\n  { name: \"Молоко 1л\", price: 89.90, quantity: 2 },       // 2 упаковки\r\n  { name: \"Хлеб ржаной\", price: 45.30, quantity: 1 },     // 1 буханка\r\n  { name: \"Яйца (1уп)\", price: 129.99, quantity: 1 },     // 1 упаковка\r\n  { name: \"Яблоки (1кг)\", price: 85.15, quantity: 1.5 },  // 1.5 кг (весовой товар)\r\n  { name: \"Сыр (100г)\", price: 69.50, quantity: 3 }       // 3 упаковки\r\n];\r\n// 688р.\r\n```\r\n\r\nВ магазине действует правило округления цены в пользу покупателя - копейки отбрасываются. Т.е. если цена товара 75.99, то покупатель платит 75 руб. Округление происходит для каждого товара после умножения на количество приобретенных единиц товара.\r\n\r\nЗадача:\r\n\r\n* Посчитайте стоимость покупки с учетом действующего в магазине правила.",
     template: ``,
     solution: `function totalPrice(cart) {
   return cart.reduce((total, product) => total += Math.trunc(product.price * product.quantity), 0);
@@ -651,7 +738,7 @@ console.log(\`Всего авторизовались \${stat.size} разных
 
 console.log(\`К оплате: \${totalPrice(cart)} руб.\`);`,
     categories: ['javascript', 'math'],
-    tags: ['trunc', 'math', 'javascript']
+    tags: ['trunc', 'reduce', 'math', 'javascript']
   },
   {
     id: "199cba6650eb00f6",
@@ -684,7 +771,7 @@ const num = Math.floor(Math.random() * 71) + 30;`,
     id: "0a5d35f166b3391e",
     name: "task-get-exchange-stat",
     path: "tasks\\javascript\\math\\task-get-exchange-stat",
-    title: "Статистика курса валют.",
+    title: "Статистика курса валют",
     description: "У вас есть массив, содержащий курс доллара к рублю за последние 7 дней:\r\n\r\n```typescript\r\nconst exchangeRates = [75.3, 76.1, 74.9, 77.5, 76.8, 75.7, 78.2];\r\n```\r\n\r\nЗадача:\r\n\r\n* Найти минимальный и максимальный курс за эту неделю.",
     template: ``,
     solution: `const exchangeRates = [75.3, 76.1, 74.9, 77.5, 76.8, 75.7, 78.2];
@@ -832,15 +919,16 @@ console.log(\`Промокоды на завтра (всего \${promos.size}):
     tags: ['синтаксис', 'легко', 'set', 'javascript']
   },
   {
-    id: "f0a020f337529e1a",
-    name: "task-rifleman-creed-cleansing",
-    path: "tasks\\javascript\\strings\\task-rifleman-creed-cleansing",
+    id: "0baac5a5952f2398",
+    name: "task-rifleman-creed-cleansing_trim_trimStart_trimEnd",
+    path: "tasks\\javascript\\strings\\task-rifleman-creed-cleansing_trim_trimStart_trimEnd",
     title: "Кредо стрелка",
-    description: "Дан текст:\r\n\r\n```javascript\r\n'   This is my rifle, this is my gun. This is for fighting, this is for fun.   '\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать количество:\r\n  * Предложений.\r\n    * Предложения разделяются точкой.\r\n  * Символов.\r\n* Напечатать первое слово.\r\n* Пробелы в начале и конце строки игнорировать.",
+    description: "Дан текст:\r\n\r\n```javascript\r\n'   This is my rifle, this is my gun. This is for fighting, this is for fun.   '\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать количество:\r\n  * Предложений.\r\n    * Предложения разделяются точкой.\r\n  * Символов.\r\n* Напечатать первое слово.\r\n* Пробелы в начале и конце строки игнорировать.\r\n  * Сначала удалите лишние пробелы спереди строки.\r\n  * Потом удалите лишние пробелы сзади строки.\r\n  * Сделайте это сначала отдельными шагами, а потом одним.",
     template: ``,
     solution: `const text = '   This is my rifle, this is my gun. This is for fighting, this is for fun.   ';
 
-const cleaned = text.trim();
+let cleaned = text.trimStart();
+cleaned = cleaned.trimEnd();
 const sentenses = cleaned.split('. ').length;
 const chars = cleaned.split('').length;
 const firstWord = cleaned.split(' ')[0];
@@ -850,12 +938,22 @@ console.log(\`В тексте \${sentenses} предложений и \${chars} 
     tags: ['split', 'trim', 'trimStart', 'trimEnd', 'строки', 'string', 'методы строк', 'javascript']
   },
   {
-    id: "5117fdc3dd782d7f",
-    name: "task-day-codes",
-    path: "tasks\\javascript\\syntax\\task-day-codes",
+    id: "a854d7176d8c818e",
+    name: "task-day-codes_switch",
+    path: "tasks\\javascript\\syntax\\task-day-codes_switch",
     title: "Название дней недели по кодам",
     description: "Задача:\r\n\r\n* Напишите функцию getFullDayName, которая получает код дня недели и возвращает полное название дня.\r\n* Доступные коды - Пн, Вт, Ср, Чт, Пт, Сб, Вс.\r\n* Если передан несуществующий код, функция выбрасывает исключение.\r\n\r\nПожелания:\r\n\r\n* Сделайте два решения:\r\n  * Через switch.\r\n  * Через объект-маппер.",
-    template: ``,
+    template: `// Решение через switch
+function getFullDayName(shortCode) {
+  // Ваше решение
+}
+
+// Решение через объект-маппер
+function getFullDayName(shortCode) {
+  // Ваше решение
+}
+
+console.log(getFullDayName('Пт'));`,
     solution: `// Решение через switch
 function getFullDayName(shortCode) {
   let dayName;
@@ -907,6 +1005,81 @@ function getFullDayName(shortCode) {
 console.log(getFullDayName('Пт'));`,
     categories: ['javascript', 'syntax'],
     tags: ['switch', 'синтаксис', 'javascript']
+  },
+  {
+    id: "6a83125d757259f9",
+    name: "task-employees-messed-info_rest_array_items",
+    path: "tasks\\javascript\\syntax\\task-employees-messed-info_rest_array_items",
+    title: "Перепутанная информация о сотрудниках",
+    description: "У вас есть массив с информацией о сотрудниках:\r\n\r\n```javascript\r\nconst employees = [\r\n  ['EMP-001', 'David', 'Jones', 'Senior Developer', 'internal:1234', 'david.j@company.com', 'home:NYC', 'skype:david-jones'],\r\n  ['BADGE-002', 'Sarah', 'Smith', 'Content Manager', 'sarah.s@company.com', 'remote', 'internal:5678', 'home:Boston'],\r\n  ['ID-789', 'Michael', 'Brown', 'HR Lead', 'full-time', 'michael.b@company.com', 'home:Chicago', 'internal:9012', '5 years exp'],\r\n  ['CARD-XYZ', 'Emily', 'Davis', 'Junior Dev', 'intern', 'emily.d@company.com', 'internal:3456'],\r\n  ['PASS-123', 'James', 'Wilson', 'Accountant', 'james.w@company.com', 'part-time', 'cpa', 'home:Seattle', 'internal:7890'],\r\n  ['TOKEN-456', 'Lisa', 'Taylor', 'Team Lead', '24/7', 'lisa.t@company.com', 'internal:1234', 'emergency:555-1234']\r\n];\r\n```\r\n\r\nПроблема в том, что только первые четыре поля имеют четкую структуру: модель доступа, имя, фамилия, должность. Остальная информация перепуталась и данные потеряли порядок.\r\n\r\n### Задача\r\n\r\n* Напишите реализацию функции, чтобы каждый элемент стал объектом с полями firstname, lastname, position, details.\r\n\r\n* Модель доступа пропустите - она не нужна.\r\n\r\n* В details соберите всю перепутанную информацию о сотруднике - ее разберут позже.\r\n\r\nДолжно получиться вот так:\r\n\r\n```javascript\r\n{\r\n  \"firstname\": \"James\",\r\n  \"lastname\": \"Wilson\",\r\n  \"department\": \"Accountant\",\r\n  \"details\": [\r\n    \"james.w@company.com\",\r\n    \"part-time\",\r\n    \"cpa\",\r\n    \"home:Seattle\",\r\n    \"internal:7890\"\r\n  ]\r\n} \r\n```",
+    template: `const employees = [
+  ['EMP-001', 'David', 'Jones', 'Senior Developer', 'internal:1234', 'david.j@company.com', 'home:NYC', 'skype:david-jones'],
+  ['BADGE-002', 'Sarah', 'Smith', 'Content Manager', 'sarah.s@company.com', 'remote', 'internal:5678', 'home:Boston'],
+  ['ID-789', 'Michael', 'Brown', 'HR Lead', 'full-time', 'michael.b@company.com', 'home:Chicago', 'internal:9012', '5 years exp'],
+  ['CARD-XYZ', 'Emily', 'Davis', 'Junior Dev', 'intern', 'emily.d@company.com', 'internal:3456'],
+  ['PASS-123', 'James', 'Wilson', 'Accountant', 'james.w@company.com', 'part-time', 'cpa', 'home:Seattle', 'internal:7890'],
+  ['TOKEN-456', 'Lisa', 'Taylor', 'Team Lead', '24/7', 'lisa.t@company.com', 'internal:1234', 'emergency:555-1234']
+];
+
+function refine(employees) {
+  // Ваше решение
+}
+
+const fine = refine(employees);
+fine.forEach(emp => console.log(emp));`,
+    solution: `function refine(employees) {
+  return employees.map(employee => {
+    const [_, firstname, lastname, position, ...details] = employee;
+    return {
+      firstname,
+      lastname,
+      position,
+      details
+    };
+  );
+}`,
+    categories: ['javascript', 'syntax'],
+    tags: ['...', 'rest', 'синтаксис', 'javascript']
+  },
+  {
+    id: "e15f166ad157b304",
+    name: "task-format-order-for-delivery_rest_object_fields",
+    path: "tasks\\javascript\\syntax\\task-format-order-for-delivery_rest_object_fields",
+    title: "Формат заказа для службы доставки",
+    description: "У вас есть объект заказа:\r\n\r\n```javascript\r\nconst order = {\r\n  id: 500,\r\n  customer: {\r\n    name: \"Emily Johnson\",\r\n    email: \"emily.j@example.com\",\r\n    address: \"350 5th Ave, New York, NY 10118, USA\"\r\n  },\r\n  items: [\r\n    \"The Great Gatsby by F. Scott Fitzgerald\",\r\n    \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n  ],\r\n  discount: 10,\r\n  date: \"2023-05-01\"\r\n};\r\n```\r\n\r\nВам поручили написать функцию, которая трансформирует объект заказа в формат, более удобный для курьера. В нем должны быть поля с именем клиента и адресом, а вся остальная информация - в поле деталей.\r\n\r\n### Задача\r\n\r\n* Модифицируйте функцию так, чтобы возвращала объект в таком виде:\r\n\r\n```javascript\r\n{\r\n  \"name\": \"Emily Johnson\",\r\n  \"address\": \"350 5th Ave, New York, NY 10118, USA\",\r\n  \"details\": {\r\n    \"id\": 500,\r\n    \"items\": [\r\n      \"The Great Gatsby by F. Scott Fitzgerald\",\r\n      \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n    ],\r\n    \"discount\": 10,\r\n    \"date\": \"2023-05-01\"\r\n  }\r\n} \r\n```",
+    template: `const order = {
+  id: 500,
+  customer: {
+    name: "Emily Johnson",
+    email: "emily.j@example.com",
+    address: "350 5th Ave, New York, NY 10118, USA"
+  },
+  items: [
+    "The Great Gatsby by F. Scott Fitzgerald",
+    "SanDisk Ultra 128GB USB 3.0 Flash Drive"
+  ],
+  discount: 10,
+  date: "2023-05-01"
+};
+
+function formatForDelivery(order) {
+  // Ваше решение
+}
+
+console.log(formatForDelivery(order));`,
+    solution: `function formatForDelivery(order) {
+  const {
+    customer: {
+      name, address
+    },
+    ...details
+  } = order;
+  return {
+    name, address, details
+  }
+}`,
+    categories: ['javascript', 'syntax'],
+    tags: ['...', 'rest', 'objects', 'синтаксис', 'javascript']
   },
   {
     id: "d0148c93faa1b0eb",
@@ -968,10 +1141,32 @@ console.log(getSubstitute(michaelBrown));`,
     tags: ['?.', '||', 'Опциональная цепочка', 'синтаксис', 'javascript']
   },
   {
+    id: "85b5b94a0dc6f958",
+    name: "task-user-action-details_rest_fn_params",
+    path: "tasks\\javascript\\syntax\\task-user-action-details_rest_fn_params",
+    title: "Детали действия пользователя",
+    description: "У вас есть функция, которая принимает действие пользователя в виде строки (например, 'click').\r\n\r\n### Задача\r\n\r\n* Модифицируйте функцию так, чтобы она могла принимать неограниченное число дополнительных деталей, связанных с действием. Например, точку, в которой произошел клик, кнопку мыши, которой сделан клик и т.д. Количество деталей неизвестно.\r\n\r\n* Внутри функции для отладочных целей выведите в консоль количество полученных деталей и сами детали.\r\n\r\n* Функция должна возвращать объект с двумя полями:\r\n  \r\n  * Действие (string).\r\n  \r\n  * Пачку всех действий.",
+    template: `function createUserAction(action) {
+  // Ваше решение
+}
+
+const action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left');`,
+    solution: `function createUserAction(action, ...details) {
+  console.log(\`Количество деталей: \${details.length}\`);
+  details.forEach(detail => console.log(detail));
+  return {
+    action,
+    details
+  }
+}`,
+    categories: ['javascript', 'syntax'],
+    tags: ['...', 'rest', 'синтаксис', 'javascript']
+  },
+  {
     id: "d913f8145b51249f",
     name: "task-dyn-add-field",
     path: "tasks\\objects\\task-dyn-add-field",
-    title: "",
+    title: "Условное добавление полей в объект",
     description: "Дана функция:\r\n\r\n```javascript\r\nfunction createUser(login, firstname, lastname, role = 'user') {\r\n  if (!login) throw new Error('login является обязательным.');\r\n  return {\r\n    login,\r\n    role,\r\n  }\r\n}\r\n\r\nconst huck = createUser('hfinn', 'Huck', 'Finn');\r\nconsole.log(huck);\r\n```\r\n\r\nЗадача:\r\n\r\n* Доработать функцию так, чтобы поля firstname и lastname добавлялись в объект динамически - только если они переданы и не являются пустыми строками.\r\n* Поле lastname должно попасть в объект под названием surname.",
     template: ``,
     solution: `function createUser(login, firstname, lastname, role = 'user') {
@@ -987,13 +1182,13 @@ console.log(getSubstitute(michaelBrown));`,
 const huck = createUser('hfinn', 'Huck', 'Finn');
 console.log(huck);`,
     categories: ['objects'],
-    tags: []
+    tags: ['spread-objects', '&&', 'object']
   },
   {
-    id: "36637079d6213b2f",
-    name: "task-merge-objects-1",
-    path: "tasks\\objects\\task-merge-objects-1",
-    title: "",
+    id: "028fa2478a7ce693",
+    name: "task-merge-objects-1_spread_obj",
+    path: "tasks\\objects\\task-merge-objects-1_spread_obj",
+    title: "Объединение конфигурационных объектов",
     description: "Есть два объекта конфигурации:\r\n\r\n```javascript\r\nconst defaultConfig = {\r\n  cacheTime: 30_000,\r\n  staleTime: 0\r\n}\r\n\r\nconst myConfig = {\r\n  timeout: 1000,\r\n  refetchOnFail: false\r\n}\r\n```\r\n\r\n Задачи:\r\n\r\n* Объединить два конфига в новый.\r\n* Заменить параметр `refetchOnFail` на true.\r\n\r\nДоп. условия:\r\n\r\n* Сначала сделать это за две операции (1 - объединить, 2 - заменить), потом за одну (объединить + заменить).\r\n* Сделать в иммутабельном стиле.",
     template: ``,
     solution: `// За две
@@ -1014,44 +1209,7 @@ const config = {
   refetchOnFail: true
 }`,
     categories: ['objects'],
-    tags: []
-  },
-  {
-    id: "47dc1357ae09209a",
-    name: "task-classic-simple-debounce-user-input",
-    path: "tasks\\real-tasks\\task-classic-simple-debounce-user-input",
-    title: "",
-    description: "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n```\r\nhttps://playcode.io/javascript\r\n```\r\n\r\n",
-    template: `// html
-<input id="userSearch" />
-
-
-// javascript
-const userInput = document.querySelector('#userSearch');
-
-userInput.addEventListener('input', () => goSearch(userInput.value));
-
-function goSearch(value) {
-  console.log(\`Запрос поиска на сервер: \${value}\`)
-}`,
-    solution: `const userInput = document.querySelector('#userSearch');
-
-const debouncedSearch = debounce(goSearch, 1500);
-userInput.addEventListener('input', (event) => debouncedSearch(event.target.value));
-
-function goSearch(value) {
-  console.log(\`Запрос поиска на сервер: \${value}\`)
-}
-
-function debounce(fn, delayMs) {
-  let timeoutId;
-  return function(...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn.apply(this, args), delayMs);
-  }
-}`,
-    categories: ['real-tasks'],
-    tags: []
+    tags: ['spread-objects', 'object']
   },
   {
     id: "e605a49167ed6568",
@@ -1136,7 +1294,7 @@ categories.forEach(category => console.log(category));`,
     id: "d279c4b5be657b71",
     name: "task-merge-user-info",
     path: "tasks\\real-tasks\\task-merge-user-info",
-    title: "Объединение пользователей из БД и из соцсетей.",
+    title: "Объединение пользователей из БД и из соцсетей",
     description: "### Вводные\r\n\r\nДаны два массива:\r\n\r\n* Основные пользователи в базе данных:\r\n\r\n```javascript\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n```\r\n\r\n* И дополнительные данные из соцсетей:\r\n\r\n```javascript\r\nconst socialUsers = [\r\n  { id: 4, name: \"Dave\", role: \"user\" },\r\n  { id: 1, hobby: \"chess\", email: \"mynameisalice@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\", email: \"davidblame@social.com\" }\r\n];\r\n```\r\n\r\nВ дополнительных данных может быть как новый пользователь, так и дополнительная информация об уже существующих пользователях.\r\n\r\n### Задача\r\n\r\n* Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.\r\n* Пользователей сравнивать по id.\r\n* В данных из соцсетей пользователи могут повторяться, т.к. соцсетей у пользователя может быть несколько.\r\n\r\n### Дополнительные условия\r\n\r\n* Постараться сделать без мутирования исходных массивов и объектов.",
     template: `// Основные пользователи (из БД)
 const dbUsers = [
@@ -1182,7 +1340,7 @@ function mergeUsers(databaseUsers, socialUsers) {
   }, [...databaseUsers]);
 }`,
     categories: ['real-tasks'],
-    tags: []
+    tags: ['reduce', 'find', 'map', 'spread', '...', 'findIndex']
   },
   {
     id: "77128850a0c305a2",

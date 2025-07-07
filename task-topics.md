@@ -9,7 +9,13 @@
 - [ ] for of
 - [ ] rest и spread
   - [ ] rest
+    - [x] Параметры функции
+    - [x] При деструктуризации массива
+    - [x] При деструктуризации объекта
   - [ ] spread
+    - [x] Объектов
+    - [x] Массивов
+    - [ ] Строк
 - [x] switch
 - [ ] Деструктуризация
   - [x] Объектов
@@ -78,6 +84,13 @@
   - [ ] indexOf
   - [x] trim, trimStart, trimEnd
   - [ ] regexp
+  - [ ] charAt
+  - [ ] concat
+  - [ ] endsWith
+  - [ ] startsWith
+  - [ ] repeat
+  - [ ] replace, replaceAll
+  - [ ] match
 - [x] Math
   - [x] ceil, floor
   - [x] random
@@ -99,3 +112,10 @@
 - [ ] AbortController
 - [x] setTimeout, clearTimeout
 - [ ] setInterval
+- [ ] fetch
+  - [x] .json()
+  - [x] status
+  - [x] ok
+- [x] URL
+- [x] URLSearchParams
+- [ ] new Event, подписка \ отписка на события.
