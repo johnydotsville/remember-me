@@ -13,7 +13,7 @@ const orders = new Map([
   ["CC-UYT2W", { name: 'David Brown', email: 'david.brown@example.com' }]  // Повторный заказ от David Brown (склад CC)
 ]);
 
-// Выдать все заказы клиента
+// Выдать все заказы клиента (вернуть массив id'шников заказов)
 function getAllClientOrders(email, orders) {
   // Реализация
 }
@@ -24,7 +24,7 @@ function getClientOrdersCount(email, orders) {
 }
 
 // Сколько заказов лежат на указанном складе
-function getOrdersCountAsWarehouse(warehouseCode, orders) {
+function getOrdersCountAtWarehouse(warehouseCode, orders) {
   // Реализация
 }
 
@@ -38,5 +38,5 @@ const clientOrdersCount = getClientOrdersCount(email, orders);
 console.log(`Клиент ${email} сделал ${clientOrdersCount} заказов.`);
 
 const warehouseCode = 'AA';
-const ordersCountAtWarehouse = getOrdersCountAsWarehouse(warehouseCode, orders);
+const ordersCountAtWarehouse = getOrdersCountAtWarehouse(warehouseCode, orders);
 console.log(`На складе ${warehouseCode} лежит ${ordersCountAtWarehouse} заказов.`);

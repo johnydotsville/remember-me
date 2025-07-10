@@ -1,42 +1,39 @@
-// Первый холодный
-function weekTemperatureReport(days, temps, thres) {
-  const firstColdInd = temps.findIndex(t => t < thres);
-  if (firstColdInd !== -1) {
-    console.log(`Первый холодный день на этой неделе: ${days[firstColdInd]}. Температура была: ${temps[firstColdInd]}C`);
+// Первый холодный день на неделе
+function reportStartColdDay(days, temps, thres = 0) {
+  const idx = temps.findIndex(temp => temp < thres);
+  if (idx === -1) {
+    console.log('Холодных дней на неделе не было.');
   } else {
-    console.log('На этой неделе холодных дней не было.');
+    console.log(`Первый холодный день на неделе: ${days[idx]}. Температура была: ${temps[idx]}`);
   }
 }
 
-
-// Последний холодный
-function weekTemperatureReport(days, temps, thres) {
-  const firstColdInd = temps.findLastIndex(t => t < thres);
-  if (firstColdInd !== -1) {
-    console.log(`Последний холодный день на этой неделе: ${days[firstColdInd]}. Температура была: ${temps[firstColdInd]}C`);
+// Последний холодный день на неделе
+function reportEndColdDay(days, temps, thres = 0) {
+  const idx = temps.findLastIndex(temp => temp < thres);
+  if (idx === -1) {
+    console.log('Холодных дней на неделе не было.');
   } else {
-    console.log('На этой неделе холодных дней не было.');
+    console.log(`Последний холодный день на неделе: ${days[idx]}. Температура была: ${temps[idx]}`);
   }
 }
-
 
 // Первый день с конкретной температурой
-function weekTemperatureReport(days, temps, temp = 0) {
-  const tempInd = temps.indexOf(temp);
-  if (tempInd !== -1) {
-    console.log(`Первый день с температурой ${temp}: ${days[tempInd]}`);
+function reportStartDayWithTemp(days, temps, temp = 0) {
+  const idx = temps.indexOf(temp);
+  if (idx === -1) {
+    console.log(`Не было дней с температурой ${temp}.`);
   } else {
-    console.log(`На этой неделе не было дней с температурой ${temp}C.`);
+    console.log(`Первый день с температурой ${temp}: ${days[idx]}`);
   }
 }
 
-
 // Последний день с конкретной температурой
-function weekTemperatureReport(days, temps, temp = 0) {
-  const tempInd = temps.lastIndexOf(temp);
-  if (tempInd !== -1) {
-    console.log(`Последний день с температурой ${temp}: ${days[tempInd]}`);
+function reportEndDayWithTemp(days, temps, temp = 0) {
+  const idx = temps.lastIndexOf(temp);
+  if (idx === -1) {
+    console.log(`Не было дней с температурой ${temp}.`);
   } else {
-    console.log(`На этой неделе не было дней с температурой ${temp}C.`);
+    console.log(`Последний день с температурой ${temp}: ${days[idx]}`);
   }
 }

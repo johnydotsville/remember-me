@@ -8,7 +8,7 @@
   - [ ] filter(Boolean)
 - [ ] for of
 - [ ] rest и spread
-  - [ ] rest
+  - [x] rest
     - [x] Параметры функции
     - [x] При деструктуризации массива
     - [x] При деструктуризации объекта
@@ -80,14 +80,14 @@
   - [ ] String
   - [ ] reverse
   - [ ] sort
+  - [ ] slice
   - [ ] includes
   - [ ] indexOf
   - [x] trim, trimStart, trimEnd
   - [ ] regexp
   - [ ] charAt
   - [ ] concat
-  - [ ] endsWith
-  - [ ] startsWith
+  - [ ] endsWith, startsWith
   - [ ] repeat
   - [ ] replace, replaceAll
   - [ ] match
@@ -119,3 +119,15 @@
 - [x] URL
 - [x] URLSearchParams
 - [ ] new Event, подписка \ отписка на события.
+
+
+
+# HTML, CSS
+
+- [ ] flex
+
+- [ ] Элементы управления
+  
+  - [ ] checkbox
+  
+  - [ ] radio button

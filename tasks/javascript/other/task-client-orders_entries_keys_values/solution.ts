@@ -1,4 +1,4 @@
-// Выдать все заказы клиента
+// Выдать все заказы клиента (вернуть массив id'шников заказов)
 function getAllClientOrders(email, orders) {
   const orderIds = [];
   for (const [orderId, client] of orders.entries()) {
@@ -21,7 +21,7 @@ function getClientOrdersCount(email, orders) {
 }
 
 // Сколько заказов лежат на указанном складе
-function getOrdersCountAsWarehouse(warehouseCode, orders) {
+function getOrdersCountAtWarehouse(warehouseCode, orders) {
   let count = 0;
   for (const orderId of orders.keys()) {
     if (orderId.startsWith(warehouseCode)) {

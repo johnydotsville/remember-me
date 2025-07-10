@@ -7,6 +7,3 @@ function createUser(login, firstname, lastname, role = 'user') {
     ...(lastname && lastname.length > 0 && { surname: lastname }),
   }
 }
-
-const huck = createUser('hfinn', 'Huck', 'Finn');
-console.log(huck);

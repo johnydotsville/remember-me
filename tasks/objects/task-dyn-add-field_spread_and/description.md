@@ -11,6 +11,9 @@ function createUser(login, firstname, lastname, role = 'user') {
 
 const huck = createUser('hfinn', 'Huck', 'Finn');
 console.log(huck);
+
+const tom = createUser('toms', 'Tom');
+console.log(tom);
 ```
 
 Задача:

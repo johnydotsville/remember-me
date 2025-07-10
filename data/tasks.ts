@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-07T18:34:11.771Z)
+// Auto-generated file (2025-07-10T06:19:53.041Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -25,6 +25,12 @@ export const rootcat: Category =
           subcategories: []
         }
       ]
+    },
+    {
+      name: 'html-css',
+      title: '',
+      hidden: false,
+      subcategories: []
     },
     {
       name: 'javascript',
@@ -153,48 +159,83 @@ console.log(allUsers);`,
     name: "task-cold-days_arrays_findIndex_findLastIndex_indexOf_lastIndexOf",
     path: "tasks\\arrays\\task-cold-days_arrays_findIndex_findLastIndex_indexOf_lastIndexOf",
     title: "Холодные дни на неделе",
-    description: "### Вводные\r\n\r\n* Дан массив дней недели и массив средних температур в эти дни соответственно:\r\n\r\n```javascript\r\nconst daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];\r\nconst temperatures1 = [2, 1, -5, 3, 0, -1, 2];\r\nconst temperatures2 = [2, 1, 5, 3, 0, 1, 2];\r\n```\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая выводит в консоль отчет:\r\n  * Первый холодный день на неделе. Вывести название дня и какая была температура.\r\n  * Если холодных дней не было, тоже сообщить об этом.\r\n  * Функция принимает массив дней, массив температур и порог температуры, который считается холодным (параметр опциональный, по умолчанию дб 0).\r\n* Сделать такую же функцию, но только для последнего холодного дня недели.\r\n  * Сделать такую же функцию, которая ищет первый день с конкретной температурой, по умолчанию 0.\r\n    * И последний день с конкретной температурой.",
-    template: ``,
-    solution: `// Первый холодный
-function weekTemperatureReport(days, temps, thres) {
-  const firstColdInd = temps.findIndex(t => t < thres);
-  if (firstColdInd !== -1) {
-    console.log(\`Первый холодный день на этой неделе: \${days[firstColdInd]}. Температура была: \${temps[firstColdInd]}C\`);
-  } else {
-    console.log('На этой неделе холодных дней не было.');
-  }
+    description: "### Вводные\r\n\r\n* Дан массив дней недели и массив средних температур в эти дни соответственно:\r\n\r\n```javascript\r\nconst daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];\r\nconst temperatures1 = [2, 1, -5, 3, 0, -1, 2];\r\nconst temperatures2 = [2, 1, 5, 3, 0, 1, 2];\r\n```\r\n\r\n### Задача\r\n\r\n* Написать реализацию функции, которая выводит в консоль отчет:\r\n  * Первый холодный день на неделе. Вывести название дня и какая была температура.\r\n  * Если холодных дней не было, тоже сообщить об этом.\r\n  * Функция принимает массив дней, массив температур и порог температуры, который считается холодным (параметр опциональный, по умолчанию дб 0).\r\n* Сделать реализацию для последнего холодного дня недели.\r\n* Сделать реализацию, которая ищет первый день с конкретной температурой, по умолчанию 0.\r\n  * И последний день с конкретной температурой.",
+    template: `const daysOfWeek = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+const temperatures1 = [2, 1, -5, 3, 0, -1, 2];
+const temperatures2 = [2, 1, 5, 3, 0, 1, 2];
+
+// Первый холодный день на неделе
+function reportStartColdDay(days, temps, thres = 0) {
+  console.log('Холодных дней на неделе не было.');
+  console.log(\`Первый холодный день на неделе: ДЕНЬ. Температура была: ТЕМПЕРАТУРА\`);
 }
 
-
-// Последний холодный
-function weekTemperatureReport(days, temps, thres) {
-  const firstColdInd = temps.findLastIndex(t => t < thres);
-  if (firstColdInd !== -1) {
-    console.log(\`Последний холодный день на этой неделе: \${days[firstColdInd]}. Температура была: \${temps[firstColdInd]}C\`);
-  } else {
-    console.log('На этой неделе холодных дней не было.');
-  }
+// Последний холодный день на неделе
+function reportEndColdDay(days, temps, thres = 0) {
+  console.log('Холодных дней на неделе не было.');
+  console.log(\`Последний холодный день на неделе: ДЕНЬ. Температура была: ТЕМПЕРАТУРА\`);
 }
-
 
 // Первый день с конкретной температурой
-function weekTemperatureReport(days, temps, temp = 0) {
-  const tempInd = temps.indexOf(temp);
-  if (tempInd !== -1) {
-    console.log(\`Первый день с температурой \${temp}: \${days[tempInd]}\`);
+function reportStartDayWithTemp(days, temps, temp = 0) {
+  console.log(\`Не было дней с температурой ТЕМПЕРАТУРА.\`);
+  console.log(\`Первый день с температурой ТЕМПЕРАТУРА: ДЕНЬ\`);
+}
+
+// Последний день с конкретной температурой
+function reportEndDayWithTemp(days, temps, temp = 0) {
+  console.log(\`Не было дней с температурой ТЕМПЕРАТУРА.\`);
+  console.log(\`Последний день с температурой ТЕМПЕРАТУРА: ДЕНЬ\`);
+}
+
+reportStartColdDay(daysOfWeek, temperatures1);  // Среда
+reportStartColdDay(daysOfWeek, temperatures2);  // Холодных дней на неделе не было
+
+reportEndColdDay(daysOfWeek, temperatures1);  // Суббота
+reportEndColdDay(daysOfWeek, temperatures2);  // Холодных дней на неделе не было
+
+reportStartDayWithTemp(daysOfWeek, temperatures2, 1);  // Вторник
+reportEndDayWithTemp(daysOfWeek, temperatures2, 1);  // Суббота
+
+reportStartDayWithTemp(daysOfWeek, temperatures2, 10);  // Не было дней с температурой 10
+reportEndDayWithTemp(daysOfWeek, temperatures2, 10);  // Не было дней с температурой 10`,
+    solution: `// Первый холодный день на неделе
+function reportStartColdDay(days, temps, thres = 0) {
+  const idx = temps.findIndex(temp => temp < thres);
+  if (idx === -1) {
+    console.log('Холодных дней на неделе не было.');
   } else {
-    console.log(\`На этой неделе не было дней с температурой \${temp}C.\`);
+    console.log(\`Первый холодный день на неделе: \${days[idx]}. Температура была: \${temps[idx]}\`);
   }
 }
 
+// Последний холодный день на неделе
+function reportEndColdDay(days, temps, thres = 0) {
+  const idx = temps.findLastIndex(temp => temp < thres);
+  if (idx === -1) {
+    console.log('Холодных дней на неделе не было.');
+  } else {
+    console.log(\`Последний холодный день на неделе: \${days[idx]}. Температура была: \${temps[idx]}\`);
+  }
+}
+
+// Первый день с конкретной температурой
+function reportStartDayWithTemp(days, temps, temp = 0) {
+  const idx = temps.indexOf(temp);
+  if (idx === -1) {
+    console.log(\`Не было дней с температурой \${temp}.\`);
+  } else {
+    console.log(\`Первый день с температурой \${temp}: \${days[idx]}\`);
+  }
+}
 
 // Последний день с конкретной температурой
-function weekTemperatureReport(days, temps, temp = 0) {
-  const tempInd = temps.lastIndexOf(temp);
-  if (tempInd !== -1) {
-    console.log(\`Последний день с температурой \${temp}: \${days[tempInd]}\`);
+function reportEndDayWithTemp(days, temps, temp = 0) {
+  const idx = temps.lastIndexOf(temp);
+  if (idx === -1) {
+    console.log(\`Не было дней с температурой \${temp}.\`);
   } else {
-    console.log(\`На этой неделе не было дней с температурой \${temp}C.\`);
+    console.log(\`Последний день с температурой \${temp}: \${days[idx]}\`);
   }
 }`,
     categories: ['arrays'],
@@ -259,7 +300,7 @@ console.log(edgeEffect(phrase));`,
     name: "task-last-exam_arrays_findLast",
     path: "tasks\\arrays\\task-last-exam_arrays_findLast",
     title: "Последний экзамен в месяце",
-    description: "В школе решили растянуть сдачу экзаменов на несколько месяцев. Расписание выглядит примерно так:\r\n\r\n```javascript\r\nconst exams = [\r\n  { course: 'Математика', month: 'Март' },\r\n  { course: 'Физика', month: 'Март' },\r\n  { course: 'Информатика', month: 'Апрель' },\r\n  { course: 'Химия', month: 'Апрель' },\r\n  { course: 'История', month: 'Май' },\r\n  { course: 'Литература', month: 'Май' },\r\n  { course: 'Английский язык', month: 'Май' },\r\n  { course: 'География', month: 'Июнь' }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию для функции, которая принимает список экзаменов и месяц и выдает, какой экзамен в этом месяце последний.",
+    description: "В школе решили растянуть сдачу экзаменов на несколько месяцев. Расписание выглядит примерно так:\r\n\r\n```javascript\r\nconst exams = [\r\n  { course: 'Математика', month: 'Март' },\r\n  { course: 'Физика', month: 'Март' },\r\n  { course: 'Информатика', month: 'Апрель' },\r\n  { course: 'Химия', month: 'Апрель' },\r\n  { course: 'История', month: 'Май' },\r\n  { course: 'Литература', month: 'Май' },\r\n  { course: 'Английский язык', month: 'Май' },\r\n  { course: 'География', month: 'Июнь' }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию для функции, которая принимает список экзаменов и месяц и выдает, какой экзамен в этом месяце последний.\r\n* Если в переданном месяце нет экзаменов, вернуть сообщение, что \"В таком-то месяце нет экзаменов\".",
     template: `const exams = [
   { course: 'Математика', month: 'Март' },
   { course: 'Физика', month: 'Март' },
@@ -818,9 +859,9 @@ function calculateAverageRating(ratings) {
     tags: ['math', 'javascript']
   },
   {
-    id: "fc14891cf61349dc",
-    name: "task-client-orders",
-    path: "tasks\\javascript\\other\\task-client-orders",
+    id: "62acf171cef1f762",
+    name: "task-client-orders_entries_keys_values",
+    path: "tasks\\javascript\\other\\task-client-orders_entries_keys_values",
     title: "Заказы клиентов на складах",
     description: "У вас есть мапа с заказами клиентов. Ключ - это id заказа. Значение - объект с именем и почтой клиента:\r\n\r\n```javascript\r\nconst orders = new Map([\r\n  [\"AA-XK5GT\", { name: 'John Doe', email: 'john.doe@example.com' }],\r\n  [\"BB-YHF8N\", { name: 'Jane Smith', email: 'jane.smith@example.com' }],\r\n  [\"AA-UQZ9W\", { name: 'Michael Johnson', email: 'michael.johnson@example.com' }],\r\n  [\"AA-PKV2R\", { name: 'Emma Williams', email: 'emma.williams@example.com' }],\r\n  [\"BB-JTM6P\", { name: 'David Brown', email: 'david.brown@example.com' }],\r\n  [\"AA-LNH3D\", { name: 'Sarah Davis', email: 'sarah.davis@example.com' }],\r\n  [\"AA-CWX7F\", { name: 'William Miller', email: 'william.miller@example.com' }],\r\n  [\"BB-RTS4B\", { name: 'Olivia Taylor', email: 'olivia.taylor@example.com' }],\r\n  [\"CC-VGH1E\", { name: 'James Anderson', email: 'james.anderson@example.com' }],\r\n  [\"AA-NMZ9Q\", { name: 'Ava Wilson', email: 'ava.wilson@example.com' }],\r\n  [\"BB-XD5JP\", { name: 'John Doe', email: 'john.doe@example.com' }], // Повторный заказ от John Doe (склад BB)\r\n  [\"CC-UYT2W\", { name: 'David Brown', email: 'david.brown@example.com' }]  // Повторный заказ от David Brown (склад CC)\r\n]);\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию для функции, которая возвращает массив с id заказов, сделанных указанным клиентом.\r\n* Напишите реализацию для функции, которая возвращает число заказов, сделанных указанным клиентом.\r\n* Напишите реализацию функции, которая возвращает число заказов, находящихся на указанном складе.",
     template: `const orders = new Map([
@@ -838,7 +879,7 @@ function calculateAverageRating(ratings) {
   ["CC-UYT2W", { name: 'David Brown', email: 'david.brown@example.com' }]  // Повторный заказ от David Brown (склад CC)
 ]);
 
-// Выдать все заказы клиента
+// Выдать все заказы клиента (вернуть массив id'шников заказов)
 function getAllClientOrders(email, orders) {
   // Реализация
 }
@@ -849,7 +890,7 @@ function getClientOrdersCount(email, orders) {
 }
 
 // Сколько заказов лежат на указанном складе
-function getOrdersCountAsWarehouse(warehouseCode, orders) {
+function getOrdersCountAtWarehouse(warehouseCode, orders) {
   // Реализация
 }
 
@@ -863,9 +904,9 @@ const clientOrdersCount = getClientOrdersCount(email, orders);
 console.log(\`Клиент \${email} сделал \${clientOrdersCount} заказов.\`);
 
 const warehouseCode = 'AA';
-const ordersCountAtWarehouse = getOrdersCountAsWarehouse(warehouseCode, orders);
+const ordersCountAtWarehouse = getOrdersCountAtWarehouse(warehouseCode, orders);
 console.log(\`На складе \${warehouseCode} лежит \${ordersCountAtWarehouse} заказов.\`);`,
-    solution: `// Выдать все заказы клиента
+    solution: `// Выдать все заказы клиента (вернуть массив id'шников заказов)
 function getAllClientOrders(email, orders) {
   const orderIds = [];
   for (const [orderId, client] of orders.entries()) {
@@ -888,7 +929,7 @@ function getClientOrdersCount(email, orders) {
 }
 
 // Сколько заказов лежат на указанном складе
-function getOrdersCountAsWarehouse(warehouseCode, orders) {
+function getOrdersCountAtWarehouse(warehouseCode, orders) {
   let count = 0;
   for (const orderId of orders.keys()) {
     if (orderId.startsWith(warehouseCode)) {
@@ -1163,11 +1204,11 @@ const action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left'
     tags: ['...', 'rest', 'синтаксис', 'javascript']
   },
   {
-    id: "d913f8145b51249f",
-    name: "task-dyn-add-field",
-    path: "tasks\\objects\\task-dyn-add-field",
+    id: "1af9397a57643494",
+    name: "task-dyn-add-field_spread_and",
+    path: "tasks\\objects\\task-dyn-add-field_spread_and",
     title: "Условное добавление полей в объект",
-    description: "Дана функция:\r\n\r\n```javascript\r\nfunction createUser(login, firstname, lastname, role = 'user') {\r\n  if (!login) throw new Error('login является обязательным.');\r\n  return {\r\n    login,\r\n    role,\r\n  }\r\n}\r\n\r\nconst huck = createUser('hfinn', 'Huck', 'Finn');\r\nconsole.log(huck);\r\n```\r\n\r\nЗадача:\r\n\r\n* Доработать функцию так, чтобы поля firstname и lastname добавлялись в объект динамически - только если они переданы и не являются пустыми строками.\r\n* Поле lastname должно попасть в объект под названием surname.",
+    description: "Дана функция:\r\n\r\n```javascript\r\nfunction createUser(login, firstname, lastname, role = 'user') {\r\n  if (!login) throw new Error('login является обязательным.');\r\n  return {\r\n    login,\r\n    role,\r\n  }\r\n}\r\n\r\nconst huck = createUser('hfinn', 'Huck', 'Finn');\r\nconsole.log(huck);\r\n\r\nconst tom = createUser('toms', 'Tom');\r\nconsole.log(tom);\r\n```\r\n\r\nЗадача:\r\n\r\n* Доработать функцию так, чтобы поля firstname и lastname добавлялись в объект динамически - только если они переданы и не являются пустыми строками.\r\n* Поле lastname должно попасть в объект под названием surname.",
     template: ``,
     solution: `function createUser(login, firstname, lastname, role = 'user') {
   if (!login) throw new Error('login является обязательным.');
@@ -1177,10 +1218,7 @@ const action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left'
     ...(firstname && firstname.length > 0 && { firstname }),
     ...(lastname && lastname.length > 0 && { surname: lastname }),
   }
-}
-
-const huck = createUser('hfinn', 'Huck', 'Finn');
-console.log(huck);`,
+}`,
     categories: ['objects'],
     tags: ['spread-objects', '&&', 'object']
   },
