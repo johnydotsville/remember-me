@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-14T09:44:47.909Z)
+// Auto-generated file (2025-07-14T12:27:15.731Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -624,8 +624,8 @@ function debounce(fn, delayMs) {
     id: "b9b87a27c5cb1ffe",
     name: "task-logo-and-menu_allbasics",
     path: "tasks\\css\\flexbox\\task-logo-and-menu_allbasics",
-    title: "Адаптивное меню с логотипом",
-    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через метод forEach и через цикл for.\r\n  * Формат вывода \"пользователь: N раз\"\r\n* В самом конце вывести, сколько всего уникальных пользователей авторизовались.",
+    title: "",
+    description: "Есть панель навигации, состоящая из двух элементов:\r\n\r\n- Логотип.\r\n\r\n- Меню.\r\n\r\n### Задача\r\n\r\n- Сделать чтобы логотип был в левом углу, а меню - в правом.\r\n\r\n- Сделать расстояние между элементами меню в 1rem.\r\n\r\n- Когда экран сужается до 768px, логотип и меню должны оказаться по центру экрана.\r\n  \r\n  - Логотип сверху, меню - снизу.\r\n    \r\n    - Расстояние между логотипом и меню 1rem.\r\n\r\n- Когда экран сужается до 320px, элементы меню должны расположиться вертикально и между ними не должно быть расстояния.",
     template: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -640,27 +640,24 @@ function debounce(fn, delayMs) {
     }
     
     nav {
-      background: #f0f0f0;
-      background-color: blue;
+      padding: 1rem;
+      background-color: pink;
+      padding: 1rem;
     }
     
     .logo {
       font-weight: bold;
       font-size: 1.5rem;
-      background-color: green;
+      background-color: yellow;
     }
     
     .menu {
       list-style: none;
-      background-color: red;
+      background-color: lightgreen;
     }
     
     @media (max-width: 767px) {
-      nav {
-      }
       
-      .menu {
-      }
     }
   </style>
 </head>
@@ -676,38 +673,154 @@ function debounce(fn, delayMs) {
   </nav>
 </body>
 </html>`,
-    solution: `nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: #f0f0f0;
-  gap: 1rem;
-  background-color: blue;
-}
-
-.menu {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-  background-color: red;
-}
-
-@media (max-width: 767px) {
+    solution: `<style>
   nav {
-    justify-content: center;
+    padding: 1rem;
+    background-color: pink;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
   }
   
   .menu {
-    flex-basis: 100%;
-    justify-content: center;
+    list-style: none;
+    background-color: lightgreen;
+    display: flex;
+    gap: 1rem;
   }
-}`,
+  
+  @media (max-width: 767px) {
+    nav {
+      justify-content: center;
+    }
+    
+    .menu {
+      flex-basis: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 320px) {
+    .menu {
+      flex-direction: column;
+      gap: 0;
+    } 
+  }
+</style>
+`,
     templateLang: `.html`,
     solutionLang: `.html`,
     categories: ['css', 'flexbox'],
-    tags: ['flex-basis', 'justify-content', 'gap', 'flex-wrap', 'display:flex', 'flex', 'flexbox', 'css']
+    tags: ['flex', 'flexbox', 'css']
+  },
+  {
+    id: "eeea57d836f312f2",
+    name: "task-news-feed_grow_shrink_basis",
+    path: "tasks\\css\\flexbox\\task-news-feed_grow_shrink_basis",
+    title: "Новостная лента",
+    description: "Есть лента новостей, где каждая новость состоит из трех элементов:\r\n\r\n- Заголовок новости.\r\n\r\n- Время публикации.\r\n\r\n- Теги.\r\n\r\n### Задача\r\n\r\n- Дописать стили так, чтобы:\r\n  \r\n  - Заголовок занимал все доступное место.\r\n  \r\n  - Время занимало ровно столько места, сколько ему нужно.\r\n  \r\n  - Теги по возможности занимали 220px, но если места мало, можно и меньше, сколько есть.\r\n\r\n- Исправить стили так, чтобы:\r\n  \r\n  - Заголовок при возможности был в пять раз больше остальных элементов.\r\n  \r\n  - Время не брало больше места, чем ему нужно, но и своего не отдавало.\r\n  \r\n  - Теги брали столько места, сколько можно.",
+    template: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Navbar</title>
+  <style>
+    .news-feed {
+      border: 1px solid #ddd;
+      padding: 15px;
+      background-color: pink;
+    }
+
+    .news-card {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      background: lightyellow;
+    }
+
+    .title {
+      background: lightblue;
+      padding: 5px;
+    }
+
+    .date {
+      background: orange;
+      padding: 5px;
+    }
+
+    .tags {
+      background: lightgreen;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="news-feed">
+    <article class="news-card">
+      <h3 class="title">В России принят новый закон о цифровых валютах</h3>
+      <time class="date">Сегодня, 10:45</time>
+      <div class="tags">#экономика #криптовалюта</div>
+    </article>
+    <article class="news-card">
+      <h3 class="title">В Эрмитаже открылась выставка современных цифровых художников</h3>
+      <time class="date">10 мая, 11:00</time>
+      <div class="tags">#культура #искусство</div>
+    </article>
+  </div>
+</body>
+</html>`,
+    solution: `// Решение 1
+<style>
+  /* 1. flex-grow — заголовок растягивается на всё свободное место */
+  .title {
+    flex-grow: 1;  /* Занимает всю доступную ширину */
+    background: lightblue;
+    padding: 5px;
+  }
+
+  /* 2. flex-shrink — дата не сжимается даже при нехватке места */
+  .date {
+    flex-shrink: 0;  /* Не сжимается никогда */
+    background: orange;
+    padding: 5px;
+  }
+
+  /* 3. flex-basis — теги имеют начальную ширину 220px */
+  .tags {
+    flex-basis: 220px;  /* "Хочет" быть 220px, но может сжаться */
+    background: lightgreen;
+    text-align: center;
+  }
+</style>
+
+// Решение 2
+<style>
+  .title {
+    background: lightblue;
+    padding: 5px;
+    flex: 5;
+  }
+
+  .date {
+    background: orange;
+    padding: 5px;
+    flex: none;
+  }
+
+  .tags {
+    background: lightgreen;
+    text-align: center;
+    flex: auto;
+  }
+</style>`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css', 'flexbox'],
+    tags: ['flex-grow', 'flex-shrink', 'flex-basis', 'flex', 'flexbox', 'css']
   },
   {
     id: "b9bd1b052198a96c",

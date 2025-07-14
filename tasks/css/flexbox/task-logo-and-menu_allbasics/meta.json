@@ -1,4 +1,4 @@
 {
   "title": "Адаптивное меню с логотипом",
-  "tags": ["flex-basis", "justify-content", "gap", "flex-wrap", "display:flex"]
+  "tags": ["flex-basis", "justify-content", "align-items" "gap", "flex-wrap", "display:flex"]
 }

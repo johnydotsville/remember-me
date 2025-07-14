@@ -4,6 +4,10 @@
   npm run gent
 * Запустить прогу
   npm run dev
+* Залить задачи на githubpages
+  npm run gent
+  npm run build
+  add + commit + push
 
 # Добавление задач
 

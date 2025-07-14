@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Navbar</title>
+  <style>
+    .news-feed {
+      border: 1px solid #ddd;
+      padding: 15px;
+      background-color: pink;
+    }
+
+    .news-card {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      background: lightyellow;
+    }
+
+    .title {
+      background: lightblue;
+      padding: 5px;
+    }
+
+    .date {
+      background: orange;
+      padding: 5px;
+    }
+
+    .tags {
+      background: lightgreen;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="news-feed">
+    <article class="news-card">
+      <h3 class="title">В России принят новый закон о цифровых валютах</h3>
+      <time class="date">Сегодня, 10:45</time>
+      <div class="tags">#экономика #криптовалюта</div>
+    </article>
+    <article class="news-card">
+      <h3 class="title">В Эрмитаже открылась выставка современных цифровых художников</h3>
+      <time class="date">10 мая, 11:00</time>
+      <div class="tags">#культура #искусство</div>
+    </article>
+  </div>
+</body>
+</html>

@@ -128,7 +128,7 @@
     
     - [ ] display: inline-flex
   
-  - [ ] flex-direction: row | column
+  - [x] flex-direction: row | column
   
   - [x] flex-wrap: nowrap | wrap
   
@@ -140,7 +140,7 @@
   
   - [x] justify-content
   
-  - [ ] align-items
+  - [x] align-items
   
   - [ ] align-content
   

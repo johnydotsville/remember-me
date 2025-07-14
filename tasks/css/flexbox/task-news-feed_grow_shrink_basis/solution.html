@@ -1,0 +1,44 @@
+// Решение 1
+<style>
+  /* 1. flex-grow — заголовок растягивается на всё свободное место */
+  .title {
+    flex-grow: 1;  /* Занимает всю доступную ширину */
+    background: lightblue;
+    padding: 5px;
+  }
+
+  /* 2. flex-shrink — дата не сжимается даже при нехватке места */
+  .date {
+    flex-shrink: 0;  /* Не сжимается никогда */
+    background: orange;
+    padding: 5px;
+  }
+
+  /* 3. flex-basis — теги имеют начальную ширину 220px */
+  .tags {
+    flex-basis: 220px;  /* "Хочет" быть 220px, но может сжаться */
+    background: lightgreen;
+    text-align: center;
+  }
+</style>
+
+// Решение 2
+<style>
+  .title {
+    background: lightblue;
+    padding: 5px;
+    flex: 5;
+  }
+
+  .date {
+    background: orange;
+    padding: 5px;
+    flex: none;
+  }
+
+  .tags {
+    background: lightgreen;
+    text-align: center;
+    flex: auto;
+  }
+</style>
