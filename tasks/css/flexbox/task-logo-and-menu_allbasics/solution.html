@@ -1,28 +1,29 @@
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: #f0f0f0;
-  gap: 1rem;
-  background-color: blue;
-}
-
-.menu {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-  background-color: red;
-}
-
-@media (max-width: 767px) {
+<style>
   nav {
-    justify-content: center;
+    padding: 1rem;
+    background-color: pink;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
   }
   
   .menu {
-    flex-basis: 100%;
-    justify-content: center;
+    list-style: none;
+    background-color: lightgreen;
+    display: flex;
+    gap: 1rem;
   }
-}
+  
+  @media (max-width: 767px) {
+    nav {
+      justify-content: center;
+    }
+    
+    .menu {
+      flex-basis: 100%;
+      justify-content: center;
+    }
+  }
+</style>
