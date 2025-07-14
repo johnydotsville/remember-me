@@ -6,7 +6,8 @@
 
 Для решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:
 
-```
-https://playcode.io/javascript
-```
+- https://playcode.io/javascript
+
+- [JS Bin](https://jsbin.com/?html,js,console)
+
 

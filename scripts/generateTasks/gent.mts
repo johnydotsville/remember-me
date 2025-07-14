@@ -100,10 +100,31 @@ function flattenFoldersTree(root: Folder): Folder[] {
 }
 
 
+async function findFileWithExtensions(basePath, possibleExtensions) {
+  for (let ext of possibleExtensions) {
+    ext = ext.startsWith('.') ? ext : `.${ext}`;
+    const filePath = basePath + ext;
+    console.log(filePath)
+    try {
+      await fs.access(filePath);
+      return [filePath, ext];
+    } catch (err) {
+      // Файл не существует, пробуем следующее расширение
+    }
+  }
+  return [null, null]; // Ни один файл не найден
+}
+
+
 async function makeTask(folder: Folder): Promise<Task> {
   const description = await mdToString(path.join(folder.fullpath, 'description.md'));
-  const template = await sourceCodeToString(path.join(folder.fullpath, 'template.ts'));
-  const solution = await sourceCodeToString(path.join(folder.fullpath, 'solution.ts'));
+
+  const [templatePath, templateExt] = await findFileWithExtensions(path.join(folder.fullpath, 'template'), ['ts', 'js', 'html']);
+  const template = await sourceCodeToString(templatePath);
+
+  const [solutionPath, solutionExt] = await findFileWithExtensions(path.join(folder.fullpath, 'solution'), ['ts', 'js', 'html']);
+  const solution = await sourceCodeToString(solutionPath);
+
   const categories = getCategoriesFromTaskDir(folder.fullpath);
   const title = folder.meta?.[0]?.title ?? '';
   const tagsAsSet = folder.meta?.reduce((tagsSet, meta) => {
@@ -112,9 +133,6 @@ async function makeTask(folder: Folder): Promise<Task> {
   }, new Set<string>());
 
   console.log(folder.shortpath)
-  // console.log(folder.path);
-  // console.log(folder.meta);
-  // console.log('------------------------------------');
   
   return {
     id: idFromPath(folder.fullpath),
@@ -124,6 +142,8 @@ async function makeTask(folder: Folder): Promise<Task> {
     description,
     template,
     solution,
+    templateLang: templateExt || '',
+    solutionLang: solutionExt || '',
     categories,
     tags: tagsAsSet ? [...tagsAsSet] : []
   }
@@ -198,6 +218,8 @@ ${tasks.map(task => `  {
     description: ${JSON.stringify(task.description)},
     template: \`${task.template.replace(/`/g, '\\`')}\`,
     solution: \`${task.solution.replace(/`/g, '\\`')}\`,
+    templateLang: \`${task.templateLang.replace(/`/g, '\\`')}\`,
+    solutionLang: \`${task.solutionLang.replace(/`/g, '\\`')}\`,
     categories: [${task.categories.map(c => `'${c}'`).join(', ')}],
     tags: [${task.tags.map(c => `'${c}'`).join(', ')}]
   }`).join(',\n')}

@@ -52,6 +52,7 @@ function greetUser(userCorporateProfile) {
 }
 
 // Пожелание 7: функция распечатки указанного свойства
+// TOOD: а что, если поле вложенное? firstname внутри personality например.
 function printCustomFieldValue(user, prop) {
   const { [prop]: result } = user;
   console.log(result);

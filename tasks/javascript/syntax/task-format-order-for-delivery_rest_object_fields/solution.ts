@@ -1,11 +1,16 @@
 function formatForDelivery(order) {
   const {
     customer: {
-      name, address
+      name, address, email
     },
     ...details
   } = order;
   return {
-    name, address, details
+    name, 
+    address, 
+    details: {
+      ...details,
+      email
+    }
   }
 }

@@ -120,14 +120,44 @@
 - [x] URLSearchParams
 - [ ] new Event, подписка \ отписка на события.
 
-
-
 # HTML, CSS
 
 - [ ] flex
+  
+  - [x] display: flex
+    
+    - [ ] display: inline-flex
+  
+  - [ ] flex-direction: row | column
+  
+  - [x] flex-wrap: nowrap | wrap
+  
+  - [ ] flex-flow: направление перенос;
+  
+  - [x] gap
+    
+    - [ ] row-gap, column-gap
+  
+  - [x] justify-content
+  
+  - [ ] align-items
+  
+  - [ ] align-content
+  
+  - [ ] flex-grow: 0;
+  
+  - [ ] flex-shrink: 1;
+  
+  - [x] flex-basis: auto;
+  
+  - [ ] flex, Растягивание + сужение + базис
+
+- [ ] Списки ul
 
 - [ ] Элементы управления
   
   - [ ] checkbox
   
   - [ ] radio button
+
+- [ ] media запросы

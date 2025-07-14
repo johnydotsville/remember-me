@@ -6,6 +6,8 @@ export type Task = {
   description: string;
   template: string;
   solution: string;
+  templateLang: string;
+  solutionLang: string;
   categories: string[];
   tags: string[];
 }

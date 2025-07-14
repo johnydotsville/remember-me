@@ -34,7 +34,10 @@ const order = {
       "SanDisk Ultra 128GB USB 3.0 Flash Drive"
     ],
     "discount": 10,
-    "date": "2023-05-01"
+    "date": "2023-05-01",
+    email: "emily.j@example.com"
   }
 } 
 ```
+
+P.S. email не потеряйте.

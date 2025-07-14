@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-10T06:19:53.041Z)
+// Auto-generated file (2025-07-14T09:44:47.909Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -27,7 +27,20 @@ export const rootcat: Category =
       ]
     },
     {
-      name: 'html-css',
+      name: 'css',
+      title: 'CSS',
+      hidden: false,
+      subcategories: [
+        {
+          name: 'flexbox',
+          title: 'Flex',
+          hidden: false,
+          subcategories: []
+        }
+      ]
+    },
+    {
+      name: 'html',
       title: '',
       hidden: false,
       subcategories: []
@@ -151,6 +164,8 @@ const newUsers = [
 ];`,
     solution: `const allUsers = [...newUsers, ...activeUsers];
 console.log(allUsers);`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['spread', '...', 'массивы', 'array']
   },
@@ -238,6 +253,8 @@ function reportEndDayWithTemp(days, temps, temp = 0) {
     console.log(\`Последний день с температурой \${temp}: \${days[idx]}\`);
   }
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['findIndex', 'findLastIndex', 'indexOf', 'lastIndexOf', 'массивы', 'array']
   },
@@ -254,6 +271,8 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
   id: ind,
   value: \`Элемент \${ind + 1}\`
 }));`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['массивы', 'array', 'легко', 'синтаксис']
   },
@@ -272,6 +291,8 @@ const bar = Array.from({ length: 10 }, (cur, ind) => ({
 
 const deactivateIds = shouldBeDeactivated(userAccounts);
 console.log(deactivateIds);`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['map', 'filter', 'легко', 'массивы', 'array']
   },
@@ -292,6 +313,8 @@ console.log(edgeEffect(phrase));`,
   const edged = phrase.split(' ').slice(1, -1);
   return ['???', ...edged, '???'].join(' ');
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['slice', 'join', 'массивы', 'array']
   },
@@ -322,6 +345,8 @@ console.log(lastCourseInMonth(exams, 'Июль'));`,
   return exams.findLast(exam => exam.month === month)?.course
     || \`В \${month} нет экзаменов\`;
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['findLast', 'массивы', 'array']
   },
@@ -361,6 +386,8 @@ function getLucker(players, threshold = 10_000) {
     ? candidates[Math.floor(Math.random() * candidates.length)]
     : 'Нет подходящих игроков';
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['find', 'массивы', 'array']
   },
@@ -378,6 +405,8 @@ console.log(fullyWarm?.month ?? 'Не было ни одного полност�
 // Месяц, в котором хотя бы одна неделя теплая
 const partiallyWarm = stat.find(s => s.avgWeeksTemp.some(temp => temp > 0));
 console.log(partiallyWarm?.month ?? 'Не было ни одного хотя бы частичного теплого месяца.');`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['find', 'some', 'every', '?.', '??', 'массивы', 'array']
   },
@@ -413,6 +442,8 @@ printStatuses(orderStatuses, 2, 6);
 
 printStatuses(orderStatuses, 2, 6);`,
     solution: `orderStatuses.fill('pending', 2, 7);`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['fill', 'массивы', 'array']
   },
@@ -437,6 +468,8 @@ function isLangSupported(langCode) {
 
 console.log(isLangSupported('ru'));
 console.log(isLangSupported('foobar'));`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['includes', 'some', 'синтаксис', 'легко', 'массивы', 'array']
   },
@@ -455,6 +488,8 @@ console.log(weekTotal);
 
 const beverages = weeklyPurchases.flatMap(purchase => purchase[0]).join(', ');
 console.log(\`Напитки: \${beverages}\`);`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['arrays'],
     tags: ['flat', 'flatMap', 'массивы', 'array']
   },
@@ -498,6 +533,8 @@ urls.forEach(url => processUrls(url));`,
     }
   }
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['browser-api', 'http'],
     tags: ['fetch', 'fetch-status', 'fetch-ok', 'TypeError', 'SyntaxError', 'http']
   },
@@ -539,6 +576,8 @@ async function fetchData(page, limit) {
 }
 
 fetchData(5, 3);`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['browser-api', 'http'],
     tags: ['url', 'urlsearchparams', 'http']
   },
@@ -547,7 +586,7 @@ fetchData(5, 3);`,
     name: "task-classic-simple-debounce-user-input_setTimeout_clearTimeout",
     path: "tasks\\browser-api\\task-classic-simple-debounce-user-input_setTimeout_clearTimeout",
     title: "Дебаунс простой",
-    description: "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n```\r\nhttps://playcode.io/javascript\r\n```\r\n\r\n",
+    description: "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n- https://playcode.io/javascript\r\n\r\n- [JS Bin](https://jsbin.com/?html,js,console)\r\n\r\n\r\n",
     template: `// html
 <input id="userSearch" />
 
@@ -576,8 +615,99 @@ function debounce(fn, delayMs) {
     timeoutId = setTimeout(() => fn.apply(this, args), delayMs);
   }
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['browser-api'],
     tags: ['debounce', 'setTimeout', 'clearTimeout']
+  },
+  {
+    id: "b9b87a27c5cb1ffe",
+    name: "task-logo-and-menu_allbasics",
+    path: "tasks\\css\\flexbox\\task-logo-and-menu_allbasics",
+    title: "Адаптивное меню с логотипом",
+    description: "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через метод forEach и через цикл for.\r\n  * Формат вывода \"пользователь: N раз\"\r\n* В самом конце вывести, сколько всего уникальных пользователей авторизовались.",
+    template: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Navbar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    nav {
+      background: #f0f0f0;
+      background-color: blue;
+    }
+    
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background-color: green;
+    }
+    
+    .menu {
+      list-style: none;
+      background-color: red;
+    }
+    
+    @media (max-width: 767px) {
+      nav {
+      }
+      
+      .menu {
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Лого</div>
+    <ul class="menu">
+      <li>Главная</li>
+      <li>О нас</li>
+      <li>Услуги</li>
+      <li>Контакты</li>
+    </ul>
+  </nav>
+</body>
+</html>`,
+    solution: `nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f0f0f0;
+  gap: 1rem;
+  background-color: blue;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  background-color: red;
+}
+
+@media (max-width: 767px) {
+  nav {
+    justify-content: center;
+  }
+  
+  .menu {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+}`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css', 'flexbox'],
+    tags: ['flex-basis', 'justify-content', 'gap', 'flex-wrap', 'display:flex', 'flex', 'flexbox', 'css']
   },
   {
     id: "b9bd1b052198a96c",
@@ -650,10 +780,13 @@ function greetUser(userCorporateProfile) {
 }
 
 // Пожелание 7: функция распечатки указанного свойства
+// TOOD: а что, если поле вложенное? firstname внутри personality например.
 function printCustomFieldValue(user, prop) {
   const { [prop]: result } = user;
   console.log(result);
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'destruction'],
     tags: ['деструктуризация объектов', 'деструктуризация', 'деструктурирующее присваивание', 'javascript']
   },
@@ -686,6 +819,8 @@ try {
     console.log(error.message);
   }
 }`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['javascript', 'exceptions'],
     tags: ['синтаксис', 'легко', 'exceptions', 'исключения', 'javascript']
   },
@@ -763,6 +898,8 @@ function forShow(stat) {
 forEachShow(stat);
 forShow(stat);
 console.log(\`Всего авторизовались \${stat.size} разных пользователей.\`);`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'map'],
     tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of', 'javascript']
   },
@@ -778,6 +915,8 @@ console.log(\`Всего авторизовались \${stat.size} разных
 }
 
 console.log(\`К оплате: \${totalPrice(cart)} руб.\`);`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['javascript', 'math'],
     tags: ['trunc', 'reduce', 'math', 'javascript']
   },
@@ -790,6 +929,8 @@ console.log(\`К оплате: \${totalPrice(cart)} руб.\`);`,
     template: ``,
     solution: `const pages = Math.ceil(totalPosts / postsPerPage);
 console.log(pages);`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['javascript', 'math'],
     tags: ['ceil', 'math', 'javascript']
   },
@@ -805,6 +946,8 @@ const num = Math.floor(Math.random() * 101);
 
 // [30 - 100]
 const num = Math.floor(Math.random() * 71) + 30;`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['javascript', 'math'],
     tags: ['random', 'floor', 'math', 'javascript']
   },
@@ -822,6 +965,8 @@ const maxRate = Math.max(...exchangeRates);
 
 console.log(\`Минимальный курс: \${minRate}\`);
 console.log(\`Максимальный курс: \${maxRate}\`);`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['javascript', 'math'],
     tags: ['min', 'max', 'math', 'javascript']
   },
@@ -855,6 +1000,8 @@ function calculateAverageRating(ratings) {
   const deci = ratings.reduce((sum, rate) => sum + rate, 0) / ratings.length;
   return Math.round(deci * 100) / 100;
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'math'],
     tags: ['math', 'javascript']
   },
@@ -938,6 +1085,8 @@ function getOrdersCountAtWarehouse(warehouseCode, orders) {
   }
   return count;
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'other'],
     tags: ['Map', 'keys', 'values', 'entries', 'javascript']
   },
@@ -956,6 +1105,8 @@ if (!promos.has(myCode))
 promos.delete('NEWYEAR30');
 promos.forEach(promo => console.log(promo));
 console.log(\`Промокоды на завтра (всего \${promos.size}): \${[...promos].join(', ')}\`);`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['javascript', 'set'],
     tags: ['синтаксис', 'легко', 'set', 'javascript']
   },
@@ -975,6 +1126,8 @@ const chars = cleaned.split('').length;
 const firstWord = cleaned.split(' ')[0];
 
 console.log(\`В тексте \${sentenses} предложений и \${chars} символов. Первое слово: \${firstWord}\`);`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['javascript', 'strings'],
     tags: ['split', 'trim', 'trimStart', 'trimEnd', 'строки', 'string', 'методы строк', 'javascript']
   },
@@ -1044,6 +1197,8 @@ function getFullDayName(shortCode) {
 }
 
 console.log(getFullDayName('Пт'));`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'syntax'],
     tags: ['switch', 'синтаксис', 'javascript']
   },
@@ -1079,6 +1234,8 @@ fine.forEach(emp => console.log(emp));`,
     };
   );
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'syntax'],
     tags: ['...', 'rest', 'синтаксис', 'javascript']
   },
@@ -1087,7 +1244,7 @@ fine.forEach(emp => console.log(emp));`,
     name: "task-format-order-for-delivery_rest_object_fields",
     path: "tasks\\javascript\\syntax\\task-format-order-for-delivery_rest_object_fields",
     title: "Формат заказа для службы доставки",
-    description: "У вас есть объект заказа:\r\n\r\n```javascript\r\nconst order = {\r\n  id: 500,\r\n  customer: {\r\n    name: \"Emily Johnson\",\r\n    email: \"emily.j@example.com\",\r\n    address: \"350 5th Ave, New York, NY 10118, USA\"\r\n  },\r\n  items: [\r\n    \"The Great Gatsby by F. Scott Fitzgerald\",\r\n    \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n  ],\r\n  discount: 10,\r\n  date: \"2023-05-01\"\r\n};\r\n```\r\n\r\nВам поручили написать функцию, которая трансформирует объект заказа в формат, более удобный для курьера. В нем должны быть поля с именем клиента и адресом, а вся остальная информация - в поле деталей.\r\n\r\n### Задача\r\n\r\n* Модифицируйте функцию так, чтобы возвращала объект в таком виде:\r\n\r\n```javascript\r\n{\r\n  \"name\": \"Emily Johnson\",\r\n  \"address\": \"350 5th Ave, New York, NY 10118, USA\",\r\n  \"details\": {\r\n    \"id\": 500,\r\n    \"items\": [\r\n      \"The Great Gatsby by F. Scott Fitzgerald\",\r\n      \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n    ],\r\n    \"discount\": 10,\r\n    \"date\": \"2023-05-01\"\r\n  }\r\n} \r\n```",
+    description: "У вас есть объект заказа:\r\n\r\n```javascript\r\nconst order = {\r\n  id: 500,\r\n  customer: {\r\n    name: \"Emily Johnson\",\r\n    email: \"emily.j@example.com\",\r\n    address: \"350 5th Ave, New York, NY 10118, USA\"\r\n  },\r\n  items: [\r\n    \"The Great Gatsby by F. Scott Fitzgerald\",\r\n    \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n  ],\r\n  discount: 10,\r\n  date: \"2023-05-01\"\r\n};\r\n```\r\n\r\nВам поручили написать функцию, которая трансформирует объект заказа в формат, более удобный для курьера. В нем должны быть поля с именем клиента и адресом, а вся остальная информация - в поле деталей.\r\n\r\n### Задача\r\n\r\n* Модифицируйте функцию так, чтобы возвращала объект в таком виде:\r\n\r\n```javascript\r\n{\r\n  \"name\": \"Emily Johnson\",\r\n  \"address\": \"350 5th Ave, New York, NY 10118, USA\",\r\n  \"details\": {\r\n    \"id\": 500,\r\n    \"items\": [\r\n      \"The Great Gatsby by F. Scott Fitzgerald\",\r\n      \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n    ],\r\n    \"discount\": 10,\r\n    \"date\": \"2023-05-01\",\r\n    email: \"emily.j@example.com\"\r\n  }\r\n} \r\n```\r\n\r\nP.S. email не потеряйте.",
     template: `const order = {
   id: 500,
   customer: {
@@ -1111,14 +1268,21 @@ console.log(formatForDelivery(order));`,
     solution: `function formatForDelivery(order) {
   const {
     customer: {
-      name, address
+      name, address, email
     },
     ...details
   } = order;
   return {
-    name, address, details
+    name, 
+    address, 
+    details: {
+      ...details,
+      email
+    }
   }
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'syntax'],
     tags: ['...', 'rest', 'objects', 'синтаксис', 'javascript']
   },
@@ -1178,6 +1342,8 @@ function getSubstitute(professor) {
 console.log(getSubstitute(johnSmith));
 console.log(getSubstitute(sarahConnor));
 console.log(getSubstitute(michaelBrown));`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'syntax'],
     tags: ['?.', '||', 'Опциональная цепочка', 'синтаксис', 'javascript']
   },
@@ -1200,6 +1366,8 @@ const action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left'
     details
   }
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['javascript', 'syntax'],
     tags: ['...', 'rest', 'синтаксис', 'javascript']
   },
@@ -1219,6 +1387,8 @@ const action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left'
     ...(lastname && lastname.length > 0 && { surname: lastname }),
   }
 }`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['objects'],
     tags: ['spread-objects', '&&', 'object']
   },
@@ -1246,6 +1416,8 @@ const config = {
   ...myConfig,
   refetchOnFail: true
 }`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['objects'],
     tags: ['spread-objects', 'object']
   },
@@ -1257,6 +1429,8 @@ const config = {
     description: "TODO: оформить в виде задачи нормально.\r\n\r\nЗадача: напишите функцию, которая принимает массив донатеров и  возвращает благодарственное сообщение \"Дорогие {имена пользователей}! В  общей сложности вы задонатили {сумма}. Это очень помогает мне развивать  канал. Спасибо вам большое!\". Имена пользователей должны быть разделены  запятой, а последние два имени - буквой \"и\". Сумма должна быть суммой  пожертвований от всех пользователей.\r\n\r\n```javascript\r\nconst donors = [\r\n  { username: 'kuzzya', donated: 100 },\r\n  { username: 'alex.ivanov', donated: 50 },\r\n  { username: 'elena.k', donated: 200 },\r\n  { username: 'pavel_n', donated: 75 }\r\n];\r\n```\r\n\r\n```javascript\r\nfunction generateThankYouMessage(donors) {\r\n  // 1. Собираем имена донатеров\r\n  const names = donors.map(donor => donor.username);\r\n  \r\n  // 2. Форматируем список имен\r\n  let namesList;\r\n  if (names.length === 1) {\r\n    namesList = names[0];\r\n  } else {\r\n    const firstPart = names.slice(0, -2).join(', ');\r\n    const lastTwo = names.slice(-2).join(' и ');\r\n    namesList = [firstPart, lastTwo].filter(Boolean).join(', ');\r\n  }\r\n  \r\n  // 3. Считаем общую сумму донатов\r\n  const totalAmount = donors.reduce((sum, donor) => sum + donor.donated, 0);\r\n  \r\n  // 4. Формируем сообщение\r\n  return `Дорогие ${namesList}! В общей сложности вы задонатили ${totalAmount}. Это очень помогает мне развивать канал. Спасибо вам большое!`;\r\n}\r\n\r\n// Проверка\r\nconsole.log(generateThankYouMessage(donors));\r\n```\r\n\r\n",
     template: ``,
     solution: ``,
+    templateLang: ``,
+    solutionLang: ``,
     categories: ['real-tasks'],
     tags: []
   },
@@ -1325,6 +1499,8 @@ categories.forEach(category => console.log(category));`,
 
   return names;
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['real-tasks'],
     tags: []
   },
@@ -1377,6 +1553,8 @@ function mergeUsers(databaseUsers, socialUsers) {
     return mergedUsers;
   }, [...databaseUsers]);
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['real-tasks'],
     tags: ['reduce', 'find', 'map', 'spread', '...', 'findIndex']
   },
@@ -1388,6 +1566,8 @@ function mergeUsers(databaseUsers, socialUsers) {
     description: "TODO: сделать через set и замыкания задачу подписки и отписки.\r\n\r\nЧерновик кода:\r\n\r\n```javascript\r\nfunction createSubscriptionService() {\r\n  const subscribers = new Set();\r\n  const ids = new Set();\r\n\r\n  return {\r\n    subscribe(user) {\r\n      if (ids.has(user.id)) return false;\r\n      subscribers.add(user);\r\n      ids.add(user.id);\r\n      return true;\r\n    },\r\n    getSubscribers() {\r\n      // Возвращаем новый Set (копию)\r\n      return new Set(subscribers);\r\n    }\r\n  };\r\n}\r\n```\r\n\r\n",
     template: ``,
     solution: ``,
+    templateLang: ``,
+    solutionLang: ``,
     categories: ['real-tasks'],
     tags: []
   },
@@ -1446,6 +1626,8 @@ async function show() {
 }
 
 show();`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['refactoring'],
     tags: []
   },
@@ -1477,6 +1659,8 @@ createHttpClient({ timeout: "1000" });  // Ошибка! timeout дб число
 function createHttpClient(userConfig: Partial<HttpConfig> = {}) {
   // Код функции
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['typescript', 'operators-and-constructions'],
     tags: ['typeof', 'Partial']
   },
@@ -1513,6 +1697,8 @@ console.log(getPropValue(alice, 'sex'));  // <-- Недопустимо`,
     solution: `function getPropValue<T, K extends keyof T>(obj: T, prop: K): T[K] {
   return obj[prop];
 }`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['typescript', 'operators-and-constructions'],
     tags: ['keyof', 'generics', 'дженерики']
   },
@@ -1547,6 +1733,8 @@ const user: UserProfile = {
     'lastname': 'Finn'
   }
 }`,
+    templateLang: ``,
+    solutionLang: `.ts`,
     categories: ['typescript', 'type-interface'],
     tags: ['опциональные поля', 'обязательные поля', 'union', 'type', 'interface']
   },
@@ -1612,6 +1800,8 @@ const upedAlice = updateProfile(alice, {
 });
 
 console.log(upedAlice);`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['typescript', 'utility-types'],
     tags: ['partial']
   },
@@ -1650,6 +1840,8 @@ const upedAlice = updateProfile(alice, {
 
 console.log(upedAlice);`,
     solution: ``,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
     categories: ['typescript', 'utility-types'],
     tags: ['pick']
   }

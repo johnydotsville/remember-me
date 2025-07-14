@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Navbar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    nav {
+      background: #f0f0f0;
+      background-color: blue;
+    }
+    
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background-color: green;
+    }
+    
+    .menu {
+      list-style: none;
+      background-color: red;
+    }
+    
+    @media (max-width: 767px) {
+      nav {
+      }
+      
+      .menu {
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Лого</div>
+    <ul class="menu">
+      <li>Главная</li>
+      <li>О нас</li>
+      <li>Услуги</li>
+      <li>Контакты</li>
+    </ul>
+  </nav>
+</body>
+</html>
