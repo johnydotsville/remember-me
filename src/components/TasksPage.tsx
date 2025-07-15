@@ -6,7 +6,6 @@ import { flatcats } from "@utils/flatcats";
 import { useCallback, useMemo, useState, useEffect } from "react";
 import { tasks as sourceTasks } from "@data/tasks";
 import type { Category, Task } from '@src/types/model';
-import { markTaskAsDone } from "@utils/markTaskAsDone";
 
 
 export const TasksPage = () => {
@@ -50,8 +49,6 @@ export const TasksPage = () => {
     if (undone.length > 0) {
       const idx = Math.floor(Math.random() * undone.length);
       setRandomTask(undone[idx]);
-      markTaskAsDone(undone[idx].id);
-      window.dispatchEvent(new Event('localStorageUpdate'));
     } else {
       alert('Все задачи решены.');
     }

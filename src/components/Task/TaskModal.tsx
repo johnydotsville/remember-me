@@ -3,7 +3,7 @@ import { TaskDescription } from './TaskDescription';
 import { SourceCodeBox } from './TaskSourceCode';
 import { SpoilerGroup } from '@components/SpoilerGroup';
 import { detectLangByExtension } from '@/src/utils/detectLangByExtension';
-import { markTaskAsDone } from "@utils/markTaskAsDone";
+import { markTaskAs } from "@/src/utils/markTaskAs";
 
 
 export function TaskModal({ task, open, onClose }) {
@@ -26,7 +26,13 @@ export function TaskModal({ task, open, onClose }) {
   ].filter(Boolean);
 
   const solveTask = (taskId) => {
-    markTaskAsDone(taskId);
+    markTaskAs(taskId, 'done');
+    window.dispatchEvent(new Event('localStorageUpdate'));
+    onClose();
+  }
+
+  const reviewTask = (taskId) => {
+    markTaskAs(taskId, 'undone');
     window.dispatchEvent(new Event('localStorageUpdate'));
     onClose();
   }
@@ -44,8 +50,7 @@ export function TaskModal({ task, open, onClose }) {
       <DialogActions sx={{ justifyContent: 'space-between'}}>
         <Stack direction='row' gap={2} sx={{ flexGrow: 1 }}>
           <Button variant='outlined' color='success' onClick={() => solveTask(task.id)}>Решил</Button>
-          <Button variant='outlined' color='error'>Не решил</Button>
-          <Button variant='outlined' color='warning'>Хочу повторить</Button>
+          <Button variant='outlined' color='warning' onClick={() => reviewTask(task.id)}>Хочу повторить</Button>
         </Stack>
         <Button variant='outlined' onClick={onClose}>Закрыть</Button>
       </DialogActions>
