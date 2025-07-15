@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import { TaskStripe } from "./TaskStripe";
+import { TaskView } from "./TaskView";
 import { useState } from "react";
 import { TaskModal } from "./TaskModal";
 
@@ -13,7 +13,7 @@ export const TaskList = ({ tasks, doneTasks }) => {
         { 
           tasks.map(task => 
             <Box key={task.id} onClick={() => setSelectedTask(task)}>
-              <TaskStripe task={task} done={doneTasks.includes(task.id)} />
+              <TaskView task={task} done={doneTasks.includes(task.id)} />
             </Box>
           ) 
         }

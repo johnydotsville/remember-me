@@ -3,26 +3,33 @@ import { TaskDescription } from './TaskDescription';
 import { SourceCodeBox } from './TaskSourceCode';
 import { SpoilerGroup } from '@components/SpoilerGroup';
 import { detectLangByExtension } from '@/src/utils/detectLangByExtension';
+import { markTaskAsDone } from "@utils/markTaskAsDone";
 
 
 export function TaskModal({ task, open, onClose }) {
   const taskContent = [
-      task.description && { 
-        id: 'description',
-        title: 'Условие задачи',
-        content: <TaskDescription description={task.description} />
-      },
-      task.template && { 
-        id: 'template',
-        title: 'Шаблон',
-        content: <SourceCodeBox sourceCode={task.template} language={detectLangByExtension(task.templateLang)} />
-      },
-      task.solution && { 
-        id: 'solution',
-        title: 'Решение',
-        content: <SourceCodeBox sourceCode={task.solution} language={detectLangByExtension(task.solutionLang)} />
-      },
-    ].filter(Boolean);
+    task.description && { 
+      id: 'description',
+      title: 'Условие задачи',
+      content: <TaskDescription description={task.description} />
+    },
+    task.template && { 
+      id: 'template',
+      title: 'Шаблон',
+      content: <SourceCodeBox sourceCode={task.template} language={detectLangByExtension(task.templateLang)} />
+    },
+    task.solution && { 
+      id: 'solution',
+      title: 'Решение',
+      content: <SourceCodeBox sourceCode={task.solution} language={detectLangByExtension(task.solutionLang)} />
+    },
+  ].filter(Boolean);
+
+  const solveTask = (taskId) => {
+    markTaskAsDone(taskId);
+    window.dispatchEvent(new Event('localStorageUpdate'));
+    onClose();
+  }
 
   return (
     <Dialog 
@@ -36,7 +43,7 @@ export function TaskModal({ task, open, onClose }) {
       </DialogContent>
       <DialogActions sx={{ justifyContent: 'space-between'}}>
         <Stack direction='row' gap={2} sx={{ flexGrow: 1 }}>
-          <Button variant='outlined' color='success'>Решил</Button>
+          <Button variant='outlined' color='success' onClick={() => solveTask(task.id)}>Решил</Button>
           <Button variant='outlined' color='error'>Не решил</Button>
           <Button variant='outlined' color='warning'>Хочу повторить</Button>
         </Stack>
