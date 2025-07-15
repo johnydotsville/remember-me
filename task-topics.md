@@ -80,14 +80,14 @@
   - [ ] String
   - [ ] reverse
   - [ ] sort
-  - [ ] slice
-  - [ ] includes
+  - [x] slice
+  - [x] includes
   - [ ] indexOf
   - [x] trim, trimStart, trimEnd
   - [ ] regexp
   - [ ] charAt
   - [ ] concat
-  - [ ] endsWith, startsWith
+  - [x] endsWith, startsWith
   - [ ] repeat
   - [ ] replace, replaceAll
   - [ ] match
@@ -105,6 +105,12 @@
 - [x] keyof
 - [ ] utility-types
   - [ ] Partial, Require
+- [ ] Классы
+  - [ ] Объявление класса
+  - [ ] extends
+  - [ ] конструкторы
+  - [ ] поля
+  - [ ] модификаторы доступа
 
 # Браузер API
 
@@ -144,13 +150,13 @@
   
   - [ ] align-content
   
-  - [ ] flex-grow: 0;
+  - [x] flex-grow: 0;
   
-  - [ ] flex-shrink: 1;
+  - [x] flex-shrink: 1;
   
   - [x] flex-basis: auto;
   
-  - [ ] flex, Растягивание + сужение + базис
+  - [x] flex, Растягивание + сужение + базис
 
 - [ ] Списки ul
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Navbar</title>
+  <style>
+    .checkout-btn {
+      width: 100%;  /* Почему-то вылезает за границы контейнера */
+      padding: 15px;
+      border: 3px solid #4CAF50;
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .cart {
+      width: 300px;  /* Почему-то получается 340px */
+      background: lightblue;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+    * {
+      box-sizing: content-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart">
+    <h2>Ваш заказ</h2>
+    <div class="item">
+      <span>iPhone 15 Pro</span>
+      <span>89 990 ₽</span>
+    </div>
+    <div class="item">
+      <span>Чехол</span>
+      <span>2 490 ₽</span>
+    </div>
+    <button class="checkout-btn">Оформить заказ</button>
+  </div>
+</body>
+</html>

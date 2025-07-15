@@ -844,7 +844,66 @@ function debounce(fn, delayMs) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => fn.apply(this, args), delayMs);
   }
-}`,templateLang:".ts",solutionLang:".ts",categories:["browser-api"],tags:["debounce","setTimeout","clearTimeout"]},{id:"b9b87a27c5cb1ffe",name:"task-logo-and-menu_allbasics",path:"tasks\\css\\flexbox\\task-logo-and-menu_allbasics",title:"",description:`Есть панель навигации, состоящая из двух элементов:\r
+}`,templateLang:".ts",solutionLang:".ts",categories:["browser-api"],tags:["debounce","setTimeout","clearTimeout"]},{id:"d736c1e55e1cea29",name:"task-cart-buy-button_box-sizing",path:"tasks\\css\\flexbox\\task-cart-buy-button_box-sizing",title:"Кнопка 'Купить' в корзине",description:`Вашему стажеру дизайнер дал задание сверстать корзину с кнопкой "Купить". Но у него возникла проблема: корзина вместо 300px почему-то получается 340, а кнопка "Купить" вообще вылезает за границы корзины.\r
+\r
+### Задача\r
+\r
+- Поправьте стили, чтобы:\r
+  \r
+  - Корзина стала 300px, как просил дизайнер.\r
+  \r
+  - Кнопка не вылезала.\r
+\r
+- Объясните стажеру, в чем тут дело, чтобы он понял, почему размеры были кривые.`,template:`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Navbar</title>
+  <style>
+    .checkout-btn {
+      width: 100%;  /* Почему-то вылезает за границы контейнера */
+      padding: 15px;
+      border: 3px solid #4CAF50;
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .cart {
+      width: 300px;  /* Почему-то получается 340px */
+      background: lightblue;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+    * {
+      box-sizing: content-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart">
+    <h2>Ваш заказ</h2>
+    <div class="item">
+      <span>iPhone 15 Pro</span>
+      <span>89 990 ₽</span>
+    </div>
+    <div class="item">
+      <span>Чехол</span>
+      <span>2 490 ₽</span>
+    </div>
+    <button class="checkout-btn">Оформить заказ</button>
+  </div>
+</body>
+</html>`,solution:`* {
+  box-sizing: border-box;
+}`,templateLang:".html",solutionLang:".html",categories:["css","flexbox"],tags:["box-sizing","border-box","content-box","flex","flexbox","css"]},{id:"b9b87a27c5cb1ffe",name:"task-logo-and-menu_allbasics",path:"tasks\\css\\flexbox\\task-logo-and-menu_allbasics",title:"Адаптивное меню с логотипом",description:`Есть панель навигации, состоящая из двух элементов:\r
 \r
 - Логотип.\r
 \r
@@ -874,17 +933,17 @@ function debounce(fn, delayMs) {
       padding: 0;
       box-sizing: border-box;
     }
-    
-    nav {
-      padding: 1rem;
-      background-color: pink;
-      padding: 1rem;
-    }
-    
+
     .logo {
       font-weight: bold;
       font-size: 1.5rem;
       background-color: yellow;
+    }
+
+    nav {
+      padding: 1rem;
+      background-color: pink;
+      padding: 1rem;
     }
     
     .menu {
@@ -922,6 +981,7 @@ function debounce(fn, delayMs) {
   .menu {
     list-style: none;
     background-color: lightgreen;
+    align-items: center;
     display: flex;
     gap: 1rem;
   }
@@ -944,7 +1004,7 @@ function debounce(fn, delayMs) {
     } 
   }
 </style>
-`,templateLang:".html",solutionLang:".html",categories:["css","flexbox"],tags:["flex","flexbox","css"]},{id:"eeea57d836f312f2",name:"task-news-feed_grow_shrink_basis",path:"tasks\\css\\flexbox\\task-news-feed_grow_shrink_basis",title:"Новостная лента",description:`Есть лента новостей, где каждая новость состоит из трех элементов:\r
+`,templateLang:".html",solutionLang:".html",categories:["css","flexbox"],tags:["flex-basis","justify-content","align-items","gap","flex-wrap","display:flex","flex","flexbox","css"]},{id:"eeea57d836f312f2",name:"task-news-feed_grow_shrink_basis",path:"tasks\\css\\flexbox\\task-news-feed_grow_shrink_basis",title:"Новостная лента",description:`Есть лента новостей, где каждая новость состоит из трех элементов:\r
 \r
 - Заголовок новости.\r
 \r
@@ -1529,7 +1589,91 @@ if (!promos.has(myCode))
 
 promos.delete('NEWYEAR30');
 promos.forEach(promo => console.log(promo));
-console.log(\`Промокоды на завтра (всего \${promos.size}): \${[...promos].join(', ')}\`);`,templateLang:"",solutionLang:".ts",categories:["javascript","set"],tags:["синтаксис","легко","set","javascript"]},{id:"0baac5a5952f2398",name:"task-rifleman-creed-cleansing_trim_trimStart_trimEnd",path:"tasks\\javascript\\strings\\task-rifleman-creed-cleansing_trim_trimStart_trimEnd",title:"Кредо стрелка",description:`Дан текст:\r
+console.log(\`Промокоды на завтра (всего \${promos.size}): \${[...promos].join(', ')}\`);`,templateLang:"",solutionLang:".ts",categories:["javascript","set"],tags:["синтаксис","легко","set","javascript"]},{id:"6f3bacc2ec7afff1",name:"task-city-phone-codes_slice",path:"tasks\\javascript\\strings\\task-city-phone-codes_slice",title:"Московские номера телефонов",description:`У вас есть российские телефонные номера в формате \`8 (XXX) YYY-YY-YY\`, где:\r
+\r
+* \`8\` — код страны,\r
+\r
+* \`(XXX)\` — код города (3 цифры),\r
+\r
+* \`YYY-YY-YY\` — локальный номер.\r
+\r
+### Задача\r
+\r
+- Напишите функцию **\`getCityCode(phone)\`**, которая возвращает код города (цифры внутри скобок).\r
+\r
+- Используя эту функцию, выберите московские номера (коды - 495 и 499) в массив.`,template:`const phones = [
+  "8 (495) 123-45-67", // Москва (495)
+  "8 (812) 987-65-43", // Санкт-Петербург
+  "8 (800) 111-22-33", // Бесплатный
+  "8 (343) 555-12-34", // Екатеринбург
+  "8 (381) 777-88-99", // Омск
+  "8 (495) 999-00-11", // Москва (495)
+  "8 (383) 444-55-66", // Новосибирск
+  "8 (862) 333-44-55", // Краснодар
+  "8 (499) 123-00-99", // Москва (499)
+  "8 (846) 999-00-11", // Самара
+];
+
+function getCityCode(phone) {
+  // Ваша реализация
+}
+
+const moscow = // Ваша реализация
+
+moscow.forEach(phone => console.log(phone));`,solution:`function getCityCode(phone) {
+  return phone.slice(3, 6);
+}
+
+const moscow = phones.filter(phone => ['495', '499'].includes(getCityCode(phone)));
+
+moscow.forEach(phone => console.log(phone));`,templateLang:".ts",solutionLang:".ts",categories:["javascript","strings"],tags:["slice","строки","string","методы строк","javascript"]},{id:"ecf39ada3cf83f8e",name:"task-fake-gmail-domains_includes",path:"tasks\\javascript\\strings\\task-fake-gmail-domains_includes",title:"Email'ы, мимикрирующие под gmail",description:`Политика вашей организации такова, что зарегистрироваться в программе можно только с сервиса gmail. В последнее время участились случаи регистраций с ящиков, не являющихся настоящим gmail, например, \`sonya@gmail.kl\`\r
+\r
+Администратор попросил вас написать программу, которая бы показала ему все фейковые gmail-ы, он бы хотел их посмотреть.\r
+\r
+### Задача\r
+\r
+- Реализуйте функцию isFakeGmail, которая определяет фейковый gmail.\r
+\r
+- Используя эту функцию, подготовьте администратору массив фейков, которые пытались зарегистрироваться.\r
+\r
+- Реализуйте функцию isAllowedEmail, которая позволяет регистироваться не только с валидного gmail, но и с любого ящика, который начинается с \`dev.\` и при этом не является фейковым gmail.`,template:`const emails = [
+  "alexander@yandex.ru",
+  "maria@gmail.tu",  // <- fake gmail
+  "maxim@mail.ru",
+  "anna@outlook.com",
+  "dmitry@gmail.nl",  // <- fake gmail
+  "ekaterina@yahoo.com",
+  "ivan@protonmail.com",
+  "olga@gmail.com",  // <- true gmail
+  "dev.sergey@icloud.com",
+  "natalia@rambler.ru"
+];
+
+function isFakeGmail(email) {
+  // Ваше решние
+}
+
+function isAllowedEmail(email) {
+  // Ваше решние
+}
+
+const fakes = // Ваше решние
+console.log('Фейковые gmail:');
+fakes.forEach(fake => console.log(fake));
+
+const allowed = // Ваше решние
+console.log('Разрешена регистрация:');
+allowed.forEach(x => console.log(x));`,solution:`function isFakeGmail(email) {
+  return email.includes('@gmail') && !email.endsWith('@gmail.com');
+}
+
+function isAllowedEmail(email) {
+  return (email.endsWith('@gmail.com') || email.startsWith('dev.')) && !isFakeGmail(email);
+}
+
+const fakes = emails.filter(isFakeGmail);
+
+const allowed = emails.filter(isAllowedEmail);`,templateLang:".ts",solutionLang:".ts",categories:["javascript","strings"],tags:["includes","endsWith","строки","string","методы строк","javascript"]},{id:"0baac5a5952f2398",name:"task-rifleman-creed-cleansing_trim_trimStart_trimEnd",path:"tasks\\javascript\\strings\\task-rifleman-creed-cleansing_trim_trimStart_trimEnd",title:"Кредо стрелка",description:`Дан текст:\r
 \r
 \`\`\`javascript\r
 '   This is my rifle, this is my gun. This is for fighting, this is for fun.   '\r
