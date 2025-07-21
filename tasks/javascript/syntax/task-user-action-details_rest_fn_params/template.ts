@@ -3,3 +3,5 @@ function createUserAction(action) {
 }
 
 const action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left');
+
+console.log(action);

@@ -11,15 +11,17 @@ const orderStatuses = [
   "pending"      // 9
 ];
 
-function printStatuses(statuses, from, to) {
+function printStatuses(statuses, from = 0, to = statuses.length) {
   console.log(`Статусы заказов в ячейках с ${from} по ${to}:`);
   for (let i = from; i <= to; i++) {
     console.log(`Ячейка [${i}]: ${statuses[i]}`);
   }
 }
 
-printStatuses(orderStatuses, 2, 6);
-
-// Измените статусы
+// Измените статусы 2 - 6 на pending
 
 printStatuses(orderStatuses, 2, 6);
+
+// Измените все статусы на 'delivered'
+
+printStatuses(orderStatuses);

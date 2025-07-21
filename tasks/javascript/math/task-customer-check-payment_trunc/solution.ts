@@ -1,5 +1,3 @@
-function totalPrice(cart) {
-  return cart.reduce((total, product) => total += Math.trunc(product.price * product.quantity), 0);
-}
+const price = cart.reduce((total, { price, quantity }) => total + Math.trunc(price*quantity), 0);
 
-console.log(`К оплате: ${totalPrice(cart)} руб.`);
+console.log(`К оплате: ${price}} руб.`);

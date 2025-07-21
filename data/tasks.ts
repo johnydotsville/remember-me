@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-15T15:04:05.690Z)
+// Auto-generated file (2025-07-21T08:13:46.343Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -34,6 +34,12 @@ export const rootcat: Category =
         {
           name: 'flexbox',
           title: 'Flex',
+          hidden: false,
+          subcategories: []
+        },
+        {
+          name: 'position',
+          title: 'Позиционирование',
           hidden: false,
           subcategories: []
         }
@@ -263,14 +269,17 @@ function reportEndDayWithTemp(days, temps, temp = 0) {
     name: "task-create-via-static-from_arrays_from",
     path: "tasks\\arrays\\task-create-via-static-from_arrays_from",
     title: "Создание массива",
-    description: "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов с объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.\r\n* Нельзя использовать return.",
+    description: "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов с объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n  \r\n* Создайте массив из 10 элементов без значений и выведите в консоль его размер.\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.\r\n* Нельзя использовать return.",
     template: ``,
     solution: `const foo = Array.from({ length: 10 }, (cur, ind) => \`Элемент \${ind+1}\`);
 
 const bar = Array.from({ length: 10 }, (cur, ind) => ({
   id: ind,
   value: \`Элемент \${ind + 1}\`
-}));`,
+}));
+
+const arr = Array(10);
+console.log(arr.length);`,
     templateLang: `.ts`,
     solutionLang: `.ts`,
     categories: ['arrays'],
@@ -415,7 +424,7 @@ console.log(partiallyWarm?.month ?? 'Не было ни одного хотя б
     name: "task-reset-orders-status_arrays_fill",
     path: "tasks\\arrays\\task-reset-orders-status_arrays_fill",
     title: "Сброс забагованных статусов заказов",
-    description: "У вас есть массив со статусами заказов:\r\n\r\n```javascript\r\nconst orderStatuses = [\r\n  \"delivered\",   // 0\r\n  \"shipped\",     // 1\r\n  \"processing\",  // 2 (сбойный)\r\n  \"processing\",  // 3 (сбойный)\r\n  \"processing\",  // 4 (сбойный)\r\n  \"processing\",  // 5 (сбойный)\r\n  \"processing\",  // 6 (сбойный)\r\n  \"delivered\",   // 7\r\n  \"shipped\",     // 8\r\n  \"pending\"      // 9\r\n];\r\n```\r\n\r\nПо ошибке заказы со 2 до 6 ячейки получили статус 'processing', хотя должны быть 'pending'.\r\n\r\n### Задача\r\n\r\n* Измените сбойные статусы заказов на 'pending'.\r\n  * Изменения проводите прямо в исходном массиве.",
+    description: "У вас есть массив со статусами заказов:\r\n\r\n```javascript\r\nconst orderStatuses = [\r\n  \"delivered\",   // 0\r\n  \"shipped\",     // 1\r\n  \"processing\",  // 2 (сбойный)\r\n  \"processing\",  // 3 (сбойный)\r\n  \"processing\",  // 4 (сбойный)\r\n  \"processing\",  // 5 (сбойный)\r\n  \"processing\",  // 6 (сбойный)\r\n  \"delivered\",   // 7\r\n  \"shipped\",     // 8\r\n  \"pending\"      // 9\r\n];\r\n```\r\n\r\nПо ошибке заказы со 2 до 6 ячейки получили статус 'processing', хотя должны быть 'pending'.\r\n\r\n### Задача\r\n\r\n* Измените сбойные статусы заказов на 'pending'.\r\n  * Изменения проводите прямо в исходном массиве.\r\n* Поменяйте статус вообще всех заказов в массиве на 'delivered'.",
     template: `const orderStatuses = [
   "delivered",   // 0
   "shipped",     // 1
@@ -429,19 +438,25 @@ console.log(partiallyWarm?.month ?? 'Не было ни одного хотя б
   "pending"      // 9
 ];
 
-function printStatuses(statuses, from, to) {
+function printStatuses(statuses, from = 0, to = statuses.length) {
   console.log(\`Статусы заказов в ячейках с \${from} по \${to}:\`);
   for (let i = from; i <= to; i++) {
     console.log(\`Ячейка [\${i}]: \${statuses[i]}\`);
   }
 }
 
+// Измените статусы 2 - 6 на pending
+
 printStatuses(orderStatuses, 2, 6);
 
-// Измените статусы
+// Измените все статусы на 'delivered'
 
-printStatuses(orderStatuses, 2, 6);`,
-    solution: `orderStatuses.fill('pending', 2, 7);`,
+printStatuses(orderStatuses);`,
+    solution: `// 1
+orderStatuses.fill('pending', 2, 7);
+
+// 2
+orderStatuses.fill('delivered');`,
     templateLang: `.ts`,
     solutionLang: `.ts`,
     categories: ['arrays'],
@@ -621,68 +636,6 @@ function debounce(fn, delayMs) {
     tags: ['debounce', 'setTimeout', 'clearTimeout']
   },
   {
-    id: "d736c1e55e1cea29",
-    name: "task-cart-buy-button_box-sizing",
-    path: "tasks\\css\\flexbox\\task-cart-buy-button_box-sizing",
-    title: "Кнопка 'Купить' в корзине",
-    description: "Вашему стажеру дизайнер дал задание сверстать корзину с кнопкой \"Купить\". Но у него возникла проблема: корзина вместо 300px почему-то получается 340, а кнопка \"Купить\" вообще вылезает за границы корзины.\r\n\r\n### Задача\r\n\r\n- Поправьте стили, чтобы:\r\n  \r\n  - Корзина стала 300px, как просил дизайнер.\r\n  \r\n  - Кнопка не вылезала.\r\n\r\n- Объясните стажеру, в чем тут дело, чтобы он понял, почему размеры были кривые.",
-    template: `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flexbox Navbar</title>
-  <style>
-    .checkout-btn {
-      width: 100%;  /* Почему-то вылезает за границы контейнера */
-      padding: 15px;
-      border: 3px solid #4CAF50;
-      background: #4CAF50;
-      color: white;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-    .cart {
-      width: 300px;  /* Почему-то получается 340px */
-      background: lightblue;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-    }
-    .item {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-      display: flex;
-      justify-content: space-between;
-    }
-    * {
-      box-sizing: content-box;
-    }
-  </style>
-</head>
-<body>
-  <div class="cart">
-    <h2>Ваш заказ</h2>
-    <div class="item">
-      <span>iPhone 15 Pro</span>
-      <span>89 990 ₽</span>
-    </div>
-    <div class="item">
-      <span>Чехол</span>
-      <span>2 490 ₽</span>
-    </div>
-    <button class="checkout-btn">Оформить заказ</button>
-  </div>
-</body>
-</html>`,
-    solution: `* {
-  box-sizing: border-box;
-}`,
-    templateLang: `.html`,
-    solutionLang: `.html`,
-    categories: ['css', 'flexbox'],
-    tags: ['box-sizing', 'border-box', 'content-box', 'flex', 'flexbox', 'css']
-  },
-  {
     id: "b9b87a27c5cb1ffe",
     name: "task-logo-and-menu_allbasics",
     path: "tasks\\css\\flexbox\\task-logo-and-menu_allbasics",
@@ -737,8 +690,7 @@ function debounce(fn, delayMs) {
 </html>`,
     solution: `<style>
   nav {
-    padding: 1rem;
-    background-color: pink;
+    /* ... остальное */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -747,8 +699,7 @@ function debounce(fn, delayMs) {
   }
   
   .menu {
-    list-style: none;
-    background-color: lightgreen;
+    /* ... остальное */
     align-items: center;
     display: flex;
     gap: 1rem;
@@ -840,50 +791,391 @@ function debounce(fn, delayMs) {
 <style>
   /* 1. flex-grow — заголовок растягивается на всё свободное место */
   .title {
+    /* ... остальное */
     flex-grow: 1;  /* Занимает всю доступную ширину */
-    background: lightblue;
-    padding: 5px;
   }
 
   /* 2. flex-shrink — дата не сжимается даже при нехватке места */
   .date {
+    /* ... остальное */
     flex-shrink: 0;  /* Не сжимается никогда */
-    background: orange;
-    padding: 5px;
   }
 
   /* 3. flex-basis — теги имеют начальную ширину 220px */
   .tags {
+    /* ... остальное */
     flex-basis: 220px;  /* "Хочет" быть 220px, но может сжаться */
-    background: lightgreen;
-    text-align: center;
   }
 </style>
 
 // Решение 2
 <style>
   .title {
-    background: lightblue;
-    padding: 5px;
-    flex: 5;
+    /* ... остальное */
+    flex: 5;  /* Какая это комбинация базовых свойств? */
   }
 
   .date {
-    background: orange;
-    padding: 5px;
-    flex: none;
+    /* ... остальное */
+    flex: none;  /* Какая это комбинация базовых свойств? */
   }
 
   .tags {
-    background: lightgreen;
-    text-align: center;
-    flex: auto;
+    /* ... остальное */
+    flex: auto;  /* Какая это комбинация базовых свойств? */
   }
 </style>`,
     templateLang: `.html`,
     solutionLang: `.html`,
     categories: ['css', 'flexbox'],
     tags: ['flex-grow', 'flex-shrink', 'flex-basis', 'flex', 'flexbox', 'css']
+  },
+  {
+    id: "079109653469c3e7",
+    name: "task-chat-button_position-fixed",
+    path: "tasks\\css\\position\\task-chat-button_position-fixed",
+    title: "Кнопка чата поддержки",
+    description: "В вашей компании запустили сервис чата с поддержкой для посетителей. Вашему стажеру дали задание сверстать кнопку и разместить ее так, чтобы она всегда была в правом верхнем углу на расстоянии 20px от краев. Стажер сверстал кнопку, но разместить ее в нужном месте у него не получилось.\r\n\r\n### Задача\r\n\r\n- Поправьте стили, чтобы кнопка оказалась на нужном месте.\r\n  ",
+    template: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat button</title>
+  <style>
+    .chat-button {
+      background: #F2F2F2;
+      color: white;
+      padding: 10px;
+      border: 1px solid #A0A0A0;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-button">💬</div>
+</body>
+</html>`,
+    solution: `<style>
+  .chat-button {
+    /* ... остальное */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+</style>`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css', 'position'],
+    tags: ['position:fixed', 'position', 'позиционирование', 'css']
+  },
+  {
+    id: "f6ef5c39cc7c46a0",
+    name: "task-macbook-air-price-report_position-sticky",
+    path: "tasks\\css\\position\\task-macbook-air-price-report_position-sticky",
+    title: "Анализ динамики цен на Macbook Air M3",
+    description: "Из отдела маркетинга поступила задача проанализировать динамику цен на ноутбук Apple Macbook Air M3. Программисты сделали скрипт, а оформление отчета поручили вашему стажеру. Он в целом хорошо справился с работой и сделал основные стили.\r\n\r\nНо маркетологам не понравилось, что при прокрутке страницы заголовки столбцов исчезают. Стажер не смог сделать эту задачу и попросил у вас помощи.\r\n\r\n### Задача\r\n\r\n- Допишите стили, чтобы заголовки столбцов таблицы при прокрутке оставались наверху экрана.\r\n  - И цвет заголовкам поставьте например lightgray.\r\n- UPD. Маркетологам понравилась высокая детализация цен, но они жалуются, что для того чтобы прочитать выводы, нужно долго листать страницу, пока вся таблица не закончится. У одного даже сломалось колесиок мышки.\r\n  - Перепишите стили, чтобы таблица была высотой 400px и листалась внутри. Заголовки столбцов все еще должно быть видно.\r\n  - UPD. Дизайнер заметил, что при скролле наверху таблицы появляется щель в 1px, через которую видно контент таблицы при скролле. Нужно исправить, чтобы ее не было видно.\r\n- Объясните стажеру решения обеих задач, чтобы он впоследствии мог делать подобное самостоятельно.",
+    template: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отчет с прокручиваемой таблицей</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .table-container {
+      border: 1px solid #ddd;
+      margin: 20px 0;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    
+    .positive {
+      color: green;
+    }
+    
+    .negative {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="report-section">
+    <h1>Аналитический отчет по рынку ноутбуков 2024</h1>
+    <p>В первом квартале 2024 года наблюдались значительные колебания цен на технику Apple. Ниже представлен детальный анализ динамики цен на модель MacBook Air M3, который демонстрирует реакцию рынка на ключевые события.</p>
+  </div>
+  
+  <div class="table-container">
+    <table id="priceTable">
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Цена (USD)</th>
+          <th>Динамика</th>
+          <th>Комментарий</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Данные будут добавлены через JS -->
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="report-section">
+  <h2>Выводы и рекомендации</h2>
+  <p>Анализ динамики цен на MacBook Air M3 в 2024 году выявил несколько любопытных закономерностей, которые могут быть полезны как розничным покупателям, так и оптовым закупщикам. В течение года наблюдались выраженные сезонные колебания, обусловленные как маркетинговой политикой Apple, так и общими рыночными тенденциями в сегменте премиальных ноутбуков.</p>
+  <p>Наиболее значительное падение цен, как и ожидалось, пришлось на период "Черной пятницы" - в последнюю неделю ноября скидки достигали 15% от стандартной розничной цены. Однако менее очевидным оказался февральский ценовой провал, когда после анонса новых моделей MacBook Pro рынок отреагировал снижением цен на Air-линейку в среднем на 8%. Этот период может считаться одним из наиболее выгодных для покупки, особенно учитывая, что весенний ценовой отскок составил около 6% уже к середине марта.</p>
+  <p>Третий квартал продемонстрировал относительную стабильность ценовой политики, однако начало учебного сезона в августе-сентябре вызвало кратковременный, но заметный рост спроса, что привело к повышению среднерыночной цены примерно на 4-5% относительно летних значений. Любопытно, что после официального старта учебного года в большинстве регионов цены достаточно быстро вернулись к докризисным значениям, что свидетельствует о хорошо просчитанной маркетинговой стратегии Apple.</p>
+  <p>Для розничных покупателей можно рекомендовать два оптимальных периода для приобретения MacBook Air M3: последняя неделя января - первая половина февраля (после новогоднего спроса и перед весенним оживлением рынка) и последняя декада октября - третья неделя ноября (предпраздничные скидки перед Black Friday). Для корпоративных закупщиков и реселлеров особый интерес может представлять период середины мая, когда после традиционного весеннего спада спроса некоторые дистрибьюторы начинают предлагать дополнительные скрытые скидки для очистки складов перед летним сезоном.</p>
+  <p>Отдельного внимания заслуживает ценовая динамика в период летних месяцев. Несмотря на отсутствие официальных скидок со стороны Apple, многие авторизованные реселлеры в июне-июле начинают предлагать дополнительные бонусы (бесплатные аксессуары, расширенную гарантию), что фактически снижает конечную стоимость пакета. Этот фактор не всегда очевиден при анализе чистых ценовых графиков, но может существенно повлиять на итоговую выгоду покупателя.</p>
+</div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tableBody = document.getElementById('tableBody');
+      const startDate = new Date('2024-01-01');
+      const endDate = new Date('2024-12-31');
+      let currentDate = new Date(startDate);
+      
+      let currentPrice = 1099;
+      let previousPrice = currentPrice;
+      const events = {
+        '2024-01-15': 'Анонс новых моделей',
+        '2024-05-18': 'День рождения Apple',
+        '2024-06-10': 'WWDC 2024',
+        '2024-09-10': 'Презентация iPhone 16',
+        '2024-11-25': 'Черная пятница'
+      };
+      
+      while (currentDate <= endDate) {
+        const dateStr = currentDate.toISOString().split('T')[0];
+        let comment = '';
+        
+        if (Math.random() > 0.85 || currentDate.getDate() === 1 || events[dateStr]) {
+          const changePercent = (Math.random() * 6 - 3);
+          const changeAmount = Math.round(currentPrice * changePercent / 100);
+          currentPrice = Math.max(800, currentPrice + changeAmount);
+          
+          if (events[dateStr]) {
+            comment = events[dateStr];
+            if (dateStr === '2024-11-25') {
+              currentPrice = Math.max(800, currentPrice - 150);
+            } else if (dateStr === '2024-05-18') {
+              currentPrice = Math.max(800, currentPrice - 50);
+            }
+          }
+        }
+        
+        const change = currentPrice - previousPrice;
+        let changeStr = '';
+        let changeClass = '';
+        
+        if (change > 0) {
+          changeStr = \`+\${change}\`;
+          changeClass = 'positive';
+        } else if (change < 0) {
+          changeStr = \`\${change}\`;
+          changeClass = 'negative';
+        } else {
+          changeStr = '0';
+        }
+        
+        const row = document.createElement('tr');
+        row.innerHTML = \`
+          <td>\${dateStr}</td>
+          <td>$\${currentPrice}</td>
+          <td class="\${changeClass}">\${changeStr}</td>
+          <td>\${comment}</td>
+        \`;
+        
+        tableBody.appendChild(row);
+        previousPrice = currentPrice;
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    });
+  </script>
+</body>
+</html>`,
+    solution: `// Решение 1: "полноэкранная" таблица
+<style>
+  th {
+    background-color: lightgray;
+    position: sticky;
+    top: 0;
+  }
+</style>
+
+
+// Решение 2: Таблица 400px
+<style>
+  .table-container {
+    /* ... остальное */
+    height: 400px;
+    overflow-y: scroll;
+  }
+</style>
+
+
+// Решение 3: Устранение щели
+<style>
+  th {
+    top: -1px;  /* Чуть смещаем заголовки, чтобы перекрыть щель */
+  }
+</style>`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css', 'position'],
+    tags: ['position:sticky', 'position', 'позиционирование', 'css']
+  },
+  {
+    id: "77bc2d27bb20e6ef",
+    name: "task-new-product-bage_position-relative-absolute",
+    path: "tasks\\css\\position\\task-new-product-bage_position-relative-absolute",
+    title: "Значок 'Новый товар'",
+    description: "Ваш интернет-магазин расширил ассортимент товаров. Чтобы обратить внимание покупателей на новые товары, дизайнер придумал добавить ярко-красный значок к карточке товара и дал это задание вашему стажеру. Стажер сделал основную верстку, но у него не получилось разместить значок так, как просил дизайнер.\r\n\r\n### Задача\r\n\r\n- Поправьте стили, чтобы:\r\n  \r\n  - Значок оказался на правой границе карточки, по центру по обоим осям.\r\n  \r\n- Объясните стажеру как работает ваше решение.",
+    template: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новые товары</title>
+  <style>
+    .product {
+      width: 200px;
+      border: 1px solid #636363;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+    }
+    
+    .badge {
+      background: #ff3b30;
+      padding: 5px;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="product">
+    <span class="badge">New!</span>
+    <h3>Кроссовки</h3>
+    <p>Цена: 5 000 ₽</p>
+  </div>
+</body>
+</html>`,
+    solution: `<style>
+  .product {
+    /* ... остальное */
+    position: relative;  /* Что означает это значение? */
+  }
+  
+  .badge {
+    /* ... остальное */
+    position: absolute;  /* Как это помогает позиционированию? */
+    top: 50%;  /* От чего берется 50% ? */
+    transform: translateY(-50%);  /* От чего здесь берется 50% ? */
+    right: -22px;  /* Почему здесь 22? */
+  }
+</style>`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css', 'position'],
+    tags: ['position:relative', 'position:absolute', 'position', 'позиционирование', 'css']
+  },
+  {
+    id: "4f7f75dce74636b3",
+    name: "task-cart-buy-button_box-sizing",
+    path: "tasks\\css\\task-cart-buy-button_box-sizing",
+    title: "Кнопка 'Купить' в корзине",
+    description: "Вашему стажеру дизайнер дал задание сверстать корзину с кнопкой \"Купить\". Но у него возникла проблема: корзина вместо 300px почему-то получается 340, а кнопка \"Купить\" вообще вылезает за границы корзины.\r\n\r\n### Задача\r\n\r\n- Поправьте стили, чтобы:\r\n  \r\n  - Корзина стала 300px, как просил дизайнер.\r\n  \r\n  - Кнопка не вылезала.\r\n\r\n- Объясните стажеру, в чем тут дело, чтобы он понял, почему размеры были кривые.",
+    template: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Navbar</title>
+  <style>
+    .checkout-btn {
+      width: 100%;  /* Почему-то вылезает за границы контейнера */
+      padding: 15px;
+      border: 3px solid #4CAF50;
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .cart {
+      width: 300px;  /* Почему-то получается 340px */
+      background: lightblue;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+    * {
+      box-sizing: content-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="cart">
+    <h2>Ваш заказ</h2>
+    <div class="item">
+      <span>iPhone 15 Pro</span>
+      <span>89 990 ₽</span>
+    </div>
+    <div class="item">
+      <span>Чехол</span>
+      <span>2 490 ₽</span>
+    </div>
+    <button class="checkout-btn">Оформить заказ</button>
+  </div>
+</body>
+</html>`,
+    solution: `* {
+  box-sizing: border-box;
+}`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css'],
+    tags: ['box-sizing', 'border-box', 'content-box', 'css']
   },
   {
     id: "b9bd1b052198a96c",
@@ -1086,11 +1378,9 @@ console.log(\`Всего авторизовались \${stat.size} разных
     title: "Стоимость покупки в пользу покупателя",
     description: "У вас есть массив с продуктами, приобретенными покупателем в магазине:\r\n\r\n```javascript\r\nconst cart = [\r\n  { name: \"Молоко 1л\", price: 89.90, quantity: 2 },       // 2 упаковки\r\n  { name: \"Хлеб ржаной\", price: 45.30, quantity: 1 },     // 1 буханка\r\n  { name: \"Яйца (1уп)\", price: 129.99, quantity: 1 },     // 1 упаковка\r\n  { name: \"Яблоки (1кг)\", price: 85.15, quantity: 1.5 },  // 1.5 кг (весовой товар)\r\n  { name: \"Сыр (100г)\", price: 69.50, quantity: 3 }       // 3 упаковки\r\n];\r\n// 688р.\r\n```\r\n\r\nВ магазине действует правило округления цены в пользу покупателя - копейки отбрасываются. Т.е. если цена товара 75.99, то покупатель платит 75 руб. Округление происходит для каждого товара после умножения на количество приобретенных единиц товара.\r\n\r\nЗадача:\r\n\r\n* Посчитайте стоимость покупки с учетом действующего в магазине правила.",
     template: ``,
-    solution: `function totalPrice(cart) {
-  return cart.reduce((total, product) => total += Math.trunc(product.price * product.quantity), 0);
-}
+    solution: `const price = cart.reduce((total, { price, quantity }) => total + Math.trunc(price*quantity), 0);
 
-console.log(\`К оплате: \${totalPrice(cart)} руб.\`);`,
+console.log(\`К оплате: \${price}} руб.\`);`,
     templateLang: ``,
     solutionLang: `.ts`,
     categories: ['javascript', 'math'],
@@ -1115,12 +1405,15 @@ console.log(pages);`,
     name: "task-generate-random-numbers",
     path: "tasks\\javascript\\math\\task-generate-random-numbers",
     title: "Генератор случайных чисел",
-    description: "Задача:\r\n\r\n* Сгенерируйте случайное число от 0 до 100 (включительно).\r\n* Сгенерируйте случайное число от 30 до 100 (включительно).",
+    description: "Задача:\r\n\r\n* Сгенерируйте случайное число:\r\n  * от 0 до 100 (включительно).\r\n  * от 30 до 100 (включительно).\r\n  * от -20 до 50.",
     template: ``,
     solution: `// [0 - 100]
 const num = Math.floor(Math.random() * 101);
 
 // [30 - 100]
+const num = Math.floor(Math.random() * 71) + 30;
+
+// [-20 - 50]
 const num = Math.floor(Math.random() * 71) + 30;`,
     templateLang: ``,
     solutionLang: `.ts`,
@@ -1293,15 +1586,15 @@ console.log(\`Промокоды на завтра (всего \${promos.size}):
     title: "Московские номера телефонов",
     description: "У вас есть российские телефонные номера в формате `8 (XXX) YYY-YY-YY`, где:\r\n\r\n* `8` — код страны,\r\n\r\n* `(XXX)` — код города (3 цифры),\r\n\r\n* `YYY-YY-YY` — локальный номер.\r\n\r\n### Задача\r\n\r\n- Напишите функцию **`getCityCode(phone)`**, которая возвращает код города (цифры внутри скобок).\r\n\r\n- Используя эту функцию, выберите московские номера (коды - 495 и 499) в массив.",
     template: `const phones = [
-  "8 (495) 123-45-67", // Москва (495)
+  "8 (495) 123-45-67", // <-- Москва (495)
   "8 (812) 987-65-43", // Санкт-Петербург
   "8 (800) 111-22-33", // Бесплатный
   "8 (343) 555-12-34", // Екатеринбург
   "8 (381) 777-88-99", // Омск
-  "8 (495) 999-00-11", // Москва (495)
+  "8 (495) 999-00-11", // <-- Москва (495)
   "8 (383) 444-55-66", // Новосибирск
   "8 (862) 333-44-55", // Краснодар
-  "8 (499) 123-00-99", // Москва (499)
+  "8 (499) 123-00-99", // <-- Москва (499)
   "8 (846) 999-00-11", // Самара
 ];
 
@@ -1338,8 +1631,9 @@ moscow.forEach(phone => console.log(phone));`,
   "dmitry@gmail.nl",  // <- fake gmail
   "ekaterina@yahoo.com",
   "ivan@protonmail.com",
-  "olga@gmail.com",  // <- true gmail
-  "dev.sergey@icloud.com",
+  "olga@gmail.com",  // <- true gmail, можно
+  "dev.sergey@icloud.com",  // <-- можно
+  "dev.sonya@gmail.kl",  // <-- нельзя
   "natalia@rambler.ru"
 ];
 
@@ -1353,17 +1647,17 @@ function isAllowedEmail(email) {
 
 const fakes = // Ваше решние
 console.log('Фейковые gmail:');
-fakes.forEach(fake => console.log(fake));
+fakes.forEach(fake => console.log(fake));  // Мария, Дмитрий, Соня
 
 const allowed = // Ваше решние
-console.log('Разрешена регистрация:');
+console.log('Разрешена регистрация:');  // Ольга, Сергей
 allowed.forEach(x => console.log(x));`,
     solution: `function isFakeGmail(email) {
   return email.includes('@gmail') && !email.endsWith('@gmail.com');
 }
 
 function isAllowedEmail(email) {
-  return (email.endsWith('@gmail.com') || email.startsWith('dev.')) && !isFakeGmail(email);
+  return email.endsWith('@gmail.com') || email.startsWith('dev.') && !isFakeGmail(email);
 }
 
 const fakes = emails.filter(isFakeGmail);
@@ -1411,7 +1705,12 @@ function getFullDayName(shortCode) {
   // Ваше решение
 }
 
-console.log(getFullDayName('Пт'));`,
+try {
+  console.log(getFullDayName('Пн'));
+  console.log(getFullDayName('Хз'));
+} catch (error) {
+  console.log(error.message);
+}`,
     solution: `// Решение через switch
 function getFullDayName(shortCode) {
   let dayName;
@@ -1471,7 +1770,7 @@ console.log(getFullDayName('Пт'));`,
     name: "task-employees-messed-info_rest_array_items",
     path: "tasks\\javascript\\syntax\\task-employees-messed-info_rest_array_items",
     title: "Перепутанная информация о сотрудниках",
-    description: "У вас есть массив с информацией о сотрудниках:\r\n\r\n```javascript\r\nconst employees = [\r\n  ['EMP-001', 'David', 'Jones', 'Senior Developer', 'internal:1234', 'david.j@company.com', 'home:NYC', 'skype:david-jones'],\r\n  ['BADGE-002', 'Sarah', 'Smith', 'Content Manager', 'sarah.s@company.com', 'remote', 'internal:5678', 'home:Boston'],\r\n  ['ID-789', 'Michael', 'Brown', 'HR Lead', 'full-time', 'michael.b@company.com', 'home:Chicago', 'internal:9012', '5 years exp'],\r\n  ['CARD-XYZ', 'Emily', 'Davis', 'Junior Dev', 'intern', 'emily.d@company.com', 'internal:3456'],\r\n  ['PASS-123', 'James', 'Wilson', 'Accountant', 'james.w@company.com', 'part-time', 'cpa', 'home:Seattle', 'internal:7890'],\r\n  ['TOKEN-456', 'Lisa', 'Taylor', 'Team Lead', '24/7', 'lisa.t@company.com', 'internal:1234', 'emergency:555-1234']\r\n];\r\n```\r\n\r\nПроблема в том, что только первые четыре поля имеют четкую структуру: модель доступа, имя, фамилия, должность. Остальная информация перепуталась и данные потеряли порядок.\r\n\r\n### Задача\r\n\r\n* Напишите реализацию функции, чтобы каждый элемент стал объектом с полями firstname, lastname, position, details.\r\n\r\n* Модель доступа пропустите - она не нужна.\r\n\r\n* В details соберите всю перепутанную информацию о сотруднике - ее разберут позже.\r\n\r\nДолжно получиться вот так:\r\n\r\n```javascript\r\n{\r\n  \"firstname\": \"James\",\r\n  \"lastname\": \"Wilson\",\r\n  \"department\": \"Accountant\",\r\n  \"details\": [\r\n    \"james.w@company.com\",\r\n    \"part-time\",\r\n    \"cpa\",\r\n    \"home:Seattle\",\r\n    \"internal:7890\"\r\n  ]\r\n} \r\n```",
+    description: "У вас есть массив с информацией о сотрудниках:\r\n\r\n```javascript\r\nconst employees = [\r\n  ['EMP-001', 'David', 'Jones', 'Senior Developer', 'internal:1234', 'david.j@company.com', 'home:NYC', 'skype:david-jones'],\r\n  ['BADGE-002', 'Sarah', 'Smith', 'Content Manager', 'sarah.s@company.com', 'remote', 'internal:5678', 'home:Boston'],\r\n  ['ID-789', 'Michael', 'Brown', 'HR Lead', 'full-time', 'michael.b@company.com', 'home:Chicago', 'internal:9012', '5 years exp'],\r\n  ['CARD-XYZ', 'Emily', 'Davis', 'Junior Dev', 'intern', 'emily.d@company.com', 'internal:3456'],\r\n  ['PASS-123', 'James', 'Wilson', 'Accountant', 'james.w@company.com', 'part-time', 'cpa', 'home:Seattle', 'internal:7890'],\r\n  ['TOKEN-456', 'Lisa', 'Taylor', 'Team Lead', '24/7', 'lisa.t@company.com', 'internal:1234', 'emergency:555-1234']\r\n];\r\n```\r\n\r\nПроблема в том, что только первые четыре поля имеют четкую структуру: модель доступа, имя, фамилия, должность. Остальная информация перепуталась и данные потеряли порядок.\r\n\r\n### Задача\r\n\r\n* Напишите реализацию функции, чтобы каждый элемент стал объектом с полями firstname, lastname, position, details.\r\n\r\n* Модель доступа пропустите - она не нужна.\r\n\r\n* В details соберите всю перепутанную информацию о сотруднике - ее разберут позже.\r\n\r\nДолжно получиться вот так:\r\n\r\n```javascript\r\n{\r\n  \"firstname\": \"James\",\r\n  \"lastname\": \"Wilson\",\r\n  \"position\": \"Accountant\",\r\n  \"details\": [\r\n    \"james.w@company.com\",s\r\n    \"part-time\",\r\n    \"cpa\",\r\n    \"home:Seattle\",\r\n    \"internal:7890\"\r\n  ]\r\n} \r\n```",
     template: `const employees = [
   ['EMP-001', 'David', 'Jones', 'Senior Developer', 'internal:1234', 'david.j@company.com', 'home:NYC', 'skype:david-jones'],
   ['BADGE-002', 'Sarah', 'Smith', 'Content Manager', 'sarah.s@company.com', 'remote', 'internal:5678', 'home:Boston'],
@@ -1621,7 +1920,9 @@ console.log(getSubstitute(michaelBrown));`,
   // Ваше решение
 }
 
-const action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left');`,
+const action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left');
+
+console.log(action);`,
     solution: `function createUserAction(action, ...details) {
   console.log(\`Количество деталей: \${details.length}\`);
   details.forEach(detail => console.log(detail));

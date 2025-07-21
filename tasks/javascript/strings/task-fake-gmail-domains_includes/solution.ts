@@ -3,7 +3,7 @@ function isFakeGmail(email) {
 }
 
 function isAllowedEmail(email) {
-  return (email.endsWith('@gmail.com') || email.startsWith('dev.')) && !isFakeGmail(email);
+  return email.endsWith('@gmail.com') || email.startsWith('dev.') && !isFakeGmail(email);
 }
 
 const fakes = emails.filter(isFakeGmail);

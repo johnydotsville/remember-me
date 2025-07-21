@@ -6,8 +6,9 @@ const emails = [
   "dmitry@gmail.nl",  // <- fake gmail
   "ekaterina@yahoo.com",
   "ivan@protonmail.com",
-  "olga@gmail.com",  // <- true gmail
-  "dev.sergey@icloud.com",
+  "olga@gmail.com",  // <- true gmail, можно
+  "dev.sergey@icloud.com",  // <-- можно
+  "dev.sonya@gmail.kl",  // <-- нельзя
   "natalia@rambler.ru"
 ];
 
@@ -21,8 +22,8 @@ function isAllowedEmail(email) {
 
 const fakes = // Ваше решние
 console.log('Фейковые gmail:');
-fakes.forEach(fake => console.log(fake));
+fakes.forEach(fake => console.log(fake));  // Мария, Дмитрий, Соня
 
 const allowed = // Ваше решние
-console.log('Разрешена регистрация:');
+console.log('Разрешена регистрация:');  // Ольга, Сергей
 allowed.forEach(x => console.log(x));

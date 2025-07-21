@@ -8,4 +8,9 @@ function getFullDayName(shortCode) {
   // Ваше решение
 }
 
-console.log(getFullDayName('Пт'));
+try {
+  console.log(getFullDayName('Пн'));
+  console.log(getFullDayName('Хз'));
+} catch (error) {
+  console.log(error.message);
+}

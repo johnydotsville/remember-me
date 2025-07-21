@@ -1,0 +1,26 @@
+// Решение 1: "полноэкранная" таблица
+<style>
+  th {
+    background-color: lightgray;
+    position: sticky;
+    top: 0;
+  }
+</style>
+
+
+// Решение 2: Таблица 400px
+<style>
+  .table-container {
+    /* ... остальное */
+    height: 400px;
+    overflow-y: scroll;
+  }
+</style>
+
+
+// Решение 3: Устранение щели
+<style>
+  th {
+    top: -1px;  /* Чуть смещаем заголовки, чтобы перекрыть щель */
+  }
+</style>

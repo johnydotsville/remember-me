@@ -27,9 +27,9 @@ const employees = [
 {
   "firstname": "James",
   "lastname": "Wilson",
-  "department": "Accountant",
+  "position": "Accountant",
   "details": [
-    "james.w@company.com",
+    "james.w@company.com",s
     "part-time",
     "cpa",
     "home:Seattle",
