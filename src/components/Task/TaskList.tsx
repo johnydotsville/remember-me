@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TaskModal } from "./TaskModal";
 
 
-export const TaskList = ({ tasks, doneTasks }) => {
+export const TaskList = ({ tasks }) => {
   const [selectedTask, setSelectedTask] = useState(null);
 
   return (
@@ -13,13 +13,13 @@ export const TaskList = ({ tasks, doneTasks }) => {
         { 
           tasks.map(task => 
             <Box key={task.id} onClick={() => setSelectedTask(task)}>
-              <TaskView task={task} done={doneTasks.includes(task.id)} />
+              <TaskView task={task} />
             </Box>
           ) 
         }
       </Stack>
       {
-        selectedTask && <TaskModal task={selectedTask} open={!!selectedTask} 
+        selectedTask && <TaskModal task={selectedTask} isOpen={!!selectedTask} 
           onClose={() => setSelectedTask(null)} />
       }
     </>

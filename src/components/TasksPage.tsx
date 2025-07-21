@@ -6,27 +6,49 @@ import { flatcats } from "@utils/flatcats";
 import { useCallback, useMemo, useState, useEffect } from "react";
 import { tasks as sourceTasks } from "@data/tasks";
 import type { Category, Task } from '@src/types/model';
+import { fillTaskDescriptors } from "@utils/fillTaskDescriptors";
 
 
 export const TasksPage = () => {
   const cats = useMemo(() => flatcats(rootcat).filter(cat => !cat.hidden).sort(), [rootcat]);
   const [randomTask, setRandomTask] = useState<Task | null>(null);
   const [category, setCategory] = useState<Category>(rootcat);
-  const [doneTasks, setDoneTasks] = useState(() => {
-    const doneTasksRaw = localStorage.getItem('doneTasks');
-    return doneTasksRaw ? JSON.parse(doneTasksRaw) : [];
-  });
+
+  const [tasks, setTasks] = useState(() => fillTaskDescriptors(sourceTasks));
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      const doneTasksRaw = localStorage.getItem('doneTasks');
-      const arr = doneTasksRaw ? JSON.parse(doneTasksRaw) : [];
-      setDoneTasks(arr);
+    const handleStorageChange = (event) => {
+      const { detail: payload } = event;
+      const descriptorsRaw = localStorage.getItem('taskDescriptors');
+      const descriptors = descriptorsRaw ? JSON.parse(descriptorsRaw) : { };
+
+      const oldDescriptor = descriptors[payload.taskId];
+      let bp = 1;
+      if (oldDescriptor !== undefined) {
+        bp = oldDescriptor.basePriority;
+      }
+
+      const newDescriptor = {
+        basePriority: bp * payload.difficulty.points,
+        lastPickDate: new Date().setHours(0, 0, 0, 0)
+      };
+
+      const updated = {
+        ...descriptors,
+        [payload.taskId]: newDescriptor
+      }
+
+      localStorage.setItem('taskDescriptors', JSON.stringify(updated));
+      setTasks(prevTasks => prevTasks.map(task => 
+        task.id === payload.taskId 
+          ? { ...task, descriptor: { ...newDescriptor } } 
+          : task
+      ));
     }
-    window.addEventListener('storage', handleStorageChange);
+
     window.addEventListener('localStorageUpdate', handleStorageChange);
+
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('localStorageUpdate', handleStorageChange);
     }
   }, []);
@@ -44,15 +66,8 @@ export const TasksPage = () => {
   );
 
   const getRandomTask = useCallback(() => {
-    if (filteredTasks.length === 0) return;
-    const undone = filteredTasks.filter(task => !doneTasks.includes(task.id));
-    if (undone.length > 0) {
-      const idx = Math.floor(Math.random() * undone.length);
-      setRandomTask(undone[idx]);
-    } else {
-      alert('Все задачи решены.');
-    }
-  }, [filteredTasks, doneTasks]);
+    
+  }, [filteredTasks]);
 
   const resetFilters = useCallback(() => {
     setRandomTask(null);
@@ -64,8 +79,6 @@ export const TasksPage = () => {
     window.dispatchEvent(new Event('localStorageUpdate'));
   }, []);
 
-  const displayTasks = randomTask ? [randomTask] : filteredTasks;
-
   return (
     <Stack direction='row'>
       <SideMenu
@@ -75,7 +88,9 @@ export const TasksPage = () => {
         resetAllFilters={resetFilters}
         resetDoneTasks={resetDoneTasks}
       />
-      <Box sx={{ flex: 1 }}><TaskList tasks={displayTasks} doneTasks={doneTasks} /></Box>
+      <Box sx={{ flex: 1 }}>
+        <TaskList tasks={tasks} />
+      </Box>
     </Stack>
   )
 }

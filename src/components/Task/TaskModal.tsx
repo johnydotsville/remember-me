@@ -3,10 +3,14 @@ import { TaskDescription } from './TaskDescription';
 import { SourceCodeBox } from './TaskSourceCode';
 import { SpoilerGroup } from '@components/SpoilerGroup';
 import { detectLangByExtension } from '@/src/utils/detectLangByExtension';
-import { markTaskAs } from "@/src/utils/markTaskAs";
+import { TaskDifficultySelector } from "./TaskDifficultySelector";
+import { useState } from "react";
+import type { TaskDifficulty } from "@/src/types/model/TaskDifficulty";
 
 
-export function TaskModal({ task, open, onClose }) {
+export function TaskModal({ task, isOpen, onClose }) {
+  const [diff, setDiff] = useState(diffs.find(d => d.code === 3));
+
   const taskContent = [
     task.description && { 
       id: 'description',
@@ -25,21 +29,19 @@ export function TaskModal({ task, open, onClose }) {
     },
   ].filter(Boolean);
 
-  const solveTask = (taskId) => {
-    markTaskAs(taskId, 'done');
-    window.dispatchEvent(new Event('localStorageUpdate'));
-    onClose();
-  }
-
-  const reviewTask = (taskId) => {
-    markTaskAs(taskId, 'undone');
-    window.dispatchEvent(new Event('localStorageUpdate'));
+  const rateTask = (taskId) => {
+    window.dispatchEvent(new CustomEvent('localStorageUpdate', {
+      detail: {
+        taskId,
+        difficulty: diff
+      }
+    }));
     onClose();
   }
 
   return (
     <Dialog 
-      open={open} onClose={onClose} 
+      open={isOpen} onClose={onClose} 
       scroll='paper'
       fullScreen
     >
@@ -49,11 +51,21 @@ export function TaskModal({ task, open, onClose }) {
       </DialogContent>
       <DialogActions sx={{ justifyContent: 'space-between'}}>
         <Stack direction='row' gap={2} sx={{ flexGrow: 1 }}>
-          <Button variant='outlined' color='success' onClick={() => solveTask(task.id)}>Решил</Button>
-          <Button variant='outlined' color='warning' onClick={() => reviewTask(task.id)}>Хочу повторить</Button>
+          <TaskDifficultySelector diffs={diffs} defaultValue={diff} onDifficultySelect={setDiff} />
+          <Button variant='outlined' color='success' onClick={() => rateTask(task.id)}>Оценить</Button>
         </Stack>
-        <Button variant='outlined' onClick={onClose}>Закрыть</Button>
+        <Button variant='outlined' onClick={onClose}>Выйти</Button>
       </DialogActions>
     </Dialog>
   );
 };
+
+
+const diffs: TaskDifficulty[] = [
+  { code: 1, display: 'Очень легко', points: 0.5 },
+  { code: 2, display: 'Легко', points: 0.8 },
+  { code: 3, display: 'Нормально', points: 1 },
+  { code: 4, display: 'Выше среднего', points: 1.4 },
+  { code: 5, display: 'Сложно', points: 1.8 },
+  { code: 6, display: 'Не смог решить', points: 2.2 }
+];

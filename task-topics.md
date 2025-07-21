@@ -169,9 +169,11 @@
   
   - [ ] radio button
 - [ ] media запросы
-- [ ] Позиционирование
-  - [ ] static
+- [x] Позиционирование
+  - [x] static
   - [x] relative
   - [x] absolute
   - [x] fixed
-  - [ ] sticky
+  - [x] sticky
+- [x] Блочная модель
+  - [x] box-sizing

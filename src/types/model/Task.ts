@@ -1,3 +1,5 @@
+import type { TaskDescriptor } from "./TaskDescriptor";
+
 export type Task = {
   id: string;
   name: string;
@@ -10,4 +12,5 @@ export type Task = {
   solutionLang: string;
   categories: string[];
   tags: string[];
+  descriptor?: TaskDescriptor;
 }
