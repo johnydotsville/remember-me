@@ -3,10 +3,9 @@ import { useState } from "react"
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
-import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
 
 
-export const SideMenu = ({ items, selectItem, getRandomTask, resetAllFilters, resetDoneTasks }) => {
+export const SideMenu = ({ items, selectItem, getRandomTask, resetAllFilters }) => {
   const [open, setOpen] = useState(false);
 
   const toggleMenu = () => setOpen(!open);
@@ -25,9 +24,6 @@ export const SideMenu = ({ items, selectItem, getRandomTask, resetAllFilters, re
       </Button>
       <Button onClick={resetAllFilters}>
         <BlockOutlinedIcon sx={{ fontSize: '2.5rem'}}></BlockOutlinedIcon>
-      </Button>
-      <Button onClick={resetDoneTasks}>
-        <PlaylistRemoveIcon sx={{ fontSize: '2.5rem'}}></PlaylistRemoveIcon>
       </Button>
       <Drawer anchor='left' open={open} onClose={toggleMenu}>
         <List sx={{ padding: '1.25rem' }}>

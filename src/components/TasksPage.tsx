@@ -74,11 +74,6 @@ export const TasksPage = () => {
     setCategory(rootcat);
   }, []);
 
-  const resetDoneTasks = useCallback(() => {
-    localStorage.removeItem('doneTasks');
-    window.dispatchEvent(new Event('localStorageUpdate'));
-  }, []);
-
   return (
     <Stack direction='row'>
       <SideMenu
@@ -86,7 +81,6 @@ export const TasksPage = () => {
         selectItem={setCategory}
         getRandomTask={getRandomTask}
         resetAllFilters={resetFilters}
-        resetDoneTasks={resetDoneTasks}
       />
       <Box sx={{ flex: 1 }}>
         <TaskList tasks={tasks} />
