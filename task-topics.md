@@ -107,6 +107,7 @@
 # Typescript
 
 - [x] type, interface
+  - [ ] Объединение типов через &
 - [x] keyof
 - [ ] utility-types
   - [ ] Partial, Require

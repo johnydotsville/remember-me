@@ -3,13 +3,13 @@ import { TaskDescription } from './TaskDescription';
 import { SourceCodeBox } from './TaskSourceCode';
 import { SpoilerGroup } from '@components/SpoilerGroup';
 import { detectLangByExtension } from '@/src/utils/detectLangByExtension';
-import { TaskDifficultySelector } from "./TaskDifficultySelector";
+import { TaskRankSelector } from "./TaskRankSelector";
 import { useState } from "react";
-import type { TaskDifficulty } from "@/src/types/model/TaskDifficulty";
+import { DEFAULT_TASK_RANKS as ranks } from "@/src/constants/defaultTaskRanks";
 
 
-export function TaskModal({ task, isOpen, onClose }) {
-  const [diff, setDiff] = useState(diffs.find(d => d.code === 3));
+export function TaskModal({ task, rateTask, isOpen, onClose }) {
+  const [rank, setRank] = useState(ranks.find(d => d.code === 'normal'));
 
   const taskContent = [
     task.description && { 
@@ -29,16 +29,6 @@ export function TaskModal({ task, isOpen, onClose }) {
     },
   ].filter(Boolean);
 
-  const rateTask = (taskId) => {
-    window.dispatchEvent(new CustomEvent('localStorageUpdate', {
-      detail: {
-        taskId,
-        difficulty: diff
-      }
-    }));
-    onClose();
-  }
-
   return (
     <Dialog 
       open={isOpen} onClose={onClose} 
@@ -51,21 +41,11 @@ export function TaskModal({ task, isOpen, onClose }) {
       </DialogContent>
       <DialogActions sx={{ justifyContent: 'space-between'}}>
         <Stack direction='row' gap={2} sx={{ flexGrow: 1 }}>
-          <TaskDifficultySelector diffs={diffs} defaultValue={diff} onDifficultySelect={setDiff} />
-          <Button variant='outlined' color='success' onClick={() => rateTask(task.id)}>Оценить</Button>
+          <TaskRankSelector ranks={ranks} defaultValue={rank} onRankSelect={setRank} />
+          <Button variant='outlined' color='success' onClick={() => rateTask(task.id, rank)}>Оценить</Button>
         </Stack>
         <Button variant='outlined' onClick={onClose}>Выйти</Button>
       </DialogActions>
     </Dialog>
   );
 };
-
-
-const diffs: TaskDifficulty[] = [
-  { code: 1, display: 'Очень легко', points: 0.5 },
-  { code: 2, display: 'Легко', points: 0.8 },
-  { code: 3, display: 'Нормально', points: 1 },
-  { code: 4, display: 'Выше среднего', points: 1.4 },
-  { code: 5, display: 'Сложно', points: 1.8 },
-  { code: 6, display: 'Не смог решить', points: 2.2 }
-];

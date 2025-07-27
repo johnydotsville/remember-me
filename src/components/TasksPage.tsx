@@ -6,7 +6,9 @@ import { flatcats } from "@utils/flatcats";
 import { useCallback, useMemo, useState, useEffect } from "react";
 import { tasks as sourceTasks } from "@data/tasks";
 import type { Category, Task } from '@src/types/model';
-import { fillTaskDescriptors } from "@utils/fillTaskDescriptors";
+import { selectTask } from "@/src/utils/selectTask";
+import { todayNoTime } from "@utils/todayNoTime";
+import { useTaskRating } from "@src/hooks/useTaskRating";
 
 
 export const TasksPage = () => {
@@ -14,44 +16,7 @@ export const TasksPage = () => {
   const [randomTask, setRandomTask] = useState<Task | null>(null);
   const [category, setCategory] = useState<Category>(rootcat);
 
-  const [tasks, setTasks] = useState(() => fillTaskDescriptors(sourceTasks));
-
-  useEffect(() => {
-    const handleStorageChange = (event) => {
-      const { detail: payload } = event;
-      const descriptorsRaw = localStorage.getItem('taskDescriptors');
-      const descriptors = descriptorsRaw ? JSON.parse(descriptorsRaw) : { };
-
-      const oldDescriptor = descriptors[payload.taskId];
-      let bp = 1;
-      if (oldDescriptor !== undefined) {
-        bp = oldDescriptor.basePriority;
-      }
-
-      const newDescriptor = {
-        basePriority: bp * payload.difficulty.points,
-        lastPickDate: new Date().setHours(0, 0, 0, 0)
-      };
-
-      const updated = {
-        ...descriptors,
-        [payload.taskId]: newDescriptor
-      }
-
-      localStorage.setItem('taskDescriptors', JSON.stringify(updated));
-      setTasks(prevTasks => prevTasks.map(task => 
-        task.id === payload.taskId 
-          ? { ...task, descriptor: { ...newDescriptor } } 
-          : task
-      ));
-    }
-
-    window.addEventListener('localStorageUpdate', handleStorageChange);
-
-    return () => {
-      window.removeEventListener('localStorageUpdate', handleStorageChange);
-    }
-  }, []);
+  const { tasks, rateTask } = useTaskRating(sourceTasks);
 
   useEffect(() => {
     if (randomTask) setRandomTask(null);
@@ -59,20 +24,28 @@ export const TasksPage = () => {
 
   const filteredTasks = useMemo(() => {
       return category.name === 'root' 
-        ? sourceTasks 
-        : sourceTasks.filter(task => task.categories.includes(category.name));
+        ? tasks 
+        : tasks.filter(task => task.categories.includes(category.name));
     }, 
-    [category]
+    [category, tasks]
   );
 
   const getRandomTask = useCallback(() => {
-    
+    const didntSolveTodayYet = filteredTasks.filter(task => task.lastSolved !== todayNoTime());
+    if (didntSolveTodayYet.length > 0) {
+      const task = selectTask(didntSolveTodayYet);
+      setRandomTask(task);
+    } else {
+      alert('Не осталось задач выбранной категории, которые вы еще не решали сегодня.');
+    }
   }, [filteredTasks]);
 
   const resetFilters = useCallback(() => {
     setRandomTask(null);
     setCategory(rootcat);
   }, []);
+
+  const taskList = randomTask ? [randomTask] : filteredTasks; 
 
   return (
     <Stack direction='row'>
@@ -83,7 +56,7 @@ export const TasksPage = () => {
         resetAllFilters={resetFilters}
       />
       <Box sx={{ flex: 1 }}>
-        <TaskList tasks={tasks} />
+        <TaskList tasks={taskList} rateTask={rateTask} />
       </Box>
     </Stack>
   )
