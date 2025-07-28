@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-21T08:13:46.343Z)
+// Auto-generated file (2025-07-28T15:32:25.621Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -661,7 +661,6 @@ function debounce(fn, delayMs) {
     }
 
     nav {
-      padding: 1rem;
       background-color: pink;
       padding: 1rem;
     }

@@ -1,5 +1,4 @@
 import type { TaskRanked } from "../types/model/TaskRanked";
-import { todayNoTime } from "./todayNoTime";
 
 
 export function selectTask(tasks: TaskRanked[]): TaskRanked {

@@ -28,7 +28,7 @@ export function useTaskRating(
       }
       return {
         ...task,
-        rank,
+        rank: rank!,
         lastSolved
       }
     });
