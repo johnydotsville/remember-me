@@ -8,7 +8,7 @@ import { useState } from "react";
 import { DEFAULT_TASK_RANKS as ranks } from "@/src/constants/defaultTaskRanks";
 
 
-export function TaskModal({ task, rateTask, isOpen, onClose }) {
+export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }) {
   const [rank, setRank] = useState(ranks.find(d => d.code === 'normal'));
 
   const taskContent = [
@@ -42,7 +42,8 @@ export function TaskModal({ task, rateTask, isOpen, onClose }) {
       <DialogActions sx={{ justifyContent: 'space-between'}}>
         <Stack direction='row' gap={2} sx={{ flexGrow: 1 }}>
           <TaskRankSelector ranks={ranks} defaultValue={rank} onRankSelect={setRank} />
-          <Button variant='outlined' color='success' onClick={() => rateTask(task.id, rank)}>Оценить</Button>
+          <Button variant='outlined' color='success' onClick={() => rateTask(task, rank)}>Оценить</Button>
+          <Button variant='outlined' color='success' onClick={() => { solveTask(task, rank); onClose(); }}>Решить</Button>
         </Stack>
         <Button variant='outlined' onClick={onClose}>Выйти</Button>
       </DialogActions>

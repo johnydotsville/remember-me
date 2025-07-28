@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TaskModal } from "./TaskModal";
 
 
-export const TaskList = ({ tasks, rateTask }) => {
+export const TaskList = ({ tasks, rateTask, solveTask }) => {
   const [selectedTask, setSelectedTask] = useState(null);
 
   return (
@@ -19,7 +19,7 @@ export const TaskList = ({ tasks, rateTask }) => {
         }
       </Stack>
       {
-        selectedTask && <TaskModal task={selectedTask} rateTask={rateTask} isOpen={!!selectedTask} 
+        selectedTask && <TaskModal task={selectedTask} rateTask={rateTask} solveTask={solveTask} isOpen={!!selectedTask} 
           onClose={() => setSelectedTask(null)} />
       }
     </>

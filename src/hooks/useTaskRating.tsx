@@ -17,7 +17,7 @@ export function useTaskRating(
     const savedRanksRaw = localStorage.getItem(RANKS_STORE);
     const savedRanks = savedRanksRaw ? JSON.parse(savedRanksRaw) : { };
 
-    const defaultRank = ranks.find(rank => rank.code === 'cantsolve');
+    const defaultRank = ranks.find(rank => rank.code === 'unknown');
 
     return initialTasks.map(task => {
       let rank = defaultRank;
@@ -34,28 +34,43 @@ export function useTaskRating(
     });
   });
 
-  const rateTask = (taskId: string, rank: TaskRank) => {
+  const rateTask = (task: TaskRanked, rank: TaskRank) => {
     const savedRanksRaw = localStorage.getItem(RANKS_STORE);
     const savedRanks = savedRanksRaw ? JSON.parse(savedRanksRaw) : { };
+
     const updatedRanks = {
       ...savedRanks,
-      [taskId]: {
+      [task.id]: {
+        code: rank.code,
+        lastSolved: task.lastSolved
+      }
+    }
+    localStorage.setItem(RANKS_STORE, JSON.stringify(updatedRanks));
+
+    setTasks(tasks.map(t => t.id !== task.id ? t : { ...task, rank }));
+  }
+
+  // TODO: можно ли как-то отрефакторить? Функции выглядят слишком похоже друг на друга.
+  const solveTask = (task: TaskRanked, rank: TaskRank) => {
+    const savedRanksRaw = localStorage.getItem(RANKS_STORE);
+    const savedRanks = savedRanksRaw ? JSON.parse(savedRanksRaw) : { };
+
+    const updatedRanks = {
+      ...savedRanks,
+      [task.id]: {
         code: rank.code,
         lastSolved: todayNoTime()
       }
     }
     localStorage.setItem(RANKS_STORE, JSON.stringify(updatedRanks));
 
-    setTasks(tasks.map(task => task.id !== taskId ? task : { 
-      ...task, 
-      rank, 
-      lastSolved: todayNoTime() 
-    } ));
+    setTasks(tasks.map(t => t.id !== task.id ? t : { ...task, rank, lastSolved: todayNoTime() }));
   }
 
 
   return {
+    tasks,     // исходные задачи, обогащенные сложностью
     rateTask,  // функция для выставления оценки задаче
-    tasks // исходные задачи, обогащенные сложностью
+    solveTask  // функция для отметки что задача решена
   }
 }

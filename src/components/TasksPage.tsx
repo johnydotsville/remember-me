@@ -16,7 +16,7 @@ export const TasksPage = () => {
   const [randomTask, setRandomTask] = useState<Task | null>(null);
   const [category, setCategory] = useState<Category>(rootcat);
 
-  const { tasks, rateTask } = useTaskRating(sourceTasks);
+  const { tasks, rateTask, solveTask } = useTaskRating(sourceTasks);
 
   useEffect(() => {
     if (randomTask) setRandomTask(null);
@@ -56,7 +56,7 @@ export const TasksPage = () => {
         resetAllFilters={resetFilters}
       />
       <Box sx={{ flex: 1 }}>
-        <TaskList tasks={taskList} rateTask={rateTask} />
+        <TaskList tasks={taskList} rateTask={rateTask} solveTask={solveTask} />
       </Box>
     </Stack>
   )
