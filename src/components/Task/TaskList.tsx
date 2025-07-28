@@ -19,7 +19,10 @@ export const TaskList = ({ tasks, rateTask, solveTask }) => {
         }
       </Stack>
       {
-        selectedTask && <TaskModal task={selectedTask} rateTask={rateTask} solveTask={solveTask} isOpen={!!selectedTask} 
+        selectedTask && <TaskModal task={selectedTask} 
+          rateTask={rateTask} 
+          solveTask={solveTask} 
+          isOpen={!!selectedTask} 
           onClose={() => setSelectedTask(null)} />
       }
     </>

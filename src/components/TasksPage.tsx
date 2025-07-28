@@ -47,6 +47,16 @@ export const TasksPage = () => {
 
   const taskList = randomTask ? [randomTask] : filteredTasks; 
 
+  const solveTaskFn = useCallback((task, rank) => {
+    solveTask(task, rank);
+    setRandomTask(null);
+  }, []);
+
+  const rateTaskFn = useCallback((task, rank) => {
+    rateTask(task, rank);
+    setRandomTask(null);
+  }, []);
+
   return (
     <Stack direction='row'>
       <SideMenu
@@ -56,7 +66,7 @@ export const TasksPage = () => {
         resetAllFilters={resetFilters}
       />
       <Box sx={{ flex: 1 }}>
-        <TaskList tasks={taskList} rateTask={rateTask} solveTask={solveTask} />
+        <TaskList tasks={taskList} rateTask={rateTaskFn} solveTask={solveTaskFn} />
       </Box>
     </Stack>
   )
