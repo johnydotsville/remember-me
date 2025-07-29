@@ -1,0 +1,8 @@
+export function timestampToDate(timestamp) {
+  const date = new Date(timestamp);
+  const day = date.getDate();
+  const month = date.toLocaleString('en-US', { month: 'short' });
+  const year = date.getFullYear();
+  
+  return `${day} ${month} ${year}`;
+}
