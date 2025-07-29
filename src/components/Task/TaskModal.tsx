@@ -6,10 +6,13 @@ import { detectLangByExtension } from '@/src/utils/detectLangByExtension';
 import { TaskRankSelector } from "./TaskRankSelector";
 import { useState } from "react";
 import { DEFAULT_TASK_RANKS as ranks } from "@/src/constants/defaultTaskRanks";
+import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
+import { TaskMeta } from "@components/Task/TaskMeta";
 
 
 export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }) {
   const [rank, setRank] = useState(ranks.find(d => d.code === 'normal'));
+  const [showTaskMeta, setShowTaskMeta] = useState(false);
 
   const taskContent = [
     task.description && { 
@@ -30,23 +33,32 @@ export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }) {
   ].filter(Boolean);
 
   return (
-    <Dialog 
-      open={isOpen} onClose={onClose} 
-      scroll='paper'
-      fullScreen
-    >
-      <DialogTitle>{task.title || task.name}</DialogTitle>
-      <DialogContent>
-        <SpoilerGroup items={taskContent} defaultActive='description' />
-      </DialogContent>
-      <DialogActions sx={{ justifyContent: 'space-between'}}>
-        <Stack direction='row' gap={2} sx={{ flexGrow: 1 }}>
-          <TaskRankSelector ranks={ranks} defaultValue={rank} onRankSelect={setRank} />
-          <Button variant='outlined' color='success' onClick={() => rateTask(task, rank)}>Оценить</Button>
-          <Button variant='outlined' color='success' onClick={() => { solveTask(task, rank); onClose(); }}>Решить</Button>
-        </Stack>
-        <Button variant='outlined' onClick={onClose}>Выйти</Button>
-      </DialogActions>
-    </Dialog>
+    <>
+      <Dialog 
+        open={isOpen} onClose={onClose} 
+        scroll='paper'
+        fullScreen
+      >
+        <DialogTitle>{task.title || task.name}</DialogTitle>
+        <DialogContent>
+          <SpoilerGroup items={taskContent} defaultActive='description' />
+        </DialogContent>
+        <DialogActions sx={{ justifyContent: 'space-between'}}>
+          <Stack direction='row' gap={2} sx={{ flexGrow: 1 }}>
+            <TaskRankSelector ranks={ranks} defaultValue={rank} onRankSelect={setRank} />
+            <Button variant='outlined' color='success' onClick={() => rateTask(task, rank)}>Оценить</Button>
+            <Button variant='outlined' color='success' onClick={() => { solveTask(task, rank); onClose(); }}>Решить</Button>
+            <Button variant='outlined' color='success' onClick={() => setShowTaskMeta(true)}><InfoOutlineIcon /></Button>
+          </Stack>
+          <Button variant='outlined' onClick={onClose}>Выйти</Button>
+        </DialogActions>
+      </Dialog>
+      {
+        showTaskMeta && <TaskMeta
+          task={task}
+          isOpen={showTaskMeta} 
+          onClose={() => setShowTaskMeta(false)} />
+      }
+    </>
   );
 };
