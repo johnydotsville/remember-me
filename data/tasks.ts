@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-28T15:32:25.621Z)
+// Auto-generated file (2025-07-29T14:36:19.763Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -65,6 +65,12 @@ export const rootcat: Category =
         {
           name: 'exceptions',
           title: 'Exceptions',
+          hidden: false,
+          subcategories: []
+        },
+        {
+          name: 'functions',
+          title: 'Функции',
           hidden: false,
           subcategories: []
         },
@@ -405,7 +411,7 @@ function getLucker(players, threshold = 10_000) {
     name: "task-month-temperatures_arrays_every_some",
     path: "tasks\\arrays\\task-month-temperatures_arrays_every_some",
     title: "Температуры по месяцам",
-    description: "### Вводные\r\n\r\n* Дан массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором не было холодных недель (t > 0).\r\n* Найти первый месяц, в котором была как минимум одна теплая неделя.\r\n* Вывести название найденного месяца, а если таких месяцев не было, так и написать.",
+    description: "Вы новый сотрудник на метеорологической станции. Чтобы вы могли освоиться с местной системой, вам дали задание на анализ данных. Данные представляют собой массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором:\r\n  * Не было холодных недель (t > 0).\r\n  * Была как минимум одна теплая неделя.\r\n  * Была неделя, когда температура добралась до аномальных 15 градусов или выше.\r\n* Вывести название найденного месяца, а если таких месяцев не было, так и написать.",
     template: ``,
     solution: `// Месяц, в котором все недели теплые
 const fullyWarm = stat.find(s => s.avgWeeksTemp.every(temp => temp > 0));
@@ -413,7 +419,11 @@ console.log(fullyWarm?.month ?? 'Не было ни одного полност�
 
 // Месяц, в котором хотя бы одна неделя теплая
 const partiallyWarm = stat.find(s => s.avgWeeksTemp.some(temp => temp > 0));
-console.log(partiallyWarm?.month ?? 'Не было ни одного хотя бы частичного теплого месяца.');`,
+console.log(partiallyWarm?.month ?? 'Не было ни одного хотя бы частичного теплого месяца.');
+
+// Месяц, в котором была неделя, когда температура добралась до 13 градусов или выше
+const anomalyWarm = stat.find(s => s.avgWeeksTemp.some(temp => temp >= 15));
+console.log(anomalyWarm?.month ?? 'Не было месяцев с аномально высокой температурой.');`,
     templateLang: ``,
     solutionLang: `.ts`,
     categories: ['arrays'],
@@ -1292,6 +1302,53 @@ try {
     tags: ['синтаксис', 'легко', 'exceptions', 'исключения', 'javascript']
   },
   {
+    id: "23401f219047408c",
+    name: "task-year-bonus-calculation_call",
+    path: "tasks\\javascript\\functions\\task-year-bonus-calculation_call",
+    title: "Расчет годовых премий сотрудникам",
+    description: "Близится конец года и нужно рассчитать премии для сотрудников. Вы помните, что где-то в программе был объект с нужной формулой. Вы поручили стажеру найти  этот объект и выделить формулу в отдельную функцию для удобства. Стажер нашел объект:\r\n\r\n```javascript\r\nconst user1 = {\r\n  name: 'Bob',\r\n  salary: 10000,\r\n  yearsOfService: 5,\r\n  calcBonus(minBonus = 0, maxBonusPercent = 0) {\r\n    if (typeof this.salary !== 'number' || typeof this.yearsOfService !== 'number' || \r\n      this.salary < 0 || this.yearsOfService < 0 || minBonus < 0 || maxBonusPercent < 0) {\r\n    return 0;\r\n    }\r\n\r\n    const baseBonus = 0.1;\r\n    const logBonus = 0.05 * Math.log(this.yearsOfService + 1);\r\n    const loyaltyMultiplier = 1 + (this.yearsOfService / 20);\r\n    \r\n    let bonus = this.salary * (baseBonus + logBonus) * loyaltyMultiplier;\r\n\r\n    if (minBonus > 0 && bonus < minBonus) {\r\n      bonus = minBonus;\r\n    }\r\n\r\n    if (maxBonusPercent > 0) {\r\n      bonus = bonus * (1 - maxBonusPercent / 100);\r\n    }\r\n\r\n    return Math.round(bonus);\r\n  }\r\n}\r\n```\r\n\r\nИ, не долго думая, создал такую функцию и отдал вам:\r\n\r\n```javascript\r\nfunction calcBonus(minBonus = 0, maxBonusPercent = 0) {\r\n  if (typeof this.salary !== 'number' || typeof this.yearsOfService !== 'number' || \r\n      this.salary < 0 || this.yearsOfService < 0 || minBonus < 0 || maxBonusPercent < 0) {\r\n    return 0;\r\n  }\r\n\r\n  const baseBonus = 0.1;\r\n  const logBonus = 0.05 * Math.log(this.yearsOfService + 1);\r\n  const loyaltyMultiplier = 1 + (this.yearsOfService / 20);\r\n  \r\n  let bonus = this.salary * (baseBonus + logBonus) * loyaltyMultiplier;\r\n\r\n  if (minBonus > 0 && bonus < minBonus) {\r\n    bonus = minBonus;\r\n  }\r\n\r\n  if (maxBonusPercent > 0) {\r\n    bonus = bonus * (1 - maxBonusPercent / 100);\r\n  }\r\n\r\n  return Math.round(bonus);\r\n}\r\n```\r\n\r\nУ вас еще будет время дать ему по пальцам за такое. Но пока что у вас нет времени рефакторить и придется пользовать этой стажерской функцией.\r\n\r\n### Задача\r\n\r\n* Для каждого сотрудника в массиве выведите в консоль положенную ему премию с учетом коррекций на этот год:\r\n\r\n```javascript\r\nconst adjustments = [0, 25];\r\n```\r\n\r\n",
+    template: `function calcBonus(minBonus = 0, maxBonusPercent = 0) {
+  if (typeof this.salary !== 'number' || typeof this.yearsOfService !== 'number' || 
+      this.salary < 0 || this.yearsOfService < 0 || minBonus < 0 || maxBonusPercent < 0) {
+    return 0;
+  }
+
+  const baseBonus = 0.1;
+  const logBonus = 0.05 * Math.log(this.yearsOfService + 1);
+  const loyaltyMultiplier = 1 + (this.yearsOfService / 20);
+  
+  let bonus = this.salary * (baseBonus + logBonus) * loyaltyMultiplier;
+
+  if (minBonus > 0 && bonus < minBonus) {
+    bonus = minBonus;
+  }
+
+  if (maxBonusPercent > 0) {
+    bonus = bonus * (1 - maxBonusPercent / 100);
+  }
+
+  return Math.round(bonus);
+}
+
+const employees = [
+  { fullName: "John Smith", department: "Marketing", yearsOfService: 1, salary: 50000 },
+  { fullName: "Emily Johnson", department: "HR", yearsOfService: 2, salary: 55000 },
+  { fullName: "Michael Brown", department: "Sales", yearsOfService: 5, salary: 70000 },
+  { fullName: "Sarah Davis", department: "IT", yearsOfService: 7, salary: 85000 },
+  { fullName: "Robert Wilson", department: "Finance", yearsOfService: 10, salary: 90000 },
+  { fullName: "Jessica Martinez", department: "Engineering", yearsOfService: 15, salary: 110000 },
+  { fullName: "David Anderson", department: "Management", yearsOfService: 20, salary: 130000 },
+  { fullName: "Lisa Taylor", department: "R&D", yearsOfService: 25, salary: 150000 }
+];
+
+const adjustments = [0, 25];`,
+    solution: `employees.forEach(emp => console.log(\`Годовой бонус для \${emp.fullName}: \` + calcBonus.call(emp, ...adjustments)));`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
+    categories: ['javascript', 'functions'],
+    tags: ['call', 'functions', 'javascript']
+  },
+  {
     id: "5a04d9100cf98f75",
     name: "task-count-visitors",
     path: "tasks\\javascript\\map\\task-count-visitors",
@@ -1955,6 +2012,40 @@ console.log(action);`,
     solutionLang: `.ts`,
     categories: ['objects'],
     tags: ['spread-objects', '&&', 'object']
+  },
+  {
+    id: "1f9fc76721918b29",
+    name: "task-hackers-searching-revenue_in",
+    path: "tasks\\objects\\task-hackers-searching-revenue_in",
+    title: "Проверка наличия прав и пользователя",
+    description: "Ваша хакерская группа получила доступ к объекту корпорации. Требуется выяснить, есть ли в этом объекте свойство `revenue`. Один из участников группы попытался это сделать и попался, потому что служба безопасности узнала о попытке, как только он запустил свой код.\r\n\r\nВы изучили код нерадивого взломщика и обнаружили вот это:\r\n\r\n```javascript\r\nif (companyData.revenue !== undefined) {\r\n  console.log('revenue есть.');\r\n}\r\n```\r\n\r\nКакое ламерство! Неудивительно, что он попался.\r\n\r\nСделайте работу чисто, не оставляя следов. Если revenue есть, просто выведите в консоль сообщение 'revenue есть', тогда группа будет решать, как безопасно распилить объект.",
+    template: `const companyPrototype = {
+  get revenue() {
+    console.log("[Лог] Кто-то запросил revenue!");
+    return 1_000_000;
+  },
+  _baseSecret: "PROTOTYPE_CONFIDENTIAL"
+};
+
+const companyData = Object.create(companyPrototype);
+companyData.name = "ООО Мегатек";
+companyData.legalId = "1234567890";
+companyData._internal = "LOCAL_CONFIDENTIAL";
+
+function hasRevenue(obj) {
+  // Ваша реализация
+}
+
+hasRevenue(companyData);`,
+    solution: `function hasRevenue(obj) {
+  if ('revenue' in obj) {
+    console.log('revenue есть.');
+  }
+}`,
+    templateLang: `.ts`,
+    solutionLang: `.ts`,
+    categories: ['objects'],
+    tags: ['in', 'object']
   },
   {
     id: "028fa2478a7ce693",

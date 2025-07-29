@@ -1,6 +1,6 @@
 export function getDiffInDays(timestamp1, timestamp2) {
-  const date1 = new Date(timestamp1);
-  const date2 = new Date(timestamp2);
+  const date1: any = new Date(timestamp1);
+  const date2: any = new Date(timestamp2);
   
   date1.setHours(0, 0, 0, 0);
   date2.setHours(0, 0, 0, 0);

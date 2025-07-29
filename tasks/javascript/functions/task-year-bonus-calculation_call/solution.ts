@@ -1,0 +1,1 @@
+employees.forEach(emp => console.log(`Годовой бонус для ${emp.fullName}: ` + calcBonus.call(emp, ...adjustments)));

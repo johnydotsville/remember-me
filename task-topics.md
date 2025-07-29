@@ -39,9 +39,12 @@
 - [x] entries, keys, values
   - [x] Для Map. Для остальных не особо надо.
 - [ ] apply, call, bind
+  - [ ] apply
+  - [x] call
+  - [ ] bind
 - [ ] API промисов
 - [ ] Объекты
-  - [ ] hasOwnProperty?
+  - [ ] ~~hasOwnProperty?~~ legacy
   - [x] Оператор in (проверка наличия свойства)
   - [ ] hasOwn?
   - [ ] Создание нового объекта?
