@@ -54,12 +54,7 @@ export function useTaskRating(
   const solveTask = (task: TaskRanked, rank: TaskRank) => {
     const savedRanksRaw = localStorage.getItem(RANKS_STORE);
     const savedRanks = savedRanksRaw ? JSON.parse(savedRanksRaw) : { };
-    // const lastSolved = 1753774341000;  // today
-    const lastSolved = 1753687941000;  // вчера
-    // const lastSolved = 1753515141000;  // 3 дня назад
-    // const lastSolved = 1753169541000;  // неделя назад
-    // const lastSolved = 1752564741000;  // 2 недели назад
-    // const lastSolved = 1751873541000;  // дофига назад
+    const lastSolved = todayNoTime();
 
     const updatedRanks = {
       ...savedRanks,

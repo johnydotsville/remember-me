@@ -8,6 +8,12 @@ import { todayNoTime } from "@/src/utils/todayNoTime";
 
 
 export function TaskView({ task }: { task: TaskRanked }) {
+  let whenSolved = '';
+  if (task.lastSolved > 0) {
+    const solvedDaysAgo = getDiffInDays(todayNoTime(), task.lastSolved);
+    whenSolved = solvedDaysAgo > 0 ? `${solvedDaysAgo} дн. назад` : 'сегодня';
+  }
+
   return (
     <Stack direction='row' justifyContent='space-between' alignItems='center' paddingInline={1} sx={{ border: `1px solid gray` }}>
       <Stack direction='row' padding={1} gap={1} flexShrink={0}>
@@ -16,7 +22,7 @@ export function TaskView({ task }: { task: TaskRanked }) {
       </Stack>
       { task.lastSolved !== 0 && 
         <Typography color={getColorByDateDiffHSL(task.lastSolved)} flexShrink={0}>
-          { timestampToDate(task.lastSolved) } ({getDiffInDays(todayNoTime(), task.lastSolved)} дн. назад)
+          { timestampToDate(task.lastSolved) } ({whenSolved})
         </Typography>
       }
     </Stack>

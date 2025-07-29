@@ -1,4 +1,4 @@
-import { Stack, Box } from "@mui/material"
+import { Stack, Box, Typography } from "@mui/material"
 import { TaskList } from "./Task/TaskList"
 import { SideMenu } from "./SideMenu"
 import { rootcat } from '@data/tasks';
@@ -50,12 +50,23 @@ export const TasksPage = () => {
   const solveTaskFn = useCallback((task, rank) => {
     solveTask(task, rank);
     setRandomTask(null);
-  }, []);
+  }, [tasks]);
 
   const rateTaskFn = useCallback((task, rank) => {
     rateTask(task, rank);
     setRandomTask(null);
-  }, []);
+  }, [tasks]);
+
+  const taskStats = useMemo(() => {
+    const total = tasks.length;
+    const solved = tasks.filter(t => t.lastSolved > 0).length;
+    const unsolved = total - solved;
+    return {
+      total,
+      solved,
+      unsolved
+    }
+  }, [tasks])
 
   return (
     <Stack direction='row'>
@@ -66,6 +77,13 @@ export const TasksPage = () => {
         resetAllFilters={resetFilters}
       />
       <Box sx={{ flex: 1 }}>
+        <Stack direction='row' justifyContent='space-around' 
+          sx={{ position: "sticky", top: 0, backgroundColor: '#4C4C4C' }}
+        >
+          <Typography color="">Всего задач: {taskStats.total}</Typography>
+          <Typography>Решено: {taskStats.solved}</Typography>
+          <Typography>Осталось: {taskStats.unsolved}</Typography>
+        </Stack>
         <TaskList tasks={taskList} rateTask={rateTaskFn} solveTask={solveTaskFn} />
       </Box>
     </Stack>
