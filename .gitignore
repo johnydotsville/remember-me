@@ -9,6 +9,7 @@ yarn-error.log*
 
 # Файл со сгенерированными задачами
 src/data/
+public/
 
 # Директории зависимостей
 node_modules/

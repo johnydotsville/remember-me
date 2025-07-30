@@ -1,7 +1,7 @@
-import type { Task } from './Task';
+import type { TaskInfo } from './TaskInfo';
 import type { TaskRank } from './TaskRank';
 
-export type TaskRanked = Task & {
+export type TaskRanked = TaskInfo & {
   rank: TaskRank;
   lastSolved: number;
 }

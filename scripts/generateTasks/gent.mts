@@ -10,11 +10,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.join(__dirname, '../..');
 const PATHS = {
   tasks: path.join(PROJECT_ROOT, 'tasks'),
-  output: path.join(PROJECT_ROOT, 'data/tasks.ts')
+  output: path.join(PROJECT_ROOT, 'data/tasks.ts'),
+  public: path.join(PROJECT_ROOT, 'public')
 };
 
-// TODO: после реализации меты зачилиться, сделать рефакторинг, разбить на более мелкие фрагменты и написать тесты.
-// TODO: подумать, а можно ли в директорию складывать одновременно и подкатегории, и задачи?
+
 type Folder = {
   name: string;
   parent: Folder | null,
@@ -202,24 +202,47 @@ ${sqin}]`
 }
 
 
-async function writeTasks(tasks: Task[], rootcat: Folder) {
+// async function writeTasks(tasks: Task[], rootcat: Folder) {
+//   let tsContent = `// Auto-generated file (${new Date().toISOString()})
+// import type { Task, Category } from "@/src/types/model";
+
+// export const rootcat: Category = 
+// ${catTreeToString(rootcat)}
+
+// export const tasks: Task[] = [
+// ${tasks.map(task => `  {
+//     id: ${JSON.stringify(task.id)},
+//     name: ${JSON.stringify(task.name)},
+//     path: ${JSON.stringify(task.path)},
+//     title: ${JSON.stringify(task.title)},
+//     description: ${JSON.stringify(task.description)},
+//     template: \`${task.template.replace(/`/g, '\\`')}\`,
+//     solution: \`${task.solution.replace(/`/g, '\\`')}\`,
+//     templateLang: \`${task.templateLang.replace(/`/g, '\\`')}\`,
+//     solutionLang: \`${task.solutionLang.replace(/`/g, '\\`')}\`,
+//     categories: [${task.categories.map(c => `'${c}'`).join(', ')}],
+//     tags: [${task.tags.map(c => `'${c}'`).join(', ')}]
+//   }`).join(',\n')}
+// ];
+
+// export default tasks;
+// `;
+
+//   await fs.writeFile(PATHS.output, tsContent);
+// }
+
+async function writeTasksInfo(tasks: Task[], rootcat: Folder) {
   let tsContent = `// Auto-generated file (${new Date().toISOString()})
-import type { Task, Category } from "@/src/types/model";
+import type { TaskInfo, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
 ${catTreeToString(rootcat)}
 
-export const tasks: Task[] = [
+export const tasks: TaskInfo[] = [
 ${tasks.map(task => `  {
     id: ${JSON.stringify(task.id)},
     name: ${JSON.stringify(task.name)},
-    path: ${JSON.stringify(task.path)},
     title: ${JSON.stringify(task.title)},
-    description: ${JSON.stringify(task.description)},
-    template: \`${task.template.replace(/`/g, '\\`')}\`,
-    solution: \`${task.solution.replace(/`/g, '\\`')}\`,
-    templateLang: \`${task.templateLang.replace(/`/g, '\\`')}\`,
-    solutionLang: \`${task.solutionLang.replace(/`/g, '\\`')}\`,
     categories: [${task.categories.map(c => `'${c}'`).join(', ')}],
     tags: [${task.tags.map(c => `'${c}'`).join(', ')}]
   }`).join(',\n')}
@@ -229,6 +252,31 @@ export default tasks;
 `;
 
   await fs.writeFile(PATHS.output, tsContent);
+}
+
+
+async function writeTasksAsSingleJson(tasks: Task[]) {
+  const dir = path.join(PATHS.public, 'tasks');
+
+  await fs.mkdir(dir, { recursive: true });
+
+  for (const task of tasks) {
+    const taskFile = path.join(dir, task.id + '.json');
+    const taskContent = JSON.stringify({
+      id: task.id,
+      name: task.name,
+      path: task.path,
+      title: task.title,
+      description: task.description,
+      template: task.template,
+      solution: task.solution,
+      templateLang: task.templateLang,
+      solutionLang: task.solutionLang,
+      categories: task.categories,
+      tags: task.tags
+    }, null, 2);
+    await fs.writeFile(taskFile, taskContent);
+  }
 }
 
 
@@ -245,7 +293,9 @@ async function genTasks() {
   const taskFolders = flatFoldersTree.filter(dir => dir.isTask);
   const tasks = await Promise.all(taskFolders.map(folder => makeTask(folder)));
   
-  await writeTasks(tasks, foldersTree);
+  await writeTasksInfo(tasks, foldersTree);
+  await writeTasksAsSingleJson(tasks, foldersTree);
 }
+
 
 genTasks();

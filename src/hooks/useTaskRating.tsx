@@ -1,4 +1,4 @@
-import type { Task } from "@src/types/model";
+import type { Task, TaskInfo } from "@src/types/model";
 import { useState } from "react";
 import type { TaskRank } from "@src/types/model/TaskRank";
 import type { TaskRanked } from '@src/types/model/TaskRanked';
@@ -13,7 +13,7 @@ export type TaskAction = (task: TaskRanked, rank: TaskRank) => void;
 
 
 export function useTaskRating(
-  initialTasks: Task[],
+  initialTasks: TaskInfo[],
   ranks: TaskRank[] = DEFAULT_TASK_RANKS
 ) {
   const [tasks, setTasks] = useState<TaskRanked[]>(() => {
