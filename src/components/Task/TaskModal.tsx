@@ -8,10 +8,28 @@ import { useState } from "react";
 import { DEFAULT_TASK_RANKS as ranks } from "@/src/constants/defaultTaskRanks";
 import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
 import { TaskMeta } from "@components/Task/TaskMeta";
+import type { TaskRanked } from "@/src/types/model/TaskRanked";
+import type { TaskRank } from "@/src/types/model/TaskRank";
+import type { TaskAction } from "@/src/hooks/useTaskRating";
 
 
-export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }) {
-  const [rank, setRank] = useState(ranks.find(d => d.code === 'normal'));
+type Props = {
+  task: TaskRanked;
+  rateTask: TaskAction;
+  solveTask: TaskAction;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+
+export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }: Props) {
+  const [rank, setRank] = useState<TaskRank>(() => {
+    const rank = ranks.find(d => d.code === 'normal');
+    if (rank === undefined) {
+      throw new Error('Сложность normal не найдена.');
+    }
+    return rank;
+  });
   const [showTaskMeta, setShowTaskMeta] = useState(false);
 
   const taskContent = [

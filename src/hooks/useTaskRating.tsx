@@ -9,6 +9,9 @@ import { todayNoTime } from "../utils/todayNoTime";
 const RANKS_STORE = 'taskranks';
 
 
+export type TaskAction = (task: TaskRanked, rank: TaskRank) => void;
+
+
 export function useTaskRating(
   initialTasks: Task[],
   ranks: TaskRank[] = DEFAULT_TASK_RANKS
@@ -34,27 +37,9 @@ export function useTaskRating(
     });
   });
 
-  const rateTask = (task: TaskRanked, rank: TaskRank) => {
+  const updateStorage = (task: TaskRanked, rank: TaskRank, lastSolved: number): void => {
     const savedRanksRaw = localStorage.getItem(RANKS_STORE);
     const savedRanks = savedRanksRaw ? JSON.parse(savedRanksRaw) : { };
-
-    const updatedRanks = {
-      ...savedRanks,
-      [task.id]: {
-        code: rank.code,
-        lastSolved: task.lastSolved
-      }
-    }
-    localStorage.setItem(RANKS_STORE, JSON.stringify(updatedRanks));
-
-    setTasks(tasks.map(t => t.id !== task.id ? t : { ...task, rank }));
-  }
-
-  // TODO: можно ли как-то отрефакторить? Функции выглядят слишком похоже друг на друга.
-  const solveTask = (task: TaskRanked, rank: TaskRank) => {
-    const savedRanksRaw = localStorage.getItem(RANKS_STORE);
-    const savedRanks = savedRanksRaw ? JSON.parse(savedRanksRaw) : { };
-    const lastSolved = todayNoTime();
 
     const updatedRanks = {
       ...savedRanks,
@@ -64,8 +49,21 @@ export function useTaskRating(
       }
     }
     localStorage.setItem(RANKS_STORE, JSON.stringify(updatedRanks));
+  }
 
-    setTasks(tasks.map(t => t.id !== task.id ? t : { ...task, rank, lastSolved }));
+  const updateState = (taskId: string, update: Partial<TaskRanked>): void => {
+    setTasks(tasks => tasks.map(task => task.id !== taskId ? task : { ...task, ...update }));
+  }
+
+  const rateTask: TaskAction = (task, rank) => {
+    updateStorage(task, rank, task.lastSolved);
+    updateState(task.id, { rank })
+  }
+
+  const solveTask: TaskAction = (task, rank) => {
+    const lastSolved = todayNoTime();
+    updateStorage(task, rank, lastSolved);
+    updateState(task.id, { rank, lastSolved })
   }
 
 

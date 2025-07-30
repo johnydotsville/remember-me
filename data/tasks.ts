@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-29T14:36:19.763Z)
+// Auto-generated file (2025-07-30T11:16:14.352Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -296,7 +296,7 @@ console.log(arr.length);`,
     name: "task-deactivate-users_arrays_filter",
     path: "tasks\\arrays\\task-deactivate-users_arrays_filter",
     title: "Деактивация пользователей",
-    description: "Есть массив учетных записей пользователей:\r\n\r\n```javascript\r\nconst userAccounts = [\r\n  { id: 1, username: 'ivan.petrov', isActive: true, lastVisitDaysAgo: 5 },\r\n  { id: 2, username: 'mariya.sidorova', isActive: false, lastVisitDaysAgo: 120 },\r\n  { id: 3, username: 'alex.ivanov', isActive: true, lastVisitDaysAgo: 2 },\r\n  { id: 4, username: 'elena.kuznetsova', isActive: true, lastVisitDaysAgo: 7 },\r\n  { id: 5, username: 'dmitriy.smirnov', isActive: false, lastVisitDaysAgo: 90 },\r\n  { id: 6, username: 'olga.vasnetsova', isActive: true, lastVisitDaysAgo: 1 },\r\n  { id: 7, username: 'sergey.lebedev', isActive: false, lastVisitDaysAgo: 60 },\r\n  { id: 8, username: 'anna.zhukova', isActive: true, lastVisitDaysAgo: 20 },  // <-- deactivate\r\n  { id: 9, username: 'pavel.novikov', isActive: false, lastVisitDaysAgo: 150 },\r\n  { id: 10, username: 'natalya.morozova', isActive: true, lastVisitDaysAgo: 3 },\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает массив идентификаторов пользователей, чьи учетные записи подлежат деактивации.\r\n* Критерий деактивации - последнее посещение сайта больше N дней назад. По умолчанию - 14.\r\n  * Некоторые пользователи уже деактивированы (у них isActive = false), их идентификаторы нас не интересуют.",
+    description: "Есть массив учетных записей пользователей:\r\n\r\n```javascript\r\nconst userAccounts = [\r\n  { id: 1, username: 'ivan.petrov', isActive: true, lastVisitDaysAgo: 5 },\r\n  { id: 2, username: 'mariya.sidorova', isActive: false, lastVisitDaysAgo: 120 },\r\n  { id: 3, username: 'alex.ivanov', isActive: true, lastVisitDaysAgo: 2 },\r\n  { id: 4, username: 'elena.kuznetsova', isActive: true, lastVisitDaysAgo: 7 },\r\n  { id: 5, username: 'dmitriy.smirnov', isActive: false, lastVisitDaysAgo: 90 },\r\n  { id: 6, username: 'olga.vasnetsova', isActive: true, lastVisitDaysAgo: 1 },\r\n  { id: 7, username: 'sergey.lebedev', isActive: false, lastVisitDaysAgo: 60 },\r\n  { id: 8, username: 'anna.zhukova', isActive: true, lastVisitDaysAgo: 20 },  // <-- deactivate\r\n  { id: 9, username: 'pavel.novikov', isActive: false, lastVisitDaysAgo: 150 },\r\n  { id: 10, username: 'natalya.morozova', isActive: true, lastVisitDaysAgo: 3 },\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает массив идентификаторов пользователей, чьи учетные записи подлежат деактивации.\r\n  * Вернуть надо именно массив идентификаторов, а не массив самих пользователей.\r\n* Критерий деактивации - последнее посещение сайта больше N дней назад. По умолчанию - 14.\r\n  * Некоторые пользователи уже деактивированы (у них isActive = false), их идентификаторы нас не интересуют.",
     template: ``,
     solution: `function shouldBeDeactivated(accounts, daysThreshold = 14) {
   return accounts
@@ -358,12 +358,12 @@ console.log(lastCourseInMonth(exams, 'Май'));
 console.log(lastCourseInMonth(exams, 'Июль'));`,
     solution: `function lastCourseInMonth(exams, month) {
   return exams.findLast(exam => exam.month === month)?.course
-    || \`В \${month} нет экзаменов\`;
+    ?? \`В \${month} нет экзаменов\`;
 }`,
     templateLang: `.ts`,
     solutionLang: `.ts`,
     categories: ['arrays'],
-    tags: ['findLast', 'массивы', 'array']
+    tags: ['findLast', '??', 'массивы', 'array']
   },
   {
     id: "f6320a5a46f06301",
@@ -743,7 +743,7 @@ function debounce(fn, delayMs) {
     name: "task-news-feed_grow_shrink_basis",
     path: "tasks\\css\\flexbox\\task-news-feed_grow_shrink_basis",
     title: "Новостная лента",
-    description: "Есть лента новостей, где каждая новость состоит из трех элементов:\r\n\r\n- Заголовок новости.\r\n\r\n- Время публикации.\r\n\r\n- Теги.\r\n\r\n### Задача\r\n\r\n- Дописать стили так, чтобы:\r\n  \r\n  - Заголовок занимал все доступное место.\r\n  \r\n  - Время занимало ровно столько места, сколько ему нужно.\r\n  \r\n  - Теги по возможности занимали 220px, но если места мало, можно и меньше, сколько есть.\r\n\r\n- Исправить стили так, чтобы:\r\n  \r\n  - Заголовок при возможности был в пять раз больше остальных элементов.\r\n  \r\n  - Время не брало больше места, чем ему нужно, но и своего не отдавало.\r\n  \r\n  - Теги брали столько места, сколько можно.",
+    description: "Есть лента новостей, где каждая новость состоит из трех элементов:\r\n\r\n- Заголовок новости.\r\n\r\n- Время публикации.\r\n\r\n- Теги.\r\n\r\n### Задача\r\n\r\n- Дописать стили так, чтобы:\r\n  \r\n  - Заголовок занимал все доступное место.\r\n  \r\n  - Время в своем блоке не дробилось на две строки, когда мало места.\r\n  \r\n  - Теги по возможности занимали 220px, но если места мало, можно и меньше, сколько есть.\r\n\r\n- Исправить стили так, чтобы:\r\n  \r\n  - Заголовок при возможности был в пять раз больше остальных элементов.\r\n  \r\n  - Время не брало больше места, чем ему нужно, но и своего не отдавало.\r\n  \r\n  - Теги брали столько места, сколько можно.",
     template: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -755,6 +755,7 @@ function debounce(fn, delayMs) {
       border: 1px solid #ddd;
       padding: 15px;
       background-color: pink;
+	  min-width: 500px;
     }
 
     .news-card {
@@ -821,17 +822,17 @@ function debounce(fn, delayMs) {
 <style>
   .title {
     /* ... остальное */
-    flex: 5;  /* Какая это комбинация базовых свойств? */
+    flex: 5;  /* Какая это комбинация базовых свойств? n 1 0 */
   }
 
   .date {
     /* ... остальное */
-    flex: none;  /* Какая это комбинация базовых свойств? */
+    flex: none;  /* Какая это комбинация базовых свойств? 0 0 auto */
   }
 
   .tags {
     /* ... остальное */
-    flex: auto;  /* Какая это комбинация базовых свойств? */
+    flex: auto;  /* Какая это комбинация базовых свойств? 1 1 auto */
   }
 </style>`,
     templateLang: `.html`,

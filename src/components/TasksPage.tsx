@@ -5,15 +5,16 @@ import { rootcat } from '@data/tasks';
 import { flatcats } from "@utils/flatcats";
 import { useCallback, useMemo, useState, useEffect } from "react";
 import { tasks as sourceTasks } from "@data/tasks";
-import type { Category, Task } from '@src/types/model';
+import type { Category } from '@src/types/model';
 import { selectTask } from "@/src/utils/selectTask";
 import { todayNoTime } from "@utils/todayNoTime";
 import { useTaskRating } from "@src/hooks/useTaskRating";
+import type { TaskRanked } from "@src/types/model/TaskRanked";
 
 
 export const TasksPage = () => {
   const cats = useMemo(() => flatcats(rootcat).filter(cat => !cat.hidden).sort(), [rootcat]);
-  const [randomTask, setRandomTask] = useState<Task | null>(null);
+  const [randomTask, setRandomTask] = useState<TaskRanked | null>(null);
   const [category, setCategory] = useState<Category>(rootcat);
 
   const { tasks, rateTask, solveTask } = useTaskRating(sourceTasks);
