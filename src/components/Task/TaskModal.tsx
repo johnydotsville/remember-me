@@ -8,16 +8,16 @@ import { useState } from "react";
 import { DEFAULT_TASK_RANKS as ranks } from "@/src/constants/defaultTaskRanks";
 import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
 import { TaskMeta } from "@components/Task/TaskMeta";
-import type { TaskRanked } from "@/src/types/model/TaskRanked";
+import type { TaskWithUserAttributes } from "@/src/types/model/TaskWithUserAttributes";
 import type { TaskRank } from "@/src/types/model/TaskRank";
 import type { TaskAction } from "@/src/hooks/useTaskRating";
-import type { Task } from "@/src/types/model";
+import type { TaskWithContent } from "@/src/types/model";
 import { useEffect } from "react";
 
 
 
 type Props = {
-  task: TaskRanked;
+  task: TaskWithUserAttributes;
   rateTask: TaskAction;
   solveTask: TaskAction;
   isOpen: boolean;
@@ -26,7 +26,7 @@ type Props = {
 
 
 export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }: Props) {
-  const [fulltask, setFulltask] = useState<Task | null>(null);
+  const [fulltask, setFulltask] = useState<TaskWithContent | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [rank, setRank] = useState<TaskRank>(() => {
@@ -43,7 +43,7 @@ export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }: Props)
       try {
         const response = await fetch(`/tasks/${task.id}.json`);
         if (!response.ok) throw new Error("Задача не найдена");
-        const data: Task = await response.json();
+        const data: TaskWithContent = await response.json();
         setFulltask(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Ошибка загрузки");

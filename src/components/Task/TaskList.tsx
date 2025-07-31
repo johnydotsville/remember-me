@@ -2,19 +2,19 @@ import { Box, Stack } from "@mui/material";
 import { TaskView } from "./TaskView";
 import { useState } from "react";
 import { TaskModal } from "./TaskModal";
-import type { TaskRanked } from "@/src/types/model/TaskRanked";
+import type { TaskWithUserAttributes } from "@/src/types/model/TaskWithUserAttributes";
 import type { TaskAction } from "@/src/hooks/useTaskRating";
 
 
 type Props = {
-  tasks: TaskRanked[];
+  tasks: TaskWithUserAttributes[];
   rateTask: TaskAction;
   solveTask: TaskAction;
 }
 
 
 export const TaskList = ({ tasks, rateTask, solveTask }: Props) => {
-  const [selectedTask, setSelectedTask] = useState<TaskRanked | null>(null);
+  const [selectedTask, setSelectedTask] = useState<TaskWithUserAttributes | null>(null);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { Stack, Box, Typography } from "@mui/material";
-import type { TaskRanked } from "@/src/types/model/TaskRanked";
+import type { TaskWithUserAttributes } from "@/src/types/model/TaskWithUserAttributes";
 import { RankMarker } from '@components/misc/RankMarker';
 import { timestampToDate } from '@src/utils/timestampToDate';
 import { getColorByDateDiffHSL } from '@src/utils/getColorByDateDiffHSL';
@@ -7,7 +7,7 @@ import { getDiffInDays } from "@/src/utils/getDiffInDays";
 import { todayNoTime } from "@/src/utils/todayNoTime";
 
 
-export function TaskView({ task }: { task: TaskRanked }) {
+export function TaskView({ task }: { task: TaskWithUserAttributes }) {
   let whenSolved = '';
   if (task.lastSolved > 0) {
     const solvedDaysAgo = getDiffInDays(todayNoTime(), task.lastSolved);

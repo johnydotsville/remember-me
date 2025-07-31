@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import type { Task, Meta } from '@src/types/model';
+import type { TaskWithContent, Meta } from '@src/types/model';
 import { createHash } from 'crypto';
 
 
@@ -104,7 +104,6 @@ async function findFileWithExtensions(basePath, possibleExtensions) {
   for (let ext of possibleExtensions) {
     ext = ext.startsWith('.') ? ext : `.${ext}`;
     const filePath = basePath + ext;
-    console.log(filePath)
     try {
       await fs.access(filePath);
       return [filePath, ext];
@@ -116,7 +115,7 @@ async function findFileWithExtensions(basePath, possibleExtensions) {
 }
 
 
-async function makeTask(folder: Folder): Promise<Task> {
+async function makeTask(folder: Folder): Promise<TaskWithContent> {
   const description = await mdToString(path.join(folder.fullpath, 'description.md'));
 
   const [templatePath, templateExt] = await findFileWithExtensions(path.join(folder.fullpath, 'template'), ['ts', 'js', 'html']);
@@ -132,8 +131,6 @@ async function makeTask(folder: Folder): Promise<Task> {
     return tagsSet;
   }, new Set<string>());
 
-  console.log(folder.shortpath)
-  
   return {
     id: idFromPath(folder.fullpath),
     name: folder.name,
@@ -202,46 +199,18 @@ ${sqin}]`
 }
 
 
-// async function writeTasks(tasks: Task[], rootcat: Folder) {
-//   let tsContent = `// Auto-generated file (${new Date().toISOString()})
-// import type { Task, Category } from "@/src/types/model";
-
-// export const rootcat: Category = 
-// ${catTreeToString(rootcat)}
-
-// export const tasks: Task[] = [
-// ${tasks.map(task => `  {
-//     id: ${JSON.stringify(task.id)},
-//     name: ${JSON.stringify(task.name)},
-//     path: ${JSON.stringify(task.path)},
-//     title: ${JSON.stringify(task.title)},
-//     description: ${JSON.stringify(task.description)},
-//     template: \`${task.template.replace(/`/g, '\\`')}\`,
-//     solution: \`${task.solution.replace(/`/g, '\\`')}\`,
-//     templateLang: \`${task.templateLang.replace(/`/g, '\\`')}\`,
-//     solutionLang: \`${task.solutionLang.replace(/`/g, '\\`')}\`,
-//     categories: [${task.categories.map(c => `'${c}'`).join(', ')}],
-//     tags: [${task.tags.map(c => `'${c}'`).join(', ')}]
-//   }`).join(',\n')}
-// ];
-
-// export default tasks;
-// `;
-
-//   await fs.writeFile(PATHS.output, tsContent);
-// }
-
-async function writeTasksInfo(tasks: Task[], rootcat: Folder) {
+async function writeTasksInfo(tasks: TaskWithContent[], rootcat: Folder) {
   let tsContent = `// Auto-generated file (${new Date().toISOString()})
-import type { TaskInfo, Category } from "@/src/types/model";
+import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
 ${catTreeToString(rootcat)}
 
-export const tasks: TaskInfo[] = [
+export const tasks: Task[] = [
 ${tasks.map(task => `  {
     id: ${JSON.stringify(task.id)},
     name: ${JSON.stringify(task.name)},
+    path: ${JSON.stringify(task.path)},
     title: ${JSON.stringify(task.title)},
     categories: [${task.categories.map(c => `'${c}'`).join(', ')}],
     tags: [${task.tags.map(c => `'${c}'`).join(', ')}]
@@ -255,7 +224,7 @@ export default tasks;
 }
 
 
-async function writeTasksAsSingleJson(tasks: Task[]) {
+async function writeTasksAsSingleJson(tasks: TaskWithContent[]) {
   const dir = path.join(PATHS.public, 'tasks');
 
   await fs.mkdir(dir, { recursive: true });

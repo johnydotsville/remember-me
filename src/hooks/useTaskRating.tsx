@@ -1,7 +1,7 @@
-import type { Task, TaskInfo } from "@src/types/model";
+import type { TaskWithContent, Task } from "@src/types/model";
 import { useState } from "react";
 import type { TaskRank } from "@src/types/model/TaskRank";
-import type { TaskRanked } from '@src/types/model/TaskRanked';
+import type { TaskWithUserAttributes } from '@/src/types/model/TaskWithUserAttributes';
 import { DEFAULT_TASK_RANKS } from "@src/constants/defaultTaskRanks";
 import { todayNoTime } from "../utils/todayNoTime";
 
@@ -9,14 +9,14 @@ import { todayNoTime } from "../utils/todayNoTime";
 const RANKS_STORE = 'taskranks';
 
 
-export type TaskAction = (task: TaskRanked, rank: TaskRank) => void;
+export type TaskAction = (task: TaskWithUserAttributes, rank: TaskRank) => void;
 
 
 export function useTaskRating(
-  initialTasks: TaskInfo[],
+  initialTasks: Task[],
   ranks: TaskRank[] = DEFAULT_TASK_RANKS
 ) {
-  const [tasks, setTasks] = useState<TaskRanked[]>(() => {
+  const [tasks, setTasks] = useState<TaskWithUserAttributes[]>(() => {
     const savedRanksRaw = localStorage.getItem(RANKS_STORE);
     const savedRanks = savedRanksRaw ? JSON.parse(savedRanksRaw) : { };
 
@@ -37,7 +37,7 @@ export function useTaskRating(
     });
   });
 
-  const updateStorage = (task: TaskRanked, rank: TaskRank, lastSolved: number): void => {
+  const updateStorage = (task: TaskWithUserAttributes, rank: TaskRank, lastSolved: number): void => {
     const savedRanksRaw = localStorage.getItem(RANKS_STORE);
     const savedRanks = savedRanksRaw ? JSON.parse(savedRanksRaw) : { };
 
@@ -51,7 +51,7 @@ export function useTaskRating(
     localStorage.setItem(RANKS_STORE, JSON.stringify(updatedRanks));
   }
 
-  const updateState = (taskId: string, update: Partial<TaskRanked>): void => {
+  const updateState = (taskId: string, update: Partial<TaskWithUserAttributes>): void => {
     setTasks(tasks => tasks.map(task => task.id !== taskId ? task : { ...task, ...update }));
   }
 
