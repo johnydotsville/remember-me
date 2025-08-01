@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic Numbers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    #container {
+      margin: 0 auto;
+      padding: 10px;
+      background-color: #FFEBDD;
+    }
+    .item {
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      background: #fff;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+</body>
+<script>
+  function generateRandomNumber() {
+    const power = Math.floor(Math.random() * 9);
+    const min = Math.pow(10, power);
+    const max = Math.pow(10, power + 1) - 1;
+    
+    if (power === 0 && Math.random() < 0.3) {
+      return Math.floor(Math.random() * 9) + 1;
+    }
+    
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
+  const items = Array.from({ length: 9 }, (_, i) => {
+    const number = generateRandomNumber();
+    return {
+      id: i,
+      number: formatNumber(number),
+      length: number.toString().length
+    };
+  });
+
+  const grid = document.getElementById('container');
+  items.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'item';
+    el.textContent = item.number;
+    grid.appendChild(el);
+  });
+</script>
+</html>

@@ -1,0 +1,67 @@
+<style>
+  /* 1. Карточки в две строки */
+  #container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: auto auto;
+  }
+
+  /* 2. Расстояние 10px */
+  #container {
+    gap: 10px;
+    row-gap: 10px;
+    column-gap: 10px
+  }
+
+  /* 3. Карточки в три столбца */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto auto auto;
+  }
+
+  /* 4. Третьему столбцу в два раза больше места */
+  #container {
+    display: grid;
+      grid-auto-flow: row;
+      grid-template-columns: auto auto 2fr;
+  }
+
+  /* 5. Второй столбец не меньше 250px и не больше 500px */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto minmax(250px, 500px) auto;
+  }
+  
+  /* 6. Первый столбец ровно 100px */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 100px minmax(250px, 500px) auto;
+  }
+
+  /* 7. Три столбца по 150px одной конструкцией */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 150px);
+  }
+
+  /* 8. Три столбца по 150px одной конструкцией + два по бокам */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto repeat(3, 150px) auto;
+  }
+
+  /* 9. Динамические столбцы */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    /* 9.1. Все доступное место в строке */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    /* 9.2. Элементы по 100px */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+</style>

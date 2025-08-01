@@ -164,13 +164,27 @@
   - [x] flex-basis: auto;
   
   - [x] flex, Растягивание + сужение + базис
+- [ ] grid
+  - [x] grid-auto-flow
+  - [x] grid-template-rows, grid-template-columns
+  - [x] gap
+  - [ ] Размерности
+    - [x] px
+    - [x] fr
+    - [x] auto
+    - [x] minmax
+  - [ ] repeat
+    - [x] auto-fill
+    - [x] auto-fit
+  - [ ] Растяжение элемента на несколько клеток.
+  - [ ] Шаблоны областей.
 - [ ] Списки ul
 - [ ] Элементы управления
   
   - [ ] checkbox
   
   - [ ] radio button
-- [ ] media запросы
+- [x] media запросы
 - [x] Позиционирование
   - [x] static
   - [x] relative
@@ -179,3 +193,4 @@
   - [x] sticky
 - [x] Блочная модель
   - [x] box-sizing
+- [x] overflow
