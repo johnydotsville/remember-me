@@ -1,4 +1,4 @@
-// Auto-generated file (2025-07-30T11:16:14.352Z)
+// Auto-generated file (2025-08-01T11:09:08.954Z)
 import type { Task, Category } from "@/src/types/model";
 
 export const rootcat: Category = 
@@ -34,6 +34,12 @@ export const rootcat: Category =
         {
           name: 'flexbox',
           title: 'Flex',
+          hidden: false,
+          subcategories: []
+        },
+        {
+          name: 'grid',
+          title: 'Grid',
           hidden: false,
           subcategories: []
         },
@@ -370,7 +376,7 @@ console.log(lastCourseInMonth(exams, 'Июль'));`,
     name: "task-lucky-player_arrays_find",
     path: "tasks\\arrays\\task-lucky-player_arrays_find",
     title: "Игрок, которому повезло",
-    description: "Есть таблица лидеров региона по игре \"Strike Back\":\r\n\r\n```javascript\r\nconst esportsPlayers = [\r\n  { player: \"Ninja\", score: 24500 },\r\n  { player: \"Shroud\", score: 18900 },\r\n  { player: \"Faker\", score: 32000 },\r\n  { player: \"s1mple\", score: 27800 },\r\n  { player: \"Bugha\", score: 15400 },\r\n  { player: \"Rookie\", score: 8500 },\r\n  { player: \"ZywOo\", score: 7200 },\r\n  { player: \"Meteos\", score: 4300 },\r\n  { player: \"xPeke\", score: 6800 },\r\n  { player: \"BoxBox\", score: 9200 }\r\n];\r\n```\r\n\r\nОрганизация \"Team Clear It\" решила провести благотворительную акцию, в рамках которой любой игрок с рейтингом ниже 10_000 получит шанс сыграть в благотворительном матче в составе профессиональной команды.\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию функции, которая выберет из списка первого подходящего игрока.\r\n* Порог рейтинга передается вторым параметром и по умолчанию 10_000.\r\n\r\nДополнительно:\r\n\r\n* Модифицируйте функцию так, чтобы выбирался случайный из всех подходящих кандидатов.",
+    description: "Есть таблица лидеров региона по игре \"Strike Back\":\r\n\r\n```javascript\r\nconst esportsPlayers = [\r\n  { player: \"Ninja\", score: 24500 },\r\n  { player: \"Shroud\", score: 18900 },\r\n  { player: \"Faker\", score: 32000 },\r\n  { player: \"s1mple\", score: 27800 },\r\n  { player: \"Bugha\", score: 15400 },\r\n  { player: \"Rookie\", score: 8500 },\r\n  { player: \"ZywOo\", score: 7200 },\r\n  { player: \"Meteos\", score: 4300 },\r\n  { player: \"xPeke\", score: 6800 },\r\n  { player: \"BoxBox\", score: 9200 }\r\n];\r\n```\r\n\r\nОрганизация \"Team Clear It\" решила провести благотворительную акцию, в рамках которой любой игрок с рейтингом ниже 10_000 получит шанс сыграть в благотворительном матче в составе профессиональной команды.\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию функции, которая выберет из списка первого подходящего игрока.\r\n* Порог рейтинга передается вторым параметром и по умолчанию 10_000.\r\n* Если подходящих игроков нет, верните сообщение \"Нет подходящих игроков\".\r\n\r\nДополнительно:\r\n\r\n* Модифицируйте функцию так, чтобы выбирался случайный из всех подходящих кандидатов.",
     template: `const esportsPlayers = [
   { player: "Ninja", score: 24500 },
   { player: "Shroud", score: 18900 },
@@ -841,6 +847,154 @@ function debounce(fn, delayMs) {
     tags: ['flex-grow', 'flex-shrink', 'flex-basis', 'flex', 'flexbox', 'css']
   },
   {
+    id: "638e45f68ebc2596",
+    name: "task-magic-numbers-test_grid_basics",
+    path: "tasks\\css\\grid\\task-magic-numbers-test_grid_basics",
+    title: "Тест магических чисел",
+    description: "В вашем отделе проводят конкурс на спонтанный скилл по CSS. Участник садится за компьютер, а все собравшиеся вокруг коллеги выкрикивают задание. Победитель получает купон на 10 бесплатных чашек мажорного чая в офисном кафе. Дошла очередь и до вас.\r\n\r\nВам достался шаблон \"Волшебные числа\" из какого-то старого проекта. Там какие-то карточки с цифрами. Основная верстка уже есть, сейчас полетят задания:\r\n\r\n1. Сделай чтобы карточки шли в две строки!\r\n2. Расстояние добавь между карточками 10px!\r\n   1. Расстояние только между строками я имел ввиду!\r\n   2. Ой, то есть между столбцами!\r\n   3. В общем, верни опять чтобы общее расстояние было 10px.\r\n3. А теперь сделай карточки в три столбца!\r\n4. Дай третьему столбцу в два раза больше места, чем остальным!\r\n5. Пусть второй столбец будет не меньше 250px и не больше 500px!\r\n6. Первому столбцу ровно сотку пикселей дай!\r\n7. Сделай три столбца по 150px, но одной конструкцией!\r\n8. А теперь по бокам этих столбцов еще по одному добавь, чтобы занимали места сколько осталось!\r\n\r\nВсе удивлены как вы ловко обращаетесь с гридами и вы уже почти ощущаете тепло этих кружек со вкусным чаем, но тут приходит Вадик и говорит:\r\n\r\n9. А сможешь, чтобы столбцов было сколько влезет элементов, а не фиксированное количество? Причем в двух вариациях - чтобы когда элементов мало и переноса нет, т.е. строка всего одна, то:\r\n   1. Элементы занимали все доступное место в строке. \r\n   2. Элементы занимали 100px.\r\n   3. И не просто сделай, а объясни всем как это работает, раз уж все мы тут собрались.\r\n\r\n",
+    template: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic Numbers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    #container {
+      margin: 0 auto;
+      padding: 10px;
+      background-color: #FFEBDD;
+    }
+    .item {
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      background: #fff;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+</body>
+<script>
+  function generateRandomNumber() {
+    const power = Math.floor(Math.random() * 9);
+    const min = Math.pow(10, power);
+    const max = Math.pow(10, power + 1) - 1;
+    
+    if (power === 0 && Math.random() < 0.3) {
+      return Math.floor(Math.random() * 9) + 1;
+    }
+    
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
+  const items = Array.from({ length: 9 }, (_, i) => {
+    const number = generateRandomNumber();
+    return {
+      id: i,
+      number: formatNumber(number),
+      length: number.toString().length
+    };
+  });
+
+  const grid = document.getElementById('container');
+  items.forEach(item => {
+    const el = document.createElement('div');
+    el.className = 'item';
+    el.textContent = item.number;
+    grid.appendChild(el);
+  });
+</script>
+</html>`,
+    solution: `<style>
+  /* 1. Карточки в две строки */
+  #container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: auto auto;
+  }
+
+  /* 2. Расстояние 10px */
+  #container {
+    gap: 10px;
+    row-gap: 10px;
+    column-gap: 10px
+  }
+
+  /* 3. Карточки в три столбца */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto auto auto;
+  }
+
+  /* 4. Третьему столбцу в два раза больше места */
+  #container {
+    display: grid;
+      grid-auto-flow: row;
+      grid-template-columns: auto auto 2fr;
+  }
+
+  /* 5. Второй столбец не меньше 250px и не больше 500px */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto minmax(250px, 500px) auto;
+  }
+  
+  /* 6. Первый столбец ровно 100px */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 100px minmax(250px, 500px) auto;
+  }
+
+  /* 7. Три столбца по 150px одной конструкцией */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 150px);
+  }
+
+  /* 8. Три столбца по 150px одной конструкцией + два по бокам */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto repeat(3, 150px) auto;
+  }
+
+  /* 9. Динамические столбцы */
+  #container {
+    display: grid;
+    grid-auto-flow: row;
+    /* 9.1. Все доступное место в строке */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    /* 9.2. Элементы по 100px */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+</style>`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css', 'grid'],
+    tags: ['grid-auto-flow', 'grid-template-columns', 'grid-template-rows', 'grid', 'css']
+  },
+  {
     id: "079109653469c3e7",
     name: "task-chat-button_position-fixed",
     path: "tasks\\css\\position\\task-chat-button_position-fixed",
@@ -1186,6 +1340,144 @@ function debounce(fn, delayMs) {
     solutionLang: `.html`,
     categories: ['css'],
     tags: ['box-sizing', 'border-box', 'content-box', 'css']
+  },
+  {
+    id: "2fc6dca11373df22",
+    name: "task-company-mobile-first-page_media",
+    path: "tasks\\css\\task-company-mobile-first-page_media",
+    title: "Cтраница компании GreenValley",
+    description: "Ваш стажер сверстал основу макета, который выдал ему лид и подошел к вам посоветоваться.\r\n\r\n- \"Вадик сказал делать в mobile-first стиле. Когда экран 768px, то меню должно быть сбоку. Как такое обычно делают и в чем фишка mobile-first?\".",
+    template: `<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Адаптивное меню</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      max-width: 1000px;
+      background-color: #D8D8D8;
+      border: 1px solid black;
+      margin: 0 auto;
+    }
+    
+    .content {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .menu {
+      background: #f0f0f0;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .menu a {
+      font-size: 16px;
+      text-decoration: none;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="menu">
+      <a href="#">Главная</a>
+      <a href="#">О нас</a>
+      <a href="#">Услуги</a>
+      <a href="#">Контакты</a>
+    </nav>
+    <main class="content">
+      Добро пожаловать в «GreenValley» — место, где технологии встречаются с заботой о природе. Мы создаем экологичные решения для вашего дома и бизнеса: от умных систем энергосбережения до перерабатываемых материалов. Наша миссия — сделать жизнь удобной без вреда для планеты. Присоединяйтесь к тысячам довольных клиентов и начните экономить ресурсы уже сегодня!
+    </main>
+  </div>
+</body>
+</html>`,
+    solution: `<style>
+  @media (min-width: 768px) {
+    .wrapper {
+      flex-direction: row;
+    }
+    
+    .menu {
+      flex-direction: column;
+    }
+  }
+</style>`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css'],
+    tags: ['media', 'mobile-first', 'css']
+  },
+  {
+    id: "68561c1d72c2f37f",
+    name: "task-item-card-big-description_overflow",
+    path: "tasks\\css\\task-item-card-big-description_overflow",
+    title: "Вылезающее за границы карточки описание товара",
+    description: "Стажер получил задание сверстать карточку товара. Но описание товара не помещается в карточку и вылазит за ее границы. Он пришел к вам и спросил:\r\n\r\n* Как убрать текст, который не помещается в карточку?\r\n\r\nВы показали ему, но вам кажется это не очень логичным - скрывать описание. Вы предлагаете:\r\n\r\n* Предлагаю не просто убрать лишнее, а добавить возможность прокрутки.\r\n\r\nСтажеру идея понравилась, но после сдачи задания пришел лид и сказал:\r\n\r\n* Тут не нужна прокрутка, в том числе программная. Браузер не должен тратить ресурсы на скролл там, где он не нужен.",
+    template: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic Numbers</title>
+  <style>
+    .product-card {
+      width: 200px;
+      height: 220px;
+      border: 1px solid #808080;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="product-card">
+    <h2>Ноутбук</h2>
+    <h4>Macbook Air M4 16/256</h4>
+    <p class="description">
+      Ультратонкий ноутбук с чипом Apple M4, 16 ГБ оперативной памяти и SSD на 256 ГБ. Идеален для работы и мультимедиа: мощный аккумулятор, Retina-экран и бесшумная работа без вентиляторов. Лучший выбор для мобильности и производительности без компромиссов.
+    </p>
+  </div>
+</body>
+</html>`,
+    solution: `<style>
+  /* Скрыть невлезающее. Можно крутить программно. */
+  .description {
+    height: 6em;
+    overflow: hidden;
+  }
+
+  /* Скрыть невлезающее. Браузер добавит скроллбар. */
+  .description {
+    height: 6em;
+    overflow: scroll;  /* или auto */
+  }
+
+  /* Скрыть невлезающее. Нельзя крутить программно. */
+  .description {
+    height: 6em;
+    overflow: clip;
+  }
+</style>`,
+    templateLang: `.html`,
+    solutionLang: `.html`,
+    categories: ['css'],
+    tags: ['overflow', 'css']
   },
   {
     id: "b9bd1b052198a96c",

@@ -104,7 +104,6 @@ async function findFileWithExtensions(basePath, possibleExtensions) {
   for (let ext of possibleExtensions) {
     ext = ext.startsWith('.') ? ext : `.${ext}`;
     const filePath = basePath + ext;
-    console.log(filePath)
     try {
       await fs.access(filePath);
       return [filePath, ext];
@@ -119,11 +118,19 @@ async function findFileWithExtensions(basePath, possibleExtensions) {
 async function makeTask(folder: Folder): Promise<Task> {
   const description = await mdToString(path.join(folder.fullpath, 'description.md'));
 
-  const [templatePath, templateExt] = await findFileWithExtensions(path.join(folder.fullpath, 'template'), ['ts', 'js', 'html']);
-  const template = await sourceCodeToString(templatePath);
+  console.log(`[${++makeTask.calls}] Обрабатываю директорию: ${folder.fullpath}`);
 
+  const [templatePath, templateExt] = await findFileWithExtensions(path.join(folder.fullpath, 'template'), ['ts', 'js', 'html']);
+  let template = '';
+  if (templatePath !== null) {
+    template = await sourceCodeToString(templatePath);
+  }
+
+  let solution = '';
   const [solutionPath, solutionExt] = await findFileWithExtensions(path.join(folder.fullpath, 'solution'), ['ts', 'js', 'html']);
-  const solution = await sourceCodeToString(solutionPath);
+  if (solutionPath !== null) {
+    solution = await sourceCodeToString(solutionPath);
+  }
 
   const categories = getCategoriesFromTaskDir(folder.fullpath);
   const title = folder.meta?.[0]?.title ?? '';
@@ -132,8 +139,6 @@ async function makeTask(folder: Folder): Promise<Task> {
     return tagsSet;
   }, new Set<string>());
 
-  console.log(folder.shortpath)
-  
   return {
     id: idFromPath(folder.fullpath),
     name: folder.name,
@@ -148,6 +153,8 @@ async function makeTask(folder: Folder): Promise<Task> {
     tags: tagsAsSet ? [...tagsAsSet] : []
   }
 }
+
+makeTask.calls = 0;
 
 
 function getCategoriesFromTaskDir(taskDir: string) {
