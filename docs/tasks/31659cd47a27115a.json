@@ -1,0 +1,20 @@
+{
+  "id": "31659cd47a27115a",
+  "name": "task-fetch-with-query-string_URL_URLSearchParams",
+  "path": "tasks\\browser-api\\http\\task-fetch-with-query-string_URL_URLSearchParams",
+  "title": "Формирование query string для url",
+  "description": "Эндпоинт `https://jsonplaceholder.typicode.com/posts`, возвращает массив таких объектов:\r\n\r\n```javascript\r\n{\r\n  userId,\r\n  id,\r\n  title,\r\n  body\r\n}\r\n```\r\n\r\nЭндпоинт поддерживает пагинацию через строку запроса, параметры `_page` и `_limit`, оба - целые числа.\r\n\r\n### Задача\r\n\r\n* Написать функцию, которая принимает эти параметры, делает запрос на сервер и выводит заголовки постов в консоль.\r\n\r\n### Уточнения\r\n\r\nЗадача на умение разными способами добавлять query string к url. Внимание акцентировать именно на этом, а не на обработке возможных ошибок и т.д.",
+  "template": "",
+  "solution": "async function fetchData(page, limit) {\r\n  const endpoint = 'https://jsonplaceholder.typicode.com/posts';\r\n\r\n  const url = new URL(endpoint);\r\n  url.searchParams.append('_page', String(page));\r\n  url.searchParams.append('_limit', String(limit));\r\n\r\n  const response = await fetch(url);\r\n  const data = await response.json();\r\n  data.forEach(p =>console.log(p.title));\r\n}\r\n\r\nfetchData(5, 3);\r\n\r\n\r\n// Вариант 2\r\nasync function fetchData(page, limit) {\r\n  const params = new URLSearchParams();\r\n  params.append('_page', String(page));\r\n  params.append('_limit', String(limit));\r\n\r\n  const endpoint = 'https://jsonplaceholder.typicode.com/posts';\r\n  const url = new URL(endpoint);\r\n  url.search = params.toString();\r\n\r\n  const response = await fetch(url);\r\n  const data = await response.json();\r\n  data.forEach(p =>console.log(p.title));\r\n}\r\n\r\nfetchData(5, 3);",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "browser-api",
+    "http"
+  ],
+  "tags": [
+    "url",
+    "urlsearchparams",
+    "http"
+  ]
+}

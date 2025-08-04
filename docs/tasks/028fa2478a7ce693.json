@@ -1,0 +1,18 @@
+{
+  "id": "028fa2478a7ce693",
+  "name": "task-merge-objects-1_spread_obj",
+  "path": "tasks\\objects\\task-merge-objects-1_spread_obj",
+  "title": "Объединение конфигурационных объектов",
+  "description": "Есть два объекта конфигурации:\r\n\r\n```javascript\r\nconst defaultConfig = {\r\n  cacheTime: 30_000,\r\n  staleTime: 0\r\n}\r\n\r\nconst myConfig = {\r\n  timeout: 1000,\r\n  refetchOnFail: false\r\n}\r\n```\r\n\r\n Задачи:\r\n\r\n* Объединить два конфига в новый.\r\n* Заменить параметр `refetchOnFail` на true.\r\n\r\nДоп. условия:\r\n\r\n* Сначала сделать это за две операции (1 - объединить, 2 - заменить), потом за одну (объединить + заменить).\r\n* Сделать в иммутабельном стиле.",
+  "template": "",
+  "solution": "// За две\r\nconst config = {\r\n  ...defaultConfig,\r\n  ...myConfig\r\n}\r\n\r\nconst rewritten = {\r\n  ...config,\r\n  refetchOnFail: true\r\n}\r\n\r\n// За одну\r\nconst config = {\r\n  ...defaultConfig,\r\n  ...myConfig,\r\n  refetchOnFail: true\r\n}",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "objects"
+  ],
+  "tags": [
+    "spread-objects",
+    "object"
+  ]
+}

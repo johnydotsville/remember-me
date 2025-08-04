@@ -1,0 +1,20 @@
+{
+  "id": "a854d7176d8c818e",
+  "name": "task-day-codes_switch",
+  "path": "tasks\\javascript\\syntax\\task-day-codes_switch",
+  "title": "Название дней недели по кодам",
+  "description": "Задача:\r\n\r\n* Напишите функцию getFullDayName, которая получает код дня недели и возвращает полное название дня.\r\n* Доступные коды - Пн, Вт, Ср, Чт, Пт, Сб, Вс.\r\n* Если передан несуществующий код, функция выбрасывает исключение.\r\n\r\nПожелания:\r\n\r\n* Сделайте два решения:\r\n  * Через switch.\r\n  * Через объект-маппер.",
+  "template": "// Решение через switch\r\nfunction getFullDayName(shortCode) {\r\n  // Ваше решение\r\n}\r\n\r\n// Решение через объект-маппер\r\nfunction getFullDayName(shortCode) {\r\n  // Ваше решение\r\n}\r\n\r\ntry {\r\n  console.log(getFullDayName('Пн'));\r\n  console.log(getFullDayName('Хз'));\r\n} catch (error) {\r\n  console.log(error.message);\r\n}",
+  "solution": "// Решение через switch\r\nfunction getFullDayName(shortCode) {\r\n  let dayName;\r\n  switch (shortCode) {\r\n    case 'Пн':\r\n      dayName = 'Понедельник';\r\n      break;\r\n    case 'Вт':\r\n      dayName = 'Вторник';\r\n      break;\r\n    case 'Ср':\r\n      dayName = 'Среда';\r\n      break;\r\n    case 'Чт':\r\n      dayName = 'Четверг';\r\n      break;\r\n    case 'Пт':\r\n      dayName = 'Пятница';\r\n      break;\r\n    case 'Сб':\r\n      dayName = 'Суббота';\r\n      break;\r\n    case 'Вс':\r\n      dayName = 'Воскресенье';\r\n      break;\r\n    default:\r\n      throw new Error(`Передан несуществующий код дня: \\${shortCode}`);\r\n  }\r\n  return dayName;\r\n}\r\n\r\n// Решение через объект-маппер\r\nfunction getFullDayName(shortCode) {\r\n  const mapper = {\r\n    'Пн': 'Понедельник',\r\n    'Вт': 'Вторник',\r\n    'Ср': 'Среда',\r\n    'Чт': 'Четверг',\r\n    'Пт': 'Пятница',\r\n    'Сб': 'Суббота',\r\n    'Вс': 'Воскресенье'\r\n  };\r\n  if (shortCode in mapper) {\r\n    return mapper[shortCode];\r\n  }\r\n  throw new Error(`Передан несуществующий код дня: \\${shortCode}`);\r\n}\r\n\r\nconsole.log(getFullDayName('Пт'));",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "syntax"
+  ],
+  "tags": [
+    "switch",
+    "синтаксис",
+    "javascript"
+  ]
+}

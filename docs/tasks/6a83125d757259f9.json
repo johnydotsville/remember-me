@@ -1,0 +1,21 @@
+{
+  "id": "6a83125d757259f9",
+  "name": "task-employees-messed-info_rest_array_items",
+  "path": "tasks\\javascript\\syntax\\task-employees-messed-info_rest_array_items",
+  "title": "Перепутанная информация о сотрудниках",
+  "description": "У вас есть массив с информацией о сотрудниках:\r\n\r\n```javascript\r\nconst employees = [\r\n  ['EMP-001', 'David', 'Jones', 'Senior Developer', 'internal:1234', 'david.j@company.com', 'home:NYC', 'skype:david-jones'],\r\n  ['BADGE-002', 'Sarah', 'Smith', 'Content Manager', 'sarah.s@company.com', 'remote', 'internal:5678', 'home:Boston'],\r\n  ['ID-789', 'Michael', 'Brown', 'HR Lead', 'full-time', 'michael.b@company.com', 'home:Chicago', 'internal:9012', '5 years exp'],\r\n  ['CARD-XYZ', 'Emily', 'Davis', 'Junior Dev', 'intern', 'emily.d@company.com', 'internal:3456'],\r\n  ['PASS-123', 'James', 'Wilson', 'Accountant', 'james.w@company.com', 'part-time', 'cpa', 'home:Seattle', 'internal:7890'],\r\n  ['TOKEN-456', 'Lisa', 'Taylor', 'Team Lead', '24/7', 'lisa.t@company.com', 'internal:1234', 'emergency:555-1234']\r\n];\r\n```\r\n\r\nПроблема в том, что только первые четыре поля имеют четкую структуру: модель доступа, имя, фамилия, должность. Остальная информация перепуталась и данные потеряли порядок.\r\n\r\n### Задача\r\n\r\n* Напишите реализацию функции, чтобы каждый элемент стал объектом с полями firstname, lastname, position, details.\r\n\r\n* Модель доступа пропустите - она не нужна.\r\n\r\n* В details соберите всю перепутанную информацию о сотруднике - ее разберут позже.\r\n\r\nДолжно получиться вот так:\r\n\r\n```javascript\r\n{\r\n  \"firstname\": \"James\",\r\n  \"lastname\": \"Wilson\",\r\n  \"position\": \"Accountant\",\r\n  \"details\": [\r\n    \"james.w@company.com\",s\r\n    \"part-time\",\r\n    \"cpa\",\r\n    \"home:Seattle\",\r\n    \"internal:7890\"\r\n  ]\r\n} \r\n```",
+  "template": "const employees = [\r\n  ['EMP-001', 'David', 'Jones', 'Senior Developer', 'internal:1234', 'david.j@company.com', 'home:NYC', 'skype:david-jones'],\r\n  ['BADGE-002', 'Sarah', 'Smith', 'Content Manager', 'sarah.s@company.com', 'remote', 'internal:5678', 'home:Boston'],\r\n  ['ID-789', 'Michael', 'Brown', 'HR Lead', 'full-time', 'michael.b@company.com', 'home:Chicago', 'internal:9012', '5 years exp'],\r\n  ['CARD-XYZ', 'Emily', 'Davis', 'Junior Dev', 'intern', 'emily.d@company.com', 'internal:3456'],\r\n  ['PASS-123', 'James', 'Wilson', 'Accountant', 'james.w@company.com', 'part-time', 'cpa', 'home:Seattle', 'internal:7890'],\r\n  ['TOKEN-456', 'Lisa', 'Taylor', 'Team Lead', '24/7', 'lisa.t@company.com', 'internal:1234', 'emergency:555-1234']\r\n];\r\n\r\nfunction refine(employees) {\r\n  // Ваше решение\r\n}\r\n\r\nconst fine = refine(employees);\r\nfine.forEach(emp => console.log(emp));",
+  "solution": "function refine(employees) {\r\n  return employees.map(employee => {\r\n    const [_, firstname, lastname, position, ...details] = employee;\r\n    return {\r\n      firstname,\r\n      lastname,\r\n      position,\r\n      details\r\n    };\r\n  );\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "syntax"
+  ],
+  "tags": [
+    "...",
+    "rest",
+    "синтаксис",
+    "javascript"
+  ]
+}

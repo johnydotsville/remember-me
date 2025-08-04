@@ -1,0 +1,19 @@
+{
+  "id": "3577f570e1da433a",
+  "name": "task-classic-simple-debounce-user-input_setTimeout_clearTimeout",
+  "path": "tasks\\browser-api\\task-classic-simple-debounce-user-input_setTimeout_clearTimeout",
+  "title": "Дебаунс простой",
+  "description": "На странице находится поле ввода. Когда пользователь вводит в него текст, на сервер уходит запрос поиска.\r\n\r\nЗадача:\r\n\r\n* Сделать так, чтобы запрос уходил не сразу, а с задержкой в 1.5с после того как пользователь прекратил вводить запрос.\r\n\r\nДля решения воспользуйтесь любой online-песочницей с поддержкой html+js, например:\r\n\r\n- https://playcode.io/javascript\r\n\r\n- [JS Bin](https://jsbin.com/?html,js,console)\r\n\r\n\r\n",
+  "template": "// html\r\n<input id=\"userSearch\" />\r\n\r\n\r\n// javascript\r\nconst userInput = document.querySelector('#userSearch');\r\n\r\nuserInput.addEventListener('input', () => goSearch(userInput.value));\r\n\r\nfunction goSearch(value) {\r\n  console.log(`Запрос поиска на сервер: \\${value}`)\r\n}",
+  "solution": "const userInput = document.querySelector('#userSearch');\r\n\r\nconst debouncedSearch = debounce(goSearch, 1500);\r\nuserInput.addEventListener('input', (event) => debouncedSearch(event.target.value));\r\n\r\nfunction goSearch(value) {\r\n  console.log(`Запрос поиска на сервер: \\${value}`)\r\n}\r\n\r\nfunction debounce(fn, delayMs) {\r\n  let timeoutId;\r\n  return function(...args) {\r\n    clearTimeout(timeoutId);\r\n    timeoutId = setTimeout(() => fn.apply(this, args), delayMs);\r\n  }\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "browser-api"
+  ],
+  "tags": [
+    "debounce",
+    "setTimeout",
+    "clearTimeout"
+  ]
+}

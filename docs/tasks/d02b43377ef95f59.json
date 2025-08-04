@@ -1,0 +1,22 @@
+{
+  "id": "d02b43377ef95f59",
+  "name": "task-make-your-own-exception",
+  "path": "tasks\\javascript\\exceptions\\task-make-your-own-exception",
+  "title": "Обработка деления на ноль",
+  "description": "У вас есть функция деления одного числа на другое:\r\n\r\n```javascript\r\nfunction divide(a, b) {\r\n  return a / b;\r\n}\r\n\r\nconst result = divide(10, 5);\r\nconsole.log(result);\r\n```\r\n\r\nСейчас она не предусматривает обработку деления на ноль.\r\n\r\nЗадача:\r\n\r\n* Создайте собственное исключение DivisionByZeroError.\r\n  * Текст ошибки по умолчанию поставьте \"Деление на ноль запрещено\".\r\n* Доработайте функцию divide, чтобы она выбрасывала это исключение.\r\n* Добавьте обработку исключения в месте вызова функции.\r\n  * Убедитесь, что пойманное исключение - именно DivisionByZeroError, и только тогда выведите сообщение исключения в консоль.",
+  "template": "",
+  "solution": "class DivisionByZeroError extends Error {\r\n  constructor(message = 'Деление на ноль запрещено.') {\r\n    super(message);\r\n    this.name = 'DivisionByZeroError';\r\n  }\r\n}\r\n\r\nfunction divide(a, b) {\r\n  if (b === 0) {\r\n    throw new DivisionByZeroError();\r\n  }\r\n  return a / b;\r\n}\r\n\r\ntry {\r\n  const result = divide(10, 0);\r\n  console.log(result);\r\n} catch (error) {\r\n  if (error instanceof DivisionByZeroError) {\r\n    console.log(error.message);\r\n  }\r\n}",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "exceptions"
+  ],
+  "tags": [
+    "синтаксис",
+    "легко",
+    "exceptions",
+    "исключения",
+    "javascript"
+  ]
+}

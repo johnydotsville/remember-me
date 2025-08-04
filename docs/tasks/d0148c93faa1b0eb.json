@@ -1,0 +1,22 @@
+{
+  "id": "d0148c93faa1b0eb",
+  "name": "task-professor-substitute",
+  "path": "tasks\\javascript\\syntax\\task-professor-substitute",
+  "title": "Заместитель профессора",
+  "description": "В университете есть несколько профессоров:\r\n\r\n```javascript\r\nconst johnSmith = {\r\n  name: 'John Smith',\r\n  colleagues: [\r\n    { name: 'Robert Johnson', phone: '(212) 555-0187' },\r\n    { name: 'Emily Davis', phone: '(310) 555-0142' }\r\n  ]\r\n};\r\n\r\nconst sarahConnor = {\r\n  name: 'Sarah Connor',\r\n  colleagues: [] // Нет заместителя\r\n};\r\n\r\nconst michaelBrown = {\r\n  name: 'Michael Brown',\r\n  // Нет коллег вообще\r\n};\r\n```\r\n\r\nУ них есть список коллег, которые ведут тот же самый предмет. Причем первый коллега в списке считается заместителем профессора. Если какой-то предмет ведет только один профессор, то коллег у него нет.\r\n\r\nЗадача:\r\n\r\n* Верните телефон заместителя каждого профессора.\r\n  * Если заместителя нет, верните надпись \"У имя-профессора нет заместителя\".",
+  "template": "const johnSmith = {\r\n  name: 'John Smith',\r\n  colleagues: [\r\n    { name: 'Robert Johnson', phone: '(212) 555-0187' },\r\n    { name: 'Emily Davis', phone: '(310) 555-0142' }\r\n  ]\r\n};\r\n\r\nconst sarahConnor = {\r\n  name: 'Sarah Connor',\r\n  colleagues: [] // Нет заместителя\r\n};\r\n\r\nconst michaelBrown = {\r\n  name: 'Michael Brown',\r\n  // Нет коллег вообще\r\n};\r\n\r\nfunction getSubstitute(professor) {\r\n  // Верните телефон заместителя\r\n}\r\n\r\nconsole.log(getSubstitute(johnSmith));\r\nconsole.log(getSubstitute(sarahConnor));\r\nconsole.log(getSubstitute(michaelBrown));",
+  "solution": "const johnSmith = {\r\n  name: 'John Smith',\r\n  colleagues: [\r\n    { name: 'Robert Johnson', phone: '(212) 555-0187' },\r\n    { name: 'Emily Davis', phone: '(310) 555-0142' }\r\n  ]\r\n};\r\n\r\nconst sarahConnor = {\r\n  name: 'Sarah Connor',\r\n  colleagues: [] // Нет заместителя\r\n};\r\n\r\nconst michaelBrown = {\r\n  name: 'Michael Brown',\r\n  // Нет коллег вообще\r\n};\r\n\r\nfunction getSubstitute(professor) {\r\n  return professor.colleagues?.[0]?.phone || `У профессора \\${professor.name} нет заместителя.`;\r\n}\r\n\r\nconsole.log(getSubstitute(johnSmith));\r\nconsole.log(getSubstitute(sarahConnor));\r\nconsole.log(getSubstitute(michaelBrown));",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "syntax"
+  ],
+  "tags": [
+    "?.",
+    "||",
+    "Опциональная цепочка",
+    "синтаксис",
+    "javascript"
+  ]
+}

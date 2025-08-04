@@ -1,0 +1,18 @@
+{
+  "id": "a30c8fd86874b15f",
+  "name": "task-partial-1",
+  "path": "tasks\\typescript\\utility-types\\task-partial-1",
+  "title": "Утилитарный тип Partial",
+  "description": "### Сделайте чтобы было четко, u know?\r\n\r\nЭффектный рецепт плова:\r\n\r\n* Берем сперва укропу;\r\n* Потом кошачью жопу.\r\n* Двадцать пять картошек;\r\n* Семнадцать мандавошек;\r\n* Ведро воды и хуй туды;\r\n* Охапку дров - и плов готов!\r\n\r\nПочти по рецепту пахома. Подавать со сладким хлебом.\r\n\r\n\r\n\r\n## Wjta\r\n\r\nda fuck\r\n\r\n\r\n\r\n### you kono\r\n\r\nknow waht the heck\r\n\r\n```typescript\r\nconsole.log('hello, world!');\r\n\r\ninterface Cat {\r\n  meow();\r\n  scratch();\r\n}\r\n```\r\n\r\n",
+  "template": "type UserProfile = {\r\n  id: string;\r\n  name: string;\r\n  email: string;\r\n  age: number;\r\n  isVerified: boolean;\r\n};\r\n\r\nfunction updateProfile(profile: UserProfile, updates: Partial<UserProfile>): UserProfile {\r\n  return { ...profile, ...updates };\r\n}\r\n\r\nconst alice: UserProfile = {\r\n  id: \"user-1\",\r\n  name: \"Alice\",\r\n  email: \"alice@example.com\",\r\n  age: 25,\r\n  isVerified: false,\r\n};\r\n\r\nconsole.log(alice);\r\n\r\nconst upedAlice = updateProfile(alice, {\r\n  email: \"mynameisalice@umbrella.com\",  // <-- Передаем \"обгрызанный\" объект\r\n  isVerified: true\r\n});\r\n\r\nconsole.log(upedAlice);",
+  "solution": "type UserProfile = {\r\n  id: string;\r\n  name: string;\r\n  email: string;\r\n  age: number;\r\n  isVerified: boolean;\r\n};\r\n\r\nfunction updateProfile(profile: UserProfile, updates: Partial<UserProfile>): UserProfile {\r\n  return { ...profile, ...updates };\r\n}\r\n\r\nconst alice: UserProfile = {\r\n  id: \"user-1\",\r\n  name: \"Alice\",\r\n  email: \"alice@example.com\",\r\n  age: 25,\r\n  isVerified: false,\r\n};\r\n\r\nconsole.log(alice);\r\n\r\nconst upedAlice = updateProfile(alice, {\r\n  email: \"mynameisalice@umbrella.com\",  // <-- Передаем \"обгрызанный\" объект\r\n  isVerified: true\r\n});\r\n\r\nconsole.log(upedAlice);",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "typescript",
+    "utility-types"
+  ],
+  "tags": [
+    "partial"
+  ]
+}

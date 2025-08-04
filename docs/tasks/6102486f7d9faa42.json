@@ -1,0 +1,20 @@
+{
+  "id": "6102486f7d9faa42",
+  "name": "task-edge-effect-arrays_slice_join",
+  "path": "tasks\\arrays\\task-edge-effect-arrays_slice_join",
+  "title": "Проверка психологического 'эффекта края'",
+  "description": "В психологии есть так называемый \"эффект края\", согласно которому человек лучше запоминает начало и конец текста. Профессор поручил вам написать функцию, которая выбрасывает из предложения первое и последнее слово, чтобы проверить этот психологический эффект.\r\n\r\n### Задача\r\n\r\n* Выбросить из предложения первое и последнее слово, заменив их на три вопросительных знака ???.\r\n* Предложения короткие, слова строго разделены пробелом.\r\n* В предложениях гарантировано не меньше пяти слов.",
+  "template": "const phrase = 'Кошка спит на тёплом диване';\r\n\r\nfunction edgeEffect(phrase) {\r\n  // Ваше решение\r\n}\r\n\r\nconsole.log(edgeEffect(phrase));",
+  "solution": "function edgeEffect(phrase) {\r\n  const edged = phrase.split(' ').slice(1, -1);\r\n  return ['???', ...edged, '???'].join(' ');\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "arrays"
+  ],
+  "tags": [
+    "slice",
+    "join",
+    "массивы",
+    "array"
+  ]
+}

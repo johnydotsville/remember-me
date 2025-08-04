@@ -1,0 +1,22 @@
+{
+  "id": "3d4b25096f709e11",
+  "name": "task-user-profile-base_type_interface_union",
+  "path": "tasks\\typescript\\type-interface\\task-user-profile-base_type_interface_union",
+  "title": "Тип для профиля пользователя",
+  "description": "### Брифинг\r\n\r\nВ системе есть пользователи, для которых используются такие данные:\r\n\r\n* Имя пользователя (username) - обязательно. Строка.\r\n* Почта (email) - обязательно. Строка.\r\n* Роль (role) - обязательно. Строка.\r\n  * Может принимать любое из этих значений: \"user\", \"admin\", \"guest\".\r\n* Имя (firstname) - опционально. Строка.\r\n* Фамилия (lastname) - опционально. Строка.\r\n* Год рождения (year) - опционально. Число, например 1998, без месяца и дня.\r\n\r\n### Задача\r\n\r\n* Составьте тип UserProfile, исходя из перечисленных требований.\r\n  * Роль оформите отдельным типом UserRole.\r\n  * Имя, фамилию и год рождения тоже выделите в отдельный тип PersonalInfo.\r\n* Создайте переменную, типизируйте ее и положите объект.",
+  "template": "",
+  "solution": "type UserRole = 'admin' | 'user' | 'guest';\r\n\r\ntype PersonalInfo = {\r\n  firstname?: string;\r\n  lastname?: string;\r\n  year?: number;\r\n}\r\n\r\ninterface UserProfile {\r\n  username: string;\r\n  email: string;\r\n  role: UserRole;\r\n  personal?: PersonalInfo\r\n}\r\n\r\nconst user: UserProfile = {\r\n  username: 'huck',\r\n  email: 'huckf@gmail.com',\r\n  role: 'user',\r\n  personal: {\r\n    'firstname': 'Huck',\r\n    'lastname': 'Finn'\r\n  }\r\n}",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "typescript",
+    "type-interface"
+  ],
+  "tags": [
+    "опциональные поля",
+    "обязательные поля",
+    "union",
+    "type",
+    "interface"
+  ]
+}

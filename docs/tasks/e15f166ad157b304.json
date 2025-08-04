@@ -1,0 +1,22 @@
+{
+  "id": "e15f166ad157b304",
+  "name": "task-format-order-for-delivery_rest_object_fields",
+  "path": "tasks\\javascript\\syntax\\task-format-order-for-delivery_rest_object_fields",
+  "title": "Формат заказа для службы доставки",
+  "description": "У вас есть объект заказа:\r\n\r\n```javascript\r\nconst order = {\r\n  id: 500,\r\n  customer: {\r\n    name: \"Emily Johnson\",\r\n    email: \"emily.j@example.com\",\r\n    address: \"350 5th Ave, New York, NY 10118, USA\"\r\n  },\r\n  items: [\r\n    \"The Great Gatsby by F. Scott Fitzgerald\",\r\n    \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n  ],\r\n  discount: 10,\r\n  date: \"2023-05-01\"\r\n};\r\n```\r\n\r\nВам поручили написать функцию, которая трансформирует объект заказа в формат, более удобный для курьера. В нем должны быть поля с именем клиента и адресом, а вся остальная информация - в поле деталей.\r\n\r\n### Задача\r\n\r\n* Модифицируйте функцию так, чтобы возвращала объект в таком виде:\r\n\r\n```javascript\r\n{\r\n  \"name\": \"Emily Johnson\",\r\n  \"address\": \"350 5th Ave, New York, NY 10118, USA\",\r\n  \"details\": {\r\n    \"id\": 500,\r\n    \"items\": [\r\n      \"The Great Gatsby by F. Scott Fitzgerald\",\r\n      \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n    ],\r\n    \"discount\": 10,\r\n    \"date\": \"2023-05-01\",\r\n    email: \"emily.j@example.com\"\r\n  }\r\n} \r\n```\r\n\r\nP.S. email не потеряйте.",
+  "template": "const order = {\r\n  id: 500,\r\n  customer: {\r\n    name: \"Emily Johnson\",\r\n    email: \"emily.j@example.com\",\r\n    address: \"350 5th Ave, New York, NY 10118, USA\"\r\n  },\r\n  items: [\r\n    \"The Great Gatsby by F. Scott Fitzgerald\",\r\n    \"SanDisk Ultra 128GB USB 3.0 Flash Drive\"\r\n  ],\r\n  discount: 10,\r\n  date: \"2023-05-01\"\r\n};\r\n\r\nfunction formatForDelivery(order) {\r\n  // Ваше решение\r\n}\r\n\r\nconsole.log(formatForDelivery(order));",
+  "solution": "function formatForDelivery(order) {\r\n  const {\r\n    customer: {\r\n      name, address, email\r\n    },\r\n    ...details\r\n  } = order;\r\n  return {\r\n    name, \r\n    address, \r\n    details: {\r\n      ...details,\r\n      email\r\n    }\r\n  }\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "syntax"
+  ],
+  "tags": [
+    "...",
+    "rest",
+    "objects",
+    "синтаксис",
+    "javascript"
+  ]
+}

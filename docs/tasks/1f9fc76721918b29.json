@@ -1,0 +1,18 @@
+{
+  "id": "1f9fc76721918b29",
+  "name": "task-hackers-searching-revenue_in",
+  "path": "tasks\\objects\\task-hackers-searching-revenue_in",
+  "title": "Проверка наличия прав и пользователя",
+  "description": "Ваша хакерская группа получила доступ к объекту корпорации. Требуется выяснить, есть ли в этом объекте свойство `revenue`. Один из участников группы попытался это сделать и попался, потому что служба безопасности узнала о попытке, как только он запустил свой код.\r\n\r\nВы изучили код нерадивого взломщика и обнаружили вот это:\r\n\r\n```javascript\r\nif (companyData.revenue !== undefined) {\r\n  console.log('revenue есть.');\r\n}\r\n```\r\n\r\nКакое ламерство! Неудивительно, что он попался.\r\n\r\nСделайте работу чисто, не оставляя следов. Если revenue есть, просто выведите в консоль сообщение 'revenue есть', тогда группа будет решать, как безопасно распилить объект.",
+  "template": "const companyPrototype = {\r\n  get revenue() {\r\n    console.log(\"[Лог] Кто-то запросил revenue!\");\r\n    return 1_000_000;\r\n  },\r\n  _baseSecret: \"PROTOTYPE_CONFIDENTIAL\"\r\n};\r\n\r\nconst companyData = Object.create(companyPrototype);\r\ncompanyData.name = \"ООО Мегатек\";\r\ncompanyData.legalId = \"1234567890\";\r\ncompanyData._internal = \"LOCAL_CONFIDENTIAL\";\r\n\r\nfunction hasRevenue(obj) {\r\n  // Ваша реализация\r\n}\r\n\r\nhasRevenue(companyData);",
+  "solution": "function hasRevenue(obj) {\r\n  if ('revenue' in obj) {\r\n    console.log('revenue есть.');\r\n  }\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "objects"
+  ],
+  "tags": [
+    "in",
+    "object"
+  ]
+}

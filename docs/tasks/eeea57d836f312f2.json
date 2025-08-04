@@ -1,0 +1,23 @@
+{
+  "id": "eeea57d836f312f2",
+  "name": "task-news-feed_grow_shrink_basis",
+  "path": "tasks\\css\\flexbox\\task-news-feed_grow_shrink_basis",
+  "title": "Новостная лента",
+  "description": "Есть лента новостей, где каждая новость состоит из трех элементов:\r\n\r\n- Заголовок новости.\r\n\r\n- Время публикации.\r\n\r\n- Теги.\r\n\r\n### Задача\r\n\r\n- Дописать стили так, чтобы:\r\n  \r\n  - Заголовок занимал все доступное место.\r\n  \r\n  - Время в своем блоке не дробилось на две строки, когда мало места.\r\n  \r\n  - Теги по возможности занимали 220px, но если места мало, можно и меньше, сколько есть.\r\n\r\n- Исправить стили так, чтобы:\r\n  \r\n  - Заголовок при возможности был в пять раз больше остальных элементов.\r\n  \r\n  - Время не брало больше места, чем ему нужно, но и своего не отдавало.\r\n  \r\n  - Теги брали столько места, сколько можно.",
+  "template": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Flexbox Navbar</title>\r\n  <style>\r\n    .news-feed {\r\n      border: 1px solid #ddd;\r\n      padding: 15px;\r\n      background-color: pink;\r\n\t  min-width: 500px;\r\n    }\r\n\r\n    .news-card {\r\n      display: flex;\r\n      gap: 10px;\r\n      align-items: center;\r\n      padding: 10px;\r\n      background: lightyellow;\r\n    }\r\n\r\n    .title {\r\n      background: lightblue;\r\n      padding: 5px;\r\n    }\r\n\r\n    .date {\r\n      background: orange;\r\n      padding: 5px;\r\n    }\r\n\r\n    .tags {\r\n      background: lightgreen;\r\n      text-align: center;\r\n    }\r\n  </style>\r\n</head>\r\n<body>\r\n  <div class=\"news-feed\">\r\n    <article class=\"news-card\">\r\n      <h3 class=\"title\">В России принят новый закон о цифровых валютах</h3>\r\n      <time class=\"date\">Сегодня, 10:45</time>\r\n      <div class=\"tags\">#экономика #криптовалюта</div>\r\n    </article>\r\n    <article class=\"news-card\">\r\n      <h3 class=\"title\">В Эрмитаже открылась выставка современных цифровых художников</h3>\r\n      <time class=\"date\">10 мая, 11:00</time>\r\n      <div class=\"tags\">#культура #искусство</div>\r\n    </article>\r\n  </div>\r\n</body>\r\n</html>",
+  "solution": "// Решение 1\r\n<style>\r\n  /* 1. flex-grow — заголовок растягивается на всё свободное место */\r\n  .title {\r\n    /* ... остальное */\r\n    flex-grow: 1;  /* Занимает всю доступную ширину */\r\n  }\r\n\r\n  /* 2. flex-shrink — дата не сжимается даже при нехватке места */\r\n  .date {\r\n    /* ... остальное */\r\n    flex-shrink: 0;  /* Не сжимается никогда */\r\n  }\r\n\r\n  /* 3. flex-basis — теги имеют начальную ширину 220px */\r\n  .tags {\r\n    /* ... остальное */\r\n    flex-basis: 220px;  /* \"Хочет\" быть 220px, но может сжаться */\r\n  }\r\n</style>\r\n\r\n// Решение 2\r\n<style>\r\n  .title {\r\n    /* ... остальное */\r\n    flex: 5;  /* Какая это комбинация базовых свойств? n 1 0 */\r\n  }\r\n\r\n  .date {\r\n    /* ... остальное */\r\n    flex: none;  /* Какая это комбинация базовых свойств? 0 0 auto */\r\n  }\r\n\r\n  .tags {\r\n    /* ... остальное */\r\n    flex: auto;  /* Какая это комбинация базовых свойств? 1 1 auto */\r\n  }\r\n</style>",
+  "templateLang": ".html",
+  "solutionLang": ".html",
+  "categories": [
+    "css",
+    "flexbox"
+  ],
+  "tags": [
+    "flex-grow",
+    "flex-shrink",
+    "flex-basis",
+    "flex",
+    "flexbox",
+    "css"
+  ]
+}

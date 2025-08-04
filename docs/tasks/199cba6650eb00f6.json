@@ -1,0 +1,20 @@
+{
+  "id": "199cba6650eb00f6",
+  "name": "task-data-pages",
+  "path": "tasks\\javascript\\math\\task-data-pages",
+  "title": "Количество страниц в пагинаторе",
+  "description": "У вас есть общее количество постов в блоге и настройка, сколько постов должно быть на одной странице:\r\n\r\n```typescript\r\nconst totalPosts = 12;\r\nconst postsPerPage = 5;\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько страниц должно быть в пагинаторе.",
+  "template": "",
+  "solution": "const pages = Math.ceil(totalPosts / postsPerPage);\r\nconsole.log(pages);",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "math"
+  ],
+  "tags": [
+    "ceil",
+    "math",
+    "javascript"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "0a5d35f166b3391e",
+  "name": "task-get-exchange-stat",
+  "path": "tasks\\javascript\\math\\task-get-exchange-stat",
+  "title": "Статистика курса валют",
+  "description": "У вас есть массив, содержащий курс доллара к рублю за последние 7 дней:\r\n\r\n```typescript\r\nconst exchangeRates = [75.3, 76.1, 74.9, 77.5, 76.8, 75.7, 78.2];\r\n```\r\n\r\nЗадача:\r\n\r\n* Найти минимальный и максимальный курс за эту неделю.",
+  "template": "",
+  "solution": "const exchangeRates = [75.3, 76.1, 74.9, 77.5, 76.8, 75.7, 78.2];\r\n\r\nconst minRate = Math.min(...exchangeRates);\r\nconst maxRate = Math.max(...exchangeRates);\r\n\r\nconsole.log(`Минимальный курс: \\${minRate}`);\r\nconsole.log(`Максимальный курс: \\${maxRate}`);",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "math"
+  ],
+  "tags": [
+    "min",
+    "max",
+    "math",
+    "javascript"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "7e947eb44113c93d",
+  "name": "task-autotype-config_typeof",
+  "path": "tasks\\typescript\\operators-and-constructions\\task-autotype-config_typeof",
+  "title": "Автоматическое выведение типа для объекта с конфигом",
+  "description": "У вас есть объект конфигурации:\r\n\r\n```typescript\r\nconst defaultHttpConfig = {\r\n  baseURL: \"https://api.example.com/v1\",\r\n  timeout: 5000,\r\n  maxRetries: 3,\r\n  enableLogging: false,\r\n}\r\n```\r\n\r\nи функция, которая принимает этот объект и создает Http-клиент с настройками из этого конфига:\r\n\r\n```typescript\r\nfunction createHttpClient(userConfig)\r\n```\r\n\r\n### Задача\r\n\r\n* Типизируйте параметр userConfig так, чтобы:\r\n  * Нельзя было передавать конфиг с полями, которых нет в дефолтном конфиге.\r\n  * Можно было передавать конфиг, в котором только нужные поля, которые мы хотим переопределить.\r\n  * Можно было бы вообще не передавать конфиг, чтобы клиент просто создавался с дефолтными значениями.",
+  "template": "const defaultHttpConfig = {\r\n  baseURL: \"https://api.example.com/v1\",\r\n  timeout: 5000,\r\n  maxRetries: 3,\r\n  enableLogging: false,\r\n};\r\n\r\nfunction createHttpClient(userConfig) {\r\n  const finalConfig = { ...defaultHttpConfig, ...userConfig };\r\n  console.log(\"Создан клиент с конфигом:\", finalConfig);\r\n}\r\n\r\ncreateHttpClient(); // Использует дефолтный конфиг\r\ncreateHttpClient({ \r\n  timeout: 2000 \r\n}); // Меняем только timeout\r\ncreateHttpClient({ timeout: \"1000\" });  // Ошибка! timeout дб числом",
+  "solution": "type HttpConfig = typeof defaultHttpConfig;\r\n\r\nfunction createHttpClient(userConfig: Partial<HttpConfig> = {}) {\r\n  // Код функции\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "typescript",
+    "operators-and-constructions"
+  ],
+  "tags": [
+    "typeof",
+    "Partial"
+  ]
+}

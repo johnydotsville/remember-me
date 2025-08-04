@@ -1,0 +1,21 @@
+{
+  "id": "85b5b94a0dc6f958",
+  "name": "task-user-action-details_rest_fn_params",
+  "path": "tasks\\javascript\\syntax\\task-user-action-details_rest_fn_params",
+  "title": "Детали действия пользователя",
+  "description": "У вас есть функция, которая принимает действие пользователя в виде строки (например, 'click').\r\n\r\n### Задача\r\n\r\n* Модифицируйте функцию так, чтобы она могла принимать неограниченное число дополнительных деталей, связанных с действием. Например, точку, в которой произошел клик, кнопку мыши, которой сделан клик и т.д. Количество деталей неизвестно.\r\n\r\n* Внутри функции для отладочных целей выведите в консоль количество полученных деталей и сами детали.\r\n\r\n* Функция должна возвращать объект с двумя полями:\r\n  \r\n  * Действие (string).\r\n  \r\n  * Пачку всех действий.",
+  "template": "function createUserAction(action) {\r\n  // Ваше решение\r\n}\r\n\r\nconst action = createUserAction('click', { x: 100, y: 150 }, 'mouse-button-left');\r\n\r\nconsole.log(action);",
+  "solution": "function createUserAction(action, ...details) {\r\n  console.log(`Количество деталей: \\${details.length}`);\r\n  details.forEach(detail => console.log(detail));\r\n  return {\r\n    action,\r\n    details\r\n  }\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "syntax"
+  ],
+  "tags": [
+    "...",
+    "rest",
+    "синтаксис",
+    "javascript"
+  ]
+}

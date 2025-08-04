@@ -1,0 +1,15 @@
+{
+  "id": "77128850a0c305a2",
+  "name": "task-subscribers",
+  "path": "tasks\\real-tasks\\task-subscribers",
+  "title": "",
+  "description": "TODO: сделать через set и замыкания задачу подписки и отписки.\r\n\r\nЧерновик кода:\r\n\r\n```javascript\r\nfunction createSubscriptionService() {\r\n  const subscribers = new Set();\r\n  const ids = new Set();\r\n\r\n  return {\r\n    subscribe(user) {\r\n      if (ids.has(user.id)) return false;\r\n      subscribers.add(user);\r\n      ids.add(user.id);\r\n      return true;\r\n    },\r\n    getSubscribers() {\r\n      // Возвращаем новый Set (копию)\r\n      return new Set(subscribers);\r\n    }\r\n  };\r\n}\r\n```\r\n\r\n",
+  "template": "",
+  "solution": "",
+  "templateLang": "",
+  "solutionLang": "",
+  "categories": [
+    "real-tasks"
+  ],
+  "tags": []
+}

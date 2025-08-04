@@ -1,4 +1,4 @@
-import type { TaskWithContent, Task } from "@src/types/model";
+import type { Task } from "@src/types/model";
 import { useState } from "react";
 import type { TaskRank } from "@src/types/model/TaskRank";
 import type { TaskWithUserAttributes } from '@/src/types/model/TaskWithUserAttributes';

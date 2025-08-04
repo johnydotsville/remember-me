@@ -207,7 +207,7 @@ export const rootcat: Category =
 ${catTreeToString(rootcat)}
 
 export const tasks: Task[] = [
-${tasks.map(task => `  {
+${tasks.map((task, idx) => `  {  // ${idx + 1}
     id: ${JSON.stringify(task.id)},
     name: ${JSON.stringify(task.name)},
     path: ${JSON.stringify(task.path)},
@@ -263,7 +263,7 @@ async function genTasks() {
   const tasks = await Promise.all(taskFolders.map(folder => makeTask(folder)));
   
   await writeTasksInfo(tasks, foldersTree);
-  await writeTasksAsSingleJson(tasks, foldersTree);
+  await writeTasksAsSingleJson(tasks);
 }
 
 

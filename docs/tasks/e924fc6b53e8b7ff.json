@@ -1,0 +1,21 @@
+{
+  "id": "e924fc6b53e8b7ff",
+  "name": "task-promocodes",
+  "path": "tasks\\javascript\\set\\task-promocodes",
+  "title": "Промокоды для главного менеджера",
+  "description": "Вы получили от коллег-менеджеров промокоды, подготовленные ими для клиентов. Вам нужно добавить к ним свой промокод 'CHRISTMAS2000' и передать список промокодов главному менеджеру. Но вы обнаружили, что ваши коллеги использовали одинаковые промокоды, что является ошибкой. \r\n\r\nПоскольку вы планируете перейти в разработчики, то решаете применить свои навыки программирования, чтобы исправить ошибки коллег и самому не допустить такую же ошибку.\r\n\r\nФормат исходных данных:\r\n\r\n```javascript\r\nconst dave = [\r\n  { code: 'SUMMER25', manager: 'Dave' },\r\n  { code: 'WELCOME10', manager: 'Dave' },\r\n  { code: 'FRIEND15', manager: 'Dave' }\r\n];\r\n\r\nconst mary = [\r\n  { code: 'WELCOME10', manager: 'Mary' },  // Дубликат кода!\r\n  { code: 'NEWYEAR30', manager: 'Mary' }\r\n];\r\n\r\nconst ann = [\r\n  { code: 'FRIEND15', manager: 'Ann' },   // Дубликат кода!\r\n  { code: 'HOLIDAY50', manager: 'Ann' }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Объедините результаты работы ваших коллег, так, чтобы не было дублей промокодов.\r\n* Добавьте свой промокод в общий список, чтобы не повторить ошибку коллег.\r\n* Узнайте, сколько промокодов у вас получилось в итоге и выведите их в консоль.\r\n  * P.S. В последний момент вам позвонил коллега и попросил удалить промокод NEWYEAR30, если вы конечно еще не отправили их.\r\n* Главный менеджер привык получать письмо с промокодами в виде строки \"Промокоды на завтра (всего N): тут-промокоды-через-запятую\".\r\n\r\n",
+  "template": "",
+  "solution": "const promos = new Set([...dave, ...mary, ...ann].map(promo => promo.code));\r\nconst myCode = 'CHRISTMAS2000';\r\nif (!promos.has(myCode))\r\n  promos.add(myCode);\r\n\r\npromos.delete('NEWYEAR30');\r\npromos.forEach(promo => console.log(promo));\r\nconsole.log(`Промокоды на завтра (всего \\${promos.size}): \\${[...promos].join(', ')}`);",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "set"
+  ],
+  "tags": [
+    "синтаксис",
+    "легко",
+    "set",
+    "javascript"
+  ]
+}

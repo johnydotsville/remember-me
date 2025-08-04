@@ -1,0 +1,19 @@
+{
+  "id": "f73e3cb7d9af31af",
+  "name": "task-reset-orders-status_arrays_fill",
+  "path": "tasks\\arrays\\task-reset-orders-status_arrays_fill",
+  "title": "Сброс забагованных статусов заказов",
+  "description": "У вас есть массив со статусами заказов:\r\n\r\n```javascript\r\nconst orderStatuses = [\r\n  \"delivered\",   // 0\r\n  \"shipped\",     // 1\r\n  \"processing\",  // 2 (сбойный)\r\n  \"processing\",  // 3 (сбойный)\r\n  \"processing\",  // 4 (сбойный)\r\n  \"processing\",  // 5 (сбойный)\r\n  \"processing\",  // 6 (сбойный)\r\n  \"delivered\",   // 7\r\n  \"shipped\",     // 8\r\n  \"pending\"      // 9\r\n];\r\n```\r\n\r\nПо ошибке заказы со 2 до 6 ячейки получили статус 'processing', хотя должны быть 'pending'.\r\n\r\n### Задача\r\n\r\n* Измените сбойные статусы заказов на 'pending'.\r\n  * Изменения проводите прямо в исходном массиве.\r\n* Поменяйте статус вообще всех заказов в массиве на 'delivered'.",
+  "template": "const orderStatuses = [\r\n  \"delivered\",   // 0\r\n  \"shipped\",     // 1\r\n  \"processing\",  // 2 (сбойный)\r\n  \"processing\",  // 3 (сбойный)\r\n  \"processing\",  // 4 (сбойный)\r\n  \"processing\",  // 5 (сбойный)\r\n  \"processing\",  // 6 (сбойный)\r\n  \"delivered\",   // 7\r\n  \"shipped\",     // 8\r\n  \"pending\"      // 9\r\n];\r\n\r\nfunction printStatuses(statuses, from = 0, to = statuses.length) {\r\n  console.log(`Статусы заказов в ячейках с \\${from} по \\${to}:`);\r\n  for (let i = from; i <= to; i++) {\r\n    console.log(`Ячейка [\\${i}]: \\${statuses[i]}`);\r\n  }\r\n}\r\n\r\n// Измените статусы 2 - 6 на pending\r\n\r\nprintStatuses(orderStatuses, 2, 6);\r\n\r\n// Измените все статусы на 'delivered'\r\n\r\nprintStatuses(orderStatuses);",
+  "solution": "// 1\r\norderStatuses.fill('pending', 2, 7);\r\n\r\n// 2\r\norderStatuses.fill('delivered');",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "arrays"
+  ],
+  "tags": [
+    "fill",
+    "массивы",
+    "array"
+  ]
+}
