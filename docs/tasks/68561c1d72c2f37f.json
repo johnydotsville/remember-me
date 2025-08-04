@@ -1,0 +1,18 @@
+{
+  "id": "68561c1d72c2f37f",
+  "name": "task-item-card-big-description_overflow",
+  "path": "tasks\\css\\task-item-card-big-description_overflow",
+  "title": "Вылезающее за границы карточки описание товара",
+  "description": "Стажер получил задание сверстать карточку товара. Но описание товара не помещается в карточку и вылазит за ее границы. Он пришел к вам и спросил:\r\n\r\n* Как убрать текст, который не помещается в карточку?\r\n\r\nВы показали ему, но вам кажется это не очень логичным - скрывать описание. Вы предлагаете:\r\n\r\n* Предлагаю не просто убрать лишнее, а добавить возможность прокрутки.\r\n\r\nСтажеру идея понравилась, но после сдачи задания пришел лид и сказал:\r\n\r\n* Тут не нужна прокрутка, в том числе программная. Браузер не должен тратить ресурсы на скролл там, где он не нужен.",
+  "template": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Magic Numbers</title>\r\n  <style>\r\n    .product-card {\r\n      width: 200px;\r\n      height: 220px;\r\n      border: 1px solid #808080;\r\n      padding: 10px;\r\n    }\r\n  </style>\r\n</head>\r\n<body>\r\n  <div class=\"product-card\">\r\n    <h2>Ноутбук</h2>\r\n    <h4>Macbook Air M4 16/256</h4>\r\n    <p class=\"description\">\r\n      Ультратонкий ноутбук с чипом Apple M4, 16 ГБ оперативной памяти и SSD на 256 ГБ. Идеален для работы и мультимедиа: мощный аккумулятор, Retina-экран и бесшумная работа без вентиляторов. Лучший выбор для мобильности и производительности без компромиссов.\r\n    </p>\r\n  </div>\r\n</body>\r\n</html>",
+  "solution": "<style>\r\n  /* Скрыть невлезающее. Можно крутить программно. */\r\n  .description {\r\n    height: 6em;\r\n    overflow: hidden;\r\n  }\r\n\r\n  /* Скрыть невлезающее. Браузер добавит скроллбар. */\r\n  .description {\r\n    height: 6em;\r\n    overflow: scroll;  /* или auto */\r\n  }\r\n\r\n  /* Скрыть невлезающее. Нельзя крутить программно. */\r\n  .description {\r\n    height: 6em;\r\n    overflow: clip;\r\n  }\r\n</style>",
+  "templateLang": ".html",
+  "solutionLang": ".html",
+  "categories": [
+    "css"
+  ],
+  "tags": [
+    "overflow",
+    "css"
+  ]
+}

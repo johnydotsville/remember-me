@@ -8,13 +8,16 @@ import { useState } from "react";
 import { DEFAULT_TASK_RANKS as ranks } from "@/src/constants/defaultTaskRanks";
 import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
 import { TaskMeta } from "@components/Task/TaskMeta";
-import type { TaskRanked } from "@/src/types/model/TaskRanked";
+import type { TaskWithUserAttributes } from "@/src/types/model/TaskWithUserAttributes";
 import type { TaskRank } from "@/src/types/model/TaskRank";
 import type { TaskAction } from "@/src/hooks/useTaskRating";
+import type { TaskWithContent } from "@/src/types/model";
+import { useEffect } from "react";
+
 
 
 type Props = {
-  task: TaskRanked;
+  task: TaskWithUserAttributes;
   rateTask: TaskAction;
   solveTask: TaskAction;
   isOpen: boolean;
@@ -23,6 +26,9 @@ type Props = {
 
 
 export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }: Props) {
+  const [fulltask, setFulltask] = useState<TaskWithContent | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [rank, setRank] = useState<TaskRank>(() => {
     const rank = ranks.find(d => d.code === 'normal');
     if (rank === undefined) {
@@ -32,24 +38,45 @@ export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }: Props)
   });
   const [showTaskMeta, setShowTaskMeta] = useState(false);
 
+  useEffect(() => {
+    const loadTask = async () => {
+      try {
+        const response = await fetch(`/tasks/${task.id}.json`);
+        if (!response.ok) throw new Error("Задача не найдена");
+        const data: TaskWithContent = await response.json();
+        setFulltask(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Ошибка загрузки");
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadTask();
+  }, [task.id])
+  
+  if (loading) return <div>Загрузка...</div>;
+  if (error) return <div>Ошибка: {error}</div>;
+  if (!fulltask) return <div>Задача не найдена</div>;
+
   const taskContent = [
-    task.description && { 
+    fulltask.description && { 
       id: 'description',
       title: 'Условие задачи',
-      content: <TaskDescription description={task.description} />
+      content: <TaskDescription description={fulltask.description} />
     },
-    task.template && { 
+    fulltask.template && { 
       id: 'template',
       title: 'Шаблон',
-      content: <SourceCodeBox sourceCode={task.template} language={detectLangByExtension(task.templateLang)} />
+      content: <SourceCodeBox sourceCode={fulltask.template} language={detectLangByExtension(fulltask.templateLang)} />
     },
-    task.solution && { 
+    fulltask.solution && { 
       id: 'solution',
       title: 'Решение',
-      content: <SourceCodeBox sourceCode={task.solution} language={detectLangByExtension(task.solutionLang)} />
+      content: <SourceCodeBox sourceCode={fulltask.solution} language={detectLangByExtension(fulltask.solutionLang)} />
     },
   ].filter(Boolean);
 
+  // TODO: Тут везде надо будет поменять task на fulltask
   return (
     <>
       <Dialog 
@@ -57,7 +84,7 @@ export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }: Props)
         scroll='paper'
         fullScreen
       >
-        <DialogTitle>{task.title || task.name}</DialogTitle>
+        <DialogTitle>{fulltask.title || fulltask.name}</DialogTitle>
         <DialogContent>
           <SpoilerGroup items={taskContent} defaultActive='description' />
         </DialogContent>
@@ -73,7 +100,7 @@ export function TaskModal({ task, rateTask, solveTask, isOpen, onClose }: Props)
       </Dialog>
       {
         showTaskMeta && <TaskMeta
-          task={task}
+          task={fulltask}
           isOpen={showTaskMeta} 
           onClose={() => setShowTaskMeta(false)} />
       }

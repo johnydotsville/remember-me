@@ -1,0 +1,19 @@
+{
+  "id": "2fc6dca11373df22",
+  "name": "task-company-mobile-first-page_media",
+  "path": "tasks\\css\\task-company-mobile-first-page_media",
+  "title": "Cтраница компании GreenValley",
+  "description": "Ваш стажер сверстал основу макета, который выдал ему лид и подошел к вам посоветоваться.\r\n\r\n- \"Вадик сказал делать в mobile-first стиле. Когда экран 768px, то меню должно быть сбоку. Как такое обычно делают и в чем фишка mobile-first?\".",
+  "template": "<!DOCTYPE html>\r\n<html lang=\"ru\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Адаптивное меню</title>\r\n  <style>\r\n    body {\r\n      font-family: Arial, sans-serif;\r\n      margin: 0;\r\n      padding: 20px;\r\n    }\r\n    \r\n    .wrapper {\r\n      display: flex;\r\n      flex-direction: row;\r\n      max-width: 1000px;\r\n      background-color: #D8D8D8;\r\n      border: 1px solid black;\r\n      margin: 0 auto;\r\n    }\r\n    \r\n    .content {\r\n      font-family: 'Helvetica Neue', Arial, sans-serif;\r\n      font-size: 18px;\r\n      line-height: 1.5;\r\n      color: #333;\r\n      max-width: 600px;\r\n      margin: 0 auto;\r\n      padding: 20px;\r\n    }\r\n    \r\n    .menu {\r\n      background: #f0f0f0;\r\n      padding: 10px;\r\n      display: flex;\r\n      flex-direction: column;\r\n      gap: 10px;\r\n    }\r\n\r\n    .menu a {\r\n      font-size: 16px;\r\n      text-decoration: none;\r\n      color: #333;\r\n    }\r\n  </style>\r\n</head>\r\n<body>\r\n  <div class=\"wrapper\">\r\n    <nav class=\"menu\">\r\n      <a href=\"#\">Главная</a>\r\n      <a href=\"#\">О нас</a>\r\n      <a href=\"#\">Услуги</a>\r\n      <a href=\"#\">Контакты</a>\r\n    </nav>\r\n    <main class=\"content\">\r\n      Добро пожаловать в «GreenValley» — место, где технологии встречаются с заботой о природе. Мы создаем экологичные решения для вашего дома и бизнеса: от умных систем энергосбережения до перерабатываемых материалов. Наша миссия — сделать жизнь удобной без вреда для планеты. Присоединяйтесь к тысячам довольных клиентов и начните экономить ресурсы уже сегодня!\r\n    </main>\r\n  </div>\r\n</body>\r\n</html>",
+  "solution": "<style>\r\n  @media (min-width: 768px) {\r\n    .wrapper {\r\n      flex-direction: row;\r\n    }\r\n    \r\n    .menu {\r\n      flex-direction: column;\r\n    }\r\n  }\r\n</style>",
+  "templateLang": ".html",
+  "solutionLang": ".html",
+  "categories": [
+    "css"
+  ],
+  "tags": [
+    "media",
+    "mobile-first",
+    "css"
+  ]
+}

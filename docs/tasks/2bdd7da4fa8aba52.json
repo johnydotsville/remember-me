@@ -5,7 +5,7 @@
   "title": "Генератор случайных чисел",
   "description": "Задача:\r\n\r\n* Сгенерируйте случайное число:\r\n  * от 0 до 100 (включительно).\r\n  * от 30 до 100 (включительно).\r\n  * от -20 до 50.",
   "template": "",
-  "solution": "// [0 - 100]\r\nconst num = Math.floor(Math.random() * 101);\r\n\r\n// [30 - 100]\r\nconst num = Math.floor(Math.random() * 71) + 30;\r\n\r\n// [-20 - 50]\r\nconst num = Math.floor(Math.random() * 71) + 30;",
+  "solution": "// [0 - 100]\r\nconst num = Math.floor(Math.random() * 101);\r\n\r\n// [30 - 100]\r\nconst num = Math.floor(Math.random() * 71) + 30;\r\n\r\n// [-20 - 50]\r\nconst num = Math.floor(Math.random() * 71 - 20);",
   "templateLang": "",
   "solutionLang": ".ts",
   "categories": [

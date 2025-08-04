@@ -1,7 +1,7 @@
-import type { TaskRanked } from "../types/model/TaskRanked";
+import type { TaskWithUserAttributes } from "../types/model/TaskWithUserAttributes";
 
 
-export function selectTask(tasks: TaskRanked[]): TaskRanked {
+export function selectTask(tasks: TaskWithUserAttributes[]): TaskWithUserAttributes {
   tasks.sort((a, b) => a.lastSolved - b.lastSolved);
   
   // Выбираем топ-30% задач из самых давно не решаемых
