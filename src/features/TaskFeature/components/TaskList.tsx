@@ -1,9 +1,9 @@
 import { Box, Stack } from "@mui/material";
-import { TaskView } from "./TaskView";
+import { TaskListItem } from "./TaskListItem";
 import { useState } from "react";
-import { TaskModal } from "./TaskModal";
-import type { TaskWithUserAttributes } from "@/src/types/model/TaskWithUserAttributes";
-import type { TaskAction } from "@/src/hooks/useTaskRating";
+import { TaskModal } from "./TaskWindow";
+import type { TaskWithUserAttributes } from "@/src/features/TaskFeature/types/TaskWithUserAttributes";
+import type { TaskAction } from "@/src/features/TaskRankFeature/hooks/useTaskRank";
 
 
 type Props = {
@@ -22,7 +22,7 @@ export const TaskList = ({ tasks, rateTask, solveTask }: Props) => {
         { 
           tasks.map(task => 
             <Box key={task.id} onClick={() => setSelectedTask(task)}>
-              <TaskView task={task} />
+              <TaskListItem task={task} />
             </Box>
           ) 
         }

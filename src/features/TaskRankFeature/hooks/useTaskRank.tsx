@@ -1,9 +1,9 @@
-import type { Task } from "@src/types/model";
+import type { Task } from "@src/features/TaskFeature/types/Task";
 import { useState } from "react";
-import type { TaskRank } from "@src/types/model/TaskRank";
-import type { TaskWithUserAttributes } from '@/src/types/model/TaskWithUserAttributes';
-import { DEFAULT_TASK_RANKS } from "@src/constants/defaultTaskRanks";
-import { todayNoTime } from "../utils/todayNoTime";
+import type { TaskRank } from "@/src/features/TaskRankFeature/types/TaskRank";
+import type { TaskWithUserAttributes } from '@/src/features/TaskFeature/types/TaskWithUserAttributes';
+import { DEFAULT_TASK_RANKS } from "@/src/features/TaskRankFeature/constants/defaultTaskRanks";
+import { todayNoTime } from "../../../utils/todayNoTime";
 
 
 const RANKS_STORE = 'taskranks';
@@ -12,7 +12,7 @@ const RANKS_STORE = 'taskranks';
 export type TaskAction = (task: TaskWithUserAttributes, rank: TaskRank) => void;
 
 
-export function useTaskRating(
+export function useTaskRank(
   initialTasks: Task[],
   ranks: TaskRank[] = DEFAULT_TASK_RANKS
 ) {

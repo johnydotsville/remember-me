@@ -1,13 +1,13 @@
 import { Stack, Box, Typography } from "@mui/material";
-import type { TaskWithUserAttributes } from "@/src/types/model/TaskWithUserAttributes";
-import { RankMarker } from '@components/misc/RankMarker';
+import type { TaskWithUserAttributes } from "@/src/features/TaskFeature/types/TaskWithUserAttributes";
+import { RankMarker } from '@/src/features/TaskRankFeature/components/RankMarker';
 import { timestampToDate } from '@src/utils/timestampToDate';
-import { getColorByDateDiffHSL } from '@src/utils/getColorByDateDiffHSL';
-import { getDiffInDays } from "@/src/utils/getDiffInDays";
+import { getColorByDateDiffHSL } from '@/src/features/TaskFeature/utils/getColorByDateDiffHSL';
+import { getDiffInDays } from "@/src/features/TaskFeature/utils/getDiffInDays";
 import { todayNoTime } from "@/src/utils/todayNoTime";
 
 
-export function TaskView({ task }: { task: TaskWithUserAttributes }) {
+export function TaskListItem({ task }: { task: TaskWithUserAttributes }) {
   let whenSolved = '';
   if (task.lastSolved > 0) {
     const solvedDaysAgo = getDiffInDays(todayNoTime(), task.lastSolved);

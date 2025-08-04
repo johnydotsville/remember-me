@@ -1,4 +1,4 @@
-import type { TaskWithUserAttributes } from "../types/model/TaskWithUserAttributes";
+import type { TaskWithUserAttributes } from "../features/TaskFeature/types/TaskWithUserAttributes";
 
 
 export function selectTask(tasks: TaskWithUserAttributes[]): TaskWithUserAttributes {

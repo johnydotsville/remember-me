@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import type { TaskRank } from '@/src/types/model/TaskRank';
+import type { TaskRank } from '@/src/features/TaskRankFeature/types/TaskRank';
 
 
 export function RankMarker({ rank, lastSolved, size = 24 }: { rank: TaskRank, lastSolved: number, size?: number}) {

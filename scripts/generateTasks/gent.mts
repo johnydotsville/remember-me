@@ -1,7 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import type { TaskWithContent, Meta } from '@src/types/model';
+import type { TaskWithContent } from '@src/features/TaskFeature/types/TaskWithContent';
+import type { Meta } from '@/src/types/model';
 import { createHash } from 'crypto';
 
 
@@ -211,7 +212,8 @@ ${sqin}]`
 
 async function writeTasksInfo(tasks: TaskWithContent[], rootcat: Folder) {
   let tsContent = `// Auto-generated file (${new Date().toISOString()})
-import type { Task, Category } from "@/src/types/model";
+import type { Category } from "@/src/types/model";
+import type { Task } from "@/src/features/TaskFeature/types/Task";
 
 export const rootcat: Category = 
 ${catTreeToString(rootcat)}

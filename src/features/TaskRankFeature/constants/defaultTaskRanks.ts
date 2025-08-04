@@ -1,4 +1,4 @@
-import type { TaskRank } from "@src/types/model/TaskRank";
+import type { TaskRank } from "@/src/features/TaskRankFeature/types/TaskRank";
 
 
 export const DEFAULT_TASK_RANKS: TaskRank[] = [

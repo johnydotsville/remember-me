@@ -1,5 +1,5 @@
 import { Stack, Box, Typography } from "@mui/material"
-import { TaskList } from "./Task/TaskList"
+import { TaskList } from "../features/TaskFeature/components/TaskList"
 import { SideMenu } from "./SideMenu"
 import { rootcat } from '@data/tasks';
 import { flatcats } from "@utils/flatcats";
@@ -8,8 +8,8 @@ import { tasks as sourceTasks } from "@data/tasks";
 import type { Category } from '@src/types/model';
 import { selectTask } from "@/src/utils/selectTask";
 import { todayNoTime } from "@utils/todayNoTime";
-import { useTaskRating } from "@src/hooks/useTaskRating";
-import type { TaskWithUserAttributes } from "@/src/types/model/TaskWithUserAttributes";
+import { useTaskRank } from "@/src/features/TaskRankFeature/hooks/useTaskRank";
+import type { TaskWithUserAttributes } from "@/src/features/TaskFeature/types/TaskWithUserAttributes";
 
 
 export const TasksPage = () => {
@@ -17,7 +17,7 @@ export const TasksPage = () => {
   const [randomTask, setRandomTask] = useState<TaskWithUserAttributes | null>(null);
   const [category, setCategory] = useState<Category>(rootcat);
 
-  const { tasks, rateTask, solveTask } = useTaskRating(sourceTasks);
+  const { tasks, rateTask, solveTask } = useTaskRank(sourceTasks);
 
   useEffect(() => {
     if (randomTask) setRandomTask(null);

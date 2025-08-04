@@ -1,8 +1,8 @@
 import Markdown from 'react-markdown';
-import { SourceCodeBox } from './TaskSourceCode';
+import { SourceCodeBox } from './SourceCodeBox';
 
 
-export const TaskDescription = ({ description }) => {
+export const MarkdownBox = ({ description }) => {
   return (
     <Markdown
       children={description}
