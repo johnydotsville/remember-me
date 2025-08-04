@@ -1,0 +1,23 @@
+{
+  "id": "769467c9abc72b09",
+  "name": "task-fetch-basics_fetch_json_ok_status",
+  "path": "tasks\\browser-api\\http\\task-fetch-basics_fetch_json_ok_status",
+  "title": "Запрос данных и обработка результата",
+  "description": "У вас есть массив url:\r\n\r\n```javascript\r\nconst urls = [\r\n  'https://jsonplaceholder.typicode.com/posts',\r\n  'https://jsonplaceholder.typicode.com/postz',\r\n  'https://jsonplaceholder.typikode.com/'\r\n];\r\n```\r\n\r\nПервый - корректный, возвращает массив ответов такого вида:\r\n\r\n```javascript\r\n{\r\n  id: 1,\r\n  title: '...',\r\n  body: '...',\r\n  userId: 1\r\n}\r\n```\r\n\r\nвторой содержит ссылку на ресурс, которого нет на сервере, а третий это не существующий сервер.\r\n\r\n### Задача\r\n\r\n- Напишите реализацию функции и предусмотрите такие случаи:\r\n  \r\n  - Если сервер вернул ответ, попробуйте преобразовать его в json.\r\n    \r\n    - Если удалось, выведите заголовок первого поста в консоль.\r\n    \r\n    - Если не удалось, выведите сообщение 'Ошибка парсинга JSON.'\r\n  \r\n  - Если невозможно выполнить запрос, выведите сообщение 'Ошибка сети.'\r\n  \r\n  - Если запрос технически выполнился, но сервер не вернул данные, выведите общее сообщение 'Не удалось выполнить запрос.', а для случая 404 ошибки выведите дополнительно 'Ресурс не найден.'",
+  "template": "const urls = [\r\n  'https://jsonplaceholder.typicode.com/posts',\r\n  'https://jsonplaceholder.typicode.com/postz',  // 404\r\n  'https://jsonplaceholder.typikode.com/'        // Исключение от fetch\r\n];\r\n\r\nasync function processUrls(url) {\r\n  // Ваше решение\r\n}\r\n\r\nurls.forEach(url => processUrls(url));",
+  "solution": "async function processUrls(url) {\r\n  try {\r\n    const response = await fetch(url);\r\n\r\n    if (!response.ok) {\r\n      console.log('Не удалось выполнить запрос.');\r\n      if (response.status === 404) {\r\n        console.log('Ресурс не найден.');\r\n      }\r\n      return;\r\n    }\r\n    \r\n    const result = await response.json();\r\n    console.log(result[0].title);\r\n  } catch (error) {\r\n    if (error instanceof TypeError) {\r\n      console.log('Ошибка сети.');\r\n    }\r\n    if (error instanceof SyntaxError) {\r\n      console.log('Ошибка парсинга JSON.');\r\n    }\r\n  }\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "browser-api",
+    "http"
+  ],
+  "tags": [
+    "fetch",
+    "fetch-status",
+    "fetch-ok",
+    "TypeError",
+    "SyntaxError",
+    "http"
+  ]
+}

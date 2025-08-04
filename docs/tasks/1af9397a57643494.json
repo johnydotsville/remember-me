@@ -1,0 +1,19 @@
+{
+  "id": "1af9397a57643494",
+  "name": "task-dyn-add-field_spread_and",
+  "path": "tasks\\objects\\task-dyn-add-field_spread_and",
+  "title": "Условное добавление полей в объект",
+  "description": "Дана функция:\r\n\r\n```javascript\r\nfunction createUser(login, firstname, lastname, role = 'user') {\r\n  if (!login) throw new Error('login является обязательным.');\r\n  return {\r\n    login,\r\n    role,\r\n  }\r\n}\r\n\r\nconst huck = createUser('hfinn', 'Huck', 'Finn');\r\nconsole.log(huck);\r\n\r\nconst tom = createUser('toms', 'Tom');\r\nconsole.log(tom);\r\n```\r\n\r\nЗадача:\r\n\r\n* Доработать функцию так, чтобы поля firstname и lastname добавлялись в объект динамически - только если они переданы и не являются пустыми строками.\r\n* Поле lastname должно попасть в объект под названием surname.",
+  "template": "",
+  "solution": "function createUser(login, firstname, lastname, role = 'user') {\r\n  if (!login) throw new Error('login является обязательным.');\r\n  return {\r\n    login,\r\n    role,\r\n    ...(firstname && firstname.length > 0 && { firstname }),\r\n    ...(lastname && lastname.length > 0 && { surname: lastname }),\r\n  }\r\n}",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "objects"
+  ],
+  "tags": [
+    "spread-objects",
+    "&&",
+    "object"
+  ]
+}

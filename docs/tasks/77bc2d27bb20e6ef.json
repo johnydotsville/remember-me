@@ -1,0 +1,22 @@
+{
+  "id": "77bc2d27bb20e6ef",
+  "name": "task-new-product-bage_position-relative-absolute",
+  "path": "tasks\\css\\position\\task-new-product-bage_position-relative-absolute",
+  "title": "Значок 'Новый товар'",
+  "description": "Ваш интернет-магазин расширил ассортимент товаров. Чтобы обратить внимание покупателей на новые товары, дизайнер придумал добавить ярко-красный значок к карточке товара и дал это задание вашему стажеру. Стажер сделал основную верстку, но у него не получилось разместить значок так, как просил дизайнер.\r\n\r\n### Задача\r\n\r\n- Поправьте стили, чтобы:\r\n  \r\n  - Значок оказался на правой границе карточки, по центру по обоим осям.\r\n  \r\n- Объясните стажеру как работает ваше решение.",
+  "template": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Новые товары</title>\r\n  <style>\r\n    .product {\r\n      width: 200px;\r\n      border: 1px solid #636363;\r\n      padding: 20px;\r\n      border-radius: 8px;\r\n      font-family: Arial, sans-serif;\r\n    }\r\n    \r\n    .badge {\r\n      background: #ff3b30;\r\n      padding: 5px;\r\n      color: white;\r\n      width: 40px;\r\n      height: 40px;\r\n      border-radius: 50%;\r\n      display: flex;\r\n      align-items: center;\r\n      justify-content: center;\r\n      font-weight: bold;\r\n      box-shadow: 0 2px 5px rgba(0,0,0,0.2);\r\n    }\r\n  </style>\r\n</head>\r\n<body>\r\n  <div class=\"product\">\r\n    <span class=\"badge\">New!</span>\r\n    <h3>Кроссовки</h3>\r\n    <p>Цена: 5 000 ₽</p>\r\n  </div>\r\n</body>\r\n</html>",
+  "solution": "<style>\r\n  .product {\r\n    /* ... остальное */\r\n    position: relative;  /* Что означает это значение? */\r\n  }\r\n  \r\n  .badge {\r\n    /* ... остальное */\r\n    position: absolute;  /* Как это помогает позиционированию? */\r\n    top: 50%;  /* От чего берется 50% ? */\r\n    transform: translateY(-50%);  /* От чего здесь берется 50% ? */\r\n    right: -22px;  /* Почему здесь 22? */\r\n  }\r\n</style>",
+  "templateLang": ".html",
+  "solutionLang": ".html",
+  "categories": [
+    "css",
+    "position"
+  ],
+  "tags": [
+    "position:relative",
+    "position:absolute",
+    "position",
+    "позиционирование",
+    "css"
+  ]
+}

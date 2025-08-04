@@ -1,0 +1,20 @@
+{
+  "id": "3d5e0a711c944e66",
+  "name": "task-create-via-static-from_arrays_from",
+  "path": "tasks\\arrays\\task-create-via-static-from_arrays_from",
+  "title": "Создание массива",
+  "description": "Задания:\r\n\r\n* Создайте массив из 10 элементов со строками \"Элемент 1\", \"Элемент 2\" и т.д.\r\n\r\n* Создайте массив из 10 элементов с объектами вида:\r\n\r\n  ```javascript\r\n  {\r\n    id: 0,\r\n    value: 'Элемент 1'\r\n  }\r\n  ```\r\n  \r\n* Создайте массив из 10 элементов без значений и выведите в консоль его размер.\r\n\r\nОграничения:\r\n\r\n* Нельзя использовать циклы.\r\n* Нельзя использовать return.",
+  "template": "",
+  "solution": "const foo = Array.from({ length: 10 }, (cur, ind) => `Элемент \\${ind+1}`);\r\n\r\nconst bar = Array.from({ length: 10 }, (cur, ind) => ({\r\n  id: ind,\r\n  value: `Элемент \\${ind + 1}`\r\n}));\r\n\r\nconst arr = Array(10);\r\nconsole.log(arr.length);",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "arrays"
+  ],
+  "tags": [
+    "массивы",
+    "array",
+    "легко",
+    "синтаксис"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "be594ea43cc67f24",
+  "name": "task-safely-get-prop-value_keyof",
+  "path": "tasks\\typescript\\operators-and-constructions\\task-safely-get-prop-value_keyof",
+  "title": "Функция безопасного получения свойства",
+  "description": "У вас есть интерфейс:\r\n\r\n```typescript\r\ninterface User {\r\n  firstname: string;\r\n  lastname: string;\r\n  age?: number;\r\n}\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию getPropValue(obj, prop), которая принимает объект и имя свойства, и возвращает значение этого свойства.\r\n* Типизируйте функцию, чтобы нельзя было передать ей свойство, которого нет в переданном объекта.\r\n  * Надо типизировать оба аргумента и результат самой функции.",
+  "template": "interface User {\r\n  firstname: string;\r\n  lastname: string;\r\n  age?: number;\r\n}\r\n\r\nconst alice: User = {\r\n  firstname: 'Alice',\r\n  lastname: 'Brooks'\r\n}\r\n\r\nconst bob: User = {\r\n  firstname: 'Bob',\r\n  lastname: 'Sagget',\r\n  age: 50\r\n}\r\n\r\nfunction getPropValue(obj, prop) {\r\n  // Ваша реализация\r\n}\r\n\r\nconsole.log(getPropValue(bob, 'age'));\r\nconsole.log(getPropValue(alice, 'age'));\r\nconsole.log(getPropValue(alice, 'sex'));  // <-- Недопустимо",
+  "solution": "function getPropValue<T, K extends keyof T>(obj: T, prop: K): T[K] {\r\n  return obj[prop];\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "typescript",
+    "operators-and-constructions"
+  ],
+  "tags": [
+    "keyof",
+    "generics",
+    "дженерики"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "d279c4b5be657b71",
+  "name": "task-merge-user-info",
+  "path": "tasks\\real-tasks\\task-merge-user-info",
+  "title": "Объединение пользователей из БД и из соцсетей",
+  "description": "### Вводные\r\n\r\nДаны два массива:\r\n\r\n* Основные пользователи в базе данных:\r\n\r\n```javascript\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n```\r\n\r\n* И дополнительные данные из соцсетей:\r\n\r\n```javascript\r\nconst socialUsers = [\r\n  { id: 4, name: \"Dave\", role: \"user\" },\r\n  { id: 1, hobby: \"chess\", email: \"mynameisalice@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\", email: \"davidblame@social.com\" }\r\n];\r\n```\r\n\r\nВ дополнительных данных может быть как новый пользователь, так и дополнительная информация об уже существующих пользователях.\r\n\r\n### Задача\r\n\r\n* Объединить два массива так, чтобы получился новый массив, в котором будут все пользователи - и старые, и новые, плюс у старых пользователей появится дополнительная информация.\r\n* Пользователей сравнивать по id.\r\n* В данных из соцсетей пользователи могут повторяться, т.к. соцсетей у пользователя может быть несколько.\r\n\r\n### Дополнительные условия\r\n\r\n* Постараться сделать без мутирования исходных массивов и объектов.",
+  "template": "// Основные пользователи (из БД)\r\nconst dbUsers = [\r\n  { id: 1, name: \"Alice\", email: \"alice@example.com\" },\r\n  { id: 2, name: \"Bob\", role: \"admin\" },\r\n  { id: 3, name: \"Charlie\" }\r\n];\r\n\r\n// Дополнительные данные (из соцсетей)\r\nconst socialUsers = [\r\n  { id: 4, name: \"Dave\", role: \"user\" },\r\n  { id: 1, hobby: \"chess\", email: \"mynameisalice@social.com\" },\r\n  { id: 4, name: \"Dave\", role: \"user\", email: \"davidblame@social.com\" }\r\n];\r\n\r\n\r\nfunction mergeUsers(databaseUsers, socialUsers) {\r\n  // Ваш код здесь\r\n}\r\n\r\nconst merged = mergeUsers(dbUsers, socialUsers);\r\nconsole.log(merged);",
+  "solution": "// Решение 1: полностью функциональное, 0 мутаций.\r\nfunction mergeUsers(databaseUsers, socialUsers) {\r\n  return socialUsers.reduce(\r\n    (result, user) => result.find(r => r.id === user.id)\r\n      ? result.map(r => r.id !== user.id ? r : { ...r, ...user})\r\n      : [...result, user], \r\n    databaseUsers\r\n  );\r\n}\r\n\r\n// Решение 2: с локальными мутациями, не влияющими на исходные данные. Лучше производительность.\r\nfunction mergeUsers(databaseUsers, socialUsers) {\r\n  return socialUsers.reduce((mergedUsers, socialUser) => {\r\n    let ind = mergedUsers.findIndex(u => u.id === socialUser.id);\r\n    if (ind !== -1){\r\n      mergedUsers[ind] = { ...mergedUsers[ind], ...socialUser }\r\n    } else {\r\n      mergedUsers.push(socialUser);\r\n    }\r\n    return mergedUsers;\r\n  }, [...databaseUsers]);\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "real-tasks"
+  ],
+  "tags": [
+    "reduce",
+    "find",
+    "map",
+    "spread",
+    "...",
+    "findIndex"
+  ]
+}

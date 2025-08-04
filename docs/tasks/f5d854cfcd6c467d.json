@@ -1,0 +1,20 @@
+{
+  "id": "f5d854cfcd6c467d",
+  "name": "task-last-exam_arrays_findLast",
+  "path": "tasks\\arrays\\task-last-exam_arrays_findLast",
+  "title": "Последний экзамен в месяце",
+  "description": "В школе решили растянуть сдачу экзаменов на несколько месяцев. Расписание выглядит примерно так:\r\n\r\n```javascript\r\nconst exams = [\r\n  { course: 'Математика', month: 'Март' },\r\n  { course: 'Физика', month: 'Март' },\r\n  { course: 'Информатика', month: 'Апрель' },\r\n  { course: 'Химия', month: 'Апрель' },\r\n  { course: 'История', month: 'Май' },\r\n  { course: 'Литература', month: 'Май' },\r\n  { course: 'Английский язык', month: 'Май' },\r\n  { course: 'География', month: 'Июнь' }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию для функции, которая принимает список экзаменов и месяц и выдает, какой экзамен в этом месяце последний.\r\n* Если в переданном месяце нет экзаменов, вернуть сообщение, что \"В таком-то месяце нет экзаменов\".",
+  "template": "const exams = [\r\n  { course: 'Математика', month: 'Март' },\r\n  { course: 'Физика', month: 'Март' },\r\n  { course: 'Информатика', month: 'Апрель' },\r\n  { course: 'Химия', month: 'Апрель' },\r\n  { course: 'История', month: 'Май' },\r\n  { course: 'Литература', month: 'Май' },\r\n  { course: 'Английский язык', month: 'Май' },\r\n  { course: 'География', month: 'Июнь' }\r\n];\r\n\r\nfunction lastCourseInMonth(exams, month) {\r\n  // Ваше решение\r\n}\r\n\r\nconsole.log(lastCourseInMonth(exams, 'Май'));\r\nconsole.log(lastCourseInMonth(exams, 'Июль'));",
+  "solution": "function lastCourseInMonth(exams, month) {\r\n  return exams.findLast(exam => exam.month === month)?.course\r\n    ?? `В \\${month} нет экзаменов`;\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "arrays"
+  ],
+  "tags": [
+    "findLast",
+    "??",
+    "массивы",
+    "array"
+  ]
+}

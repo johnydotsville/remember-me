@@ -1,0 +1,23 @@
+{
+  "id": "0d8e3bc4c6e4ff5b",
+  "name": "task-month-temperatures_arrays_every_some",
+  "path": "tasks\\arrays\\task-month-temperatures_arrays_every_some",
+  "title": "Температуры по месяцам",
+  "description": "Вы новый сотрудник на метеорологической станции. Чтобы вы могли освоиться с местной системой, вам дали задание на анализ данных. Данные представляют собой массив из объектов, которые содержат название месяца и массив средних температур по неделям:\r\n\r\n```javascript\r\nconst stat = [\r\n  {\r\n    month: 'Февраль',\r\n    avgWeeksTemp: [-8, -5, -10, -3]\r\n  },\r\n  {\r\n    month: 'Март',\r\n    avgWeeksTemp: [-2, 3, 1, 5]\r\n  },\r\n  {\r\n    month: 'Апрель',\r\n    avgWeeksTemp: [7, 10, 12, 9]\r\n  }\r\n];\r\n```\r\n\r\n### Задача\r\n\r\n* Найти первый месяц, в котором:\r\n  * Не было холодных недель (t > 0).\r\n  * Была как минимум одна теплая неделя.\r\n  * Была неделя, когда температура добралась до аномальных 15 градусов или выше.\r\n* Вывести название найденного месяца, а если таких месяцев не было, так и написать.",
+  "template": "",
+  "solution": "// Месяц, в котором все недели теплые\r\nconst fullyWarm = stat.find(s => s.avgWeeksTemp.every(temp => temp > 0));\r\nconsole.log(fullyWarm?.month ?? 'Не было ни одного полностью теплого месяца.');\r\n\r\n// Месяц, в котором хотя бы одна неделя теплая\r\nconst partiallyWarm = stat.find(s => s.avgWeeksTemp.some(temp => temp > 0));\r\nconsole.log(partiallyWarm?.month ?? 'Не было ни одного хотя бы частичного теплого месяца.');\r\n\r\n// Месяц, в котором была неделя, когда температура добралась до 13 градусов или выше\r\nconst anomalyWarm = stat.find(s => s.avgWeeksTemp.some(temp => temp >= 15));\r\nconsole.log(anomalyWarm?.month ?? 'Не было месяцев с аномально высокой температурой.');",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "arrays"
+  ],
+  "tags": [
+    "find",
+    "some",
+    "every",
+    "?.",
+    "??",
+    "массивы",
+    "array"
+  ]
+}

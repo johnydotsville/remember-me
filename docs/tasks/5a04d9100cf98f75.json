@@ -1,0 +1,24 @@
+{
+  "id": "5a04d9100cf98f75",
+  "name": "task-count-visitors",
+  "path": "tasks\\javascript\\map\\task-count-visitors",
+  "title": "Подсчет количества авторизаций",
+  "description": "У вас есть массив с информацией об авторизации пользователей на этой неделе:\r\n\r\n```javascript\r\nconst visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать, сколько раз каждый пользователь авторизовался. Время не учитывать, просто сколько раз он залогинился.\r\n* Сделать с помощью Map.\r\n* Вывести результат в консоль двумя способами: через метод forEach и через цикл for.\r\n  * Формат вывода \"пользователь: N раз\"\r\n* В самом конце вывести, сколько всего уникальных пользователей авторизовались.",
+  "template": "const visitors = [\r\n  { username: \"alice\", time: \"2023-05-10 09:15:23\" },\r\n  { username: \"bob\", time: \"2023-05-10 10:02:45\" },\r\n  { username: \"mike\", time: \"2023-05-10 11:34:01\" },\r\n  { username: \"alice\", time: \"2023-05-10 13:22:19\" },\r\n  { username: \"dave\", time: \"2023-05-10 14:08:33\" },\r\n  { username: \"alice\", time: \"2023-05-11 08:45:11\" },\r\n  { username: \"bob\", time: \"2023-05-11 09:01:07\" },\r\n  { username: \"lisa\", time: \"2023-05-11 10:30:45\" },\r\n  { username: \"mike\", time: \"2023-05-11 12:15:02\" },\r\n  { username: \"dave\", time: \"2023-05-11 13:05:58\" },\r\n  { username: \"alice\", time: \"2023-05-12 09:45:21\" },\r\n  { username: \"bob\", time: \"2023-05-12 10:22:10\" },\r\n  { username: \"lisa\", time: \"2023-05-12 11:11:11\" },\r\n  { username: \"mike\", time: \"2023-05-12 14:30:00\" },\r\n  { username: \"eva\", time: \"2023-05-12 15:00:44\" },\r\n  { username: \"eva\", time: \"2023-05-13 08:30:15\" },\r\n  { username: \"lisa\", time: \"2023-05-13 09:45:33\" },\r\n  { username: \"alice\", time: \"2023-05-13 10:20:05\" },\r\n  { username: \"bob\", time: \"2023-05-13 11:10:10\" },\r\n  { username: \"dave\", time: \"2023-05-13 12:00:00\" }\r\n];\r\n\r\nfunction forEachShow(stat) {\r\n  console.log('forEach статистика авторизаций:');\r\n  // Выведите статистику\r\n}\r\n\r\nfunction forShow(stat) {\r\n  console.log('for статистика авторизаций:');\r\n  // Выведите статистику\r\n}\r\n\r\nforEachShow(stat);\r\nforShow(stat);\r\nconsole.log('Всего авторизовались разных пользователей: ' + // число);",
+  "solution": "// Решение 1\r\nconst stat = visitors.reduce((visitStat, login) => {\r\n  const { username } = login;\r\n  if (visitStat.has(username)) {\r\n    visitStat.set(username, visitStat.get(username) + 1);\r\n  } else {\r\n    visitStat.set(username, 1);\r\n  }\r\n  return visitStat;\r\n}, new Map());\r\n\r\n// Решение 2\r\nconst stat = visitors.reduce(\r\n  (visitStat, login) => visitStat.set(login.username, visitStat.has(login.username) ? visitStat.get(login.username) + 1 : 1),\r\n  new Map()\r\n);\r\n\r\nfunction forEachShow(stat) {\r\n  console.log('forEach статистика авторизаций:');\r\n  stat.forEach((value, key) => console.log(`\\${key}: \\${value} раз.`));\r\n}\r\n\r\nfunction forShow(stat) {\r\n  console.log('for статистика авторизаций:');\r\n  for (const [key, value] of stat) {\r\n    console.log(`\\${key}: \\${value} раз.`);\r\n  }\r\n}\r\n\r\nforEachShow(stat);\r\nforShow(stat);\r\nconsole.log(`Всего авторизовались \\${stat.size} разных пользователей.`);",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "map"
+  ],
+  "tags": [
+    "map",
+    "reduce",
+    "синтаксис",
+    "легко",
+    "forEach",
+    "for-of",
+    "javascript"
+  ]
+}

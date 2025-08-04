@@ -1,0 +1,22 @@
+{
+  "id": "6f3bacc2ec7afff1",
+  "name": "task-city-phone-codes_slice",
+  "path": "tasks\\javascript\\strings\\task-city-phone-codes_slice",
+  "title": "Московские номера телефонов",
+  "description": "У вас есть российские телефонные номера в формате `8 (XXX) YYY-YY-YY`, где:\r\n\r\n* `8` — код страны,\r\n\r\n* `(XXX)` — код города (3 цифры),\r\n\r\n* `YYY-YY-YY` — локальный номер.\r\n\r\n### Задача\r\n\r\n- Напишите функцию **`getCityCode(phone)`**, которая возвращает код города (цифры внутри скобок).\r\n\r\n- Используя эту функцию, выберите московские номера (коды - 495 и 499) в массив.",
+  "template": "const phones = [\r\n  \"8 (495) 123-45-67\", // <-- Москва (495)\r\n  \"8 (812) 987-65-43\", // Санкт-Петербург\r\n  \"8 (800) 111-22-33\", // Бесплатный\r\n  \"8 (343) 555-12-34\", // Екатеринбург\r\n  \"8 (381) 777-88-99\", // Омск\r\n  \"8 (495) 999-00-11\", // <-- Москва (495)\r\n  \"8 (383) 444-55-66\", // Новосибирск\r\n  \"8 (862) 333-44-55\", // Краснодар\r\n  \"8 (499) 123-00-99\", // <-- Москва (499)\r\n  \"8 (846) 999-00-11\", // Самара\r\n];\r\n\r\nfunction getCityCode(phone) {\r\n  // Ваша реализация\r\n}\r\n\r\nconst moscow = // Ваша реализация\r\n\r\nmoscow.forEach(phone => console.log(phone));",
+  "solution": "function getCityCode(phone) {\r\n  return phone.slice(3, 6);\r\n}\r\n\r\nconst moscow = phones.filter(phone => ['495', '499'].includes(getCityCode(phone)));\r\n\r\nmoscow.forEach(phone => console.log(phone));",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "strings"
+  ],
+  "tags": [
+    "slice",
+    "строки",
+    "string",
+    "методы строк",
+    "javascript"
+  ]
+}

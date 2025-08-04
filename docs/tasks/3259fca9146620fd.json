@@ -1,0 +1,18 @@
+{
+  "id": "3259fca9146620fd",
+  "name": "task-pick-2",
+  "path": "tasks\\typescript\\utility-types\\task-pick-2",
+  "title": "Утилитарный тип Pick",
+  "description": "# Сывow?\r\n\r\nЭщкере, мазафака, дёрти щет!\r\n\r\n\r\n\r\n## Wjta\r\n\r\nda fuck\r\n\r\n\r\n\r\n### you kono\r\n\r\nknow waht the heck\r\n\r\n```typescript\r\nconsole.log('hello, world!');\r\n\r\ninterface Cat {\r\n  meow();\r\n  scratch();\r\n}\r\n```\r\n\r\n",
+  "template": "type UserProfile = {\r\n  id: string;\r\n  name: string;\r\n  email: string;\r\n  age: number;\r\n  isVerified: boolean;\r\n};\r\n\r\nfunction updateProfile(profile: UserProfile, updates: Partial<UserProfile>): UserProfile {\r\n  return { ...profile, ...updates };\r\n}\r\n\r\nconst alice: UserProfile = {\r\n  id: \"user-1\",\r\n  name: \"Alice\",\r\n  email: \"alice@example.com\",\r\n  age: 25,\r\n  isVerified: false,\r\n};\r\n\r\nconsole.log(alice);\r\n\r\nconst upedAlice = updateProfile(alice, {\r\n  email: \"mynameisalice@umbrella.com\",  // <-- Передаем \"обгрызанный\" объект\r\n  isVerified: true\r\n});\r\n\r\nconsole.log(upedAlice);",
+  "solution": "",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "typescript",
+    "utility-types"
+  ],
+  "tags": [
+    "pick"
+  ]
+}

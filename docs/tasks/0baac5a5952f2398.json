@@ -1,0 +1,25 @@
+{
+  "id": "0baac5a5952f2398",
+  "name": "task-rifleman-creed-cleansing_trim_trimStart_trimEnd",
+  "path": "tasks\\javascript\\strings\\task-rifleman-creed-cleansing_trim_trimStart_trimEnd",
+  "title": "Кредо стрелка",
+  "description": "Дан текст:\r\n\r\n```javascript\r\n'   This is my rifle, this is my gun. This is for fighting, this is for fun.   '\r\n```\r\n\r\nЗадача:\r\n\r\n* Посчитать количество:\r\n  * Предложений.\r\n    * Предложения разделяются точкой.\r\n  * Символов.\r\n* Напечатать первое слово.\r\n* Пробелы в начале и конце строки игнорировать.\r\n  * Сначала удалите лишние пробелы спереди строки.\r\n  * Потом удалите лишние пробелы сзади строки.\r\n  * Сделайте это сначала отдельными шагами, а потом одним.",
+  "template": "",
+  "solution": "const text = '   This is my rifle, this is my gun. This is for fighting, this is for fun.   ';\r\n\r\nlet cleaned = text.trimStart();\r\ncleaned = cleaned.trimEnd();\r\nconst sentenses = cleaned.split('. ').length;\r\nconst chars = cleaned.split('').length;\r\nconst firstWord = cleaned.split(' ')[0];\r\n\r\nconsole.log(`В тексте \\${sentenses} предложений и \\${chars} символов. Первое слово: \\${firstWord}`);",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "strings"
+  ],
+  "tags": [
+    "split",
+    "trim",
+    "trimStart",
+    "trimEnd",
+    "строки",
+    "string",
+    "методы строк",
+    "javascript"
+  ]
+}

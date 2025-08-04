@@ -1,0 +1,19 @@
+{
+  "id": "f6320a5a46f06301",
+  "name": "task-lucky-player_arrays_find",
+  "path": "tasks\\arrays\\task-lucky-player_arrays_find",
+  "title": "Игрок, которому повезло",
+  "description": "Есть таблица лидеров региона по игре \"Strike Back\":\r\n\r\n```javascript\r\nconst esportsPlayers = [\r\n  { player: \"Ninja\", score: 24500 },\r\n  { player: \"Shroud\", score: 18900 },\r\n  { player: \"Faker\", score: 32000 },\r\n  { player: \"s1mple\", score: 27800 },\r\n  { player: \"Bugha\", score: 15400 },\r\n  { player: \"Rookie\", score: 8500 },\r\n  { player: \"ZywOo\", score: 7200 },\r\n  { player: \"Meteos\", score: 4300 },\r\n  { player: \"xPeke\", score: 6800 },\r\n  { player: \"BoxBox\", score: 9200 }\r\n];\r\n```\r\n\r\nОрганизация \"Team Clear It\" решила провести благотворительную акцию, в рамках которой любой игрок с рейтингом ниже 10_000 получит шанс сыграть в благотворительном матче в составе профессиональной команды.\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию функции, которая выберет из списка первого подходящего игрока.\r\n* Порог рейтинга передается вторым параметром и по умолчанию 10_000.\r\n\r\nДополнительно:\r\n\r\n* Модифицируйте функцию так, чтобы выбирался случайный из всех подходящих кандидатов.",
+  "template": "const esportsPlayers = [\r\n  { player: \"Ninja\", score: 24500 },\r\n  { player: \"Shroud\", score: 18900 },\r\n  { player: \"Faker\", score: 32000 },\r\n  { player: \"s1mple\", score: 27800 },\r\n  { player: \"Bugha\", score: 15400 },\r\n  { player: \"Rookie\", score: 8500 },\r\n  { player: \"ZywOo\", score: 7200 },\r\n  { player: \"Meteos\", score: 4300 },\r\n  { player: \"xPeke\", score: 6800 },\r\n  { player: \"BoxBox\", score: 9200 }\r\n];\r\n\r\nfunction getLucker(players) {\r\n  // Ваше решение\r\n}\r\n\r\nconsole.log(getLucker(esportsPlayers));",
+  "solution": "// Решение 1: первый попавшийся подходящий игрок\r\nfunction getLucker(players, threshold = 10_000) {\r\n  return players.find(p => p.score < threshold) || 'Нет подходящих игроков';\r\n}\r\n\r\n// Решение 2: случайный игрок из всех подходящих\r\nfunction getLucker(players, threshold = 10_000) {\r\n  const candidates = players.filter(p => p.score < threshold);\r\n  return candidates.length \r\n    ? candidates[Math.floor(Math.random() * candidates.length)]\r\n    : 'Нет подходящих игроков';\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "arrays"
+  ],
+  "tags": [
+    "find",
+    "массивы",
+    "array"
+  ]
+}

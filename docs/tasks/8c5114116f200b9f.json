@@ -1,0 +1,15 @@
+{
+  "id": "8c5114116f200b9f",
+  "name": "task-flat-categories",
+  "path": "tasks\\real-tasks\\task-flat-categories",
+  "title": "",
+  "description": "Есть объект типа 'Категория':\r\n\r\n```typescript\r\ntype Category = {\r\n  name: string,\r\n  subcategories: Category[]\r\n}\r\n```\r\n\r\nУ категории есть имя и массив вложенных в нее категорий (\"подкатегории\").\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает плоский массив с именами всех категорий и вложенных в них подкатегорий.\r\n\r\nНапример для такой структуры:\r\n\r\n```javascript\r\n{\r\n  name: 'javascript',\r\n  subcategories: [\r\n    {\r\n      name: 'strings',\r\n      subcategories: []\r\n    },\r\n    {\r\n      name: 'objects',\r\n      subcategories: [\r\n        {\r\n          name: 'arrays',\r\n          subcategories: []\r\n        }\r\n      ]\r\n    },\r\n  ]\r\n}\r\n```\r\n\r\nДолжно получиться:\r\n\r\n```javascript\r\n['javascript', 'strings', 'objects', 'arrays']\r\n```\r\n\r\n",
+  "template": "const rootcat = \r\n{\r\n  name: 'root',\r\n  subcategories: [\r\n    {\r\n      name: 'javascript',\r\n      subcategories: [\r\n        {\r\n          name: 'http',\r\n          subcategories: []\r\n        },\r\n        {\r\n          name: 'objects',\r\n          subcategories: []\r\n        },\r\n        {\r\n          name: 'strings',\r\n          subcategories: []\r\n        },\r\n        {\r\n          name: 'arrays',\r\n          subcategories: []\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      name: 'real-tasks',\r\n      subcategories: []\r\n    },\r\n    {\r\n      name: 'refactoring',\r\n      subcategories: []\r\n    },\r\n    \r\n    {\r\n      name: 'typescript',\r\n      subcategories: [\r\n        {\r\n          name: 'utility-types',\r\n          subcategories: []\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n\r\n\r\n// Реализуйте функцию flatCategories\r\n\r\nconst categories = flatCategories(rootcat);\r\ncategories.forEach(category => console.log(category));",
+  "solution": "function flatCategories(category) {\r\n  const names = [];\r\n  names.push(category.name);\r\n\r\n  category.subcategories.forEach(sub => names.push(...(flatCategories(sub))));\r\n\r\n  return names;\r\n}",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "real-tasks"
+  ],
+  "tags": []
+}

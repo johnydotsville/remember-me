@@ -1,0 +1,22 @@
+{
+  "id": "ae4ee0ed9cd5b39b",
+  "name": "task-supported-languages_arrays_includes",
+  "path": "tasks\\arrays\\task-supported-languages_arrays_includes",
+  "title": "Поддерживаемые языки",
+  "description": "Сайт поддерживает несколько языков. Эти языки находятся в массиве:\r\n\r\n```javascript\r\nconst supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите утилитарную функцию, которая принимает код языка и возвращает true | false в зависимости от того, поддерживается язык или нет.\r\n\r\nДополнительно:\r\n\r\n* Сделайте то же самое (верните true | false), если языки хранятся в виде объектов:\r\n\r\n```typescript\r\nconst supportedLanguages = [\r\n  { code: 'en' }, \r\n  { code: 'ru' },\r\n  { code: 'de' },\r\n  { code: 'fr' },\r\n  { code: 'es' },\r\n  { code: 'zh' },\r\n  { code: 'ja' }\r\n];\r\n```\r\n\r\n",
+  "template": "",
+  "solution": "const supportedLanguages = ['en', 'ru', 'de', 'fr', 'es', 'zh', 'ja'];\r\n\r\n// Решение для обычного массива\r\nfunction isLangSupported(langCode) {\r\n  return supportedLanguages.includes(langCode);\r\n}\r\n\r\n// Решение для объектов\r\nfunction isLangSupported(langCode) {\r\n  return supportedLanguages.some(lang => lang.code === langCode);\r\n}\r\n\r\nconsole.log(isLangSupported('ru'));\r\nconsole.log(isLangSupported('foobar'));",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "arrays"
+  ],
+  "tags": [
+    "includes",
+    "some",
+    "синтаксис",
+    "легко",
+    "массивы",
+    "array"
+  ]
+}

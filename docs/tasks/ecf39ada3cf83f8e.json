@@ -1,0 +1,23 @@
+{
+  "id": "ecf39ada3cf83f8e",
+  "name": "task-fake-gmail-domains_includes",
+  "path": "tasks\\javascript\\strings\\task-fake-gmail-domains_includes",
+  "title": "Email'ы, мимикрирующие под gmail",
+  "description": "Политика вашей организации такова, что зарегистрироваться в программе можно только с сервиса gmail. В последнее время участились случаи регистраций с ящиков, не являющихся настоящим gmail, например, `sonya@gmail.kl`\r\n\r\nАдминистратор попросил вас написать программу, которая бы показала ему все фейковые gmail-ы, он бы хотел их посмотреть.\r\n\r\n### Задача\r\n\r\n- Реализуйте функцию isFakeGmail, которая определяет фейковый gmail.\r\n\r\n- Используя эту функцию, подготовьте администратору массив фейков, которые пытались зарегистрироваться.\r\n\r\n- Реализуйте функцию isAllowedEmail, которая позволяет регистироваться не только с валидного gmail, но и с любого ящика, который начинается с `dev.` и при этом не является фейковым gmail.",
+  "template": "const emails = [\r\n  \"alexander@yandex.ru\",\r\n  \"maria@gmail.tu\",  // <- fake gmail\r\n  \"maxim@mail.ru\",\r\n  \"anna@outlook.com\",\r\n  \"dmitry@gmail.nl\",  // <- fake gmail\r\n  \"ekaterina@yahoo.com\",\r\n  \"ivan@protonmail.com\",\r\n  \"olga@gmail.com\",  // <- true gmail, можно\r\n  \"dev.sergey@icloud.com\",  // <-- можно\r\n  \"dev.sonya@gmail.kl\",  // <-- нельзя\r\n  \"natalia@rambler.ru\"\r\n];\r\n\r\nfunction isFakeGmail(email) {\r\n  // Ваше решние\r\n}\r\n\r\nfunction isAllowedEmail(email) {\r\n  // Ваше решние\r\n}\r\n\r\nconst fakes = // Ваше решние\r\nconsole.log('Фейковые gmail:');\r\nfakes.forEach(fake => console.log(fake));  // Мария, Дмитрий, Соня\r\n\r\nconst allowed = // Ваше решние\r\nconsole.log('Разрешена регистрация:');  // Ольга, Сергей\r\nallowed.forEach(x => console.log(x));",
+  "solution": "function isFakeGmail(email) {\r\n  return email.includes('@gmail') && !email.endsWith('@gmail.com');\r\n}\r\n\r\nfunction isAllowedEmail(email) {\r\n  return email.endsWith('@gmail.com') || email.startsWith('dev.') && !isFakeGmail(email);\r\n}\r\n\r\nconst fakes = emails.filter(isFakeGmail);\r\n\r\nconst allowed = emails.filter(isAllowedEmail);",
+  "templateLang": ".ts",
+  "solutionLang": ".ts",
+  "categories": [
+    "javascript",
+    "strings"
+  ],
+  "tags": [
+    "includes",
+    "endsWith",
+    "строки",
+    "string",
+    "методы строк",
+    "javascript"
+  ]
+}

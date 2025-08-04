@@ -1,0 +1,21 @@
+{
+  "id": "d8d3d77e755d2d3d",
+  "name": "task-deactivate-users_arrays_filter",
+  "path": "tasks\\arrays\\task-deactivate-users_arrays_filter",
+  "title": "Деактивация пользователей",
+  "description": "Есть массив учетных записей пользователей:\r\n\r\n```javascript\r\nconst userAccounts = [\r\n  { id: 1, username: 'ivan.petrov', isActive: true, lastVisitDaysAgo: 5 },\r\n  { id: 2, username: 'mariya.sidorova', isActive: false, lastVisitDaysAgo: 120 },\r\n  { id: 3, username: 'alex.ivanov', isActive: true, lastVisitDaysAgo: 2 },\r\n  { id: 4, username: 'elena.kuznetsova', isActive: true, lastVisitDaysAgo: 7 },\r\n  { id: 5, username: 'dmitriy.smirnov', isActive: false, lastVisitDaysAgo: 90 },\r\n  { id: 6, username: 'olga.vasnetsova', isActive: true, lastVisitDaysAgo: 1 },\r\n  { id: 7, username: 'sergey.lebedev', isActive: false, lastVisitDaysAgo: 60 },\r\n  { id: 8, username: 'anna.zhukova', isActive: true, lastVisitDaysAgo: 20 },  // <-- deactivate\r\n  { id: 9, username: 'pavel.novikov', isActive: false, lastVisitDaysAgo: 150 },\r\n  { id: 10, username: 'natalya.morozova', isActive: true, lastVisitDaysAgo: 3 },\r\n];\r\n```\r\n\r\nЗадача:\r\n\r\n* Напишите функцию, которая возвращает массив идентификаторов пользователей, чьи учетные записи подлежат деактивации.\r\n  * Вернуть надо именно массив идентификаторов, а не массив самих пользователей.\r\n* Критерий деактивации - последнее посещение сайта больше N дней назад. По умолчанию - 14.\r\n  * Некоторые пользователи уже деактивированы (у них isActive = false), их идентификаторы нас не интересуют.",
+  "template": "",
+  "solution": "function shouldBeDeactivated(accounts, daysThreshold = 14) {\r\n  return accounts\r\n    .filter(account => account.isActive && account.lastVisitDaysAgo > daysThreshold)\r\n    .map(account => account.id);\r\n}\r\n\r\nconst deactivateIds = shouldBeDeactivated(userAccounts);\r\nconsole.log(deactivateIds);",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "arrays"
+  ],
+  "tags": [
+    "map",
+    "filter",
+    "легко",
+    "массивы",
+    "array"
+  ]
+}

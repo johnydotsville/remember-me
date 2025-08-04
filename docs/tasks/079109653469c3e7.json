@@ -1,0 +1,21 @@
+{
+  "id": "079109653469c3e7",
+  "name": "task-chat-button_position-fixed",
+  "path": "tasks\\css\\position\\task-chat-button_position-fixed",
+  "title": "Кнопка чата поддержки",
+  "description": "В вашей компании запустили сервис чата с поддержкой для посетителей. Вашему стажеру дали задание сверстать кнопку и разместить ее так, чтобы она всегда была в правом верхнем углу на расстоянии 20px от краев. Стажер сверстал кнопку, но разместить ее в нужном месте у него не получилось.\r\n\r\n### Задача\r\n\r\n- Поправьте стили, чтобы кнопка оказалась на нужном месте.\r\n  ",
+  "template": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>Chat button</title>\r\n  <style>\r\n    .chat-button {\r\n      background: #F2F2F2;\r\n      color: white;\r\n      padding: 10px;\r\n      border: 1px solid #A0A0A0;\r\n      border-radius: 50%;\r\n      cursor: pointer;\r\n      box-shadow: 0 2px 5px rgba(0,0,0,0.2);\r\n      width: 20px;\r\n      height: 20px;\r\n    }\r\n  </style>\r\n</head>\r\n<body>\r\n  <div class=\"chat-button\">💬</div>\r\n</body>\r\n</html>",
+  "solution": "<style>\r\n  .chat-button {\r\n    /* ... остальное */\r\n    position: fixed;\r\n    top: 20px;\r\n    right: 20px;\r\n  }\r\n</style>",
+  "templateLang": ".html",
+  "solutionLang": ".html",
+  "categories": [
+    "css",
+    "position"
+  ],
+  "tags": [
+    "position:fixed",
+    "position",
+    "позиционирование",
+    "css"
+  ]
+}
