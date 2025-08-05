@@ -1,0 +1,20 @@
+{
+  "id": "6f1acae593ea0bae",
+  "name": "task-ranked-task_type_merge",
+  "path": "tasks\\typescript\\type-interface\\task-ranked-task_type_merge",
+  "title": "Пользовательские атрибуты задачи",
+  "description": "В вашей программе по тестированию знаний есть тип, описывающий задачу:\r\n\r\n```typescript\r\nexport type Task = {\r\n  id: string;\r\n  name: string;\r\n  path: string;\r\n  title: string;\r\n  categories: string[];\r\n  tags: string[];\r\n}\r\n```\r\n\r\nКоманде пришла в голову интересная фича - возможность выставлять оценку задаче. Вот тип для оценки:\r\n\r\n```typescript\r\nexport type TaskRank = {\r\n  id: number;\r\n  code: string;\r\n  title: string;\r\n  weight: number;\r\n  agingFactor: number;\r\n}\r\n```\r\n\r\nТимлид дал вам задание:\r\n\r\n- Создай тип TaskWithUserAttributes. Это тип как Task, в котором два дополнительных поля:\r\n\r\n  ```typescript\r\n  rank: TaskRank;\r\n  lastSolved: number;\r\n  ```",
+  "template": "",
+  "solution": "export type TaskWithUserAttributes = Task & {\r\n  rank: TaskRank;\r\n  lastSolved: number;\r\n}",
+  "templateLang": "",
+  "solutionLang": ".ts",
+  "categories": [
+    "typescript",
+    "type-interface"
+  ],
+  "tags": [
+    "type слияние",
+    "type",
+    "interface"
+  ]
+}

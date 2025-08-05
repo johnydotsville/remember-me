@@ -1,4 +1,4 @@
-// Auto-generated file (2025-08-04T13:05:01.215Z)
+// Auto-generated file (2025-08-05T07:21:12.667Z)
 import type { Category } from "@/src/types/model";
 import type { Task } from "@/src/features/TaskFeature/types/Task";
 
@@ -142,6 +142,12 @@ export const rootcat: Category =
       title: 'Typescript',
       hidden: false,
       subcategories: [
+        {
+          name: 'functions',
+          title: 'Тип для профиля пользователя',
+          hidden: false,
+          subcategories: []
+        },
         {
           name: 'operators-and-constructions',
           title: '',
@@ -567,6 +573,14 @@ export const tasks: Task[] = [
     tags: []
   },
   {  // 51
+    id: "048ae8db63738125",
+    name: "task-_overloading",
+    path: "tasks\\typescript\\functions\\task-_overloading",
+    title: "Тип для профиля пользователя",
+    categories: ['typescript', 'functions'],
+    tags: ['опциональные поля', 'обязательные поля', 'union']
+  },
+  {  // 52
     id: "7e947eb44113c93d",
     name: "task-autotype-config_typeof",
     path: "tasks\\typescript\\operators-and-constructions\\task-autotype-config_typeof",
@@ -574,7 +588,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'operators-and-constructions'],
     tags: ['typeof', 'Partial']
   },
-  {  // 52
+  {  // 53
     id: "be594ea43cc67f24",
     name: "task-safely-get-prop-value_keyof",
     path: "tasks\\typescript\\operators-and-constructions\\task-safely-get-prop-value_keyof",
@@ -582,7 +596,15 @@ export const tasks: Task[] = [
     categories: ['typescript', 'operators-and-constructions'],
     tags: ['keyof', 'generics', 'дженерики']
   },
-  {  // 53
+  {  // 54
+    id: "6f1acae593ea0bae",
+    name: "task-ranked-task_type_merge",
+    path: "tasks\\typescript\\type-interface\\task-ranked-task_type_merge",
+    title: "Пользовательские атрибуты задачи",
+    categories: ['typescript', 'type-interface'],
+    tags: ['type слияние', 'type', 'interface']
+  },
+  {  // 55
     id: "3d4b25096f709e11",
     name: "task-user-profile-base_type_interface_union",
     path: "tasks\\typescript\\type-interface\\task-user-profile-base_type_interface_union",
@@ -590,7 +612,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'type-interface'],
     tags: ['опциональные поля', 'обязательные поля', 'union', 'type', 'interface']
   },
-  {  // 54
+  {  // 56
     id: "a30c8fd86874b15f",
     name: "task-partial-1",
     path: "tasks\\typescript\\utility-types\\task-partial-1",
@@ -598,7 +620,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'utility-types'],
     tags: ['partial']
   },
-  {  // 55
+  {  // 57
     id: "3259fca9146620fd",
     name: "task-pick-2",
     path: "tasks\\typescript\\utility-types\\task-pick-2",

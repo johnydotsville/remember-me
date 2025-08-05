@@ -11,7 +11,7 @@ export function useTaskContent(taskId: string) {
     const loadTask = async () => {
       try {
         setTaskContentLoading(true);
-        const response = await fetch(`/tasks/${taskId}.json`);
+        const response = await fetch(`tasks/${taskId}.json`);
         if (!response.ok) {
           throw new Error("Задача не найдена");
         }
