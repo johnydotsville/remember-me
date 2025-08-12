@@ -1,4 +1,4 @@
-// Auto-generated file (2025-08-05T07:21:12.667Z)
+// Auto-generated file (2025-08-12T06:27:06.574Z)
 import type { Category } from "@/src/types/model";
 import type { Task } from "@/src/features/TaskFeature/types/Task";
 
@@ -54,7 +54,7 @@ export const rootcat: Category =
     },
     {
       name: 'html',
-      title: '',
+      title: 'HTML',
       hidden: false,
       subcategories: []
     },
@@ -357,6 +357,14 @@ export const tasks: Task[] = [
     tags: ['overflow', 'css']
   },
   {  // 24
+    id: "557b9fb21b66f254",
+    name: "task-select-your-city_select",
+    path: "tasks\\html\\task-select-your-city_select",
+    title: "Выбор города из выпадающего списка",
+    categories: ['html'],
+    tags: ['select', 'html']
+  },
+  {  // 25
     id: "b9bd1b052198a96c",
     name: "task-greet-user-refactoring",
     path: "tasks\\javascript\\destruction\\task-greet-user-refactoring",
@@ -364,7 +372,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'destruction'],
     tags: ['деструктуризация объектов', 'деструктуризация', 'деструктурирующее присваивание', 'javascript']
   },
-  {  // 25
+  {  // 26
     id: "d02b43377ef95f59",
     name: "task-make-your-own-exception",
     path: "tasks\\javascript\\exceptions\\task-make-your-own-exception",
@@ -372,7 +380,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'exceptions'],
     tags: ['синтаксис', 'легко', 'exceptions', 'исключения', 'javascript']
   },
-  {  // 26
+  {  // 27
     id: "23401f219047408c",
     name: "task-year-bonus-calculation_call",
     path: "tasks\\javascript\\functions\\task-year-bonus-calculation_call",
@@ -380,7 +388,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'functions'],
     tags: ['call', 'functions', 'javascript']
   },
-  {  // 27
+  {  // 28
     id: "5a04d9100cf98f75",
     name: "task-count-visitors",
     path: "tasks\\javascript\\map\\task-count-visitors",
@@ -388,7 +396,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'map'],
     tags: ['map', 'reduce', 'синтаксис', 'легко', 'forEach', 'for-of', 'javascript']
   },
-  {  // 28
+  {  // 29
     id: "4443f047cf7ff9d2",
     name: "task-customer-check-payment_trunc",
     path: "tasks\\javascript\\math\\task-customer-check-payment_trunc",
@@ -396,7 +404,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'math'],
     tags: ['trunc', 'reduce', 'math', 'javascript']
   },
-  {  // 29
+  {  // 30
     id: "199cba6650eb00f6",
     name: "task-data-pages",
     path: "tasks\\javascript\\math\\task-data-pages",
@@ -404,7 +412,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'math'],
     tags: ['ceil', 'math', 'javascript']
   },
-  {  // 30
+  {  // 31
     id: "2bdd7da4fa8aba52",
     name: "task-generate-random-numbers",
     path: "tasks\\javascript\\math\\task-generate-random-numbers",
@@ -412,7 +420,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'math'],
     tags: ['random', 'floor', 'math', 'javascript']
   },
-  {  // 31
+  {  // 32
     id: "0a5d35f166b3391e",
     name: "task-get-exchange-stat",
     path: "tasks\\javascript\\math\\task-get-exchange-stat",
@@ -420,15 +428,15 @@ export const tasks: Task[] = [
     categories: ['javascript', 'math'],
     tags: ['min', 'max', 'math', 'javascript']
   },
-  {  // 32
+  {  // 33
     id: "101fea1c0ac3ecdd",
     name: "task-movie-avg-rating",
     path: "tasks\\javascript\\math\\task-movie-avg-rating",
-    title: "",
+    title: "Рейтинг фильма",
     categories: ['javascript', 'math'],
-    tags: ['math', 'javascript']
+    tags: ['round', 'reduce', 'math', 'javascript']
   },
-  {  // 33
+  {  // 34
     id: "62acf171cef1f762",
     name: "task-client-orders_entries_keys_values",
     path: "tasks\\javascript\\other\\task-client-orders_entries_keys_values",
@@ -436,7 +444,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'other'],
     tags: ['Map', 'keys', 'values', 'entries', 'javascript']
   },
-  {  // 34
+  {  // 35
     id: "e924fc6b53e8b7ff",
     name: "task-promocodes",
     path: "tasks\\javascript\\set\\task-promocodes",
@@ -444,7 +452,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'set'],
     tags: ['синтаксис', 'легко', 'set', 'javascript']
   },
-  {  // 35
+  {  // 36
     id: "6f3bacc2ec7afff1",
     name: "task-city-phone-codes_slice",
     path: "tasks\\javascript\\strings\\task-city-phone-codes_slice",
@@ -452,7 +460,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'strings'],
     tags: ['slice', 'строки', 'string', 'методы строк', 'javascript']
   },
-  {  // 36
+  {  // 37
     id: "ecf39ada3cf83f8e",
     name: "task-fake-gmail-domains_includes",
     path: "tasks\\javascript\\strings\\task-fake-gmail-domains_includes",
@@ -460,7 +468,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'strings'],
     tags: ['includes', 'endsWith', 'строки', 'string', 'методы строк', 'javascript']
   },
-  {  // 37
+  {  // 38
     id: "0baac5a5952f2398",
     name: "task-rifleman-creed-cleansing_trim_trimStart_trimEnd",
     path: "tasks\\javascript\\strings\\task-rifleman-creed-cleansing_trim_trimStart_trimEnd",
@@ -468,7 +476,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'strings'],
     tags: ['split', 'trim', 'trimStart', 'trimEnd', 'строки', 'string', 'методы строк', 'javascript']
   },
-  {  // 38
+  {  // 39
     id: "a854d7176d8c818e",
     name: "task-day-codes_switch",
     path: "tasks\\javascript\\syntax\\task-day-codes_switch",
@@ -476,7 +484,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'syntax'],
     tags: ['switch', 'синтаксис', 'javascript']
   },
-  {  // 39
+  {  // 40
     id: "6a83125d757259f9",
     name: "task-employees-messed-info_rest_array_items",
     path: "tasks\\javascript\\syntax\\task-employees-messed-info_rest_array_items",
@@ -484,7 +492,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'syntax'],
     tags: ['...', 'rest', 'синтаксис', 'javascript']
   },
-  {  // 40
+  {  // 41
     id: "e15f166ad157b304",
     name: "task-format-order-for-delivery_rest_object_fields",
     path: "tasks\\javascript\\syntax\\task-format-order-for-delivery_rest_object_fields",
@@ -492,7 +500,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'syntax'],
     tags: ['...', 'rest', 'objects', 'синтаксис', 'javascript']
   },
-  {  // 41
+  {  // 42
     id: "d0148c93faa1b0eb",
     name: "task-professor-substitute",
     path: "tasks\\javascript\\syntax\\task-professor-substitute",
@@ -500,7 +508,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'syntax'],
     tags: ['?.', '||', 'Опциональная цепочка', 'синтаксис', 'javascript']
   },
-  {  // 42
+  {  // 43
     id: "85b5b94a0dc6f958",
     name: "task-user-action-details_rest_fn_params",
     path: "tasks\\javascript\\syntax\\task-user-action-details_rest_fn_params",
@@ -508,7 +516,7 @@ export const tasks: Task[] = [
     categories: ['javascript', 'syntax'],
     tags: ['...', 'rest', 'синтаксис', 'javascript']
   },
-  {  // 43
+  {  // 44
     id: "1af9397a57643494",
     name: "task-dyn-add-field_spread_and",
     path: "tasks\\objects\\task-dyn-add-field_spread_and",
@@ -516,7 +524,7 @@ export const tasks: Task[] = [
     categories: ['objects'],
     tags: ['spread-objects', '&&', 'object']
   },
-  {  // 44
+  {  // 45
     id: "1f9fc76721918b29",
     name: "task-hackers-searching-revenue_in",
     path: "tasks\\objects\\task-hackers-searching-revenue_in",
@@ -524,7 +532,7 @@ export const tasks: Task[] = [
     categories: ['objects'],
     tags: ['in', 'object']
   },
-  {  // 45
+  {  // 46
     id: "028fa2478a7ce693",
     name: "task-merge-objects-1_spread_obj",
     path: "tasks\\objects\\task-merge-objects-1_spread_obj",
@@ -532,7 +540,7 @@ export const tasks: Task[] = [
     categories: ['objects'],
     tags: ['spread-objects', 'object']
   },
-  {  // 46
+  {  // 47
     id: "e605a49167ed6568",
     name: "task-dotaters-thanks",
     path: "tasks\\real-tasks\\task-dotaters-thanks",
@@ -540,7 +548,7 @@ export const tasks: Task[] = [
     categories: ['real-tasks'],
     tags: []
   },
-  {  // 47
+  {  // 48
     id: "8c5114116f200b9f",
     name: "task-flat-categories",
     path: "tasks\\real-tasks\\task-flat-categories",
@@ -548,7 +556,7 @@ export const tasks: Task[] = [
     categories: ['real-tasks'],
     tags: []
   },
-  {  // 48
+  {  // 49
     id: "d279c4b5be657b71",
     name: "task-merge-user-info",
     path: "tasks\\real-tasks\\task-merge-user-info",
@@ -556,7 +564,7 @@ export const tasks: Task[] = [
     categories: ['real-tasks'],
     tags: ['reduce', 'find', 'map', 'spread', '...', 'findIndex']
   },
-  {  // 49
+  {  // 50
     id: "77128850a0c305a2",
     name: "task-subscribers",
     path: "tasks\\real-tasks\\task-subscribers",
@@ -564,7 +572,7 @@ export const tasks: Task[] = [
     categories: ['real-tasks'],
     tags: []
   },
-  {  // 50
+  {  // 51
     id: "62bb7163a6460b30",
     name: "task-fetch-to-ent",
     path: "tasks\\refactoring\\task-fetch-to-ent",
@@ -572,7 +580,7 @@ export const tasks: Task[] = [
     categories: ['refactoring'],
     tags: []
   },
-  {  // 51
+  {  // 52
     id: "048ae8db63738125",
     name: "task-_overloading",
     path: "tasks\\typescript\\functions\\task-_overloading",
@@ -580,7 +588,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'functions'],
     tags: ['опциональные поля', 'обязательные поля', 'union']
   },
-  {  // 52
+  {  // 53
     id: "7e947eb44113c93d",
     name: "task-autotype-config_typeof",
     path: "tasks\\typescript\\operators-and-constructions\\task-autotype-config_typeof",
@@ -588,7 +596,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'operators-and-constructions'],
     tags: ['typeof', 'Partial']
   },
-  {  // 53
+  {  // 54
     id: "be594ea43cc67f24",
     name: "task-safely-get-prop-value_keyof",
     path: "tasks\\typescript\\operators-and-constructions\\task-safely-get-prop-value_keyof",
@@ -596,7 +604,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'operators-and-constructions'],
     tags: ['keyof', 'generics', 'дженерики']
   },
-  {  // 54
+  {  // 55
     id: "6f1acae593ea0bae",
     name: "task-ranked-task_type_merge",
     path: "tasks\\typescript\\type-interface\\task-ranked-task_type_merge",
@@ -604,7 +612,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'type-interface'],
     tags: ['type слияние', 'type', 'interface']
   },
-  {  // 55
+  {  // 56
     id: "3d4b25096f709e11",
     name: "task-user-profile-base_type_interface_union",
     path: "tasks\\typescript\\type-interface\\task-user-profile-base_type_interface_union",
@@ -612,7 +620,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'type-interface'],
     tags: ['опциональные поля', 'обязательные поля', 'union', 'type', 'interface']
   },
-  {  // 56
+  {  // 57
     id: "a30c8fd86874b15f",
     name: "task-partial-1",
     path: "tasks\\typescript\\utility-types\\task-partial-1",
@@ -620,7 +628,7 @@ export const tasks: Task[] = [
     categories: ['typescript', 'utility-types'],
     tags: ['partial']
   },
-  {  // 57
+  {  // 58
     id: "3259fca9146620fd",
     name: "task-pick-2",
     path: "tasks\\typescript\\utility-types\\task-pick-2",

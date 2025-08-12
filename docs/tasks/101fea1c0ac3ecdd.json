@@ -2,7 +2,7 @@
   "id": "101fea1c0ac3ecdd",
   "name": "task-movie-avg-rating",
   "path": "tasks\\javascript\\math\\task-movie-avg-rating",
-  "title": "",
+  "title": "Рейтинг фильма",
   "description": "У вас есть массив с оценками зрителей для фильма. Вы скачали плагин, который рисует звездочки и хотите с его помощью наглядно отобразить рейтинг фильма. Плагин принимает целое число.\r\n\r\nЗадача:\r\n\r\n* Напишите реализацию для функции calculateAverageRating, которая рассчитывает средний рейтинг фильма по стандартным математическим правилам. Итоговый рейтинг - целое число.\r\n* Автор плагина доработал его и теперь плагин может отображать не только целые звезды, но и частично заполненные.\r\n  * Перепишите функцию, чтобы она возвращала рейтинг с точностью до 2х знаков после запятой.",
   "template": "const audienceRatings = [8, 7, 9, 6, 8, 10, 7];\r\n\r\nconst rating = calculateAverageRating(audienceRatings)\r\nconsole.log(`Рейтинг фильма: \\${rating}`);\r\n\r\n\r\nfunction calculateAverageRating(ratings) {\r\n  // Рассчитайте рейтинг\r\n}",
   "solution": "const audienceRatings = [8, 7, 9, 6, 8, 10, 7];\r\n\r\nconst rating = calculateAverageRating(audienceRatings)\r\nconsole.log(`Рейтинг фильма: \\${rating}`);\r\n\r\n// Решение 1\r\nfunction calculateAverageRating(ratings) {\r\n  return Math.round(ratings.reduce((sum, rate) => sum + rate, 0) / ratings.length);\r\n}\r\n\r\n// Решение 2\r\nfunction calculateAverageRating(ratings) {\r\n  const deci = ratings.reduce((sum, rate) => sum + rate, 0) / ratings.length;\r\n  return Math.round(deci * 100) / 100;\r\n}",
@@ -13,6 +13,8 @@
     "math"
   ],
   "tags": [
+    "round",
+    "reduce",
     "math",
     "javascript"
   ]

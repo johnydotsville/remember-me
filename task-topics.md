@@ -113,6 +113,7 @@
 - [x] keyof
 - [ ] utility-types
   - [ ] Partial, Require
+  - [ ] Record
 - [ ] Функции
   - [ ] Перегрузка функции
   - [ ] Типизация параметров при деструктуризации
@@ -145,30 +146,20 @@
   - [x] display: flex
     
     - [ ] display: inline-flex
-  
   - [x] flex-direction: row | column
-  
   - [x] flex-wrap: nowrap | wrap
-  
   - [ ] flex-flow: направление перенос;
-  
   - [x] gap
     
     - [ ] row-gap, column-gap
-  
   - [x] justify-content
-  
   - [x] align-items
-  
   - [ ] align-content
-  
   - [x] flex-grow: 0;
-  
   - [x] flex-shrink: 1;
-  
   - [x] flex-basis: auto;
-  
   - [x] flex, Растягивание + сужение + базис
+  - [ ] align-self
 - [ ] grid
   - [x] grid-auto-flow
   - [x] grid-template-rows, grid-template-columns

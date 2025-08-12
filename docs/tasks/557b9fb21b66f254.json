@@ -1,0 +1,18 @@
+{
+  "id": "557b9fb21b66f254",
+  "name": "task-select-your-city_select",
+  "path": "tasks\\html\\task-select-your-city_select",
+  "title": "Выбор города из выпадающего списка",
+  "description": "Стажер получил задание сверстать карточку товара. Но описание товара не помещается в карточку и вылазит за ее границы. Он пришел к вам и спросил:\r\n\r\n* Как убрать текст, который не помещается в карточку?\r\n\r\nВы показали ему, но вам кажется это не очень логичным - скрывать описание. Вы предлагаете:\r\n\r\n* Предлагаю не просто убрать лишнее, а добавить возможность прокрутки.\r\n\r\nСтажеру идея понравилась, но после сдачи задания пришел лид и сказал:\r\n\r\n* Тут не нужна прокрутка, в том числе программная. Браузер не должен тратить ресурсы на скролл там, где он не нужен.",
+  "template": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <title>html select task</title>\r\n  <style>\r\n    #userform {\r\n      display: flex;\r\n      flex-direction: column;\r\n      max-width: 250px;\r\n    }\r\n    #send {\r\n      align-self: flex-end;\r\n    }\r\n  </style>\r\n</head>\r\n<body>\r\n  <form id=\"userform\">\r\n    <input id=\"send\" type=\"submit\" />\r\n  </form>\r\n</body>\r\n<script>\r\n</script>\r\n</html>",
+  "solution": "<form id=\"userform\">\r\n  <select id=\"city\" required>\r\n    <option value=\"\" selected disabled>Выберите город...</option>\r\n    <option value=\"moscow\">Москва</option>\r\n    <option value=\"spb\">Санкт-Петербург</option>\r\n    <option value=\"novosib\">Новосибирск</option>\r\n    <option value=\"ekb\">Екатеринбург</option>\r\n    <option value=\"kazan\">Казань</option>\r\n  </select>\r\n  <input id=\"send\" type=\"submit\" />\r\n</form>\r\n\r\n// ...\r\n\r\n<script>\r\n  const city = document.querySelector(\"#city\");\r\n  city.addEventListener('change', (event) => alert(event.target.value));\r\n</script>\r\n",
+  "templateLang": ".html",
+  "solutionLang": ".html",
+  "categories": [
+    "html"
+  ],
+  "tags": [
+    "select",
+    "html"
+  ]
+}
